@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-01-14T20:25:59+00:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Data Ocean</title><subtitle>A discovery into the world of data.</subtitle><entry><title type="html">Forest Cover Type</title><link href="http://localhost:4000/forest/" rel="alternate" type="text/html" title="Forest Cover Type" /><published>2019-01-14T00:00:00+00:00</published><updated>2019-01-14T00:00:00+00:00</updated><id>http://localhost:4000/forest</id><content type="html" xml:base="http://localhost:4000/forest/">&lt;h2 id=&quot;or-who-cannot-see-the-wood-for-the-trees&quot;&gt;Or who cannot see the wood for the trees?&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-01-14T20:37:45+00:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Data Ocean</title><subtitle>A discovery into the world of data.</subtitle><entry><title type="html">Forest Cover Type</title><link href="http://localhost:4000/forest/" rel="alternate" type="text/html" title="Forest Cover Type" /><published>2019-01-14T00:00:00+00:00</published><updated>2019-01-14T00:00:00+00:00</updated><id>http://localhost:4000/forest</id><content type="html" xml:base="http://localhost:4000/forest/">&lt;h2 id=&quot;or-who-cannot-see-the-wood-for-the-trees&quot;&gt;Or who cannot see the wood for the trees?&lt;/h2&gt;
 
 &lt;p&gt;Researchers at the Department of Forest Sciences at Colorado State University collected over half a million measurements from tree observations from four areas of the Roosevelt National Forest in Colorado. All observations are cartographic variables (no remote sensing) from 30-meter x 30-meter sections of forest.&lt;/p&gt;
 
@@ -192,7 +192,7 @@
 
 &lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h2&gt;
 
-&lt;p&gt;What conclusion can we draw out of this? Yes, we can build a model that predicts what types of trees grow in an area based on the surrounding characteristics.&lt;/p&gt;
+&lt;p&gt;Yes, we can build a model that predicts what types of trees grow in an area based on the surrounding characteristics.&lt;/p&gt;
 
 &lt;h2 id=&quot;final-thought&quot;&gt;Final Thought&lt;/h2&gt;
 
