@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-01-14T19:35:35+00:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Data Ocean</title><subtitle>A discovery into the world of data.</subtitle><entry><title type="html">Forest Cover Type</title><link href="http://localhost:4000/forest/" rel="alternate" type="text/html" title="Forest Cover Type" /><published>2019-01-14T00:00:00+00:00</published><updated>2019-01-14T00:00:00+00:00</updated><id>http://localhost:4000/forest</id><content type="html" xml:base="http://localhost:4000/forest/">&lt;h2 id=&quot;or-who-cannot-see-the-wood-for-the-trees&quot;&gt;Or who cannot see the wood for the trees?&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-01-14T20:25:59+00:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Data Ocean</title><subtitle>A discovery into the world of data.</subtitle><entry><title type="html">Forest Cover Type</title><link href="http://localhost:4000/forest/" rel="alternate" type="text/html" title="Forest Cover Type" /><published>2019-01-14T00:00:00+00:00</published><updated>2019-01-14T00:00:00+00:00</updated><id>http://localhost:4000/forest</id><content type="html" xml:base="http://localhost:4000/forest/">&lt;h2 id=&quot;or-who-cannot-see-the-wood-for-the-trees&quot;&gt;Or who cannot see the wood for the trees?&lt;/h2&gt;
 
 &lt;p&gt;Researchers at the Department of Forest Sciences at Colorado State University collected over half a million measurements from tree observations from four areas of the Roosevelt National Forest in Colorado. All observations are cartographic variables (no remote sensing) from 30-meter x 30-meter sections of forest.&lt;/p&gt;
 
@@ -50,7 +50,7 @@
 
 &lt;p&gt;The first step with every dataset is to do an &lt;code class=&quot;highlighter-rouge&quot;&gt;Exploratory Data Analysis&lt;/code&gt; (EDA). What kind of data do we have? Text or numerical (continues or categorical)? Do we have missing data, or just merely wrong data — values which do not make any sense in the given context, i.e., 9999.&lt;/p&gt;
 
-&lt;p&gt;Because of the sheer number of soil types and wilderness areas I had a look at them first. Luckily, the researchers here were efficient in the sense that they document very thing meticulous. Everything we need to know with a detailed description can be found online&lt;sup id=&quot;fnref:3&quot;&gt;&lt;a href=&quot;#fn:3&quot; class=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+&lt;p&gt;Because of the sheer number of soil types and wilderness areas I had a look at them first. Luckily, the researchers here were efficient in the sense that they document everything meticulously. Everything we need to know with a detailed description can be found online&lt;sup id=&quot;fnref:3&quot;&gt;&lt;a href=&quot;#fn:3&quot; class=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 
 &lt;p&gt;From that document, we can find out that&lt;/p&gt;
 &lt;blockquote&gt;
@@ -61,9 +61,9 @@
    ecological processes rather than forest management practices.&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;Not that this is from any importance for our data exploration or to make a prediction, but I found it interesting to read. Because it makes you think about what kind of implications can your result potentially have.&lt;/p&gt;
+&lt;p&gt;Not that this is of any importance for our data exploration or to make a prediction, but I found it interesting to read. Because it makes you think about what kind of implications your result can potentially have.&lt;/p&gt;
 
-&lt;p&gt;However, what we want to find out is how is the data distribute by &lt;code class=&quot;highlighter-rouge&quot;&gt;Cover_Type&lt;/code&gt;. Here I created a &lt;code class=&quot;highlighter-rouge&quot;&gt;seaborn.countplot&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;However, what we want to find out is how the data is distributed by &lt;code class=&quot;highlighter-rouge&quot;&gt;Cover_Type&lt;/code&gt;. Here I created a &lt;code class=&quot;highlighter-rouge&quot;&gt;seaborn.countplot&lt;/code&gt;.&lt;/p&gt;
 
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;tmpList&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[]&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;soil_df&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;columns&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
@@ -88,7 +88,7 @@
 
 &lt;p&gt;Looking more closely at the data we can find that the top 5 soil types count for more than 50% of the measurements in the collected data.&lt;/p&gt;
 
-&lt;p&gt;Now, unlike categorical data, the continues data is even more interest to investigate. The questions we want to find answers for are&lt;/p&gt;
+&lt;p&gt;Unlike categorical data, the continues data is even more interesting to investigate. The questions we want to find answers for are&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;Do we need to scale/normalise the continuous data?&lt;/li&gt;
@@ -105,9 +105,9 @@
 
 &lt;h3 id=&quot;feature-selection&quot;&gt;Feature Selection&lt;/h3&gt;
 
-&lt;p&gt;There are several ways to explore what feature we need to keep around to make our prediction. The labour intensive and the - what I would like to call - blind way, but much quicker. For the purpose of gaining more inside, I choose to do both.&lt;/p&gt;
+&lt;p&gt;There are several ways to explore what features we need to keep around to make our prediction. The labour intensive workflow and the much quicker workflow - what I would like to call the “blind folded method”. For the purpose of gaining more inside, I choose to do both.&lt;/p&gt;
 
-&lt;p&gt;In the first workflow, I used several classifiers from the &lt;code class=&quot;highlighter-rouge&quot;&gt;sklearn.ensemble&lt;/code&gt; Library. These are, &lt;code class=&quot;highlighter-rouge&quot;&gt;AdaBoostClassifier&lt;/code&gt;,  &lt;code class=&quot;highlighter-rouge&quot;&gt;RandomForestClassifier&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;GradientBoostingClassifier&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;ExtraTreeClassifier&lt;/code&gt;. All these classifiers have one thing in comman, and that is its attribute &lt;code class=&quot;highlighter-rouge&quot;&gt;feature_importances_&lt;/code&gt;. Which returns the feature importance (the higher, the more important the feature).&lt;/p&gt;
+&lt;p&gt;In the first workflow, I used several classifiers from the &lt;code class=&quot;highlighter-rouge&quot;&gt;sklearn.ensemble&lt;/code&gt; Library. These are, &lt;code class=&quot;highlighter-rouge&quot;&gt;AdaBoostClassifier&lt;/code&gt;,  &lt;code class=&quot;highlighter-rouge&quot;&gt;RandomForestClassifier&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;GradientBoostingClassifier&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;ExtraTreeClassifier&lt;/code&gt;. All these classifiers have one thing in common, which is the attribute &lt;code class=&quot;highlighter-rouge&quot;&gt;feature_importances_&lt;/code&gt;, which returns the feature importance (the higher the value, the more important the feature).&lt;/p&gt;
 
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# Create an empty dataframe to hold our findings for feature_importances_
 &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ranking_df&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pd&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;DataFrame&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
@@ -127,20 +127,20 @@
 &lt;span class=&quot;n&quot;&gt;ranking_df&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'RFC importance'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rfci_list&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;The result was a pandas data frame with all features from the dataset ordered by importance, which allows us to pick the best features.  Interestingly, &lt;code class=&quot;highlighter-rouge&quot;&gt;RandomForestClassifier&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;ExtraTreeClassifier&lt;/code&gt; had the most similar results. Other findings from that list were,&lt;/p&gt;
+&lt;p&gt;The result was a pandas data frame with all features from the dataset in order of importance, which allows us to pick the best features. Interestingly, &lt;code class=&quot;highlighter-rouge&quot;&gt;RandomForestClassifier&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;ExtraTreeClassifier&lt;/code&gt; had the most similar results. Other findings from that list were,&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Gradian Boosting&lt;/code&gt; shows similar names just in a different order compared to &lt;code class=&quot;highlighter-rouge&quot;&gt;Random Forest&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;Extra Tree&lt;/code&gt;.&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;AdaBoost&lt;/code&gt; on the other hand shows an exciting and unique result. The top 8 feature alone is enough to make a good class prediction. Compare to all the other classifiers, here we have &lt;code class=&quot;highlighter-rouge&quot;&gt;Wilderness_Area4&lt;/code&gt; on top, before &lt;code class=&quot;highlighter-rouge&quot;&gt;Elevation&lt;/code&gt;.&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Elevation&lt;/code&gt; dominates in all classifiers with a range of &lt;code class=&quot;highlighter-rouge&quot;&gt;18-65%&lt;/code&gt;.&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Hillshade&lt;/code&gt; features are seen in the top 20 in 3 out of 4 classifiers. &lt;code class=&quot;highlighter-rouge&quot;&gt;Random Forest&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;Extra Tree Classifier&lt;/code&gt; show that &lt;code class=&quot;highlighter-rouge&quot;&gt;Hillshade&lt;/code&gt; features having similar ranging.&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Horizontal_Distance_To_Hydrology&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;Vertical_Distance_To_Hydrology&lt;/code&gt; are in all classifier top 10.&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Horizontal_Distance_To_Roadways&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;Horizontal_Distance_To_Fire_Points&lt;/code&gt; are represented on the top in 3 out of 4 classifiers.&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Aspect&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;Slope&lt;/code&gt; also show up in the top 20 across all classifiers, with the exception in Gradian Boosting Slope isn’t in the top 20.&lt;/li&gt;
-  &lt;li&gt;In regards to &lt;code class=&quot;highlighter-rouge&quot;&gt;Soil_Type&lt;/code&gt;, it is hard to find some commonality. Here are once I choose to select: &lt;code class=&quot;highlighter-rouge&quot;&gt;Soil_Type2&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;Soil_Type4&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;Soil_Type10&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;Soil_Type22&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;Soil_Type23&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;Soil_Type39&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;AdaBoost&lt;/code&gt; on the other hand shows an exciting and unique result. The top 8 features alone are enough to make a good class prediction. Compared to all the other classifiers, here we have &lt;code class=&quot;highlighter-rouge&quot;&gt;Wilderness_Area4&lt;/code&gt; on above &lt;code class=&quot;highlighter-rouge&quot;&gt;Elevation&lt;/code&gt; in the list.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Elevation&lt;/code&gt; dominates in all classifiers with a range of &lt;code class=&quot;highlighter-rouge&quot;&gt;18-25%&lt;/code&gt;, up to &lt;code class=&quot;highlighter-rouge&quot;&gt;65%&lt;/code&gt; in &lt;code class=&quot;highlighter-rouge&quot;&gt;GBC&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Hillshade&lt;/code&gt; features are seen in the top 20 in 3 out of 4 classifiers. &lt;code class=&quot;highlighter-rouge&quot;&gt;Random Forest&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;Extra Tree Classifier&lt;/code&gt; show &lt;code class=&quot;highlighter-rouge&quot;&gt;Hillshade&lt;/code&gt; features having similar ranges.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Horizontal_Distance_To_Hydrology&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;Vertical_Distance_To_Hydrology&lt;/code&gt; are in all classifiers in the top 10.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Horizontal_Distance_To_Roadways&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;Horizontal_Distance_To_Fire_Points&lt;/code&gt; are represented at the top 3 out of 4 classifiers.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Aspect&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;Slope&lt;/code&gt; also show up in the top 20 across all classifiers, with the exception of Gradian Boosting Slope which isn’t in the top 20.&lt;/li&gt;
+  &lt;li&gt;In regards to &lt;code class=&quot;highlighter-rouge&quot;&gt;Soil_Type&lt;/code&gt;, it is hard to find some commonality. Here I choose to select: &lt;code class=&quot;highlighter-rouge&quot;&gt;Soil_Type2&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;Soil_Type4&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;Soil_Type10&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;Soil_Type22&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;Soil_Type23&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;Soil_Type39&lt;/code&gt;.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;Now, the question I asked myself at that point, is that the time wisely spend? Alternatively, worse it at all? After all, it took almost 20 minutes to calculate. One advantage that approach has is, we know our selected features.&lt;/p&gt;
+&lt;p&gt;The question I asked myself at this point is, was the time wisely spend? After all, it took almost 20 minutes to calculate. One advantage this approach has is, we know our selected features.&lt;/p&gt;
 
 &lt;p&gt;The other approach we can choose is using &lt;code class=&quot;highlighter-rouge&quot;&gt;PCA&lt;/code&gt; (Principal Component Analysis) from sklearn.&lt;/p&gt;
 
@@ -154,9 +154,11 @@
 &lt;span class=&quot;n&quot;&gt;X_pca&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pca&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fit_transform&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;X_scaled&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;The big advantage here is the short processing time it takes. On the other hand, we are losing any knowledge regarding our features. Now is that important? Maybe.&lt;/p&gt;
+&lt;p&gt;The big advantage to this is the short processing time. But the drawback, we are losing any knowledge regarding our features. Now is that important? Maybe.&lt;/p&gt;
 
 &lt;h3 id=&quot;evaluate-model&quot;&gt;Evaluate Model&lt;/h3&gt;
+
+&lt;p&gt;By hand selecting our features, we get an &lt;code class=&quot;highlighter-rouge&quot;&gt;accuracy of 92.23%&lt;/code&gt; and an &lt;code class=&quot;highlighter-rouge&quot;&gt;f1_score of 86.74%&lt;/code&gt; using cross validation. In contrast, &lt;code class=&quot;highlighter-rouge&quot;&gt;PCA&lt;/code&gt; has an &lt;code class=&quot;highlighter-rouge&quot;&gt;accuracy of 90.72%&lt;/code&gt; and an &lt;code class=&quot;highlighter-rouge&quot;&gt;f1_score of 84.44%&lt;/code&gt;. Is that a big enough difference to justify the time spent to find our features? Maybe.&lt;/p&gt;
 
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;X_train&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;X_test&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y_train&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y_test&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;train_test_split&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;X_pca&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;random_state&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 
@@ -186,13 +188,11 @@
     &lt;figcaption&gt;&lt;/figcaption&gt;
 &lt;/figure&gt;
 
-&lt;p&gt;By selecting our features by hand so to speak, we get an &lt;code class=&quot;highlighter-rouge&quot;&gt;accuracy of 92.23%&lt;/code&gt; and an &lt;code class=&quot;highlighter-rouge&quot;&gt;f1_score of 86.74%&lt;/code&gt; using cross validation. In contrast, &lt;code class=&quot;highlighter-rouge&quot;&gt;PCA&lt;/code&gt; has an &lt;code class=&quot;highlighter-rouge&quot;&gt;accuracy of 90.72%&lt;/code&gt; and an &lt;code class=&quot;highlighter-rouge&quot;&gt;f1_score of 84.44%&lt;/code&gt;. Now is that a big enough difference to justify the time spent to find our features? Maybe.&lt;/p&gt;
-
-&lt;p&gt;To test how accurate we can predict the &lt;code class=&quot;highlighter-rouge&quot;&gt;Cover_Type&lt;/code&gt; we used the &lt;code class=&quot;highlighter-rouge&quot;&gt;KNeighborsClassifier&lt;/code&gt; from sklearn, and we got an accuracy of &lt;code class=&quot;highlighter-rouge&quot;&gt;91.02%&lt;/code&gt;. That is great.&lt;/p&gt;
+&lt;p&gt;To test how accurate we can predict the &lt;code class=&quot;highlighter-rouge&quot;&gt;Cover_Type&lt;/code&gt; I used the &lt;code class=&quot;highlighter-rouge&quot;&gt;KNeighborsClassifier&lt;/code&gt; from sklearn, and we got an accuracy of &lt;code class=&quot;highlighter-rouge&quot;&gt;91.02%&lt;/code&gt;. That is great.&lt;/p&gt;
 
 &lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h2&gt;
 
-&lt;p&gt;Now, what can we tell about that? Yes, we can build a model that predicts what types of trees grow in an area based on the surrounding characteristics.&lt;/p&gt;
+&lt;p&gt;What conclusion can we draw out of this? Yes, we can build a model that predicts what types of trees grow in an area based on the surrounding characteristics.&lt;/p&gt;
 
 &lt;h2 id=&quot;final-thought&quot;&gt;Final Thought&lt;/h2&gt;
 
