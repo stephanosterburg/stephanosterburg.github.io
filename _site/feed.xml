@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-01-14T19:26:33+00:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Data Ocean</title><subtitle>A discovery into the world of data.</subtitle><entry><title type="html">Forest Cover Type</title><link href="http://localhost:4000/forest/" rel="alternate" type="text/html" title="Forest Cover Type" /><published>2019-01-14T00:00:00+00:00</published><updated>2019-01-14T00:00:00+00:00</updated><id>http://localhost:4000/forest</id><content type="html" xml:base="http://localhost:4000/forest/">&lt;h2 id=&quot;or-who-cannot-see-the-wood-for-the-trees&quot;&gt;Or who cannot see the wood for the trees?&lt;/h2&gt;
+
+&lt;p&gt;Researchers at the Department of Forest Sciences at Colorado State University collected over half a million measurements from tree observations from four areas of the Roosevelt National Forest in Colorado. All observations are cartographic variables (no remote sensing) from 30-meter x 30-meter sections of forest.&lt;/p&gt;
+
+&lt;p&gt;The resulting dataset includes information on tree type, shadow coverage, distance to nearby landmarks (roads etcetera), soil type, and local topography. In total there are 55 columns/features.&lt;/p&gt;
+
+&lt;h3 id=&quot;problem&quot;&gt;Problem&lt;/h3&gt;
+
+&lt;p&gt;Can we build a model that predicts what types of trees grow in an area based on the surrounding characteristics? Like elevation, slope, distance, soil type etcetera.&lt;/p&gt;
+
+&lt;h3 id=&quot;dataset&quot;&gt;Dataset&lt;/h3&gt;
+
+&lt;p&gt;The dataset has 55 columns in total where &lt;code class=&quot;highlighter-rouge&quot;&gt;Wilderness_Area&lt;/code&gt; consists of 4 dummy variables and &lt;code class=&quot;highlighter-rouge&quot;&gt;Soil_Tpye&lt;/code&gt; consists of 40 dummy variables.&lt;/p&gt;
+
+&lt;p&gt;Continous Data&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Elevation&lt;/code&gt; (in meters)&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Aspect&lt;/code&gt; (in degrees azimuth&lt;sup id=&quot;fnref:2&quot;&gt;&lt;a href=&quot;#fn:2&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;)&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Slope&lt;/code&gt; (in degrees)&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Horizontal_Distance_To_Hydrology&lt;/code&gt; (Horizontal distance to nearest surface water features in meters)&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Horizontal_Distance_To_Roadways&lt;/code&gt; (Horizontal distance to nearest roadway in meters)&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Horizontal_Distance_To_Fire_Points&lt;/code&gt; (Horizontal distance to nearest wildfire ignition points in meters)&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Vertical_Distance_To_Hydrology&lt;/code&gt; (Vertical distance to nearest surface water features in meters)&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Hillshade_9am&lt;/code&gt; (Hill shade index at 9am, summer solstice. Value out of 255)&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Hillshade_Noon&lt;/code&gt; (Hill shade index at noon, summer solstice. Value out of 255)&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Hillshade_3pm&lt;/code&gt; (Hill shade index at 3pm, summer solstice. Value out of 255)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Categorical Data&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Wilderness Area&lt;/code&gt; (4 dummy variable binary columns, 0 = absence or 1 = presence)&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Soil Type&lt;/code&gt; (40 dummy variable binary columns, 0 = absence or 1 = presence)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The target variable &lt;code class=&quot;highlighter-rouge&quot;&gt;Cover_Type&lt;/code&gt; is defined as an integer value between &lt;code class=&quot;highlighter-rouge&quot;&gt;1&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;7&lt;/code&gt;, with the following key:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Spruce/Fir.&lt;/li&gt;
+  &lt;li&gt;Lodgepole Pine.&lt;/li&gt;
+  &lt;li&gt;Ponderosa Pine.&lt;/li&gt;
+  &lt;li&gt;Cottonwood/Willow&lt;/li&gt;
+  &lt;li&gt;Aspen&lt;/li&gt;
+  &lt;li&gt;Douglas-fir&lt;/li&gt;
+  &lt;li&gt;Krummholz&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;approach&quot;&gt;Approach&lt;/h3&gt;
+
+&lt;h4 id=&quot;eda&quot;&gt;EDA&lt;/h4&gt;
+
+&lt;p&gt;The first step with every dataset is to do an &lt;code class=&quot;highlighter-rouge&quot;&gt;Exploratory Data Analysis&lt;/code&gt; (EDA). What kind of data do we have? Text or numerical (continues or categorical)? Do we have missing data, or just merely wrong data — values which do not make any sense in the given context, i.e., 9999.&lt;/p&gt;
+
+&lt;p&gt;Because of the sheer number of soil types and wilderness areas I had a look at them first. Luckily, the researchers here were efficient in the sense that they document very thing meticulous. Everything we need to know with a detailed description can be found online&lt;sup id=&quot;fnref:3&quot;&gt;&lt;a href=&quot;#fn:3&quot; class=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+
+&lt;p&gt;From that document, we can find out that&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;This study area includes four wilderness areas located in the
+   Roosevelt National Forest of northern Colorado.  These areas
+   represent forests with minimal human-caused disturbances,
+   so that existing forest cover types are more a result of 
+   ecological processes rather than forest management practices.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Not that this is from any importance for our data exploration or to make a prediction, but I found it interesting to read. Because it makes you think about what kind of implications can your result potentially have.&lt;/p&gt;
+
+&lt;p&gt;However, what we want to find out is how is the data distribute by &lt;code class=&quot;highlighter-rouge&quot;&gt;Cover_Type&lt;/code&gt;. Here I created a &lt;code class=&quot;highlighter-rouge&quot;&gt;seaborn.countplot&lt;/code&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;tmpList&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[]&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;soil_df&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;columns&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;tmpList&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;soil_df&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;value_counts&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;se&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pd&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Series&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;tmpList&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;df&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'Soil_Types'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;se&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;values&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;figure&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;figsize&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;16&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;8&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;sns&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;countplot&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;df&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'Soil_Types'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;hue&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'Cover_Type'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'Number of Observation by Cover Type'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;xticks&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rotation&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;90&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;show&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;figure&gt;
+    
+    &lt;a href=&quot;/images/SoilType.png&quot;&gt;&lt;img src=&quot;/images/SoilType.png&quot; alt=&quot;&quot; /&gt;&lt;/a&gt;
+    
+    &lt;figcaption&gt;&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;Looking more closely at the data we can find that the top 5 soil types count for more than 50% of the measurements in the collected data.&lt;/p&gt;
+
+&lt;p&gt;Now, unlike categorical data, the continues data is even more interest to investigate. The questions we want to find answers for are&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Do we need to scale/normalise the continuous data?&lt;/li&gt;
+  &lt;li&gt;What about skewness/kurtosis?&lt;/li&gt;
+  &lt;li&gt;Does it matter if the data is in meter, degree or index?&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;figure&gt;
+    
+    &lt;a href=&quot;/images/ContinuesData.png&quot;&gt;&lt;img src=&quot;/images/ContinuesData.png&quot; alt=&quot;&quot; /&gt;&lt;/a&gt;
+    
+    &lt;figcaption&gt;&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;h3 id=&quot;feature-selection&quot;&gt;Feature Selection&lt;/h3&gt;
+
+&lt;p&gt;There are several ways to explore what feature we need to keep around to make our prediction. The labour intensive and the - what I would like to call - blind way, but much quicker. For the purpose of gaining more inside, I choose to do both.&lt;/p&gt;
+
+&lt;p&gt;In the first workflow, I used several classifiers from the &lt;code class=&quot;highlighter-rouge&quot;&gt;sklearn.ensemble&lt;/code&gt; Library. These are, &lt;code class=&quot;highlighter-rouge&quot;&gt;AdaBoostClassifier&lt;/code&gt;,  &lt;code class=&quot;highlighter-rouge&quot;&gt;RandomForestClassifier&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;GradientBoostingClassifier&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;ExtraTreeClassifier&lt;/code&gt;. All these classifiers have one thing in comman, and that is its attribute &lt;code class=&quot;highlighter-rouge&quot;&gt;feature_importances_&lt;/code&gt;. Which returns the feature importance (the higher, the more important the feature).&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# Create an empty dataframe to hold our findings for feature_importances_
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ranking_df&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pd&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;DataFrame&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;RFC_model&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;RandomForestClassifier&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;random_state&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n_jobs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;RFC_model&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;X&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;importances&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;RFC_model&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;feature_importances_&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;indices&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;argsort&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;importances&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)[::&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# Get feature name
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rfc_list&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;X&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;columns&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;indices&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]]&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;range&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;X&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;shape&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])]&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;ranking_df&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'RFC'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rfc_list&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# Get feature importance
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rfci_list&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;importances&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;indices&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]]&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;range&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;X&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;shape&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])]&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;ranking_df&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'RFC importance'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rfci_list&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The result was a pandas data frame with all features from the dataset ordered by importance, which allows us to pick the best features.  Interestingly, &lt;code class=&quot;highlighter-rouge&quot;&gt;RandomForestClassifier&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;ExtraTreeClassifier&lt;/code&gt; had the most similar results. Other findings from that list were,&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Gradian Boosting&lt;/code&gt; shows similar names just in a different order compared to &lt;code class=&quot;highlighter-rouge&quot;&gt;Random Forest&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;Extra Tree&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;AdaBoost&lt;/code&gt; on the other hand shows an exciting and unique result. The top 8 feature alone is enough to make a good class prediction. Compare to all the other classifiers, here we have &lt;code class=&quot;highlighter-rouge&quot;&gt;Wilderness_Area4&lt;/code&gt; on top, before &lt;code class=&quot;highlighter-rouge&quot;&gt;Elevation&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Elevation&lt;/code&gt; dominates in all classifiers with a range of &lt;code class=&quot;highlighter-rouge&quot;&gt;18-65%&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Hillshade&lt;/code&gt; features are seen in the top 20 in 3 out of 4 classifiers. &lt;code class=&quot;highlighter-rouge&quot;&gt;Random Forest&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;Extra Tree Classifier&lt;/code&gt; show that &lt;code class=&quot;highlighter-rouge&quot;&gt;Hillshade&lt;/code&gt; features having similar ranging.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Horizontal_Distance_To_Hydrology&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;Vertical_Distance_To_Hydrology&lt;/code&gt; are in all classifier top 10.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Horizontal_Distance_To_Roadways&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;Horizontal_Distance_To_Fire_Points&lt;/code&gt; are represented on the top in 3 out of 4 classifiers.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Aspect&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;Slope&lt;/code&gt; also show up in the top 20 across all classifiers, with the exception in Gradian Boosting Slope isn’t in the top 20.&lt;/li&gt;
+  &lt;li&gt;In regards to &lt;code class=&quot;highlighter-rouge&quot;&gt;Soil_Type&lt;/code&gt;, it is hard to find some commonality. Here are once I choose to select: &lt;code class=&quot;highlighter-rouge&quot;&gt;Soil_Type2&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;Soil_Type4&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;Soil_Type10&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;Soil_Type22&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;Soil_Type23&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;Soil_Type39&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Now, the question I asked myself at that point, is that the time wisely spend? Alternatively, worse it at all? After all, it took almost 20 minutes to calculate. One advantage that approach has is, we know our selected features.&lt;/p&gt;
+
+&lt;p&gt;The other approach we can choose is using &lt;code class=&quot;highlighter-rouge&quot;&gt;PCA&lt;/code&gt; (Principal Component Analysis) from sklearn.&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;y&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;df&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'Cover_Type'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;X&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;df&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;drop&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'Cover_Type'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;axis&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;scaler&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;StandardScaler&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;X_scaled&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;scaler&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fit_transform&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;X&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;pca&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;PCA&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n_components&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;20&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;X_pca&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pca&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fit_transform&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;X_scaled&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The big advantage here is the short processing time it takes. On the other hand, we are losing any knowledge regarding our features. Now is that important? Maybe.&lt;/p&gt;
+
+&lt;h3 id=&quot;evaluate-model&quot;&gt;Evaluate Model&lt;/h3&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;X_train&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;X_test&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y_train&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y_test&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;train_test_split&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;X_pca&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;random_state&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;clf&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;KNeighborsClassifier&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;weights&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'distance'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n_jobs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;clf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;X_train&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y_train&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;accuracy&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cross_val_score&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;clf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;X_train&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y_train&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cv&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;scoring&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'accuracy'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n_jobs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;f1_score&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cross_val_score&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;clf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;X_train&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y_train&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cv&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;scoring&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'f1_macro'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n_jobs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# predict
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;predict&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;clf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;predict&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;X_test&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# calculating accuracy
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;accuracy&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;accuracy_score&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;y_test&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;predict&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'KNeighbors Classifier model'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'Accuracy: {:.2f}&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;accuracy&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;100&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;knn_classification_report&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;classification_report&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;y_test&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;predict&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;knn_classification_report&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;figure&gt;
+    
+    &lt;a href=&quot;/images/CrossValidation.png&quot;&gt;&lt;img src=&quot;/images/CrossValidation.png&quot; alt=&quot;&quot; /&gt;&lt;/a&gt;
+    
+    &lt;figcaption&gt;&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;By selecting our features by hand so to speak, we get an &lt;code class=&quot;highlighter-rouge&quot;&gt;accuracy of 92.23%&lt;/code&gt; and an &lt;code class=&quot;highlighter-rouge&quot;&gt;f1_score of 86.74%&lt;/code&gt; using cross validation. In contrast, &lt;code class=&quot;highlighter-rouge&quot;&gt;PCA&lt;/code&gt; has an &lt;code class=&quot;highlighter-rouge&quot;&gt;accuracy of 90.72%&lt;/code&gt; and an &lt;code class=&quot;highlighter-rouge&quot;&gt;f1_score of 84.44%&lt;/code&gt;. Now is that a big enough difference to justify the time spent to find our features? Maybe.&lt;/p&gt;
+
+&lt;p&gt;To test how accurate we can predict the &lt;code class=&quot;highlighter-rouge&quot;&gt;Cover_Type&lt;/code&gt; we used the &lt;code class=&quot;highlighter-rouge&quot;&gt;KNeighborsClassifier&lt;/code&gt; from sklearn, and we got an accuracy of &lt;code class=&quot;highlighter-rouge&quot;&gt;91.02%&lt;/code&gt;. That is great.&lt;/p&gt;
+
+&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h2&gt;
+
+&lt;p&gt;Now, what can we tell about that? Yes, we can build a model that predicts what types of trees grow in an area based on the surrounding characteristics.&lt;/p&gt;
+
+&lt;h2 id=&quot;final-thought&quot;&gt;Final Thought&lt;/h2&gt;
+
+&lt;p&gt;We can use sklearn’s &lt;code class=&quot;highlighter-rouge&quot;&gt;GridSearchCV&lt;/code&gt; to find our features (exhaustive search over specified parameter values for an estimator). Moreover, we should make use of sklearn’s &lt;code class=&quot;highlighter-rouge&quot;&gt;Pipeline&lt;/code&gt; functionality to write clean and manageable code.&lt;/p&gt;
+
+&lt;h5 id=&quot;footnotes&quot;&gt;Footnotes&lt;/h5&gt;
+
+&lt;noscript&gt;&lt;pre&gt;404: Not Found
+&lt;/pre&gt;&lt;/noscript&gt;
+&lt;script src=&quot;https://gist.github.com/mmistakes/6589546.js&quot;&gt; &lt;/script&gt;
+
+&lt;div class=&quot;footnotes&quot;&gt;
+  &lt;ol&gt;
+    &lt;li id=&quot;fn:2&quot;&gt;
+      &lt;p&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/Azimuth&quot;&gt;https://en.wikipedia.org/wiki/Azimuth&lt;/a&gt; &lt;a href=&quot;#fnref:2&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:3&quot;&gt;
+      &lt;p&gt;&lt;a href=&quot;https://archive.ics.uci.edu/ml/machine-learning-databases/covtype/covtype.info&quot;&gt;https://archive.ics.uci.edu/ml/machine-learning-databases/covtype/covtype.info&lt;/a&gt; &lt;a href=&quot;#fnref:3&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/div&gt;</content><author><name></name></author><category term="data" /><category term="code" /><category term="forest" /><summary type="html">Or who cannot see the wood for the trees?</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/images/dataset-cover.jpeg" /></entry><entry><title type="html">“Why did you decide to learn data science?”</title><link href="http://localhost:4000/why/" rel="alternate" type="text/html" title="“Why did you decide to learn data science?”" /><published>2018-12-05T00:00:00+00:00</published><updated>2018-12-05T00:00:00+00:00</updated><id>http://localhost:4000/why</id><content type="html" xml:base="http://localhost:4000/why/">&lt;p&gt;I don’t remember when I came across “The Visual Display of Quantitative Information” by Edward R.Tufte&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;, but I remember that I was fascinated by it and read it in one swoop. Moreover, I just wanted to do cool visualisations. However, at that time there was no need for it.&lt;/p&gt;
+
+&lt;p&gt;Sometime in the early nineties (I believe), I saw a short film by a Japanese computer graphics company visualising all data available at that time about Tokyo. I was just fascinated by it and just wanted to do that. Still, at that time there was no real need for it. At least not in Germany.&lt;/p&gt;
+
+&lt;p&gt;Fast forward, another Edward Tufte book and much more cool things over the time, I found myself at a crossroad. Do I take the blue pill or the red pill? Because I can’t remember which tablet does what, I decided to take some time off to figure out what I would love to do next.&lt;/p&gt;
+
+&lt;p&gt;So here I am, rediscovering my fascination for data and visualisation. Looking forward to using my experience in computer graphics and combine it with the newly learned knowledge.&lt;/p&gt;
+
+&lt;noscript&gt;&lt;pre&gt;404: Not Found
+&lt;/pre&gt;&lt;/noscript&gt;
+&lt;script src=&quot;https://gist.github.com/mmistakes/6589546.js&quot;&gt; &lt;/script&gt;
+
+&lt;div class=&quot;footnotes&quot;&gt;
+  &lt;ol&gt;
+    &lt;li id=&quot;fn:1&quot;&gt;
+      &lt;p&gt;&lt;a href=&quot;https://www.edwardtufte.com/tufte/books_vdqi&quot;&gt;https://www.edwardtufte.com/tufte/books_vdqi&lt;/a&gt; &lt;a href=&quot;#fnref:1&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/div&gt;</content><author><name></name></author><category term="highlighting" /><summary type="html">I don’t remember when I came across “The Visual Display of Quantitative Information” by Edward R.Tufte1, but I remember that I was fascinated by it and read it in one swoop. Moreover, I just wanted to do cool visualisations. However, at that time there was no need for it. https://www.edwardtufte.com/tufte/books_vdqi &amp;#8617;</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/images/Tokyo.png" /></entry></feed>
