@@ -1,6 +1,6 @@
 title:            Data Ocean
 description:      A discovery into the world of data.
-disqus_shortname: 
+disqus_shortname:
 reading_time:     true
 words_per_minute: 200
 # Your site's domain goes here (eg: https://mmistakes.github.io, http://yourdomain.com, etc)
@@ -15,13 +15,13 @@ owner:
   email:          stephanosterburg@me.com
   # Social networking links used in footer. Update and remove as you like.
   twitter:        sosterburg
-  facebook:       
+  facebook:
   github:         https://github.com/osterburg
-  stackexchange:  
+  stackexchange:
   linkedin:       https://www.linkedin.com/in/stephanosterburg
-  instagram:      
-  flickr:         
-  tumblr:         
+  instagram:
+  flickr:
+  tumblr:
   # google plus id, include the '+', eg +mmistakes
   google_plus:
 
@@ -29,14 +29,14 @@ owner:
 background:
 
 # Analytics and webmaster tools stuff goes here
-google_analytics:   
-google_verify:      
+google_analytics:
+google_verify:
 # https://ssl.bing.com/webmaster/configure/verify/ownership Option 2 content= goes here
-bing_verify:         
+bing_verify:
 
 # http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
 timezone:    Europe/London
-future:      false  # publish future dated posts --  true, false (default) 
+future:      false  # publish future dated posts --  true, false (default)
 highlighter: rouge
 markdown:    kramdown
 plugins:
@@ -62,9 +62,9 @@ kramdown:
   toc_levels: 1..6
   enable_coderay: false
 
-include: 
+include:
   - .htaccess
-exclude: 
+exclude:
   - "*.less"
   - "*.sublime-project"
   - "*.sublime-workspace"
