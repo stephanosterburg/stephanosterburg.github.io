@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-01-15T08:16:54+00:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Data Ocean</title><subtitle>A discovery into the world of data.</subtitle><entry><title type="html">Forest Cover Type</title><link href="http://localhost:4000/forest/" rel="alternate" type="text/html" title="Forest Cover Type" /><published>2019-01-14T00:00:00+00:00</published><updated>2019-01-14T00:00:00+00:00</updated><id>http://localhost:4000/forest</id><content type="html" xml:base="http://localhost:4000/forest/">&lt;h2 id=&quot;or-who-cannot-see-the-wood-for-the-trees&quot;&gt;Or who cannot see the wood for the trees?&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-01-15T08:23:55+00:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Data Ocean</title><subtitle>A discovery into the world of data.</subtitle><entry><title type="html">Forest Cover Type</title><link href="http://localhost:4000/forest/" rel="alternate" type="text/html" title="Forest Cover Type" /><published>2019-01-14T00:00:00+00:00</published><updated>2019-01-14T00:00:00+00:00</updated><id>http://localhost:4000/forest</id><content type="html" xml:base="http://localhost:4000/forest/">&lt;h2 id=&quot;or-who-cannot-see-the-wood-for-the-trees&quot;&gt;Or who cannot see the wood for the trees?&lt;/h2&gt;
 
 &lt;p&gt;Researchers at the Department of Forest Sciences at Colorado State University collected over half a million measurements from tree observations from four areas of the Roosevelt National Forest in Colorado. All observations are cartographic variables (no remote sensing) from 30-meter x 30-meter sections of forest.&lt;/p&gt;
 
@@ -221,13 +221,13 @@
 
 &lt;p&gt;I first wanted to know where King County is. Is the county in a rural area, suburban area or just a big city like New York or a combination of some or all of them. To get a basic understanding and feel for what is the data represents. After going through the scrubbing part and dealing with the not so clean data handed, and having a better understanding of what is in the dataset, which leads me to the following questions:&lt;/p&gt;
 
-&lt;p&gt;Is location of a house by zip code (neighbourhood) an indicator for the house price?&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Is location of a house by zip code (neighbourhood) an indicator for the house price?&lt;/li&gt;
+  &lt;li&gt;Do zip codes (neighbourhoods) with the higher housing density have an effect on selling price?&lt;/li&gt;
+  &lt;li&gt;Also, what visualisation technique should or can I use to present it best? My choice was to use a map to visualise the data. For that, I picked the folium package.&lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;p&gt;Do have zip codes (neighbourhoods) with the higher housing density an effect on selling price?&lt;/p&gt;
-
-&lt;p&gt;Also, what visualisation technique should or can I use to present it best? My choice was to use a map to visualise the data. For that, I picked the folium package.&lt;/p&gt;
-
-&lt;p&gt;Now, the dataset has (not all) the zip codes for King County. To visualise the zip codes, we need the geojson data. Which we luckily can find on the King County website.&lt;/p&gt;
+&lt;p&gt;The dataset has (not all) the zip codes for King County. To visualise the zip codes, we need the geojson data. Which we luckily can find on the King County website.&lt;/p&gt;
 
 &lt;p&gt;First, we want to get all zip codes in the dataset into a separate dataset.&lt;/p&gt;
 

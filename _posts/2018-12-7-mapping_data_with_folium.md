@@ -12,13 +12,11 @@ For my first Data Science project at Flatiron, I got the King County Housing dat
 
 I first wanted to know where King County is. Is the county in a rural area, suburban area or just a big city like New York or a combination of some or all of them. To get a basic understanding and feel for what is the data represents. After going through the scrubbing part and dealing with the not so clean data handed, and having a better understanding of what is in the dataset, which leads me to the following questions:
 
-Is location of a house by zip code (neighbourhood) an indicator for the house price?
+* Is location of a house by zip code (neighbourhood) an indicator for the house price?
+* Do zip codes (neighbourhoods) with the higher housing density have an effect on selling price?
+* Also, what visualisation technique should or can I use to present it best? My choice was to use a map to visualise the data. For that, I picked the folium package.
 
-Do have zip codes (neighbourhoods) with the higher housing density an effect on selling price?
-
-Also, what visualisation technique should or can I use to present it best? My choice was to use a map to visualise the data. For that, I picked the folium package.
-
-Now, the dataset has (not all) the zip codes for King County. To visualise the zip codes, we need the geojson data. Which we luckily can find on the King County website.
+The dataset has (not all) the zip codes for King County. To visualise the zip codes, we need the geojson data. Which we luckily can find on the King County website.
 
 First, we want to get all zip codes in the dataset into a separate dataset.
 
