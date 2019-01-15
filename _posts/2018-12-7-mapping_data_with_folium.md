@@ -14,7 +14,8 @@ I first wanted to know where King County is. Is the county in a rural area, subu
 
 * Is location of a house by zip code (neighbourhood) an indicator for the house price?
 * Do zip codes (neighbourhoods) with the higher housing density have an effect on selling price?
-* Also, what visualisation technique should or can I use to present it best? My choice was to use a map to visualise the data. For that, I picked the folium package.
+
+Also, what visualisation technique should or can I use to present it best? My choice was to use a map to visualise the data. For that, I picked the folium package.
 
 The dataset has (not all) the zip codes for King County. To visualise the zip codes, we need the geojson data. Which we luckily can find on the King County website.
 
