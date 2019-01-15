@@ -203,7 +203,11 @@ Reading time ~3 minutes
 <p>Finally, we have our function to display our map and housing density. I wrote it as a function I that I could easily visualise other features like house prices.</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">map_feature_by_zipcode</span><span class="p">(</span><span class="n">zipcode_data</span><span class="p">,</span> <span class="n">col</span><span class="p">):</span>
-    <span class="s">""" Generates a folium map of Seattle :param zipcode_data: zipcode dataset :param col: feature to display :return: m """</span>
+    <span class="s">""" Generates a folium map of Seattle 
+    :param zipcode_data: zipcode dataset 
+    :param col: feature to display 
+    :return: m 
+    """</span>
 <span class="err">​</span>
     <span class="c1"># read updated geo data
 </span>    <span class="n">king_geo</span> <span class="o">=</span> <span class="s">"cleaned_geodata.json"</span>

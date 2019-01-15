@@ -77,7 +77,11 @@ Finally, we have our function to display our map and housing density. I wrote it
 
 ```python
 def map_feature_by_zipcode(zipcode_data, col):
-    """ Generates a folium map of Seattle :param zipcode_data: zipcode dataset :param col: feature to display :return: m """
+    """ Generates a folium map of Seattle 
+    :param zipcode_data: zipcode dataset 
+    :param col: feature to display 
+    :return: m 
+    """
 ​
     # read updated geo data
     king_geo = "cleaned_geodata.json"
