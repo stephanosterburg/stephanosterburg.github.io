@@ -296,7 +296,9 @@ Reading time ~6 minutes
 <span class="n">X_pca</span> <span class="o">=</span> <span class="n">pca</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_scaled</span><span class="p">)</span>
 </code></pre></div></div>
 
-<p>The big advantage to this is the short processing time. But the drawback, we are losing any knowledge regarding our features. Now is that important? Maybe.</p>
+<p>The big advantage to this is the short processing time. But the drawback, we are losing any knowledge regarding our features. Is that important? Possibly.</p>
+
+<p>As you can see in the code snippet above I opted to scale the features. Researching that topic, I found that there is a multitude of approaches, where some use a combination of <code class="highlighter-rouge">StandardScaler</code>, <code class="highlighter-rouge">MinMaxScaler</code> and <code class="highlighter-rouge">Normalizer</code>. Scale only the continuous features and not the categorical, etcetera. For now, I just used the simplest way.</p>
 
 <h3 id="evaluate-model">Evaluate Model</h3>
 
