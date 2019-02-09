@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-02-09T14:08:10+00:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Data Ocean</title><subtitle>A discovery into the world of data.</subtitle><entry><title type="html">Deep Learning and Art Images</title><link href="http://localhost:4000/deep_learning_art_images/" rel="alternate" type="text/html" title="Deep Learning and Art Images" /><published>2019-02-09T00:00:00+00:00</published><updated>2019-02-09T00:00:00+00:00</updated><id>http://localhost:4000/deep_learning_art_images</id><content type="html" xml:base="http://localhost:4000/deep_learning_art_images/">&lt;p&gt;At &lt;a href=&quot;https://www.kaggle.com&quot;&gt;kaggle&lt;/a&gt; we can find a dataset containing a collection of art images of google images, yandex images and from &lt;a href=&quot;http://rusmuseumvrm.ru/collections/?lang=en&quot;&gt;The Virtual Russian Museum&lt;/a&gt;. The dataset has about 9000 images with five categories:&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-02-09T16:43:08+00:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Data Ocean</title><subtitle>A discovery into the world of data.</subtitle><entry><title type="html">Deep Learning and Art Images</title><link href="http://localhost:4000/deep_learning_art_images/" rel="alternate" type="text/html" title="Deep Learning and Art Images" /><published>2019-02-09T00:00:00+00:00</published><updated>2019-02-09T00:00:00+00:00</updated><id>http://localhost:4000/deep_learning_art_images</id><content type="html" xml:base="http://localhost:4000/deep_learning_art_images/">&lt;p&gt;At &lt;a href=&quot;https://www.kaggle.com&quot;&gt;kaggle&lt;/a&gt; we can find a dataset containing a collection of art images of google images, yandex images and from &lt;a href=&quot;http://rusmuseumvrm.ru/collections/?lang=en&quot;&gt;The Virtual Russian Museum&lt;/a&gt;. The dataset has about 9000 images with five categories:&lt;/p&gt;
 &lt;ol&gt;
   &lt;li&gt;Drawings and Watercolors&lt;/li&gt;
   &lt;li&gt;Paintings&lt;/li&gt;
@@ -7,18 +7,18 @@
   &lt;li&gt;Iconography (old Russian art)&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;Because it is a classification problem, I wanted to use my newly learned knowledge in deep learning and convolutional neural networks (CNN). However, first things first, the downloaded zip file has two more zip files, which it turns out are somewhat similar in context but not really. So I decided to combine the two into one dataset.&lt;/p&gt;
+&lt;p&gt;Because it is a classification problem, I wanted to use my newly learned knowledge in deep learning and convolutional neural networks (CNN). However, first things first, the downloaded zip file has two more zip files, which it turns out are somewhat similar in context but not quiet. So I decided to combine the two into one dataset.&lt;/p&gt;
 
 &lt;h2 id=&quot;approach&quot;&gt;Approach&lt;/h2&gt;
 
-&lt;p&gt;When I started to research how to tackle the issue of the image classification, I found three possible options:&lt;/p&gt;
+&lt;p&gt;When I started to research how to tackle the issue for image classification, I found three possible options:&lt;/p&gt;
 &lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;train_test_split&lt;/code&gt;, but we have to create the train and test data ourselves.&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;flow_from_dataframe&lt;/code&gt;, but we need to create first the dataframe ourselves.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;train_test_split&lt;/code&gt;, we have to create the train and test data ourselves.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;flow_from_dataframe&lt;/code&gt;, we need to create first the dataframe ourselves.&lt;/li&gt;
   &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;flow_from_dictonary&lt;/code&gt;, here we don’t need to do any extra work.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;I, as may be guessed it already, opted for the later.&lt;/p&gt;
+&lt;p&gt;I, as you may guessed it already, opted for the later.&lt;/p&gt;
 
 &lt;h2 id=&quot;how-deep-is-too-deep&quot;&gt;How deep is too deep?&lt;/h2&gt;
 
@@ -26,23 +26,25 @@
 
 &lt;p&gt;So, how deep is too deep? How many layers can I run on my computer without feeling the pain? To find out I approached it very gingerly, step by step. Or shall I say layer by layer?&lt;/p&gt;
 
-&lt;p&gt;For the first try, I had only a few layers, which helped a lot it turns out later with the computation time. However, the result showed a test accuracy of less than 50%.&lt;/p&gt;
+&lt;p&gt;For the first try, I had only a few layers, which helped with the computation time. However, the result showed a test accuracy of less than 50%.&lt;/p&gt;
 
 &lt;noscript&gt;&lt;pre&gt;400: Invalid request
 &lt;/pre&gt;&lt;/noscript&gt;
 &lt;script src=&quot;https://gist.github.com/8011d4e50fc6e22d9eb73b7763124003.js&quot;&gt; &lt;/script&gt;
 
-&lt;p&gt;To improve the test accuracy, I ended up adding several more layers, including &lt;code class=&quot;highlighter-rouge&quot;&gt;Dropout&lt;/code&gt; layers to help to avoid over-fitting.&lt;/p&gt;
+&lt;p&gt;To improve the test accuracy, I kept adding layers. I ended up adding several more layers, including &lt;code class=&quot;highlighter-rouge&quot;&gt;Dropout&lt;/code&gt; layers to help to avoid over-fitting.&lt;/p&gt;
 
 &lt;noscript&gt;&lt;pre&gt;400: Invalid request
 &lt;/pre&gt;&lt;/noscript&gt;
 &lt;script src=&quot;https://gist.github.com/57eff9c73a1f613847a2985a86c499fa.js&quot;&gt; &lt;/script&gt;
 
-&lt;p&gt;With the simple sequential model the computational time wasn’t too bad but with the final model the time went up to several minutes per epochs. Now I guess is a good time to talk about what impact &lt;code class=&quot;highlighter-rouge&quot;&gt;epochs&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;batch_size&lt;/code&gt; have.&lt;/p&gt;
+&lt;p&gt;With the simple sequential model the computational time wasn’t too bad but with the  model, seen above, the time went up from several minutes per epochs to nearly 30 minutes per epochs.&lt;/p&gt;
+
+&lt;h3 id=&quot;epochsbatch_size&quot;&gt;epochs/batch_size&lt;/h3&gt;
 
 &lt;p&gt;An &lt;code class=&quot;highlighter-rouge&quot;&gt;epochs&lt;/code&gt; is an iteration over the entire provided data; for example, if we have &lt;code class=&quot;highlighter-rouge&quot;&gt;epochs=25&lt;/code&gt; we iterate 25 times over the data. The &lt;code class=&quot;highlighter-rouge&quot;&gt;batch_size&lt;/code&gt; is the number of samples that will propagate through the network, by default 32. In our case where we have about 8000 images in the training set, we have 250 batches per epochs.&lt;/p&gt;
 
-&lt;p&gt;The question is, do we decrease the batch_size to 16 or increase the number to 64? If we decrease the number, we have 500 batches vs 125 batches when we increase the number. Large batch size result in faster processing time and vice versa. In regards to epochs, the model improves with more to a point. They start to plateau in accuracy as they converge until you reach the bottleneck of bandwidth, which is on a CPU pretty quickly.&lt;/p&gt;
+&lt;p&gt;The question is, do we decrease the batch_size to 16 or increase the number to 64? If we decrease the number, we have 500 batches vs 125 batches if we increase the number. Large batch size result in faster processing time and vice versa. In regards to epochs, the model improves with more but only to a point. They start to plateau in accuracy as they converge.&lt;/p&gt;
 
 &lt;h2 id=&quot;pre-trained-network&quot;&gt;Pre-Trained Network&lt;/h2&gt;
 

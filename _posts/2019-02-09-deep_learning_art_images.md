@@ -15,16 +15,16 @@ At [kaggle](https://www.kaggle.com) we can find a dataset containing a collectio
 4. Graphic Art
 5. Iconography (old Russian art)
 
-Because it is a classification problem, I wanted to use my newly learned knowledge in deep learning and convolutional neural networks (CNN). However, first things first, the downloaded zip file has two more zip files, which it turns out are somewhat similar in context but not really. So I decided to combine the two into one dataset.
+Because it is a classification problem, I wanted to use my newly learned knowledge in deep learning and convolutional neural networks (CNN). However, first things first, the downloaded zip file has two more zip files, which it turns out are somewhat similar in context but not quiet. So I decided to combine the two into one dataset.
 
 ## Approach
 
-When I started to research how to tackle the issue of the image classification, I found three possible options: 
-* `train_test_split`, but we have to create the train and test data ourselves.
-* `flow_from_dataframe`, but we need to create first the dataframe ourselves.
+When I started to research how to tackle the issue for image classification, I found three possible options: 
+* `train_test_split`, we have to create the train and test data ourselves.
+* `flow_from_dataframe`, we need to create first the dataframe ourselves.
 * `flow_from_dictonary`, here we don't need to do any extra work.
 
-I, as may be guessed it already, opted for the later.
+I, as you may guessed it already, opted for the later.
 
 ## How deep is too deep?
 
@@ -32,19 +32,21 @@ To answer that question, here we need to know one fact first. I am working on a 
 
 So, how deep is too deep? How many layers can I run on my computer without feeling the pain? To find out I approached it very gingerly, step by step. Or shall I say layer by layer? 
 
-For the first try, I had only a few layers, which helped a lot it turns out later with the computation time. However, the result showed a test accuracy of less than 50%.
+For the first try, I had only a few layers, which helped with the computation time. However, the result showed a test accuracy of less than 50%.
 
 {% gist 8011d4e50fc6e22d9eb73b7763124003 %}
 
-To improve the test accuracy, I ended up adding several more layers, including `Dropout` layers to help to avoid over-fitting.
+To improve the test accuracy, I kept adding layers. I ended up adding several more layers, including `Dropout` layers to help to avoid over-fitting.
 
 {% gist 57eff9c73a1f613847a2985a86c499fa %}
 
-With the simple sequential model the computational time wasn't too bad but with the final model the time went up to several minutes per epochs. Now I guess is a good time to talk about what impact `epochs` and `batch_size` have. 
+With the simple sequential model the computational time wasn't too bad but with the  model, seen above, the time went up from several minutes per epochs to nearly 30 minutes per epochs. 
+
+### epochs/batch_size
 
 An `epochs` is an iteration over the entire provided data; for example, if we have `epochs=25` we iterate 25 times over the data. The `batch_size` is the number of samples that will propagate through the network, by default 32. In our case where we have about 8000 images in the training set, we have 250 batches per epochs.
 
-The question is, do we decrease the batch_size to 16 or increase the number to 64? If we decrease the number, we have 500 batches vs 125 batches when we increase the number. Large batch size result in faster processing time and vice versa. In regards to epochs, the model improves with more to a point. They start to plateau in accuracy as they converge until you reach the bottleneck of bandwidth, which is on a CPU pretty quickly.
+The question is, do we decrease the batch_size to 16 or increase the number to 64? If we decrease the number, we have 500 batches vs 125 batches if we increase the number. Large batch size result in faster processing time and vice versa. In regards to epochs, the model improves with more but only to a point. They start to plateau in accuracy as they converge.
 
 ## Pre-Trained Network
 

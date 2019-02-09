@@ -166,18 +166,18 @@ Reading time ~3 minutes
   <li>Iconography (old Russian art)</li>
 </ol>
 
-<p>Because it is a classification problem, I wanted to use my newly learned knowledge in deep learning and convolutional neural networks (CNN). However, first things first, the downloaded zip file has two more zip files, which it turns out are somewhat similar in context but not really. So I decided to combine the two into one dataset.</p>
+<p>Because it is a classification problem, I wanted to use my newly learned knowledge in deep learning and convolutional neural networks (CNN). However, first things first, the downloaded zip file has two more zip files, which it turns out are somewhat similar in context but not quiet. So I decided to combine the two into one dataset.</p>
 
 <h2 id="approach">Approach</h2>
 
-<p>When I started to research how to tackle the issue of the image classification, I found three possible options:</p>
+<p>When I started to research how to tackle the issue for image classification, I found three possible options:</p>
 <ul>
-  <li><code class="highlighter-rouge">train_test_split</code>, but we have to create the train and test data ourselves.</li>
-  <li><code class="highlighter-rouge">flow_from_dataframe</code>, but we need to create first the dataframe ourselves.</li>
+  <li><code class="highlighter-rouge">train_test_split</code>, we have to create the train and test data ourselves.</li>
+  <li><code class="highlighter-rouge">flow_from_dataframe</code>, we need to create first the dataframe ourselves.</li>
   <li><code class="highlighter-rouge">flow_from_dictonary</code>, here we don’t need to do any extra work.</li>
 </ul>
 
-<p>I, as may be guessed it already, opted for the later.</p>
+<p>I, as you may guessed it already, opted for the later.</p>
 
 <h2 id="how-deep-is-too-deep">How deep is too deep?</h2>
 
@@ -185,23 +185,25 @@ Reading time ~3 minutes
 
 <p>So, how deep is too deep? How many layers can I run on my computer without feeling the pain? To find out I approached it very gingerly, step by step. Or shall I say layer by layer?</p>
 
-<p>For the first try, I had only a few layers, which helped a lot it turns out later with the computation time. However, the result showed a test accuracy of less than 50%.</p>
+<p>For the first try, I had only a few layers, which helped with the computation time. However, the result showed a test accuracy of less than 50%.</p>
 
 <noscript><pre>400: Invalid request
 </pre></noscript>
 <script src="https://gist.github.com/8011d4e50fc6e22d9eb73b7763124003.js"> </script>
 
-<p>To improve the test accuracy, I ended up adding several more layers, including <code class="highlighter-rouge">Dropout</code> layers to help to avoid over-fitting.</p>
+<p>To improve the test accuracy, I kept adding layers. I ended up adding several more layers, including <code class="highlighter-rouge">Dropout</code> layers to help to avoid over-fitting.</p>
 
 <noscript><pre>400: Invalid request
 </pre></noscript>
 <script src="https://gist.github.com/57eff9c73a1f613847a2985a86c499fa.js"> </script>
 
-<p>With the simple sequential model the computational time wasn’t too bad but with the final model the time went up to several minutes per epochs. Now I guess is a good time to talk about what impact <code class="highlighter-rouge">epochs</code> and <code class="highlighter-rouge">batch_size</code> have.</p>
+<p>With the simple sequential model the computational time wasn’t too bad but with the  model, seen above, the time went up from several minutes per epochs to nearly 30 minutes per epochs.</p>
+
+<h3 id="epochsbatch_size">epochs/batch_size</h3>
 
 <p>An <code class="highlighter-rouge">epochs</code> is an iteration over the entire provided data; for example, if we have <code class="highlighter-rouge">epochs=25</code> we iterate 25 times over the data. The <code class="highlighter-rouge">batch_size</code> is the number of samples that will propagate through the network, by default 32. In our case where we have about 8000 images in the training set, we have 250 batches per epochs.</p>
 
-<p>The question is, do we decrease the batch_size to 16 or increase the number to 64? If we decrease the number, we have 500 batches vs 125 batches when we increase the number. Large batch size result in faster processing time and vice versa. In regards to epochs, the model improves with more to a point. They start to plateau in accuracy as they converge until you reach the bottleneck of bandwidth, which is on a CPU pretty quickly.</p>
+<p>The question is, do we decrease the batch_size to 16 or increase the number to 64? If we decrease the number, we have 500 batches vs 125 batches if we increase the number. Large batch size result in faster processing time and vice versa. In regards to epochs, the model improves with more but only to a point. They start to plateau in accuracy as they converge.</p>
 
 <h2 id="pre-trained-network">Pre-Trained Network</h2>
 
