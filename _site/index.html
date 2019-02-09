@@ -47,6 +47,23 @@
 <!-- Load Modernizr -->
 <script src="http://localhost:4000/assets/js/vendor/modernizr-2.6.2.custom.min.js"></script>
 
+<!-- mathjax config similar to math.stackexchange -->
+<!-- <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script> -->
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  jax: ["input/TeX", "output/HTML-CSS"],
+  tex2jax: {
+    inlineMath: [ ['$', '$'] ],
+    displayMath: [ ['$$', '$$']],
+    processEscapes: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+  },
+  messageStyle: "none",
+  "HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"] }
+});
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML" type="text/javascript"></script>
+
 <!-- Icons -->
 <!-- 16x16 -->
 <link rel="shortcut icon" href="http://localhost:4000/favicon.ico">
@@ -130,6 +147,203 @@
 
 <div id="main" role="main">
   
+<article class="hentry">
+  <header>
+    
+      <div class="entry-image-index">
+        <a href="http://localhost:4000/deep_learning_art_images/" title="Deep Learning and Art Images"><img src="http://localhost:4000/images/GoogleArt_cropped.png" alt="Deep Learning and Art Images"></a>
+      </div><!-- /.entry-image -->
+    
+    <div class="entry-meta">
+      <span class="entry-date date published updated"><time datetime="2019-02-09T00:00:00+00:00"><a href="http://localhost:4000/deep_learning_art_images/">February 09, 2019</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Stephan Osterburg">Stephan Osterburg</a></span></span>
+      
+      <span class="entry-reading-time">
+        <i class="fa fa-clock-o"></i>
+        
+Reading time ~3 minutes
+      </span><!-- /.entry-reading-time -->
+      
+    </div><!-- /.entry-meta -->
+    
+      <h1 class="entry-title"><a href="http://localhost:4000/deep_learning_art_images/" rel="bookmark" title="Deep Learning and Art Images" itemprop="url">Deep Learning and Art Images</a></h1>
+    
+  </header>
+  <div class="entry-content">
+    <p>At <a href="https://www.kaggle.com">kaggle</a> we can find a dataset containing a collection of art images of google images, yandex images and from <a href="http://rusmuseumvrm.ru/collections/?lang=en">The Virtual Russian Museum</a>. The dataset has about 9000 images with five categories:</p>
+<ol>
+  <li>Drawings and Watercolors</li>
+  <li>Paintings</li>
+  <li>Sculpture</li>
+  <li>Graphic Art</li>
+  <li>Iconography (old Russian art)</li>
+</ol>
+
+<p>Because it is a classification problem, I wanted to use my newly learned knowledge in deep learning and convolutional neural networks (CNN). However, first things first, the downloaded zip file has two more zip files, which it turns out are somewhat similar in context but not really. So I decided to combine the two into one dataset.</p>
+
+<h2 id="approach">Approach</h2>
+
+<p>When I started to research how to tackle the issue of the image classification, I found three possible options:</p>
+<ul>
+  <li><code class="highlighter-rouge">train_test_split</code>, but we have to create the train and test data ourselves.</li>
+  <li><code class="highlighter-rouge">flow_from_dataframe</code>, but we need to create first the dataframe ourselves.</li>
+  <li><code class="highlighter-rouge">flow_from_dictonary</code>, here we don’t need to do any extra work.</li>
+</ul>
+
+<p>I, as may be guessed it already, opted for the later. After all, I could focus on creating the neural network.</p>
+
+<h2 id="how-deep-is-too-deep">How deep is too deep?</h2>
+
+<p>To answer that question, here we need to know one fact first. I am working on a MacBook Pro (2015) with a 2.2 GHz Intel Core i7 processor and 16GB of RAM.</p>
+
+<p>So, how deep is too deep? How many layers can I run on my computer without feeling the pain? To find out I approached it very gingerly, step by step. Or shall I say layer by layer?</p>
+
+<p>For the first try, I had only a few layers, which helped a lot it turns out later with the computation time. However, the result showed a test accuracy of less than 50%.</p>
+
+<noscript><pre>400: Invalid request
+</pre></noscript>
+<script src="https://gist.github.com/8011d4e50fc6e22d9eb73b7763124003.js"> </script>
+
+<p>To improve the test accuracy, I ended up adding several more layers, including <code class="highlighter-rouge">Dropout</code> layers to help to avoid over-fitting.</p>
+
+<noscript><pre>400: Invalid request
+</pre></noscript>
+<script src="https://gist.github.com/57eff9c73a1f613847a2985a86c499fa.js"> </script>
+
+<p>With the simple sequential model the computational time wasn’t too bad but with the final model the time went up to several minutes per epochs. Now I guess is a good time to talk about what impact <code class="highlighter-rouge">epochs</code> and <code class="highlighter-rouge">batch_size</code> have.</p>
+
+<p>An <code class="highlighter-rouge">epochs</code> is an iteration over the entire provided data; for example, if we have <code class="highlighter-rouge">epochs=25</code> we iterate 25 times over the data. The <code class="highlighter-rouge">batch_size</code> is the number of samples that will propagate through the network, by default 32. In our case where we have about 8000 images in the training set, we have 250 batches per epochs.</p>
+
+<p>The question is, do we decrease the batch_size to 16 or increase the number to 64? If we decrease the number, we have 500 batches vs 125 batches when we increase the number. Large batch size result in faster processing time and vice versa. In regards to epochs, the model improves with more to a point. They start to plateau in accuracy as they converge until you reach the bottleneck of bandwidth, which is on a CPU pretty quickly.</p>
+
+<h2 id="pre-trained-network">Pre-Trained Network</h2>
+
+<p>To improve not only the accuracy but also the processing time (so I hoped), I decided to use a pre-trained network. There are a few we can choose from, for example <a href="https://keras.io/applications/#vgg16">VGG16</a>, <a href="https://keras.io/applications/#vgg19">VGG19</a>, <a href="https://keras.io/applications/#inceptionv3">InceptionV3</a>, and <a href="https://keras.io/applications/#resnet50">ResNet50</a> etcetera. I resorted to the <a href="https://arxiv.org/abs/1409.1556">VGG</a> model to keep it simple for the time being.</p>
+
+<p><strong>VGG</strong> is a convolutional neural network model for image recognition proposed by the <strong>Visual Geometry Group in the University of Oxford</strong>, where <em>VGG16</em> refers to a VGG model with 16 weight layers, and <em>VGG19</em> refers to a VGG model with 19 weight layers.</p>
+
+<p>Because we have an already trained model, all we have to do is add at least two more layers (<code class="highlighter-rouge">Flatten</code> and the output <code class="highlighter-rouge">Dense</code> layer) to test what the pre-trained network can do with our dataset. In my case I ended up adding six layers in total:</p>
+
+<noscript><pre>400: Invalid request
+</pre></noscript>
+<script src="https://gist.github.com/2960515a509218482bbbff1a45add65c.js"> </script>
+
+<p>Now, the accuracy improved to 96.68%, up &gt;5% from my previous model, but not the processing time.</p>
+
+<h2 id="aws">AWS</h2>
+
+<p>In the end, it took several hours to run the model. Moreover, it makes it even more painful if you forget to change your default setting on your MacBook and the computer goes into sleep mode, and nothing get processed at all.</p>
+
+<p>To free up the computer I resorted - welcome to - to <a href="https://www.paperspace.com">paperspace</a>.</p>
+
+<p>Which allows me to prototype locally (prove of concept) and compute in the cloud.</p>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>Use where you can pre-trained networks and if you are using large data use cloud services.</p>
+
+
+  </div><!-- /.entry-content -->
+</article><!-- /.hentry -->
+
+<article class="hentry">
+  <header>
+    
+      <div class="entry-image-index">
+        <a href="http://localhost:4000/an_introductio_to_diffusion_maps/" title="An Introduction to Diffusion Maps"><img src="http://localhost:4000/images/diffusion_map.png" alt="An Introduction to Diffusion Maps"></a>
+      </div><!-- /.entry-image -->
+    
+    <div class="entry-meta">
+      <span class="entry-date date published updated"><time datetime="2019-01-21T00:00:00+00:00"><a href="http://localhost:4000/an_introductio_to_diffusion_maps/">January 21, 2019</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Stephan Osterburg">Stephan Osterburg</a></span></span>
+      
+      <span class="entry-reading-time">
+        <i class="fa fa-clock-o"></i>
+        
+Reading time ~2 minutes
+      </span><!-- /.entry-reading-time -->
+      
+    </div><!-- /.entry-meta -->
+    
+      <h1 class="entry-title"><a href="http://localhost:4000/an_introductio_to_diffusion_maps/" rel="bookmark" title="An Introduction to Diffusion Maps" itemprop="url">An Introduction to Diffusion Maps</a></h1>
+    
+  </header>
+  <div class="entry-content">
+    <p>The <a href="https://inside.mines.edu/~whereman/talks/delaPorte-Herbst-Hereman-vanderWalt-DiffusionMaps-PRASA2008.pdf">paper</a> published by J. de la Porte<sup id="fnref:4"><a href="#fn:4" class="footnote">1</a></sup>, B. M. Herbst<sup id="fnref:4:1"><a href="#fn:4" class="footnote">1</a></sup>, W. Hereman<sup id="fnref:5"><a href="#fn:5" class="footnote">2</a></sup> and S. J. van der Walt<sup id="fnref:4:2"><a href="#fn:4" class="footnote">1</a></sup> in November 2008 describes the mathematical technique for dealing with reducing dimensionality in data. The authors give an overview of three well-known dimensionality reduction techniques and introduce diffusion maps and its functionality, process and how it compares with the other methods.</p>
+
+<h3 id="dimensionality-reduction">Dimensionality Reduction</h3>
+
+<p>We are limited in visualising information beyond the third dimension. For simplicity reasons, imagine a black and white image (grey scale) of 100 by 100 pixels, where each pixel represents a variable. The dimensionality would add up to be 10,000. A <strong>human</strong> wouldn’t have any issues with reading the following digits in the picture below, but a <strong>computer</strong> sees them as a data point in an <em>nm</em>-dimensional coordinate space.</p>
+
+<figure>
+    
+    <a href="/images/Two-images-of-the-same-digit-at-different-rotation-angles.png"><img src="/images/Two-images-of-the-same-digit-at-different-rotation-angles.png" alt="" /></a>
+    
+    <figcaption></figcaption>
+</figure>
+
+<p>Dimensionality Reduction is about converting data of very high dimensionality into data of much lower dimensionality such that each of the lower dimensions conveys much more information.</p>
+
+<p>Here we can use the analogy of zipping text files, compressing large text data into smaller equivalent data. With the minor but significant difference that in dimensionality reduction we will lose some information. The goal here is to not lose too many of the essential features in the data.</p>
+
+<h3 id="popular-techniques">Popular Techniques</h3>
+
+<p>The most popular reduction methods are</p>
+
+<ul>
+  <li>Principle Component Analysis (PCA)<sup id="fnref:6"><a href="#fn:6" class="footnote">3</a></sup>, a linear dimensionality reduction technique using Singular Value Decomposition of the data to project it to a lower dimensional space.<sup id="fnref:7"><a href="#fn:7" class="footnote">4</a></sup></li>
+  <li>Multi-dimensional Scaling (MDS)<sup id="fnref:8"><a href="#fn:8" class="footnote">5</a></sup> seeks a low-dimensional representation of the data in which the distances respect well the distances in the original high-dimensional space.<sup id="fnref:9"><a href="#fn:9" class="footnote">6</a></sup></li>
+  <li>Isometric Feature Map (Isomap)<sup id="fnref:10"><a href="#fn:10" class="footnote">7</a></sup>, a non-linear dimensionality reduction through Isometric Mapping.<sup id="fnref:11"><a href="#fn:11" class="footnote">8</a></sup></li>
+</ul>
+
+<h3 id="diffusion-maps">Diffusion Maps</h3>
+
+<p>Diffusion maps are a non-linear technique. In which we analyse first the connectivity of the data. Similar to taking a random walk on our data, where we jump between data points in feature space (see image below). The goal is to reveal the geometric structure of our data at different scales, defining a “time-dependent” diffusion metrics. Here <em>time</em> seems to be interchangeable with <em>scale</em>.</p>
+
+<figure>
+    
+    <a href="/images/A-random-walk-on-a-data-set-Each-jump-has-a-probability-associated-with-it-The-green.png"><img src="/images/A-random-walk-on-a-data-set-Each-jump-has-a-probability-associated-with-it-The-green.png" alt="" /></a>
+    
+    <figcaption></figcaption>
+</figure>
+
+<p>By measuring the distances between data points, we can define neighbourhoods. In order to achieve it, we define a threshold value in the way of a function (kernel) to obtain the similarity within a neighboorhood.</p>
+
+<h5 id="footnotes">Footnotes</h5>
+
+<!-- An example of a Gist embed below. -->
+<!-- <noscript><pre>404: Not Found
+</pre></noscript><script src="https://gist.github.com/mmistakes/6589546.js"> </script> -->
+<div class="footnotes">
+  <ol>
+    <li id="fn:4">
+      <p>Applied Mathematics Division, Department of Mathematical Sciences, University of Stellenbosch, South Africa <a href="#fnref:4" class="reversefootnote">&#8617;</a> <a href="#fnref:4:1" class="reversefootnote">&#8617;<sup>2</sup></a> <a href="#fnref:4:2" class="reversefootnote">&#8617;<sup>3</sup></a></p>
+    </li>
+    <li id="fn:5">
+      <p>Colorado School of Mines, United States of America <a href="#fnref:5" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:6">
+      <p>I.T. Jolliffe. Principal component analysis. SpringerVerlag New York, 1986. <a href="#fnref:6" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:7">
+      <p><a href="https://scikit-learn.org/stable/modules/decomposition.html#pca">https://scikit-learn.org/stable/modules/decomposition.html#pca</a> <a href="#fnref:7" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:8">
+      <p>W.S. Torgerson. Multidimensional scaling: I. Theory and method. Psychometrika, 17(4):401–419, 1952. <a href="#fnref:8" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:9">
+      <p><a href="https://scikit-learn.org/stable/modules/manifold.html#multidimensional-scaling">https://scikit-learn.org/stable/modules/manifold.html#multidimensional-scaling</a> <a href="#fnref:9" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:10">
+      <p>Joshua B. Tenenbaum, Vin de Silva, and John C. Langford. A Global Geometric Framework for Nonlinear Dimensionality Reduction. Science, 290(5500):2319–2323, 2000. <a href="#fnref:10" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:11">
+      <p><a href="https://scikit-learn.org/stable/modules/manifold.html#isomap">https://scikit-learn.org/stable/modules/manifold.html#isomap</a> <a href="#fnref:11" class="reversefootnote">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+  </div><!-- /.entry-content -->
+</article><!-- /.hentry -->
+
 <article class="hentry">
   <header>
     

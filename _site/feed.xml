@@ -1,4 +1,146 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-01-15T13:11:47+00:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Data Ocean</title><subtitle>A discovery into the world of data.</subtitle><entry><title type="html">Forest Cover Type</title><link href="http://localhost:4000/forest/" rel="alternate" type="text/html" title="Forest Cover Type" /><published>2019-01-14T00:00:00+00:00</published><updated>2019-01-14T00:00:00+00:00</updated><id>http://localhost:4000/forest</id><content type="html" xml:base="http://localhost:4000/forest/">&lt;h2 id=&quot;or-who-cannot-see-the-wood-for-the-trees&quot;&gt;Or who cannot see the wood for the trees?&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-02-09T13:47:49+00:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Data Ocean</title><subtitle>A discovery into the world of data.</subtitle><entry><title type="html">Deep Learning and Art Images</title><link href="http://localhost:4000/deep_learning_art_images/" rel="alternate" type="text/html" title="Deep Learning and Art Images" /><published>2019-02-09T00:00:00+00:00</published><updated>2019-02-09T00:00:00+00:00</updated><id>http://localhost:4000/deep_learning_art_images</id><content type="html" xml:base="http://localhost:4000/deep_learning_art_images/">&lt;p&gt;At &lt;a href=&quot;https://www.kaggle.com&quot;&gt;kaggle&lt;/a&gt; we can find a dataset containing a collection of art images of google images, yandex images and from &lt;a href=&quot;http://rusmuseumvrm.ru/collections/?lang=en&quot;&gt;The Virtual Russian Museum&lt;/a&gt;. The dataset has about 9000 images with five categories:&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;Drawings and Watercolors&lt;/li&gt;
+  &lt;li&gt;Paintings&lt;/li&gt;
+  &lt;li&gt;Sculpture&lt;/li&gt;
+  &lt;li&gt;Graphic Art&lt;/li&gt;
+  &lt;li&gt;Iconography (old Russian art)&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Because it is a classification problem, I wanted to use my newly learned knowledge in deep learning and convolutional neural networks (CNN). However, first things first, the downloaded zip file has two more zip files, which it turns out are somewhat similar in context but not really. So I decided to combine the two into one dataset.&lt;/p&gt;
+
+&lt;h2 id=&quot;approach&quot;&gt;Approach&lt;/h2&gt;
+
+&lt;p&gt;When I started to research how to tackle the issue of the image classification, I found three possible options:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;train_test_split&lt;/code&gt;, but we have to create the train and test data ourselves.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;flow_from_dataframe&lt;/code&gt;, but we need to create first the dataframe ourselves.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;flow_from_dictonary&lt;/code&gt;, here we don’t need to do any extra work.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;I, as may be guessed it already, opted for the later. After all, I could focus on creating the neural network.&lt;/p&gt;
+
+&lt;h2 id=&quot;how-deep-is-too-deep&quot;&gt;How deep is too deep?&lt;/h2&gt;
+
+&lt;p&gt;To answer that question, here we need to know one fact first. I am working on a MacBook Pro (2015) with a 2.2 GHz Intel Core i7 processor and 16GB of RAM.&lt;/p&gt;
+
+&lt;p&gt;So, how deep is too deep? How many layers can I run on my computer without feeling the pain? To find out I approached it very gingerly, step by step. Or shall I say layer by layer?&lt;/p&gt;
+
+&lt;p&gt;For the first try, I had only a few layers, which helped a lot it turns out later with the computation time. However, the result showed a test accuracy of less than 50%.&lt;/p&gt;
+
+&lt;noscript&gt;&lt;pre&gt;400: Invalid request
+&lt;/pre&gt;&lt;/noscript&gt;
+&lt;script src=&quot;https://gist.github.com/8011d4e50fc6e22d9eb73b7763124003.js&quot;&gt; &lt;/script&gt;
+
+&lt;p&gt;To improve the test accuracy, I ended up adding several more layers, including &lt;code class=&quot;highlighter-rouge&quot;&gt;Dropout&lt;/code&gt; layers to help to avoid over-fitting.&lt;/p&gt;
+
+&lt;noscript&gt;&lt;pre&gt;400: Invalid request
+&lt;/pre&gt;&lt;/noscript&gt;
+&lt;script src=&quot;https://gist.github.com/57eff9c73a1f613847a2985a86c499fa.js&quot;&gt; &lt;/script&gt;
+
+&lt;p&gt;With the simple sequential model the computational time wasn’t too bad but with the final model the time went up to several minutes per epochs. Now I guess is a good time to talk about what impact &lt;code class=&quot;highlighter-rouge&quot;&gt;epochs&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;batch_size&lt;/code&gt; have.&lt;/p&gt;
+
+&lt;p&gt;An &lt;code class=&quot;highlighter-rouge&quot;&gt;epochs&lt;/code&gt; is an iteration over the entire provided data; for example, if we have &lt;code class=&quot;highlighter-rouge&quot;&gt;epochs=25&lt;/code&gt; we iterate 25 times over the data. The &lt;code class=&quot;highlighter-rouge&quot;&gt;batch_size&lt;/code&gt; is the number of samples that will propagate through the network, by default 32. In our case where we have about 8000 images in the training set, we have 250 batches per epochs.&lt;/p&gt;
+
+&lt;p&gt;The question is, do we decrease the batch_size to 16 or increase the number to 64? If we decrease the number, we have 500 batches vs 125 batches when we increase the number. Large batch size result in faster processing time and vice versa. In regards to epochs, the model improves with more to a point. They start to plateau in accuracy as they converge until you reach the bottleneck of bandwidth, which is on a CPU pretty quickly.&lt;/p&gt;
+
+&lt;h2 id=&quot;pre-trained-network&quot;&gt;Pre-Trained Network&lt;/h2&gt;
+
+&lt;p&gt;To improve not only the accuracy but also the processing time (so I hoped), I decided to use a pre-trained network. There are a few we can choose from, for example &lt;a href=&quot;https://keras.io/applications/#vgg16&quot;&gt;VGG16&lt;/a&gt;, &lt;a href=&quot;https://keras.io/applications/#vgg19&quot;&gt;VGG19&lt;/a&gt;, &lt;a href=&quot;https://keras.io/applications/#inceptionv3&quot;&gt;InceptionV3&lt;/a&gt;, and &lt;a href=&quot;https://keras.io/applications/#resnet50&quot;&gt;ResNet50&lt;/a&gt; etcetera. I resorted to the &lt;a href=&quot;https://arxiv.org/abs/1409.1556&quot;&gt;VGG&lt;/a&gt; model to keep it simple for the time being.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;VGG&lt;/strong&gt; is a convolutional neural network model for image recognition proposed by the &lt;strong&gt;Visual Geometry Group in the University of Oxford&lt;/strong&gt;, where &lt;em&gt;VGG16&lt;/em&gt; refers to a VGG model with 16 weight layers, and &lt;em&gt;VGG19&lt;/em&gt; refers to a VGG model with 19 weight layers.&lt;/p&gt;
+
+&lt;p&gt;Because we have an already trained model, all we have to do is add at least two more layers (&lt;code class=&quot;highlighter-rouge&quot;&gt;Flatten&lt;/code&gt; and the output &lt;code class=&quot;highlighter-rouge&quot;&gt;Dense&lt;/code&gt; layer) to test what the pre-trained network can do with our dataset. In my case I ended up adding six layers in total:&lt;/p&gt;
+
+&lt;noscript&gt;&lt;pre&gt;400: Invalid request
+&lt;/pre&gt;&lt;/noscript&gt;
+&lt;script src=&quot;https://gist.github.com/2960515a509218482bbbff1a45add65c.js&quot;&gt; &lt;/script&gt;
+
+&lt;p&gt;Now, the accuracy improved to 96.68%, up &amp;gt;5% from my previous model, but not the processing time.&lt;/p&gt;
+
+&lt;h2 id=&quot;aws&quot;&gt;AWS&lt;/h2&gt;
+
+&lt;p&gt;In the end, it took several hours to run the model. Moreover, it makes it even more painful if you forget to change your default setting on your MacBook and the computer goes into sleep mode, and nothing get processed at all.&lt;/p&gt;
+
+&lt;p&gt;To free up the computer I resorted - welcome to - to &lt;a href=&quot;https://www.paperspace.com&quot;&gt;paperspace&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Which allows me to prototype locally (prove of concept) and compute in the cloud.&lt;/p&gt;
+
+&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h2&gt;
+
+&lt;p&gt;Use where you can pre-trained networks and if you are using large data use cloud services.&lt;/p&gt;</content><author><name></name></author><category term="data" /><category term="code" /><category term="art" /><category term="deep learning" /><category term="beginner" /><summary type="html">At kaggle we can find a dataset containing a collection of art images of google images, yandex images and from The Virtual Russian Museum. The dataset has about 9000 images with five categories: Drawings and Watercolors Paintings Sculpture Graphic Art Iconography (old Russian art)</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/images/GoogleArt_cropped.png" /></entry><entry><title type="html">An Introduction to Diffusion Maps</title><link href="http://localhost:4000/an_introductio_to_diffusion_maps/" rel="alternate" type="text/html" title="An Introduction to Diffusion Maps" /><published>2019-01-21T00:00:00+00:00</published><updated>2019-01-21T00:00:00+00:00</updated><id>http://localhost:4000/an_introductio_to_diffusion_maps</id><content type="html" xml:base="http://localhost:4000/an_introductio_to_diffusion_maps/">&lt;p&gt;The &lt;a href=&quot;https://inside.mines.edu/~whereman/talks/delaPorte-Herbst-Hereman-vanderWalt-DiffusionMaps-PRASA2008.pdf&quot;&gt;paper&lt;/a&gt; published by J. de la Porte&lt;sup id=&quot;fnref:4&quot;&gt;&lt;a href=&quot;#fn:4&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;, B. M. Herbst&lt;sup id=&quot;fnref:4:1&quot;&gt;&lt;a href=&quot;#fn:4&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;, W. Hereman&lt;sup id=&quot;fnref:5&quot;&gt;&lt;a href=&quot;#fn:5&quot; class=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt; and S. J. van der Walt&lt;sup id=&quot;fnref:4:2&quot;&gt;&lt;a href=&quot;#fn:4&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt; in November 2008 describes the mathematical technique for dealing with reducing dimensionality in data. The authors give an overview of three well-known dimensionality reduction techniques and introduce diffusion maps and its functionality, process and how it compares with the other methods.&lt;/p&gt;
+
+&lt;h3 id=&quot;dimensionality-reduction&quot;&gt;Dimensionality Reduction&lt;/h3&gt;
+
+&lt;p&gt;We are limited in visualising information beyond the third dimension. For simplicity reasons, imagine a black and white image (grey scale) of 100 by 100 pixels, where each pixel represents a variable. The dimensionality would add up to be 10,000. A &lt;strong&gt;human&lt;/strong&gt; wouldn’t have any issues with reading the following digits in the picture below, but a &lt;strong&gt;computer&lt;/strong&gt; sees them as a data point in an &lt;em&gt;nm&lt;/em&gt;-dimensional coordinate space.&lt;/p&gt;
+
+&lt;figure&gt;
+    
+    &lt;a href=&quot;/images/Two-images-of-the-same-digit-at-different-rotation-angles.png&quot;&gt;&lt;img src=&quot;/images/Two-images-of-the-same-digit-at-different-rotation-angles.png&quot; alt=&quot;&quot; /&gt;&lt;/a&gt;
+    
+    &lt;figcaption&gt;&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;Dimensionality Reduction is about converting data of very high dimensionality into data of much lower dimensionality such that each of the lower dimensions conveys much more information.&lt;/p&gt;
+
+&lt;p&gt;Here we can use the analogy of zipping text files, compressing large text data into smaller equivalent data. With the minor but significant difference that in dimensionality reduction we will lose some information. The goal here is to not lose too many of the essential features in the data.&lt;/p&gt;
+
+&lt;h3 id=&quot;popular-techniques&quot;&gt;Popular Techniques&lt;/h3&gt;
+
+&lt;p&gt;The most popular reduction methods are&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Principle Component Analysis (PCA)&lt;sup id=&quot;fnref:6&quot;&gt;&lt;a href=&quot;#fn:6&quot; class=&quot;footnote&quot;&gt;3&lt;/a&gt;&lt;/sup&gt;, a linear dimensionality reduction technique using Singular Value Decomposition of the data to project it to a lower dimensional space.&lt;sup id=&quot;fnref:7&quot;&gt;&lt;a href=&quot;#fn:7&quot; class=&quot;footnote&quot;&gt;4&lt;/a&gt;&lt;/sup&gt;&lt;/li&gt;
+  &lt;li&gt;Multi-dimensional Scaling (MDS)&lt;sup id=&quot;fnref:8&quot;&gt;&lt;a href=&quot;#fn:8&quot; class=&quot;footnote&quot;&gt;5&lt;/a&gt;&lt;/sup&gt; seeks a low-dimensional representation of the data in which the distances respect well the distances in the original high-dimensional space.&lt;sup id=&quot;fnref:9&quot;&gt;&lt;a href=&quot;#fn:9&quot; class=&quot;footnote&quot;&gt;6&lt;/a&gt;&lt;/sup&gt;&lt;/li&gt;
+  &lt;li&gt;Isometric Feature Map (Isomap)&lt;sup id=&quot;fnref:10&quot;&gt;&lt;a href=&quot;#fn:10&quot; class=&quot;footnote&quot;&gt;7&lt;/a&gt;&lt;/sup&gt;, a non-linear dimensionality reduction through Isometric Mapping.&lt;sup id=&quot;fnref:11&quot;&gt;&lt;a href=&quot;#fn:11&quot; class=&quot;footnote&quot;&gt;8&lt;/a&gt;&lt;/sup&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;diffusion-maps&quot;&gt;Diffusion Maps&lt;/h3&gt;
+
+&lt;p&gt;Diffusion maps are a non-linear technique. In which we analyse first the connectivity of the data. Similar to taking a random walk on our data, where we jump between data points in feature space (see image below). The goal is to reveal the geometric structure of our data at different scales, defining a “time-dependent” diffusion metrics. Here &lt;em&gt;time&lt;/em&gt; seems to be interchangeable with &lt;em&gt;scale&lt;/em&gt;.&lt;/p&gt;
+
+&lt;figure&gt;
+    
+    &lt;a href=&quot;/images/A-random-walk-on-a-data-set-Each-jump-has-a-probability-associated-with-it-The-green.png&quot;&gt;&lt;img src=&quot;/images/A-random-walk-on-a-data-set-Each-jump-has-a-probability-associated-with-it-The-green.png&quot; alt=&quot;&quot; /&gt;&lt;/a&gt;
+    
+    &lt;figcaption&gt;&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;By measuring the distances between data points, we can define neighbourhoods. In order to achieve it, we define a threshold value in the way of a function (kernel) to obtain the similarity within a neighboorhood.&lt;/p&gt;
+
+&lt;h5 id=&quot;footnotes&quot;&gt;Footnotes&lt;/h5&gt;
+
+&lt;!-- An example of a Gist embed below. --&gt;
+&lt;!-- &lt;noscript&gt;&lt;pre&gt;404: Not Found
+&lt;/pre&gt;&lt;/noscript&gt;&lt;script src=&quot;https://gist.github.com/mmistakes/6589546.js&quot;&gt; &lt;/script&gt; --&gt;
+&lt;div class=&quot;footnotes&quot;&gt;
+  &lt;ol&gt;
+    &lt;li id=&quot;fn:4&quot;&gt;
+      &lt;p&gt;Applied Mathematics Division, Department of Mathematical Sciences, University of Stellenbosch, South Africa &lt;a href=&quot;#fnref:4&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt; &lt;a href=&quot;#fnref:4:1&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;sup&gt;2&lt;/sup&gt;&lt;/a&gt; &lt;a href=&quot;#fnref:4:2&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;sup&gt;3&lt;/sup&gt;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:5&quot;&gt;
+      &lt;p&gt;Colorado School of Mines, United States of America &lt;a href=&quot;#fnref:5&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:6&quot;&gt;
+      &lt;p&gt;I.T. Jolliffe. Principal component analysis. SpringerVerlag New York, 1986. &lt;a href=&quot;#fnref:6&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:7&quot;&gt;
+      &lt;p&gt;&lt;a href=&quot;https://scikit-learn.org/stable/modules/decomposition.html#pca&quot;&gt;https://scikit-learn.org/stable/modules/decomposition.html#pca&lt;/a&gt; &lt;a href=&quot;#fnref:7&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:8&quot;&gt;
+      &lt;p&gt;W.S. Torgerson. Multidimensional scaling: I. Theory and method. Psychometrika, 17(4):401–419, 1952. &lt;a href=&quot;#fnref:8&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:9&quot;&gt;
+      &lt;p&gt;&lt;a href=&quot;https://scikit-learn.org/stable/modules/manifold.html#multidimensional-scaling&quot;&gt;https://scikit-learn.org/stable/modules/manifold.html#multidimensional-scaling&lt;/a&gt; &lt;a href=&quot;#fnref:9&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:10&quot;&gt;
+      &lt;p&gt;Joshua B. Tenenbaum, Vin de Silva, and John C. Langford. A Global Geometric Framework for Nonlinear Dimensionality Reduction. Science, 290(5500):2319–2323, 2000. &lt;a href=&quot;#fnref:10&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:11&quot;&gt;
+      &lt;p&gt;&lt;a href=&quot;https://scikit-learn.org/stable/modules/manifold.html#isomap&quot;&gt;https://scikit-learn.org/stable/modules/manifold.html#isomap&lt;/a&gt; &lt;a href=&quot;#fnref:11&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/div&gt;</content><author><name></name></author><category term="data" /><category term="code" /><category term="diffusion maps" /><category term="papers" /><summary type="html">The paper published by J. de la Porte1, B. M. Herbst1, W. Hereman2 and S. J. van der Walt1 in November 2008 describes the mathematical technique for dealing with reducing dimensionality in data. The authors give an overview of three well-known dimensionality reduction techniques and introduce diffusion maps and its functionality, process and how it compares with the other methods. Applied Mathematics Division, Department of Mathematical Sciences, University of Stellenbosch, South Africa &amp;#8617; &amp;#8617;2 &amp;#8617;3 Colorado School of Mines, United States of America &amp;#8617;</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/images/diffusion_map.png" /></entry><entry><title type="html">Forest Cover Type</title><link href="http://localhost:4000/forest/" rel="alternate" type="text/html" title="Forest Cover Type" /><published>2019-01-14T00:00:00+00:00</published><updated>2019-01-14T00:00:00+00:00</updated><id>http://localhost:4000/forest</id><content type="html" xml:base="http://localhost:4000/forest/">&lt;h2 id=&quot;or-who-cannot-see-the-wood-for-the-trees&quot;&gt;Or who cannot see the wood for the trees?&lt;/h2&gt;
 
 &lt;p&gt;Researchers at the Department of Forest Sciences at Colorado State University collected over half a million measurements from tree observations from four areas of the Roosevelt National Forest in Colorado. All observations are cartographic variables (no remote sensing) from 30-meter x 30-meter sections of forest.&lt;/p&gt;
 

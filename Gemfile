@@ -7,3 +7,4 @@ gem "jekyll-feed"
 gem "jekyll-paginate"
 gem "jekyll-gist"
 gem 'jekyll-compose', group: [:jekyll_plugins]
+gem 'kramdown'

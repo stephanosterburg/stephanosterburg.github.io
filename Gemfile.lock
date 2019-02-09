@@ -84,6 +84,7 @@ DEPENDENCIES
   jekyll-gist
   jekyll-paginate
   jekyll-sitemap
+  kramdown
   tzinfo-data
 
 BUNDLED WITH

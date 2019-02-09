@@ -46,6 +46,23 @@
 <!-- Load Modernizr -->
 <script src="http://localhost:4000/assets/js/vendor/modernizr-2.6.2.custom.min.js"></script>
 
+<!-- mathjax config similar to math.stackexchange -->
+<!-- <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script> -->
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  jax: ["input/TeX", "output/HTML-CSS"],
+  tex2jax: {
+    inlineMath: [ ['$', '$'] ],
+    displayMath: [ ['$$', '$$']],
+    processEscapes: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+  },
+  messageStyle: "none",
+  "HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"] }
+});
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML" type="text/javascript"></script>
+
 <!-- Icons -->
 <!-- 16x16 -->
 <link rel="shortcut icon" href="http://localhost:4000/favicon.ico">
@@ -130,10 +147,22 @@
 <ul class="entry-meta inline-list">
   
     
-  	<li><a href="#code" class="tag"><span class="term">code</span> <span class="count">2</span></a></li>
+  	<li><a href="#art" class="tag"><span class="term">art</span> <span class="count">1</span></a></li>
   
     
-  	<li><a href="#data" class="tag"><span class="term">data</span> <span class="count">2</span></a></li>
+  	<li><a href="#beginner" class="tag"><span class="term">beginner</span> <span class="count">1</span></a></li>
+  
+    
+  	<li><a href="#code" class="tag"><span class="term">code</span> <span class="count">4</span></a></li>
+  
+    
+  	<li><a href="#data" class="tag"><span class="term">data</span> <span class="count">4</span></a></li>
+  
+    
+  	<li><a href="#deep learning" class="tag"><span class="term">deep learning</span> <span class="count">1</span></a></li>
+  
+    
+  	<li><a href="#diffusion maps" class="tag"><span class="term">diffusion maps</span> <span class="count">1</span></a></li>
   
     
   	<li><a href="#forest" class="tag"><span class="term">forest</span> <span class="count">1</span></a></li>
@@ -144,13 +173,40 @@
     
   	<li><a href="#map" class="tag"><span class="term">map</span> <span class="count">1</span></a></li>
   
+    
+  	<li><a href="#papers" class="tag"><span class="term">papers</span> <span class="count">1</span></a></li>
+  
 </ul>
 
 
   
 	<article>
+	<h2 id="art" class="tag-heading">art</h2>
+		<ul>
+    
+      <li class="entry-title"><a href="http://localhost:4000/deep_learning_art_images/" title="Deep Learning and Art Images">Deep Learning and Art Images</a></li>
+    
+		</ul>
+	</article><!-- /.hentry -->
+
+  
+	<article>
+	<h2 id="beginner" class="tag-heading">beginner</h2>
+		<ul>
+    
+      <li class="entry-title"><a href="http://localhost:4000/deep_learning_art_images/" title="Deep Learning and Art Images">Deep Learning and Art Images</a></li>
+    
+		</ul>
+	</article><!-- /.hentry -->
+
+  
+	<article>
 	<h2 id="code" class="tag-heading">code</h2>
 		<ul>
+    
+      <li class="entry-title"><a href="http://localhost:4000/deep_learning_art_images/" title="Deep Learning and Art Images">Deep Learning and Art Images</a></li>
+    
+      <li class="entry-title"><a href="http://localhost:4000/an_introductio_to_diffusion_maps/" title="An Introduction to Diffusion Maps">An Introduction to Diffusion Maps</a></li>
     
       <li class="entry-title"><a href="http://localhost:4000/forest/" title="Forest Cover Type">Forest Cover Type</a></li>
     
@@ -164,9 +220,33 @@
 	<h2 id="data" class="tag-heading">data</h2>
 		<ul>
     
+      <li class="entry-title"><a href="http://localhost:4000/deep_learning_art_images/" title="Deep Learning and Art Images">Deep Learning and Art Images</a></li>
+    
+      <li class="entry-title"><a href="http://localhost:4000/an_introductio_to_diffusion_maps/" title="An Introduction to Diffusion Maps">An Introduction to Diffusion Maps</a></li>
+    
       <li class="entry-title"><a href="http://localhost:4000/forest/" title="Forest Cover Type">Forest Cover Type</a></li>
     
       <li class="entry-title"><a href="http://localhost:4000/mapping_data_with_folium/" title="Mapping Data with folium">Mapping Data with folium</a></li>
+    
+		</ul>
+	</article><!-- /.hentry -->
+
+  
+	<article>
+	<h2 id="deep learning" class="tag-heading">deep learning</h2>
+		<ul>
+    
+      <li class="entry-title"><a href="http://localhost:4000/deep_learning_art_images/" title="Deep Learning and Art Images">Deep Learning and Art Images</a></li>
+    
+		</ul>
+	</article><!-- /.hentry -->
+
+  
+	<article>
+	<h2 id="diffusion maps" class="tag-heading">diffusion maps</h2>
+		<ul>
+    
+      <li class="entry-title"><a href="http://localhost:4000/an_introductio_to_diffusion_maps/" title="An Introduction to Diffusion Maps">An Introduction to Diffusion Maps</a></li>
     
 		</ul>
 	</article><!-- /.hentry -->
@@ -197,6 +277,16 @@
 		<ul>
     
       <li class="entry-title"><a href="http://localhost:4000/mapping_data_with_folium/" title="Mapping Data with folium">Mapping Data with folium</a></li>
+    
+		</ul>
+	</article><!-- /.hentry -->
+
+  
+	<article>
+	<h2 id="papers" class="tag-heading">papers</h2>
+		<ul>
+    
+      <li class="entry-title"><a href="http://localhost:4000/an_introductio_to_diffusion_maps/" title="An Introduction to Diffusion Maps">An Introduction to Diffusion Maps</a></li>
     
 		</ul>
 	</article><!-- /.hentry -->
