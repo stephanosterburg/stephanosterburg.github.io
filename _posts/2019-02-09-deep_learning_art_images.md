@@ -24,7 +24,7 @@ When I started to research how to tackle the issue of the image classification, 
 * `flow_from_dataframe`, but we need to create first the dataframe ourselves.
 * `flow_from_dictonary`, here we don't need to do any extra work.
 
-I, as may be guessed it already, opted for the later. After all, I could focus on creating the neural network.
+I, as may be guessed it already, opted for the later.
 
 ## How deep is too deep?
 
@@ -62,7 +62,7 @@ Now, the accuracy improved to 96.68%, up >5% from my previous model, but not the
 
 In the end, it took several hours to run the model. Moreover, it makes it even more painful if you forget to change your default setting on your MacBook and the computer goes into sleep mode, and nothing get processed at all.
 
-To free up the computer I resorted - welcome to - to [paperspace](https://www.paperspace.com). 
+To free up the computer I resorted to - welcome - [paperspace](https://www.paperspace.com). 
 
 Which allows me to prototype locally (prove of concept) and compute in the cloud.
 

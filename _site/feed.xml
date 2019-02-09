@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-02-09T13:47:49+00:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Data Ocean</title><subtitle>A discovery into the world of data.</subtitle><entry><title type="html">Deep Learning and Art Images</title><link href="http://localhost:4000/deep_learning_art_images/" rel="alternate" type="text/html" title="Deep Learning and Art Images" /><published>2019-02-09T00:00:00+00:00</published><updated>2019-02-09T00:00:00+00:00</updated><id>http://localhost:4000/deep_learning_art_images</id><content type="html" xml:base="http://localhost:4000/deep_learning_art_images/">&lt;p&gt;At &lt;a href=&quot;https://www.kaggle.com&quot;&gt;kaggle&lt;/a&gt; we can find a dataset containing a collection of art images of google images, yandex images and from &lt;a href=&quot;http://rusmuseumvrm.ru/collections/?lang=en&quot;&gt;The Virtual Russian Museum&lt;/a&gt;. The dataset has about 9000 images with five categories:&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-02-09T14:08:10+00:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Data Ocean</title><subtitle>A discovery into the world of data.</subtitle><entry><title type="html">Deep Learning and Art Images</title><link href="http://localhost:4000/deep_learning_art_images/" rel="alternate" type="text/html" title="Deep Learning and Art Images" /><published>2019-02-09T00:00:00+00:00</published><updated>2019-02-09T00:00:00+00:00</updated><id>http://localhost:4000/deep_learning_art_images</id><content type="html" xml:base="http://localhost:4000/deep_learning_art_images/">&lt;p&gt;At &lt;a href=&quot;https://www.kaggle.com&quot;&gt;kaggle&lt;/a&gt; we can find a dataset containing a collection of art images of google images, yandex images and from &lt;a href=&quot;http://rusmuseumvrm.ru/collections/?lang=en&quot;&gt;The Virtual Russian Museum&lt;/a&gt;. The dataset has about 9000 images with five categories:&lt;/p&gt;
 &lt;ol&gt;
   &lt;li&gt;Drawings and Watercolors&lt;/li&gt;
   &lt;li&gt;Paintings&lt;/li&gt;
@@ -18,7 +18,7 @@
   &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;flow_from_dictonary&lt;/code&gt;, here we don’t need to do any extra work.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;I, as may be guessed it already, opted for the later. After all, I could focus on creating the neural network.&lt;/p&gt;
+&lt;p&gt;I, as may be guessed it already, opted for the later.&lt;/p&gt;
 
 &lt;h2 id=&quot;how-deep-is-too-deep&quot;&gt;How deep is too deep?&lt;/h2&gt;
 
@@ -62,7 +62,7 @@
 
 &lt;p&gt;In the end, it took several hours to run the model. Moreover, it makes it even more painful if you forget to change your default setting on your MacBook and the computer goes into sleep mode, and nothing get processed at all.&lt;/p&gt;
 
-&lt;p&gt;To free up the computer I resorted - welcome to - to &lt;a href=&quot;https://www.paperspace.com&quot;&gt;paperspace&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;To free up the computer I resorted to - welcome - &lt;a href=&quot;https://www.paperspace.com&quot;&gt;paperspace&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;Which allows me to prototype locally (prove of concept) and compute in the cloud.&lt;/p&gt;
 
