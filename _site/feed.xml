@@ -1,4 +1,99 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-02-09T16:43:08+00:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Data Ocean</title><subtitle>A discovery into the world of data.</subtitle><entry><title type="html">Deep Learning and Art Images</title><link href="http://localhost:4000/deep_learning_art_images/" rel="alternate" type="text/html" title="Deep Learning and Art Images" /><published>2019-02-09T00:00:00+00:00</published><updated>2019-02-09T00:00:00+00:00</updated><id>http://localhost:4000/deep_learning_art_images</id><content type="html" xml:base="http://localhost:4000/deep_learning_art_images/">&lt;p&gt;At &lt;a href=&quot;https://www.kaggle.com&quot;&gt;kaggle&lt;/a&gt; we can find a dataset containing a collection of art images of google images, yandex images and from &lt;a href=&quot;http://rusmuseumvrm.ru/collections/?lang=en&quot;&gt;The Virtual Russian Museum&lt;/a&gt;. The dataset has about 9000 images with five categories:&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-02-23T11:23:21+00:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Data Ocean</title><subtitle>A discovery into the world of data.</subtitle><entry><title type="html">A short introduction to Diffusion Maps</title><link href="http://localhost:4000/an_introductio_to_diffusion_maps/" rel="alternate" type="text/html" title="A short introduction to Diffusion Maps" /><published>2019-02-23T00:00:00+00:00</published><updated>2019-02-23T00:00:00+00:00</updated><id>http://localhost:4000/an_introductio_to_diffusion_maps</id><content type="html" xml:base="http://localhost:4000/an_introductio_to_diffusion_maps/">&lt;p&gt;The &lt;a href=&quot;https://inside.mines.edu/~whereman/talks/delaPorte-Herbst-Hereman-vanderWalt-DiffusionMaps-PRASA2008.pdf&quot;&gt;paper&lt;/a&gt; published by J. de la Porte&lt;sup id=&quot;fnref:4&quot;&gt;&lt;a href=&quot;#fn:4&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;, B. M. Herbst&lt;sup id=&quot;fnref:4:1&quot;&gt;&lt;a href=&quot;#fn:4&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;, W. Hereman&lt;sup id=&quot;fnref:5&quot;&gt;&lt;a href=&quot;#fn:5&quot; class=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt; and S. J. van der Walt&lt;sup id=&quot;fnref:4:2&quot;&gt;&lt;a href=&quot;#fn:4&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt; in November 2008 describes the mathematical technique for dealing with reducing dimensionality in data. In that paper, the authors give an overview of three well-known dimensionality reduction techniques and introduce diffusion maps and its functionality, process and how it compares with the other methods.&lt;/p&gt;
+
+&lt;h3 id=&quot;dimensionality-reduction&quot;&gt;Dimensionality Reduction&lt;/h3&gt;
+
+&lt;p&gt;We are limited in visualising information beyond the third dimension. For simplicity reasons, imagine a black and white image (grey scale) of 100 by 100 pixels, where each pixel represents a variable. The dimensionality would add up to be 10,000. A &lt;strong&gt;human&lt;/strong&gt; would not have any issues with reading the following digits in the picture below, but a &lt;strong&gt;computer&lt;/strong&gt; sees them as a data point in an &lt;em&gt;nm&lt;/em&gt;-dimensional coordinate space.&lt;/p&gt;
+
+&lt;figure&gt;
+    
+    &lt;a href=&quot;/images/Two-images-of-the-same-digit-at-different-rotation-angles.png&quot;&gt;&lt;img src=&quot;/images/Two-images-of-the-same-digit-at-different-rotation-angles.png&quot; alt=&quot;&quot; /&gt;&lt;/a&gt;
+    
+    &lt;figcaption&gt;&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;Dimensionality reduction is about converting data of very high dimensionality into data of lower dimensionality while preserving the original information. We can achieve these if one would be able to measure the distance between data points on the manifold itself instead of in Euclidean space by taking into account the data global space.&lt;/p&gt;
+
+&lt;p&gt;We can use the analogy of zipping text files, compressing large text data into smaller equivalent data. With the minor but significant difference that in dimensionality reduction we will lose some information. The goal here is to not lose too many of the essential features in the data.&lt;/p&gt;
+
+&lt;h3 id=&quot;popular-techniques&quot;&gt;Popular Techniques&lt;/h3&gt;
+
+&lt;p&gt;The most popular reduction methods are&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Principle Component Analysis (PCA)&lt;sup id=&quot;fnref:6&quot;&gt;&lt;a href=&quot;#fn:6&quot; class=&quot;footnote&quot;&gt;3&lt;/a&gt;&lt;/sup&gt;, a linear dimensionality reduction technique using Singular Value Decomposition of the data to project it to a lower dimensional space.&lt;sup id=&quot;fnref:7&quot;&gt;&lt;a href=&quot;#fn:7&quot; class=&quot;footnote&quot;&gt;4&lt;/a&gt;&lt;/sup&gt;&lt;/li&gt;
+  &lt;li&gt;Multi-dimensional Scaling (MDS)&lt;sup id=&quot;fnref:8&quot;&gt;&lt;a href=&quot;#fn:8&quot; class=&quot;footnote&quot;&gt;5&lt;/a&gt;&lt;/sup&gt; seeks a low-dimensional representation of the data in which the distances respect well the distances in the original high-dimensional space.&lt;sup id=&quot;fnref:9&quot;&gt;&lt;a href=&quot;#fn:9&quot; class=&quot;footnote&quot;&gt;6&lt;/a&gt;&lt;/sup&gt;&lt;/li&gt;
+  &lt;li&gt;Isometric Feature Map (Isomap)&lt;sup id=&quot;fnref:10&quot;&gt;&lt;a href=&quot;#fn:10&quot; class=&quot;footnote&quot;&gt;7&lt;/a&gt;&lt;/sup&gt;, a non-linear dimensionality reduction through Isometric Mapping.&lt;sup id=&quot;fnref:11&quot;&gt;&lt;a href=&quot;#fn:11&quot; class=&quot;footnote&quot;&gt;8&lt;/a&gt;&lt;/sup&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;diffusion-maps&quot;&gt;Diffusion Maps&lt;/h3&gt;
+
+&lt;p&gt;Diffusion maps are a non-linear technique. Similar to taking a random walk on our data, where we jump between data points in feature space (see image below), we  are analysing the connectivity of the data. The goal is to reveal the geometric structure of our data at different scales, defining a “time-dependent” diffusion metrics.&lt;/p&gt;
+
+&lt;figure&gt;
+    
+    &lt;a href=&quot;/images/A-random-walk-on-a-data-set-Each-jump-has-a-probability-associated-with-it-The-green.png&quot;&gt;&lt;img src=&quot;/images/A-random-walk-on-a-data-set-Each-jump-has-a-probability-associated-with-it-The-green.png&quot; alt=&quot;&quot; /&gt;&lt;/a&gt;
+    
+    &lt;figcaption&gt;&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;By measuring the distances between data points (i.e. Euclidean space), we can define neighbourhoods. In order to achieve it, we define a threshold value in the way of a function (kernel) to obtain the similarity within the geometric structure, which allows us to preserve the underlying information of the given data and be able to connect each neighbourhood.&lt;/p&gt;
+
+&lt;p&gt;The basic diffusion mapping algorithm can be defined as follows:&lt;/p&gt;
+
+&lt;p&gt;INPUT: High dimensional data set&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Define a kernel, &lt;script type=&quot;math/tex&quot;&gt;k(x, y)&lt;/script&gt; and create a kernel matrix, &lt;script type=&quot;math/tex&quot;&gt;K&lt;/script&gt;, such that &lt;script type=&quot;math/tex&quot;&gt;K_{i,j} = k(X_i, X_j)&lt;/script&gt;.&lt;/li&gt;
+  &lt;li&gt;Create the diffusion matrix by normalising the rows of the kernel matrix&lt;/li&gt;
+  &lt;li&gt;Calculate the eigenvectors of the diffusion matrix.&lt;/li&gt;
+  &lt;li&gt;Map to the &lt;script type=&quot;math/tex&quot;&gt;d&lt;/script&gt;-dimensional diffusion space at time &lt;script type=&quot;math/tex&quot;&gt;t&lt;/script&gt;, using the &lt;script type=&quot;math/tex&quot;&gt;d&lt;/script&gt; dominant eigenvectors and -values&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;OUTPUT: Lower dimensional data set&lt;/p&gt;
+
+&lt;h3 id=&quot;comparison&quot;&gt;Comparison&lt;/h3&gt;
+
+&lt;p&gt;The authors also investigated the performance of the different algorithms using a data set with an underlying C-shape for the change of the parameters. As for PCA, once the data is projected onto the two primary axes of variation the ordering of the data along the non-linear C-shape is lost and fails to detect a single parameter. MDS makes a better job in preserving data points in Euclidean space but due to the non-linear structure of the data, MDS cannot preserve the underlying clusters.&lt;/p&gt;
+
+&lt;h3 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h3&gt;
+
+&lt;p&gt;Diffusion mapping is more robust to noise perturbation and is the only technique that allows geometric analysis at different scales.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h5 id=&quot;footnotes&quot;&gt;Footnotes&lt;/h5&gt;
+
+&lt;!-- An example of a Gist embed below. --&gt;
+&lt;!-- &lt;noscript&gt;&lt;pre&gt;404: Not Found
+&lt;/pre&gt;&lt;/noscript&gt;&lt;script src=&quot;https://gist.github.com/mmistakes/6589546.js&quot;&gt; &lt;/script&gt; --&gt;
+&lt;div class=&quot;footnotes&quot;&gt;
+  &lt;ol&gt;
+    &lt;li id=&quot;fn:4&quot;&gt;
+      &lt;p&gt;Applied Mathematics Division, Department of Mathematical Sciences, University of Stellenbosch, South Africa &lt;a href=&quot;#fnref:4&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt; &lt;a href=&quot;#fnref:4:1&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;sup&gt;2&lt;/sup&gt;&lt;/a&gt; &lt;a href=&quot;#fnref:4:2&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;sup&gt;3&lt;/sup&gt;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:5&quot;&gt;
+      &lt;p&gt;Colorado School of Mines, United States of America &lt;a href=&quot;#fnref:5&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:6&quot;&gt;
+      &lt;p&gt;I.T. Jolliffe. Principal component analysis. Springer Verlag New York, 1986. &lt;a href=&quot;#fnref:6&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:7&quot;&gt;
+      &lt;p&gt;&lt;a href=&quot;https://scikit-learn.org/stable/modules/decomposition.html#pca&quot;&gt;https://scikit-learn.org/stable/modules/decomposition.html#pca&lt;/a&gt; &lt;a href=&quot;#fnref:7&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:8&quot;&gt;
+      &lt;p&gt;W.S. Torgerson. Multidimensional scaling: I. Theory and method. Psychometrika, 17(4):401–419, 1952. &lt;a href=&quot;#fnref:8&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:9&quot;&gt;
+      &lt;p&gt;&lt;a href=&quot;https://scikit-learn.org/stable/modules/manifold.html#multidimensional-scaling&quot;&gt;https://scikit-learn.org/stable/modules/manifold.html#multidimensional-scaling&lt;/a&gt; &lt;a href=&quot;#fnref:9&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:10&quot;&gt;
+      &lt;p&gt;Joshua B. Tenenbaum, Vin de Silva, and John C. Langford. A Global Geometric Framework for Nonlinear Dimensionality Reduction. Science, 290(5500):2319–2323, 2000. &lt;a href=&quot;#fnref:10&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:11&quot;&gt;
+      &lt;p&gt;&lt;a href=&quot;https://scikit-learn.org/stable/modules/manifold.html#isomap&quot;&gt;https://scikit-learn.org/stable/modules/manifold.html#isomap&lt;/a&gt; &lt;a href=&quot;#fnref:11&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/div&gt;</content><author><name></name></author><category term="data" /><category term="code" /><category term="diffusion maps" /><category term="papers" /><summary type="html">The paper published by J. de la Porte1, B. M. Herbst1, W. Hereman2 and S. J. van der Walt1 in November 2008 describes the mathematical technique for dealing with reducing dimensionality in data. In that paper, the authors give an overview of three well-known dimensionality reduction techniques and introduce diffusion maps and its functionality, process and how it compares with the other methods. Applied Mathematics Division, Department of Mathematical Sciences, University of Stellenbosch, South Africa &amp;#8617; &amp;#8617;2 &amp;#8617;3 Colorado School of Mines, United States of America &amp;#8617;</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/images/diffusion_map.png" /></entry><entry><title type="html">Deep Learning and Art Images</title><link href="http://localhost:4000/deep_learning_art_images/" rel="alternate" type="text/html" title="Deep Learning and Art Images" /><published>2019-02-09T00:00:00+00:00</published><updated>2019-02-09T00:00:00+00:00</updated><id>http://localhost:4000/deep_learning_art_images</id><content type="html" xml:base="http://localhost:4000/deep_learning_art_images/">&lt;p&gt;At &lt;a href=&quot;https://www.kaggle.com&quot;&gt;kaggle&lt;/a&gt; we can find a dataset containing a collection of art images of google images, yandex images and from &lt;a href=&quot;http://rusmuseumvrm.ru/collections/?lang=en&quot;&gt;The Virtual Russian Museum&lt;/a&gt;. The dataset has about 9000 images with five categories:&lt;/p&gt;
 &lt;ol&gt;
   &lt;li&gt;Drawings and Watercolors&lt;/li&gt;
   &lt;li&gt;Paintings&lt;/li&gt;
@@ -70,79 +165,7 @@
 
 &lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h2&gt;
 
-&lt;p&gt;Use where you can pre-trained networks and if you are using large data use cloud services.&lt;/p&gt;</content><author><name></name></author><category term="data" /><category term="code" /><category term="art" /><category term="deep learning" /><category term="beginner" /><summary type="html">At kaggle we can find a dataset containing a collection of art images of google images, yandex images and from The Virtual Russian Museum. The dataset has about 9000 images with five categories: Drawings and Watercolors Paintings Sculpture Graphic Art Iconography (old Russian art)</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/images/GoogleArt_cropped.png" /></entry><entry><title type="html">An Introduction to Diffusion Maps</title><link href="http://localhost:4000/an_introductio_to_diffusion_maps/" rel="alternate" type="text/html" title="An Introduction to Diffusion Maps" /><published>2019-01-21T00:00:00+00:00</published><updated>2019-01-21T00:00:00+00:00</updated><id>http://localhost:4000/an_introductio_to_diffusion_maps</id><content type="html" xml:base="http://localhost:4000/an_introductio_to_diffusion_maps/">&lt;p&gt;The &lt;a href=&quot;https://inside.mines.edu/~whereman/talks/delaPorte-Herbst-Hereman-vanderWalt-DiffusionMaps-PRASA2008.pdf&quot;&gt;paper&lt;/a&gt; published by J. de la Porte&lt;sup id=&quot;fnref:4&quot;&gt;&lt;a href=&quot;#fn:4&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;, B. M. Herbst&lt;sup id=&quot;fnref:4:1&quot;&gt;&lt;a href=&quot;#fn:4&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;, W. Hereman&lt;sup id=&quot;fnref:5&quot;&gt;&lt;a href=&quot;#fn:5&quot; class=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt; and S. J. van der Walt&lt;sup id=&quot;fnref:4:2&quot;&gt;&lt;a href=&quot;#fn:4&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt; in November 2008 describes the mathematical technique for dealing with reducing dimensionality in data. The authors give an overview of three well-known dimensionality reduction techniques and introduce diffusion maps and its functionality, process and how it compares with the other methods.&lt;/p&gt;
-
-&lt;h3 id=&quot;dimensionality-reduction&quot;&gt;Dimensionality Reduction&lt;/h3&gt;
-
-&lt;p&gt;We are limited in visualising information beyond the third dimension. For simplicity reasons, imagine a black and white image (grey scale) of 100 by 100 pixels, where each pixel represents a variable. The dimensionality would add up to be 10,000. A &lt;strong&gt;human&lt;/strong&gt; wouldn’t have any issues with reading the following digits in the picture below, but a &lt;strong&gt;computer&lt;/strong&gt; sees them as a data point in an &lt;em&gt;nm&lt;/em&gt;-dimensional coordinate space.&lt;/p&gt;
-
-&lt;figure&gt;
-    
-    &lt;a href=&quot;/images/Two-images-of-the-same-digit-at-different-rotation-angles.png&quot;&gt;&lt;img src=&quot;/images/Two-images-of-the-same-digit-at-different-rotation-angles.png&quot; alt=&quot;&quot; /&gt;&lt;/a&gt;
-    
-    &lt;figcaption&gt;&lt;/figcaption&gt;
-&lt;/figure&gt;
-
-&lt;p&gt;Dimensionality Reduction is about converting data of very high dimensionality into data of much lower dimensionality such that each of the lower dimensions conveys much more information.&lt;/p&gt;
-
-&lt;p&gt;Here we can use the analogy of zipping text files, compressing large text data into smaller equivalent data. With the minor but significant difference that in dimensionality reduction we will lose some information. The goal here is to not lose too many of the essential features in the data.&lt;/p&gt;
-
-&lt;h3 id=&quot;popular-techniques&quot;&gt;Popular Techniques&lt;/h3&gt;
-
-&lt;p&gt;The most popular reduction methods are&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Principle Component Analysis (PCA)&lt;sup id=&quot;fnref:6&quot;&gt;&lt;a href=&quot;#fn:6&quot; class=&quot;footnote&quot;&gt;3&lt;/a&gt;&lt;/sup&gt;, a linear dimensionality reduction technique using Singular Value Decomposition of the data to project it to a lower dimensional space.&lt;sup id=&quot;fnref:7&quot;&gt;&lt;a href=&quot;#fn:7&quot; class=&quot;footnote&quot;&gt;4&lt;/a&gt;&lt;/sup&gt;&lt;/li&gt;
-  &lt;li&gt;Multi-dimensional Scaling (MDS)&lt;sup id=&quot;fnref:8&quot;&gt;&lt;a href=&quot;#fn:8&quot; class=&quot;footnote&quot;&gt;5&lt;/a&gt;&lt;/sup&gt; seeks a low-dimensional representation of the data in which the distances respect well the distances in the original high-dimensional space.&lt;sup id=&quot;fnref:9&quot;&gt;&lt;a href=&quot;#fn:9&quot; class=&quot;footnote&quot;&gt;6&lt;/a&gt;&lt;/sup&gt;&lt;/li&gt;
-  &lt;li&gt;Isometric Feature Map (Isomap)&lt;sup id=&quot;fnref:10&quot;&gt;&lt;a href=&quot;#fn:10&quot; class=&quot;footnote&quot;&gt;7&lt;/a&gt;&lt;/sup&gt;, a non-linear dimensionality reduction through Isometric Mapping.&lt;sup id=&quot;fnref:11&quot;&gt;&lt;a href=&quot;#fn:11&quot; class=&quot;footnote&quot;&gt;8&lt;/a&gt;&lt;/sup&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;diffusion-maps&quot;&gt;Diffusion Maps&lt;/h3&gt;
-
-&lt;p&gt;Diffusion maps are a non-linear technique. In which we analyse first the connectivity of the data. Similar to taking a random walk on our data, where we jump between data points in feature space (see image below). The goal is to reveal the geometric structure of our data at different scales, defining a “time-dependent” diffusion metrics. Here &lt;em&gt;time&lt;/em&gt; seems to be interchangeable with &lt;em&gt;scale&lt;/em&gt;.&lt;/p&gt;
-
-&lt;figure&gt;
-    
-    &lt;a href=&quot;/images/A-random-walk-on-a-data-set-Each-jump-has-a-probability-associated-with-it-The-green.png&quot;&gt;&lt;img src=&quot;/images/A-random-walk-on-a-data-set-Each-jump-has-a-probability-associated-with-it-The-green.png&quot; alt=&quot;&quot; /&gt;&lt;/a&gt;
-    
-    &lt;figcaption&gt;&lt;/figcaption&gt;
-&lt;/figure&gt;
-
-&lt;p&gt;By measuring the distances between data points, we can define neighbourhoods. In order to achieve it, we define a threshold value in the way of a function (kernel) to obtain the similarity within a neighboorhood.&lt;/p&gt;
-
-&lt;h5 id=&quot;footnotes&quot;&gt;Footnotes&lt;/h5&gt;
-
-&lt;!-- An example of a Gist embed below. --&gt;
-&lt;!-- &lt;noscript&gt;&lt;pre&gt;404: Not Found
-&lt;/pre&gt;&lt;/noscript&gt;&lt;script src=&quot;https://gist.github.com/mmistakes/6589546.js&quot;&gt; &lt;/script&gt; --&gt;
-&lt;div class=&quot;footnotes&quot;&gt;
-  &lt;ol&gt;
-    &lt;li id=&quot;fn:4&quot;&gt;
-      &lt;p&gt;Applied Mathematics Division, Department of Mathematical Sciences, University of Stellenbosch, South Africa &lt;a href=&quot;#fnref:4&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt; &lt;a href=&quot;#fnref:4:1&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;sup&gt;2&lt;/sup&gt;&lt;/a&gt; &lt;a href=&quot;#fnref:4:2&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;sup&gt;3&lt;/sup&gt;&lt;/a&gt;&lt;/p&gt;
-    &lt;/li&gt;
-    &lt;li id=&quot;fn:5&quot;&gt;
-      &lt;p&gt;Colorado School of Mines, United States of America &lt;a href=&quot;#fnref:5&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-    &lt;/li&gt;
-    &lt;li id=&quot;fn:6&quot;&gt;
-      &lt;p&gt;I.T. Jolliffe. Principal component analysis. SpringerVerlag New York, 1986. &lt;a href=&quot;#fnref:6&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-    &lt;/li&gt;
-    &lt;li id=&quot;fn:7&quot;&gt;
-      &lt;p&gt;&lt;a href=&quot;https://scikit-learn.org/stable/modules/decomposition.html#pca&quot;&gt;https://scikit-learn.org/stable/modules/decomposition.html#pca&lt;/a&gt; &lt;a href=&quot;#fnref:7&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-    &lt;/li&gt;
-    &lt;li id=&quot;fn:8&quot;&gt;
-      &lt;p&gt;W.S. Torgerson. Multidimensional scaling: I. Theory and method. Psychometrika, 17(4):401–419, 1952. &lt;a href=&quot;#fnref:8&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-    &lt;/li&gt;
-    &lt;li id=&quot;fn:9&quot;&gt;
-      &lt;p&gt;&lt;a href=&quot;https://scikit-learn.org/stable/modules/manifold.html#multidimensional-scaling&quot;&gt;https://scikit-learn.org/stable/modules/manifold.html#multidimensional-scaling&lt;/a&gt; &lt;a href=&quot;#fnref:9&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-    &lt;/li&gt;
-    &lt;li id=&quot;fn:10&quot;&gt;
-      &lt;p&gt;Joshua B. Tenenbaum, Vin de Silva, and John C. Langford. A Global Geometric Framework for Nonlinear Dimensionality Reduction. Science, 290(5500):2319–2323, 2000. &lt;a href=&quot;#fnref:10&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-    &lt;/li&gt;
-    &lt;li id=&quot;fn:11&quot;&gt;
-      &lt;p&gt;&lt;a href=&quot;https://scikit-learn.org/stable/modules/manifold.html#isomap&quot;&gt;https://scikit-learn.org/stable/modules/manifold.html#isomap&lt;/a&gt; &lt;a href=&quot;#fnref:11&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-    &lt;/li&gt;
-  &lt;/ol&gt;
-&lt;/div&gt;</content><author><name></name></author><category term="data" /><category term="code" /><category term="diffusion maps" /><category term="papers" /><summary type="html">The paper published by J. de la Porte1, B. M. Herbst1, W. Hereman2 and S. J. van der Walt1 in November 2008 describes the mathematical technique for dealing with reducing dimensionality in data. The authors give an overview of three well-known dimensionality reduction techniques and introduce diffusion maps and its functionality, process and how it compares with the other methods. Applied Mathematics Division, Department of Mathematical Sciences, University of Stellenbosch, South Africa &amp;#8617; &amp;#8617;2 &amp;#8617;3 Colorado School of Mines, United States of America &amp;#8617;</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/images/diffusion_map.png" /></entry><entry><title type="html">Forest Cover Type</title><link href="http://localhost:4000/forest/" rel="alternate" type="text/html" title="Forest Cover Type" /><published>2019-01-14T00:00:00+00:00</published><updated>2019-01-14T00:00:00+00:00</updated><id>http://localhost:4000/forest</id><content type="html" xml:base="http://localhost:4000/forest/">&lt;h2 id=&quot;or-who-cannot-see-the-wood-for-the-trees&quot;&gt;Or who cannot see the wood for the trees?&lt;/h2&gt;
+&lt;p&gt;Use where you can pre-trained networks and if you are using large data use cloud services.&lt;/p&gt;</content><author><name></name></author><category term="data" /><category term="code" /><category term="art" /><category term="deep learning" /><category term="beginner" /><summary type="html">At kaggle we can find a dataset containing a collection of art images of google images, yandex images and from The Virtual Russian Museum. The dataset has about 9000 images with five categories: Drawings and Watercolors Paintings Sculpture Graphic Art Iconography (old Russian art)</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/images/GoogleArt_cropped.png" /></entry><entry><title type="html">Forest Cover Type</title><link href="http://localhost:4000/forest/" rel="alternate" type="text/html" title="Forest Cover Type" /><published>2019-01-14T00:00:00+00:00</published><updated>2019-01-14T00:00:00+00:00</updated><id>http://localhost:4000/forest</id><content type="html" xml:base="http://localhost:4000/forest/">&lt;h2 id=&quot;or-who-cannot-see-the-wood-for-the-trees&quot;&gt;Or who cannot see the wood for the trees?&lt;/h2&gt;
 
 &lt;p&gt;Researchers at the Department of Forest Sciences at Colorado State University collected over half a million measurements from tree observations from four areas of the Roosevelt National Forest in Colorado. All observations are cartographic variables (no remote sensing) from 30-meter x 30-meter sections of forest.&lt;/p&gt;
 
