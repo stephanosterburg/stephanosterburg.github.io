@@ -30,7 +30,7 @@ The resulting list we got back looks off. When we are looking at the categories 
 ![Count Category]({{ site.baseimg }}/images/CategoryCountList.png)
 {: refdef}
 
-We have some oddly named categories and a meagre number of reliable URLs in the list. To address this imbalance, I added about 70 URLs I consider reliable (hopefully) of my own, which doesn't balance the scale very much but at least pushes it into the right direction. Plus, let us see what and how much content we can scrap from the world wide web before we do something about the source list.
+We have some oddly named categories and a meagre number of only 3 reliable URLs in the list. To address this imbalance, I added about 70 URLs I consider reliable (hopefully) of my own, which doesn't balance the scale very much but at least pushes it into the right direction. Plus, let us see what and how much content we can scrap from the world wide web before we do something about the source list.
 
 ### Web Scraping
 
