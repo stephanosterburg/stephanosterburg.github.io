@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-04-03T06:26:47+01:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Data Ocean</title><subtitle>A discovery into the world of data.</subtitle><entry><title type="html">Text Classification</title><link href="http://localhost:4000/text_classification/" rel="alternate" type="text/html" title="Text Classification" /><published>2019-04-02T00:00:00+01:00</published><updated>2019-04-02T00:00:00+01:00</updated><id>http://localhost:4000/text_classification</id><content type="html" xml:base="http://localhost:4000/text_classification/">&lt;h2 id=&quot;reliable-or-unreliable&quot;&gt;Reliable or Unreliable?&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-04-03T16:28:51+01:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Data Ocean</title><subtitle>A discovery into the world of data.</subtitle><entry><title type="html">Text Classification</title><link href="http://localhost:4000/text_classification_part_1/" rel="alternate" type="text/html" title="Text Classification" /><published>2019-04-02T00:00:00+01:00</published><updated>2019-04-02T00:00:00+01:00</updated><id>http://localhost:4000/text_classification_part_1</id><content type="html" xml:base="http://localhost:4000/text_classification_part_1/">&lt;h2 id=&quot;reliable-or-unreliable&quot;&gt;Reliable or Unreliable?&lt;/h2&gt;
 
-&lt;p&gt;Over the past 20 years and especially since the United States presidential election 2016 there is an increase in unreliable news content. The question which got and still get asked is how can we know which is which. To find an answer I started at &lt;a href=&quot;http://www.opensources.co/&quot;&gt;opensources&lt;/a&gt; which curates a list of online information sources. The websites listed range from credible news to misleading and outright fake.&lt;/p&gt;
+&lt;p&gt;Over the past two decades and especially since the United States presidential election 2016 there is an increase in unreliable news content. The question which got and still get asked is how can we know which is which. To find an answer I started at &lt;a href=&quot;http://www.opensources.co/&quot;&gt;opensources&lt;/a&gt; which curates a list of online information sources. The websites listed range from credible news to misleading and outright fake.&lt;/p&gt;
 
-&lt;p&gt;This will be one of 4 blog posts:&lt;/p&gt;
+&lt;p&gt;The following post is part one in a series of four blog posts:&lt;/p&gt;
 &lt;ul&gt;
   &lt;li&gt;collecting news content&lt;/li&gt;
   &lt;li&gt;preprocessing data&lt;/li&gt;
@@ -12,43 +12,51 @@
 
 &lt;h2 id=&quot;collecting-news-content&quot;&gt;Collecting News Content&lt;/h2&gt;
 
-&lt;p&gt;The source list (csv file) which we can find at &lt;a href=&quot;http://www.opensources.co/&quot;&gt;opensources&lt;/a&gt;  hold over 800 url’s. The first thing we want to do is to filter out all non-valid url’s.&lt;/p&gt;
+&lt;p&gt;The source list (CSV file) which we can download from &lt;a href=&quot;http://www.opensources.co/&quot;&gt;opensources&lt;/a&gt;  has over 800 URLs. The first thing we want to do is to filter out all non-valid URLs.&lt;/p&gt;
 
 &lt;noscript&gt;&lt;pre&gt;400: Invalid request
 &lt;/pre&gt;&lt;/noscript&gt;
 &lt;script src=&quot;https://gist.github.com/163ce020ac062cf0e20d8533a132cb4d.js&quot;&gt; &lt;/script&gt;
 
-&lt;p&gt;The resulting list we got back looks off. When we are looking at the categories and their number count we need to do some cleaning:&lt;/p&gt;
+&lt;p&gt;The resulting list we got back looks off. When we are looking at the categories and their number count we find that we need to do some cleaning:&lt;/p&gt;
 
 &lt;p style=&quot;text-align: center;&quot;&gt;&lt;img src=&quot;/images/CategoryCountList.png&quot; alt=&quot;Count Category&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;We have some oddly named categories and a meagre number of reliable url’s in the list so that we will add a few of our own.&lt;/p&gt;
+&lt;p&gt;We have some oddly named categories and a meagre number of reliable URLs in the list. In order to address this imbalance, I added about 70 URLs I consider reliable (hopefully) of my own, which doesn’t balance the scale very much but at least pushes it into the right direction. Plus, let us see what and how much content we can scrap from the world wide web before we do something about the source list.&lt;/p&gt;
 
 &lt;h3 id=&quot;web-scraping&quot;&gt;Web Scraping&lt;/h3&gt;
 
-&lt;p&gt;There are several tools to get the content we want from a website. &lt;a href=&quot;https://scrapy.org/&quot;&gt;Scrapy&lt;/a&gt; and &lt;a href=&quot;https://www.crummy.com/software/BeautifulSoup/&quot;&gt;BeautifulSoup&lt;/a&gt; are the two most popular tools probably out there. The only problem is that every website is different. To determine what the best options there are I decided to look at the NYTimes. As we can see in the image below neither of the mentioned tools won’t do it, each paragraph is nested in its separate HTML tag. Now imagine we have to figure out how each website is build of the around 500 url’s we have after cleaning and adding our own. There must be more natural ways.&lt;/p&gt;
+&lt;p&gt;There are several tools to get content from a website, &lt;a href=&quot;https://scrapy.org/&quot;&gt;scrapy&lt;/a&gt; and &lt;a href=&quot;https://www.crummy.com/software/BeautifulSoup/&quot;&gt;beautifulsoup&lt;/a&gt; are the two most popular tools probably out there. In both cases, we need to inspect the HTML code of a website. &lt;a href=&quot;https://hackernoon.com/web-scraping-tutorial-with-python-tips-and-tricks-db070e70e071&quot;&gt;Here is an excellent tutorial with tips and tricks using python&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p style=&quot;text-align: center;&quot;&gt;&lt;img src=&quot;/images/web_scraping.png&quot; alt=&quot;Web Scraping&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The main problem we are facing here is that every website has a different underlying architecture. To determine what the best options there are I decided to look at &lt;a href=&quot;https://www.nytimes.com/&quot;&gt;NYTimes&lt;/a&gt;. As we can see in the image below, each paragraph is in its separate HTML tag. To collect content only from the NYTimes website won’t be impossible, just bloody difficult and neither of the mentioned tools won’t do it in the long run. Considering that we have over 500 URLs and for the scope of this project is not visible. There must be much simpler ways to tackle this.&lt;/p&gt;
 
 &lt;p style=&quot;text-align: center;&quot;&gt;&lt;img src=&quot;/images/nytimes_html.png&quot; alt=&quot;Count Category&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;Luckily, the NYTimes offers an API to excess not only their archive but also search for the most current articles. Even better, their developer site has a playground to toy around to see what kind of results you can get.&lt;/p&gt;
+&lt;h2 id=&quot;api&quot;&gt;API&lt;/h2&gt;
+
+&lt;p&gt;Luckily, the NYTimes offers an API to excess not only their archive but also search for the most current articles. Even better, their developer site has a playground to toy around to see what kind of results you can get and fine tune your query.&lt;/p&gt;
 
 &lt;noscript&gt;&lt;pre&gt;400: Invalid request
 &lt;/pre&gt;&lt;/noscript&gt;
 &lt;script src=&quot;https://gist.github.com/3dac0843b584b388d42a881209089876.js&quot;&gt; &lt;/script&gt;
 
-&lt;p&gt;The NYTimes search API gives us a wide range of options to query for data, starting from a date range, fields like &lt;code class=&quot;highlighter-rouge&quot;&gt;day_of_week&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;headline&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;subject&lt;/code&gt; etcetera, as well as &lt;code class=&quot;highlighter-rouge&quot;&gt;news desk&lt;/code&gt; values like blogs, cars, fashion and many more. Unfortunately, we only get the lead paragraph from our search which doesn’t help much if we are looking for the full article. All we get is metadata, but that’s it.&lt;/p&gt;
+&lt;p&gt;The NYTimes search API gives us a wide range of options to query for data, starting from with date range and fields like &lt;code class=&quot;highlighter-rouge&quot;&gt;day_of_week&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;headline&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;subject&lt;/code&gt; etcetera, as well as &lt;code class=&quot;highlighter-rouge&quot;&gt;news desk&lt;/code&gt; values like blogs, cars, fashion and many more.&lt;/p&gt;
+
+&lt;p&gt;Unfortunately, we only get the lead paragraph from our search which doesn’t help much if we are looking for the full articles. At the end all we get is metadata, but that’s it.&lt;/p&gt;
 
 &lt;h2 id=&quot;webhoseio&quot;&gt;webhose.io&lt;/h2&gt;
 
-&lt;p&gt;There are a few websites which offer web scraping tools, for example &lt;a href=&quot;https://www.import.io/&quot;&gt;import.io&lt;/a&gt;, &lt;a href=&quot;https://www.webhose.io/&quot;&gt;webhose&lt;/a&gt; and &lt;a href=&quot;https://dexi.io/&quot;&gt;dexi.io&lt;/a&gt;. We can find a complete list &lt;a href=&quot;https://www.hongkiat.com/blog/web-scraping-tools/&quot;&gt;here&lt;/a&gt;. None are free, but some offer a free trial period. Because of that, I ended up using webhose.io.&lt;/p&gt;
+&lt;p&gt;There are a few websites which offer web scraping tools, for example &lt;a href=&quot;https://www.import.io/&quot;&gt;import.io&lt;/a&gt;, &lt;a href=&quot;https://www.webhose.io/&quot;&gt;webhose&lt;/a&gt; and &lt;a href=&quot;https://dexi.io/&quot;&gt;dexi.io&lt;/a&gt;. We can find an extended list &lt;a href=&quot;https://www.hongkiat.com/blog/web-scraping-tools/&quot;&gt;here&lt;/a&gt;. None are free, but some offer a free trial period. Because of that, I ended up using webhose.io.&lt;/p&gt;
 
-&lt;p&gt;Like the NYTimes, webhose.io also has a playground to toy around with the main difference that you can see your search request in different coding languages like ruby or python. However, be mindful, you only have 1000 requests free. On the negative side, we can’t excess all url’s we have on our list. However, it gives us at least some data.&lt;/p&gt;
+&lt;p&gt;Like the NYTimes, webhose.io also has a playground to fine tune our query with the main difference that you can see your search request in different coding languages like ruby or python. But be mindful, you only have 1000 requests free.&lt;/p&gt;
 
-&lt;p&gt;Also, webhose.io has archived data you can search.&lt;/p&gt;
+&lt;p&gt;Unfortunately, we can’t get excess to all the URLs we have on our list. However, it gives us at least some data. Also, webhose.io has archived data we can search.&lt;/p&gt;
 
 &lt;h2 id=&quot;newsapi&quot;&gt;newsapi&lt;/h2&gt;
 
-&lt;p&gt;I also found the python API &lt;a href=&quot;https://newsapi.org/&quot;&gt;newsapi&lt;/a&gt;. The API is very similar to the NYTimes API in the way you write your code to collect the content you are looking for. So like NYTimes we mainly get metadata. However, if you are willing to pay, you can get full article content.&lt;/p&gt;
+&lt;p&gt;The final tool I used is the python API from &lt;a href=&quot;https://newsapi.org/&quot;&gt;newsapi&lt;/a&gt;. The API is very similar to the NYTimes API in the way you write your code to collect the content we want. Like at the NYTimes we mainly get metadata. However, if we are willing to pay, we can get the full article content.&lt;/p&gt;
 
 &lt;noscript&gt;&lt;pre&gt;400: Invalid request
 &lt;/pre&gt;&lt;/noscript&gt;
@@ -56,9 +64,9 @@
 
 &lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h2&gt;
 
-&lt;p&gt;If we are serious about getting proper up-to-date news content, newsapi is your API of choice. However, for the task ahead of us I will use the data I collected via webhose.io and may come back at a later time to update the project when possible.&lt;/p&gt;
+&lt;p&gt;If we are serious about getting proper up-to-date news content, I  believe that the API from newsapi is your API of choice. However, for the task ahead of us I ended up using the data I collected via webhose.io and may come back at a later time to update the project.&lt;/p&gt;
 
-&lt;p&gt;Also, there is an already cleaned and fairly large corpus &lt;a href=&quot;https://github.com/several27/FakeNewsCorpus&quot;&gt;here&lt;/a&gt; we can use.&lt;/p&gt;</content><author><name></name></author><category term="data" /><category term="code" /><category term="content" /><summary type="html">Reliable or Unreliable?</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/images/Newsstand.jpg" /></entry><entry><title type="html">A short introduction to Diffusion Maps</title><link href="http://localhost:4000/an_introductio_to_diffusion_maps/" rel="alternate" type="text/html" title="A short introduction to Diffusion Maps" /><published>2019-02-23T00:00:00+00:00</published><updated>2019-02-23T00:00:00+00:00</updated><id>http://localhost:4000/an_introductio_to_diffusion_maps</id><content type="html" xml:base="http://localhost:4000/an_introductio_to_diffusion_maps/">&lt;p&gt;The &lt;a href=&quot;https://inside.mines.edu/~whereman/talks/delaPorte-Herbst-Hereman-vanderWalt-DiffusionMaps-PRASA2008.pdf&quot;&gt;paper&lt;/a&gt; published by J. de la Porte&lt;sup id=&quot;fnref:4&quot;&gt;&lt;a href=&quot;#fn:4&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;, B. M. Herbst&lt;sup id=&quot;fnref:4:1&quot;&gt;&lt;a href=&quot;#fn:4&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;, W. Hereman&lt;sup id=&quot;fnref:5&quot;&gt;&lt;a href=&quot;#fn:5&quot; class=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt; and S. J. van der Walt&lt;sup id=&quot;fnref:4:2&quot;&gt;&lt;a href=&quot;#fn:4&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt; in November 2008 describes the mathematical technique for dealing with reducing dimensionality in data. In that paper, the authors give an overview of three well-known dimensionality reduction techniques and introduce diffusion maps and its functionality, process and how it compares with the other methods.&lt;/p&gt;
+&lt;p&gt;Also, there is an already polished and fairly large corpus &lt;a href=&quot;https://github.com/several27/FakeNewsCorpus&quot;&gt;here&lt;/a&gt; we can use.&lt;/p&gt;</content><author><name></name></author><category term="data" /><category term="code" /><category term="content" /><summary type="html">Reliable or Unreliable?</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/images/Newsstand.jpg" /></entry><entry><title type="html">A short introduction to Diffusion Maps</title><link href="http://localhost:4000/an_introductio_to_diffusion_maps/" rel="alternate" type="text/html" title="A short introduction to Diffusion Maps" /><published>2019-02-23T00:00:00+00:00</published><updated>2019-02-23T00:00:00+00:00</updated><id>http://localhost:4000/an_introductio_to_diffusion_maps</id><content type="html" xml:base="http://localhost:4000/an_introductio_to_diffusion_maps/">&lt;p&gt;The &lt;a href=&quot;https://inside.mines.edu/~whereman/talks/delaPorte-Herbst-Hereman-vanderWalt-DiffusionMaps-PRASA2008.pdf&quot;&gt;paper&lt;/a&gt; published by J. de la Porte&lt;sup id=&quot;fnref:4&quot;&gt;&lt;a href=&quot;#fn:4&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;, B. M. Herbst&lt;sup id=&quot;fnref:4:1&quot;&gt;&lt;a href=&quot;#fn:4&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;, W. Hereman&lt;sup id=&quot;fnref:5&quot;&gt;&lt;a href=&quot;#fn:5&quot; class=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt; and S. J. van der Walt&lt;sup id=&quot;fnref:4:2&quot;&gt;&lt;a href=&quot;#fn:4&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt; in November 2008 describes the mathematical technique for dealing with reducing dimensionality in data. In that paper, the authors give an overview of three well-known dimensionality reduction techniques and introduce diffusion maps and its functionality, process and how it compares with the other methods.&lt;/p&gt;
 
 &lt;h3 id=&quot;dimensionality-reduction&quot;&gt;Dimensionality Reduction&lt;/h3&gt;
 
