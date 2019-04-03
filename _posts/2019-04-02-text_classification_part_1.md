@@ -30,17 +30,13 @@ The resulting list we got back looks off. When we are looking at the categories 
 ![Count Category]({{ site.baseimg }}/images/CategoryCountList.png)
 {: refdef}
 
-We have some oddly named categories and a meagre number of reliable URLs in the list. In order to address this imbalance, I added about 70 URLs I consider reliable (hopefully) of my own, which doesn't balance the scale very much but at least pushes it into the right direction. Plus, let us see what and how much content we can scrap from the world wide web before we do something about the source list.
+We have some oddly named categories and a meagre number of reliable URLs in the list. To address this imbalance, I added about 70 URLs I consider reliable (hopefully) of my own, which doesn't balance the scale very much but at least pushes it into the right direction. Plus, let us see what and how much content we can scrap from the world wide web before we do something about the source list.
 
 ### Web Scraping
 
-There are several tools to get content from a website, [scrapy](https://scrapy.org/) and [beautifulsoup](https://www.crummy.com/software/BeautifulSoup/) are the two most popular tools probably out there. In both cases, we need to inspect the HTML code of a website. [Here is an excellent tutorial with tips and tricks using python](https://hackernoon.com/web-scraping-tutorial-with-python-tips-and-tricks-db070e70e071).
+There are several tools to get content from a website, [scrapy](https://scrapy.org/) and [beautifulsoup](https://www.crummy.com/software/BeautifulSoup/) are the two most popular tools probably out there. In both cases, we need to inspect the HTML code of a website. If you are interested to learn more about it, [here is an excellent tutorial with tips and tricks using python](https://hackernoon.com/web-scraping-tutorial-with-python-tips-and-tricks-db070e70e071).
 
-{:refdef: style="text-align: center;"}
-![Web Scraping]({{ site.baseimg }}/images/web_scraping.png)
-{: refdef}
-
-The main problem we are facing here is that every website has a different underlying architecture. To determine what the best options there are I decided to look at [NYTimes](https://www.nytimes.com/). As we can see in the image below, each paragraph is in its separate HTML tag. To collect content only from the NYTimes website won't be impossible, just bloody difficult and neither of the mentioned tools won't do it in the long run. Considering that we have over 500 URLs and for the scope of this project is not visible. There must be much simpler ways to tackle this.
+In any case, the main problem we are facing here is that every website has a different underlying architecture. To determine what the best options there are I decided to look at [NYTimes](https://www.nytimes.com/). As we can see in the image below, each paragraph is in its separate HTML tag. To collect content only from the NYTimes website won't be impossible, just bloody difficult and neither of the mentioned tools won't do it in the long run. Considering that we have over 500 URLs and for the scope of this project is not visible. There must be much simpler ways to tackle this.
 
 {:refdef: style="text-align: center;"}
 ![Count Category]({{ site.baseimg }}/images/nytimes_html.png)
@@ -60,7 +56,7 @@ Unfortunately, we only get the lead paragraph from our search which doesn't help
 
 There are a few websites which offer web scraping tools, for example [import.io](https://www.import.io/), [webhose](https://www.webhose.io/) and [dexi.io](https://dexi.io/). We can find an extended list [here](https://www.hongkiat.com/blog/web-scraping-tools/). None are free, but some offer a free trial period. Because of that, I ended up using webhose.io.
 
-Like the NYTimes, webhose.io also has a playground to fine tune our query with the main difference that you can see your search request in different coding languages like ruby or python. But be mindful, you only have 1000 requests free.
+Like the NYTimes, webhose.io also has a playground to fine tune our query with the main difference that you can see your search request in different coding languages like ruby or python. However, be mindful, you only have 1000 requests free.
 
 Unfortunately, we can't get excess to all the URLs we have on our list. However, it gives us at least some data. Also, webhose.io has archived data we can search.
 
