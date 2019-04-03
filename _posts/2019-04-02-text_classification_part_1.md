@@ -54,7 +54,7 @@ Unfortunately, we only get the lead paragraph from our search which doesn't help
 
 ## webhose.io
 
-There are a few websites which offer web scraping tools, for example [import.io](https://www.import.io/), [webhose](https://www.webhose.io/) and [dexi.io](https://dexi.io/). We can find an extended list [here](https://www.hongkiat.com/blog/web-scraping-tools/). None are free, but some offer a free trial period. Because of that, I ended up using webhose.io.
+There are a few websites which offer web scraping tools, for example [import.io](https://www.import.io/), [webhose.io](https://www.webhose.io/) and [dexi.io](https://dexi.io/). We can find an extended list [here](https://www.hongkiat.com/blog/web-scraping-tools/). None are free, but some offer a free trial period. Because of that, I ended up using webhose.io.
 
 Like the NYTimes, webhose.io also has a playground to fine tune our query with the main difference that you can see your search request in different coding languages like ruby or python. However, be mindful, you only have 1000 requests free.
 
