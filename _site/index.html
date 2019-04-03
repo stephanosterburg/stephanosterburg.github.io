@@ -151,6 +151,93 @@ MathJax.Hub.Config({
   <header>
     
       <div class="entry-image-index">
+        <a href="http://localhost:4000/text_classification/" title="Text Classification"><img src="http://localhost:4000/images/Newsstand.jpg" alt="Text Classification"></a>
+      </div><!-- /.entry-image -->
+    
+    <div class="entry-meta">
+      <span class="entry-date date published updated"><time datetime="2019-04-02T00:00:00+01:00"><a href="http://localhost:4000/text_classification/">April 02, 2019</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Stephan Osterburg">Stephan Osterburg</a></span></span>
+      
+      <span class="entry-reading-time">
+        <i class="fa fa-clock-o"></i>
+        
+Reading time ~3 minutes
+      </span><!-- /.entry-reading-time -->
+      
+    </div><!-- /.entry-meta -->
+    
+      <h1 class="entry-title"><a href="http://localhost:4000/text_classification/" rel="bookmark" title="Text Classification" itemprop="url">Text Classification</a></h1>
+    
+  </header>
+  <div class="entry-content">
+    <h2 id="reliable-or-unreliable">Reliable or Unreliable?</h2>
+
+<p>Over the past 20 years and especially since the United States presidential election 2016 there is an increase in unreliable news content. The question which got and still get asked is how can we know which is which. To find an answer I started at <a href="http://www.opensources.co/">opensources</a> which curates a list of online information sources. The websites listed range from credible news to misleading and outright fake.</p>
+
+<p>This will be one of 4 blog posts:</p>
+<ul>
+  <li>collecting news content</li>
+  <li>preprocessing data</li>
+  <li>create keras model</li>
+  <li>next possible step(s)</li>
+</ul>
+
+<h2 id="collecting-news-content">Collecting News Content</h2>
+
+<p>The source list (csv file) which we can find at <a href="http://www.opensources.co/">opensources</a>  hold over 800 url’s. The first thing we want to do is to filter out all non-valid url’s.</p>
+
+<noscript><pre>400: Invalid request
+</pre></noscript>
+<script src="https://gist.github.com/163ce020ac062cf0e20d8533a132cb4d.js"> </script>
+
+<p>The resulting list we got back looks off. When we are looking at the categories and their number count we need to do some cleaning:</p>
+
+<p style="text-align: center;"><img src="/images/CategoryCountList.png" alt="Count Category" /></p>
+
+<p>We have some oddly named categories and a meagre number of reliable url’s in the list so that we will add a few of our own.</p>
+
+<h3 id="web-scraping">Web Scraping</h3>
+
+<p>There are several tools to get the content we want from a website. <a href="https://scrapy.org/">Scrapy</a> and <a href="https://www.crummy.com/software/BeautifulSoup/">BeautifulSoup</a> are the two most popular tools probably out there. The only problem is that every website is different. To determine what the best options there are I decided to look at the NYTimes. As we can see in the image below neither of the mentioned tools won’t do it, each paragraph is nested in its separate HTML tag. Now imagine we have to figure out how each website is build of the around 500 url’s we have after cleaning and adding our own. There must be more natural ways.</p>
+
+<p style="text-align: center;"><img src="/images/nytimes_html.png" alt="Count Category" /></p>
+
+<p>Luckily, the NYTimes offers an API to excess not only their archive but also search for the most current articles. Even better, their developer site has a playground to toy around to see what kind of results you can get.</p>
+
+<noscript><pre>400: Invalid request
+</pre></noscript>
+<script src="https://gist.github.com/3dac0843b584b388d42a881209089876.js"> </script>
+
+<p>The NYTimes search API gives us a wide range of options to query for data, starting from a date range, fields like <code class="highlighter-rouge">day_of_week</code>, <code class="highlighter-rouge">headline</code>, <code class="highlighter-rouge">subject</code> etcetera, as well as <code class="highlighter-rouge">news desk</code> values like blogs, cars, fashion and many more. Unfortunately, we only get the lead paragraph from our search which doesn’t help much if we are looking for the full article. All we get is metadata, but that’s it.</p>
+
+<h2 id="webhoseio">webhose.io</h2>
+
+<p>There are a few websites which offer web scraping tools, for example <a href="https://www.import.io/">import.io</a>, <a href="https://www.webhose.io/">webhose</a> and <a href="https://dexi.io/">dexi.io</a>. We can find a complete list <a href="https://www.hongkiat.com/blog/web-scraping-tools/">here</a>. None are free, but some offer a free trial period. Because of that, I ended up using webhose.io.</p>
+
+<p>Like the NYTimes, webhose.io also has a playground to toy around with the main difference that you can see your search request in different coding languages like ruby or python. However, be mindful, you only have 1000 requests free. On the negative side, we can’t excess all url’s we have on our list. However, it gives us at least some data.</p>
+
+<p>Also, webhose.io has archived data you can search.</p>
+
+<h2 id="newsapi">newsapi</h2>
+
+<p>I also found the python API <a href="https://newsapi.org/">newsapi</a>. The API is very similar to the NYTimes API in the way you write your code to collect the content you are looking for. So like NYTimes we mainly get metadata. However, if you are willing to pay, you can get full article content.</p>
+
+<noscript><pre>400: Invalid request
+</pre></noscript>
+<script src="https://gist.github.com/07ef8221be45378e931f42f923ad5b17.js"> </script>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>If we are serious about getting proper up-to-date news content, newsapi is your API of choice. However, for the task ahead of us I will use the data I collected via webhose.io and may come back at a later time to update the project when possible.</p>
+
+<p>Also, there is an already cleaned and fairly large corpus <a href="https://github.com/several27/FakeNewsCorpus">here</a> we can use.</p>
+
+  </div><!-- /.entry-content -->
+</article><!-- /.hentry -->
+
+<article class="hentry">
+  <header>
+    
+      <div class="entry-image-index">
         <a href="http://localhost:4000/an_introductio_to_diffusion_maps/" title="A short introduction to Diffusion Maps"><img src="http://localhost:4000/images/diffusion_map.png" alt="A short introduction to Diffusion Maps"></a>
       </div><!-- /.entry-image -->
     
@@ -758,52 +845,40 @@ Reading time ~3 minutes
   </div><!-- /.entry-content -->
 </article><!-- /.hentry -->
 
-<article class="hentry">
-  <header>
+
+
+<div class="pagination">
+  <ul class="inline-list">
     
-      <div class="entry-image-index">
-        <a href="http://localhost:4000/why/" title="“Why did you decide to learn data science?”"><img src="http://localhost:4000/images/Tokyo.png" alt="“Why did you decide to learn data science?”"></a>
-      </div><!-- /.entry-image -->
     
-    <div class="entry-meta">
-      <span class="entry-date date published updated"><time datetime="2018-12-05T00:00:00+00:00"><a href="http://localhost:4000/why/">December 05, 2018</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Stephan Osterburg">Stephan Osterburg</a></span></span>
-      
-      <span class="entry-reading-time">
-        <i class="fa fa-clock-o"></i>
-        
-Reading time ~1 minute
-      </span><!-- /.entry-reading-time -->
-      
-    </div><!-- /.entry-meta -->
+
     
-      <h1 class="entry-title"><a href="http://localhost:4000/why/" rel="bookmark" title="“Why did you decide to learn data science?”" itemprop="url">“Why did you decide to learn data science?”</a></h1>
     
-  </header>
-  <div class="entry-content">
-    <p>I don’t remember when I came across “The Visual Display of Quantitative Information” by Edward R.Tufte<sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup>, but I remember that I was fascinated by it and read it in one swoop. Moreover, I just wanted to do cool visualisations. However, at that time there was no need for it.</p>
+      <li><strong class="current-page">1</strong></li>
+    
 
-<p>Sometime in the early nineties (I believe), I saw a short film by a Japanese computer graphics company visualising all data available at that time about Tokyo. I was just fascinated by it and just wanted to do that. Still, at that time there was no real need for it. At least not in Germany.</p>
+    
+    
 
-<p>Fast forward, another Edward Tufte book and much more cool things over the time, I found myself at a crossroad. Do I take the blue pill or the red pill? Because I can’t remember which tablet does what, I decided to take some time off to figure out what I would love to do next.</p>
+    
+    
+    
 
-<p>So here I am, rediscovering my fascination for data and visualisation. Looking forward to using my experience in computer graphics and combine it with the newly learned knowledge.</p>
+    
 
-<noscript><pre>404: Not Found
-</pre></noscript>
-<script src="https://gist.github.com/mmistakes/6589546.js"> </script>
+    
+    
 
-<div class="footnotes">
-  <ol>
-    <li id="fn:1">
-      <p><a href="https://www.edwardtufte.com/tufte/books_vdqi">https://www.edwardtufte.com/tufte/books_vdqi</a> <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
-    </li>
-  </ol>
+    
+      <li><a href="http://localhost:4000/page2/">2</a></li>
+    
+
+    
+    
+      <li><a href="http://localhost:4000/page2/" class="btn">Next</a></li>
+    
+  </ul>
 </div>
-
-  </div><!-- /.entry-content -->
-</article><!-- /.hentry -->
-
-
 
 </div><!-- /#main -->
 

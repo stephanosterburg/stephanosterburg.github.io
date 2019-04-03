@@ -1,0 +1,277 @@
+<!doctype html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if (IE 7)&!(IEMobile)]><html class="no-js lt-ie9 lt-ie8" lang="en"><![endif]-->
+<!--[if (IE 8)&!(IEMobile)]><html class="no-js lt-ie9" lang="en"><![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"><!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<title>Text Classification &#8211; Data Ocean</title>
+<meta name="description" content="Fake News">
+<meta name="keywords" content="data, code, content">
+
+<!-- Twitter Cards -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://localhost:4000/images/Newsstand.jpg">
+
+<meta name="twitter:title" content="Text Classification">
+<meta name="twitter:description" content="Fake News">
+<meta name="twitter:creator" content="@sosterburg">
+
+<!-- Open Graph -->
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Text Classification">
+<meta property="og:description" content="Fake News">
+<meta property="og:url" content="http://localhost:4000/text_classification/">
+<meta property="og:site_name" content="Data Ocean">
+
+
+
+
+
+<link rel="canonical" href="http://localhost:4000/text_classification/">
+<link href="http://localhost:4000/feed.xml" type="application/atom+xml" rel="alternate" title="Data Ocean Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="http://localhost:4000/assets/css/main.css">
+<!-- Webfonts -->
+<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic" rel="stylesheet" type="text/css">
+
+<meta http-equiv="cleartype" content="on">
+
+<!-- Load Modernizr -->
+<script src="http://localhost:4000/assets/js/vendor/modernizr-2.6.2.custom.min.js"></script>
+
+<!-- mathjax config similar to math.stackexchange -->
+<!-- <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script> -->
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  jax: ["input/TeX", "output/HTML-CSS"],
+  tex2jax: {
+    inlineMath: [ ['$', '$'] ],
+    displayMath: [ ['$$', '$$']],
+    processEscapes: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+  },
+  messageStyle: "none",
+  "HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"] }
+});
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML" type="text/javascript"></script>
+
+<!-- Icons -->
+<!-- 16x16 -->
+<link rel="shortcut icon" href="http://localhost:4000/favicon.ico">
+<!-- 32x32 -->
+<link rel="shortcut icon" href="http://localhost:4000/favicon.png">
+<!-- 57x57 (precomposed) for iPhone 3GS, pre-2011 iPod Touch and older Android devices -->
+<link rel="apple-touch-icon-precomposed" href="http://localhost:4000/images/apple-touch-icon-precomposed.png">
+<!-- 72x72 (precomposed) for 1st generation iPad, iPad 2 and iPad mini -->
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://localhost:4000/images/apple-touch-icon-72x72-precomposed.png">
+<!-- 114x114 (precomposed) for iPhone 4, 4S, 5 and post-2011 iPod Touch -->
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://localhost:4000/images/apple-touch-icon-114x114-precomposed.png">
+<!-- 144x144 (precomposed) for iPad 3rd and 4th generation -->
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://localhost:4000/images/apple-touch-icon-144x144-precomposed.png">
+
+
+
+</head>
+
+<body id="post" class="feature">
+
+<!--[if lt IE 9]><div class="upgrade"><strong><a href="http://whatbrowser.org/">Your browser is quite old!</strong> Why not upgrade to a different browser to better enjoy this site?</a></div><![endif]-->
+<nav id="dl-menu" class="dl-menuwrapper" role="navigation">
+	<button class="dl-trigger">Open Menu</button>
+	<ul class="dl-menu">
+		<li><a href="http://localhost:4000/">Home</a></li>
+		<li>
+			<a href="#">About</a>
+			<ul class="dl-submenu">
+				<li>
+					<img src="http://localhost:4000/images/avatar.jpg" alt="Stephan Osterburg photo" class="author-photo">
+					<h4>Stephan Osterburg</h4>
+					<p>Computer graphics veteran with 30+ years experience on the quest to discover the world of data.</p>
+				</li>
+				<li><a href="http://localhost:4000/about/"><span class="btn btn-inverse">Learn More</span></a></li>
+				<li>
+					<a href="mailto:stephanosterburg@me.com"><i class="fa fa-fw fa-envelope"></i> Email</a>
+				</li>
+				<li>
+					<a href="https://twitter.com/sosterburg"><i class="fa fa-fw fa-twitter"></i> Twitter</a>
+				</li>
+				
+				
+				<li>
+					<a href="https://linkedin.com/in/https://www.linkedin.com/in/stephanosterburg"><i class="fa fa-fw fa-linkedin"></i> LinkedIn</a>
+				</li>
+				<li>
+					<a href="https://github.com/https://github.com/osterburg"><i class="fa fa-fw fa-github"></i> GitHub</a>
+				</li>
+				
+				
+				
+				
+			</ul><!-- /.dl-submenu -->
+		</li>
+		<li>
+			<a href="#">Posts</a>
+			<ul class="dl-submenu">
+				<li><a href="http://localhost:4000/posts/">All Posts</a></li>
+				<li><a href="http://localhost:4000/tags/">All Tags</a></li>
+			</ul>
+		</li>
+		
+	</ul><!-- /.dl-menu -->
+</nav><!-- /.dl-menuwrapper -->
+
+
+
+<div class="entry-header">
+  
+  <div class="entry-image">
+    <img src="http://localhost:4000/images/Newsstand.jpg" alt="Text Classification">
+  </div><!-- /.entry-image -->
+</div><!-- /.entry-header -->
+
+
+<div id="main" role="main">
+  <article class="hentry">
+    <header class="header-title">
+      <div class="header-title-wrap">
+        
+          <h1 class="entry-title"><a href="http://localhost:4000/text_classification/" rel="bookmark" title="Text Classification">Text Classification</a></h1>
+        
+        <h2><span class="entry-date date published"><time datetime="2019-04-02T00:00:00+01:00">April 02, 2019</time></span></h2>
+        
+        <p class="entry-reading-time">
+          <i class="fa fa-clock-o"></i>
+          
+Reading time ~3 minutes
+        </p><!-- /.entry-reading-time -->
+        
+      </div><!-- /.header-title-wrap -->
+    </header>
+    <div class="entry-content">
+      <h2 id="reliable-or-unreliable">Reliable or Unreliable?</h2>
+
+<p>Over the past 20 years and especially since the United States presidential election 2016 there is an increase in unreliable news content. The question which got and still get asked is how can we know which is which. To find an answer I started at <a href="http://www.opensources.co/">opensources</a> which curates a list of online information sources. The websites listed range from credible news to misleading and outright fake.</p>
+
+<p>This will be one of 4 blog posts:</p>
+<ul>
+  <li>collecting news content</li>
+  <li>preprocessing data</li>
+  <li>create keras model</li>
+  <li>next possible step(s)</li>
+</ul>
+
+<h2 id="collecting-news-content">Collecting News Content</h2>
+
+<p>The source list (csv file) which we can find at <a href="http://www.opensources.co/">opensources</a>  hold over 800 url’s. The first thing we want to do is to filter out all non-valid url’s.</p>
+
+<noscript><pre>400: Invalid request
+</pre></noscript>
+<script src="https://gist.github.com/163ce020ac062cf0e20d8533a132cb4d.js"> </script>
+
+<p>The resulting list we got back looks off. When we are looking at the categories and their number count we need to do some cleaning:</p>
+
+<p style="text-align: center;"><img src="/images/CategoryCountList.png" alt="Count Category" /></p>
+
+<p>We have some oddly named categories and a meagre number of reliable url’s in the list so that we will add a few of our own.</p>
+
+<h3 id="web-scraping">Web Scraping</h3>
+
+<p>There are several tools to get the content we want from a website. <a href="https://scrapy.org/">Scrapy</a> and <a href="https://www.crummy.com/software/BeautifulSoup/">BeautifulSoup</a> are the two most popular tools probably out there. The only problem is that every website is different. To determine what the best options there are I decided to look at the NYTimes. As we can see in the image below neither of the mentioned tools won’t do it, each paragraph is nested in its separate HTML tag. Now imagine we have to figure out how each website is build of the around 500 url’s we have after cleaning and adding our own. There must be more natural ways.</p>
+
+<p style="text-align: center;"><img src="/images/nytimes_html.png" alt="Count Category" /></p>
+
+<p>Luckily, the NYTimes offers an API to excess not only their archive but also search for the most current articles. Even better, their developer site has a playground to toy around to see what kind of results you can get.</p>
+
+<noscript><pre>400: Invalid request
+</pre></noscript>
+<script src="https://gist.github.com/3dac0843b584b388d42a881209089876.js"> </script>
+
+<p>The NYTimes search API gives us a wide range of options to query for data, starting from a date range, fields like <code class="highlighter-rouge">day_of_week</code>, <code class="highlighter-rouge">headline</code>, <code class="highlighter-rouge">subject</code> etcetera, as well as <code class="highlighter-rouge">news desk</code> values like blogs, cars, fashion and many more. Unfortunately, we only get the lead paragraph from our search which doesn’t help much if we are looking for the full article. All we get is metadata, but that’s it.</p>
+
+<h2 id="webhoseio">webhose.io</h2>
+
+<p>There are a few websites which offer web scraping tools, for example <a href="https://www.import.io/">import.io</a>, <a href="https://www.webhose.io/">webhose</a> and <a href="https://dexi.io/">dexi.io</a>. We can find a complete list <a href="https://www.hongkiat.com/blog/web-scraping-tools/">here</a>. None are free, but some offer a free trial period. Because of that, I ended up using webhose.io.</p>
+
+<p>Like the NYTimes, webhose.io also has a playground to toy around with the main difference that you can see your search request in different coding languages like ruby or python. However, be mindful, you only have 1000 requests free. On the negative side, we can’t excess all url’s we have on our list. However, it gives us at least some data.</p>
+
+<p>Also, webhose.io has archived data you can search.</p>
+
+<h2 id="newsapi">newsapi</h2>
+
+<p>I also found the python API <a href="https://newsapi.org/">newsapi</a>. The API is very similar to the NYTimes API in the way you write your code to collect the content you are looking for. So like NYTimes we mainly get metadata. However, if you are willing to pay, you can get full article content.</p>
+
+<noscript><pre>400: Invalid request
+</pre></noscript>
+<script src="https://gist.github.com/07ef8221be45378e931f42f923ad5b17.js"> </script>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>If we are serious about getting proper up-to-date news content, newsapi is your API of choice. However, for the task ahead of us I will use the data I collected via webhose.io and may come back at a later time to update the project when possible.</p>
+
+<p>Also, there is an already cleaned and fairly large corpus <a href="https://github.com/several27/FakeNewsCorpus">here</a> we can use.</p>
+
+      <footer class="entry-meta">
+        <span class="entry-tags"><a href="http://localhost:4000/tags/#data" title="Pages tagged data" class="tag"><span class="term">data</span></a><a href="http://localhost:4000/tags/#code" title="Pages tagged code" class="tag"><span class="term">code</span></a><a href="http://localhost:4000/tags/#content" title="Pages tagged content" class="tag"><span class="term">content</span></a></span>
+        
+        <div class="social-share">
+  <ul class="socialcount socialcount-small inline-list">
+    <li class="facebook"><a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/text_classification/" title="Share on Facebook"><span class="count"><i class="fa fa-facebook-square"></i> Like</span></a></li>
+    <li class="twitter"><a href="https://twitter.com/intent/tweet?text=http://localhost:4000/text_classification/" title="Share on Twitter"><span class="count"><i class="fa fa-twitter-square"></i> Tweet</span></a></li>
+    <li class="googleplus"><a href="https://plus.google.com/share?url=http://localhost:4000/text_classification/" title="Share on Google Plus"><span class="count"><i class="fa fa-google-plus-square"></i> +1</span></a></li>
+  </ul>
+</div><!-- /.social-share -->
+      </footer>
+    </div><!-- /.entry-content -->
+    
+    <div class="read-more">
+  
+    <div class="read-more-header">
+      <a href="http://localhost:4000/an_introductio_to_diffusion_maps/" class="read-more-btn">Read More</a>
+    </div><!-- /.read-more-header -->
+    <div class="read-more-content">
+      <h3><a href="http://localhost:4000/an_introductio_to_diffusion_maps/" title="A short introduction to Diffusion Maps">A short introduction to Diffusion Maps</a></h3>
+      <p>An interpretation of the paper <a href="http://localhost:4000/an_introductio_to_diffusion_maps/">Continue reading</a></p>
+    </div><!-- /.read-more-content -->
+  
+  <div class="read-more-list">
+    
+      <div class="list-item">
+        <h4><a href="http://localhost:4000/deep_learning_art_images/" title="Deep Learning and Art Images">Deep Learning and Art Images</a></h4>
+        <span>Published on February 09, 2019</span>
+      </div><!-- /.list-item -->
+    
+      <div class="list-item">
+        <h4><a href="http://localhost:4000/forest/" title="Forest Cover Type">Forest Cover Type</a></h4>
+        <span>Published on January 14, 2019</span>
+      </div><!-- /.list-item -->
+    
+  </div><!-- /.read-more-list -->
+</div><!-- /.read-more -->
+  </article>
+</div><!-- /#main -->
+
+<div class="footer-wrapper">
+  <footer role="contentinfo">
+    <span>&copy; 2019 Stephan Osterburg. Powered by <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> using the <a href="https://mademistakes.com/work/hpstr-jekyll-theme/" rel="nofollow">HPSTR Theme</a>.</span>
+  </footer>
+</div><!-- /.footer-wrapper -->
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="http://localhost:4000/assets/js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
+<script src="http://localhost:4000/assets/js/scripts.min.js"></script>
+
+
+
+
+
+</body>
+</html>
