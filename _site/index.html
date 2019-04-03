@@ -199,13 +199,13 @@ Reading time ~3 minutes
 
 <p>There are several tools to get content from a website, <a href="https://scrapy.org/">scrapy</a> and <a href="https://www.crummy.com/software/BeautifulSoup/">beautifulsoup</a> are the two most popular tools probably out there. In both cases, we need to inspect the HTML code of a website. If you are interested to learn more about it, <a href="https://hackernoon.com/web-scraping-tutorial-with-python-tips-and-tricks-db070e70e071">here is an excellent tutorial with tips and tricks using python</a>.</p>
 
-<p>In any case, the main problem we are facing here is that every website has a different underlying architecture. To determine what the best options there are I decided to look at <a href="https://www.nytimes.com/">NYTimes</a>. As we can see in the image below, each paragraph is in its separate HTML tag. To collect content only from the NYTimes website won’t be impossible, just bloody difficult and neither of the mentioned tools won’t do it in the long run. Considering that we have over 500 URLs and for the scope of this project is not visible. There must be much simpler ways to tackle this.</p>
+<p>In any case, the main problem we are facing here is that every website has a different underlying architecture. To determine what the best options there are I decided to look at <a href="https://www.nytimes.com/">NYTimes</a>. As we can see in the image below, each paragraph is in its separate HTML tag. To collect content only from the NYTimes website won’t be impossible, just bloody difficult and neither of the mentioned tools won’t do it in the long run. And if we are considering that we have over 500 labelled URLs and for the scope of this project it is just not visible. There must be more straightforward ways to tackle this.</p>
 
 <p style="text-align: center;"><img src="/images/nytimes_html.png" alt="Count Category" /></p>
 
 <h2 id="api">API</h2>
 
-<p>Luckily, the NYTimes offers an API to excess not only their archive but also search for the most current articles. Even better, their developer site has a playground to toy around to see what kind of results you can get and fine tune your query.</p>
+<p>Luckily, the NYTimes offers an API to excess not only their archive but also search for the most current articles online. Even better, their developer site has a playground to toy around to see what kind of results you can get and fine tune our query.</p>
 
 <noscript><pre>400: Invalid request
 </pre></noscript>
