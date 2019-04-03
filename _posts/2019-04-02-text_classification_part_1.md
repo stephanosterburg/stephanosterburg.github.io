@@ -71,3 +71,5 @@ The final tool I used is the python API from [newsapi](https://newsapi.org/). Th
 If we are serious about getting proper up-to-date news content, I  believe that the API from newsapi is your API of choice. However, for the task ahead of us I ended up using the data I collected via webhose.io and may come back at a later time to update the project.
 
 Also, there is an already polished and fairly large corpus [here](https://github.com/several27/FakeNewsCorpus) we can use.
+
+In the next upcoming part, I will discuss [data preprocessing](https://stephanosterburg.github.io/text_classification_part_2).
