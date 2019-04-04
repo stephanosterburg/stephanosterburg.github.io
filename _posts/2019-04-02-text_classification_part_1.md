@@ -70,7 +70,7 @@ The final tool I used is the python API from [newsapi](https://newsapi.org/). Th
 
 If we are serious about getting proper up-to-date news content, I  believe that the API from newsapi is your API of choice. However, for the task ahead of us I choose to use the data I collected via webhose.io and may come back at a later time to update the project.
 
-Additionally, there is an already polished and fairly large corpus [here](https://github.com/several27/FakeNewsCorpus) we can use.
+Additionally, there is an already [polished and fairly large corpus](https://github.com/several27/FakeNewsCorpus) we can use by Maciej Szpakowski.
 
 ## Upcoming
 
