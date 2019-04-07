@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Text Classification (Part 2)
+title: Text Classification (Part 3)
 description: "Fake News"
 tags: [data, code, content]
 image:
@@ -8,71 +8,164 @@ image:
   feature: Newsstand.jpg
 ---
 
-## Exploratory Data Analysis
+## Using Big Data
 
-After collecting our data, the first thing we want to do is to get an understanding of it. Exploratory Data Analysis or short EDA is one of the essential steps in the data analysis process. By trying to make sense of the data, we can start formulating questions and if necessary go back and make changes to where our data came from, and others.
+The dataset used for that project is an already [polished and fairly large corpus](https://github.com/several27/FakeNewsCorpus) by Maciej Szpakowski. 
 
-Remember, the number of source URLs is not very well balanced if we are looking at the categories. We started with 134 URLs categorised as `fake` and from our source dataset with only 3 reliable URLs, which we increased to over 70 URLs with our own.
+> This is an open source dataset composed of millions of news articles mostly scraped from a curated list of 1001 domains from http://www.opensources.co/. Because the list does not contain any reliable websites, additionally NYTimes and Webhose English News Articles articles have been included to balance the classes better. The dataset is still work in progress, and for now, the public version includes only 9,408,908 articles (745 out of 1001 domains).
 
-{:refdef: style="text-align: center;"}
-![Content by URL Count]({{ site.baseimg }}/images/content_by_url_count.png)
-{: refdef}
+The available data more than 26GB on disk when we unzip the file and more than 75GB in RAM using pandas. For that reason, I considered using [dask](https://dask.org/). However, loading the CSV file ended in a ParserError (`Error tokenizing data. C error: EOF inside string starting at row 63`) and apparently, this is a [known problem](https://stackoverflow.com/q/45752805/5983691) with dask's read_csv if the file contains a newline character between quotes.
 
-However, I went ahead and collected as much data as possible and as it turns out correctly so. As we can see in the image below the distribution turned up-side-down. I wasn't expecting that at all.
+To read the CSV file with pandas, the same row (63) ended in a `_csv.Error: field larger than field limit (131072)`. To address that error we have to increase the `csv.field_size_limit`.
 
-{:refdef: style="text-align: center;"}
-![Content by Article Count]({{ site.baseimg }}/images/content_by_article_count.png)
-{: refdef}
+```python
+# _csv.Error: field larger than field limit (131072)
+# https://stackoverflow.com/a/15063941/5983691
+def csv_field_limit():
+    maxInt = sys.maxsize
+    decrement = True
+    
+    while decrement:
+        # decrease the maxInt value by factor 10 
+        # as long as the OverflowError occurs.
+        decrement = False
+        try:
+            csv.field_size_limit(maxInt)
+        except OverflowError:
+            maxInt = int(maxInt/10)
+            decrement = True
+```
 
-So we don't need the extra content we got from the archived data at [webhose.io](https://webhose.io/).
+The dataset is not huge but is also larger than we’d like to manage on a laptop, especially if we value interactivity. In any case, let's have a look at the first 100 rows to see what we have and determine what features we can drop and others we need to keep.
 
-## Sentiment
+{% capture images %}
+    /images/BigDataTable.png
+{% endcapture %}
+{% include gallery images=images cols=1 %}
 
-In natural language analysis, one of the first steps one wants to do is understand the sentiment of a given text. Our data is to 75% neutral, which I guess is a good thing. The interesting part here is the thing that for the rest of our data the negative content overweights the positive content drastically.
-
-{:refdef: style="text-align: center;"}
-![Positive-Neutral-Negative Content Distribution]({{ site.baseimg }}/images/Positive-Neutral-Negative_Content_Distribution.png)
-{: refdef}
-
-Moreover, we can see that also in the distribution about the number of words in an article and its sentiment weighting. The shorter an article is, the more likely it is that it is negative content.
-
-{:refdef: style="text-align: center;"}
-![Positive/Negative Sentiment]({{ site.baseimg }}/images/posneg_sentiment.png)
-{: refdef}
-
-## Visualizing differences based only on term frequencies
-
-Occasionally, only term frequency statistics are available. In the case where this may happen like in very large, lost, or proprietary data sets. To help us here we can use the tool [`scattertext`](https://github.com/JasonKessler/scattertext) which is based on [`spaCy`](https://spacy.io/). `TermCategoryFrequencies` function is a corpus representation, that can accept this sort of data, along with any categorised documents that happen to be available.
-
-{:refdef: style="text-align: center;"}
-![Visualisation Term Category Frequencies]({{ site.baseimg }}/images/TermCategoryFrequencies.png)
-{: refdef}
-<a href="https://stephanosterburg.github.io/data/reliable_vs_unreliable.html" target="_blank">Visualizing TermCategoryFrequencies</a> (link opens in new tab)
-
-The critical part to note here is that the data represented in this plot comes from unbalanced data.
-
-## Topic Modeling
-
-Another question we can try to find an answer to is what are the most written about topics in our news content. We can use Gensim/LDA here to find them but there is a more intuitive and interactive way to help visualise topic model using [sklearn](https://scikit-learn.org/stable/index.html) and the python library [pyLDAvis](https://pyldavis.readthedocs.io/en/latest/) which is a port of the fabulous [R package](https://github.com/cpsievert/LDAvis) by [Carson Sievert](https://cpsievert.me/) and [Kenny Shirley](http://www.kennyshirley.com/).
-
-{% gist 15b93ef69472c10df40598c20e42149e %}
-
-pyLDAvis is designed to help users interpret the topics in a topic model that has been fit to a corpus of text data. The package extracts information from a fitted LDA topic model to inform an interactive web-based visualisation.
-
-The pyLDAvis interface:
-
-+ the left panel shows how common and how each topic relates to each other in 2D space.
-+ the right panel shows us a list of the most notable word (topics) and its frequency. If we select a topic, we see the topic-specific frequency of each term (red) and the corpus-wide frequency (blue).
-
-<!-- <a href="http://example.com/" target="_blank">Hello, world!</a> -->
+To fix the `EOF` problem, we can load in the dataset in chunks and loop that way through the dataset. Loading the CSV file in chunks helps but it is impractical to get a full picture of our data. With dask, we can utilise all the cores we have on our laptop.
 
 {:refdef: style="text-align: center;"}
-![LDA visualisation]({{ site.baseimg }}/images/pyLDAvis.png)
+![Content by URL Count]({{ site.baseimg
+}}/images/DaskClient.png)
 {: refdef}
-<a href="https://stephanosterburg.github.io/data/LDAvis_ReliableNews.html" target="_blank">Visualizing LDA</a> (link opens in new tab)
 
-## Linguistic Features
+Now we can get a quick overview of what we have in out dataset:
 
-[spaCy](https://spacy.io/) offers excellent tools to process raw text. Most words are rare, and it’s common for words that look entirely different to mean almost the same thing. The same words in a different order can mean something completely different. Even splitting text into useful word-like units can be difficult in many languages. While it’s possible to solve some problems starting from only the raw characters, it’s usually better to use linguistic knowledge to add useful information. That’s exactly what spaCy is designed to do: you put in raw text and get back a Doc object, that comes with a variety of annotations.
 
-To continue working on our Exploratory Data Analysis and help us understand our content we shall use spaCy's statistical entity recognition system as well as `spacy-vis`, a visualisation tool using [`Hierplane`](https://allenai.github.io/hierplane/).
+```python
+categories = ddf.category.value_counts().compute()
+categories
+```
+
+{:refdef: style="text-align: center;"}
+![Content by URL Count]({{ site.baseimg
+}}/images/BigDataCategories.png)
+{: refdef}
+
+As we can see we need to do some cleaning. We have some oddly named categories and also checked for null values. From our data exploration, we have a few handy functions to clean the data. For example, remove all digits, HTML strings and stopwords from our text and to lemmatise the words. 
+
+To send the data to separate processes for processing, we can configure dask's scheduler and set it globally. This option is useful when operating on pure Python objects like strings.
+
+```python
+dask.config.set(scheduler='processes')
+```
+
+## Parquet
+
+To save disk space dask encourages dataframes (pandas) users like us to use [Parquet](https://parquet.apache.org/). It is a columnar binary format that is easy to split into multiple files (easier for parallel loading) and is generally much simpler to deal with than compared to HDF5 a popular choice for Pandas users with high-performance needs. It is also a common format used by other big data systems like [Apache Spark](https://spark.apache.org/) and [Apache Impala](https://impala.apache.org/). 
+
+For data-sets too big to fit conveniently into memory, like ours, we want to read it in line by line or iterate through the row-groups in a similar way to reading by chunks from CSV with pandas. For the latter, [fastparquet](https://fastparquet.readthedocs.io/en) makes it possible to do that using [iter_row_groups API](https://fastparquet.readthedocs.io/en/latest/api.html#fastparquet.ParquetFile.iter_row_groups).
+
+```python
+pf = ParquetFile('myfile.parq')
+for df in pf.iter_row_groups():
+	print(df.shape)
+	# process sub-data-frame df
+```
+
+As an alternative option, I found the [rows package](http://turicas.info/rows/) by  Álvaro Justen.
+
+## Deep Learning Model
+
+For the initial model, I choose to create a convolutional neural network (CNN) using keras:
+
+```python
+model = Sequential([
+	Conv1D(filters, kernel_size, input_shape=(input_shape[0], input_shape[1]),
+	    padding='valid', activation='relu', strides=1),
+	GlobalMaxPooling1D(),
+	Dense(hidden_dims),
+	Dropout(0.2, activation='relu'),
+	Dense(1, activation='sigmoid')
+	])
+        
+model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
+```
+
+Also, to be able to read in the data I needed to create a custom generator to process each line in the CSV file:
+
+```python
+def _generator_process_line(line):
+    embedding = np.zeros((max_words, 100))
+    
+    for i, word in enumerate(line[0].split()[:max_words]):
+        if word in glove:
+            embedding[i] = glove[word]
+            
+    return embedding, line[1]
+
+def Generator(data, batch_size):
+    while True:
+        with open(data, 'r') as f:
+            # skip header
+            for _ in range(1):
+                next(f)
+                
+            batch_i = 0
+            batch_embedding = np.zeros((batch_size, max_words, 100))
+            batch_label = np.zeros((batch_size, 1))
+            
+            reader = csv.reader(f)
+            for line in reader:
+                embedding, label = _generator_process_line(line)                
+
+                if (batch_i + 1) == batch_size:
+                    yield batch_embedding, batch_label
+                    
+                    batch_embedding = np.zeros((batch_size, max_words, 100))
+                    batch_label = np.zeros((batch_size, 1))
+                    batch_i = 0
+                else:
+                    batch_embedding[batch_i] = embedding
+                    batch_label[batch_i, 0] = label
+                    batch_i += 1
+```
+
+The following code snippet trains the model on data generated batch-by-batch by the python generator above. 
+
+```python
+with tf.device('/gpu:0'):
+    history = model.fit_generator(Generator(train_data, batch_size), 
+                                  steps_per_epoch=train_size//batch_size,
+                                  validation_data=Generator(valid_data, batch_size), 
+                                  validation_steps=valid_size//batch_size,
+                                  epochs=epochs, verbose=1)
+```
+
+Our model returns a near perfect accuracy score of 97.83%, and if we are also looking at the training and validation results, we might be inclined to save the keras model into a single HDF5 file at each epoch. That way we can save the best possible model. We probably could have stopped with the third epoch and saved us a lot of time.
+
+{:refdef: style="text-align: center;"}
+![Content by URL Count]({{ site.baseimg
+}}/images/training_validation_results.png)
+{: refdef}
+
+## GPU
+
+You may notice the `with`-statement and recall that I am working on a laptop. To train the model on the laptop is not manageable. To be able to train the model I used [paperspace's](https://www.paperspace.com/gradient) gradient service, which includes jupyter notebooks, a job runner, and a python module to run any code on Paperspace GPU cloud.
+
+## Final Note
+
+What is next? I like to create two more keras models, one which focuses on its "content" and the other model on its "context". Furthermore, be able to predict what type of news article do we have - reliable or unreliable.
+
+Finally, build a [dashboard](https://dash.plot.ly/).

@@ -151,7 +151,7 @@ MathJax.Hub.Config({
   <header>
     
       <div class="entry-image-index">
-        <a href="http://localhost:4000/text_classification_part_3/" title="Text Classification (Part 2)"><img src="http://localhost:4000/images/Newsstand.jpg" alt="Text Classification (Part 2)"></a>
+        <a href="http://localhost:4000/text_classification_part_3/" title="Text Classification (Part 3)"><img src="http://localhost:4000/images/Newsstand.jpg" alt="Text Classification (Part 3)"></a>
       </div><!-- /.entry-image -->
     
     <div class="entry-meta">
@@ -160,75 +160,163 @@ MathJax.Hub.Config({
       <span class="entry-reading-time">
         <i class="fa fa-clock-o"></i>
         
-Reading time ~3 minutes
+Reading time ~4 minutes
       </span><!-- /.entry-reading-time -->
       
     </div><!-- /.entry-meta -->
     
-      <h1 class="entry-title"><a href="http://localhost:4000/text_classification_part_3/" rel="bookmark" title="Text Classification (Part 2)" itemprop="url">Text Classification (Part 2)</a></h1>
+      <h1 class="entry-title"><a href="http://localhost:4000/text_classification_part_3/" rel="bookmark" title="Text Classification (Part 3)" itemprop="url">Text Classification (Part 3)</a></h1>
     
   </header>
   <div class="entry-content">
-    <h2 id="exploratory-data-analysis">Exploratory Data Analysis</h2>
+    <h2 id="using-big-data">Using Big Data</h2>
 
-<p>After collecting our data, the first thing we want to do is to get an understanding of it. Exploratory Data Analysis or short EDA is one of the essential steps in the data analysis process. By trying to make sense of the data, we can start formulating questions and if necessary go back and make changes to where our data came from, and others.</p>
+<p>The dataset used for that project is an already <a href="https://github.com/several27/FakeNewsCorpus">polished and fairly large corpus</a> by Maciej Szpakowski.</p>
 
-<p>Remember, the number of source URLs is not very well balanced if we are looking at the categories. We started with 134 URLs categorised as <code class="highlighter-rouge">fake</code> and from our source dataset with only 3 reliable URLs, which we increased to over 70 URLs with our own.</p>
+<blockquote>
+  <p>This is an open source dataset composed of millions of news articles mostly scraped from a curated list of 1001 domains from http://www.opensources.co/. Because the list does not contain any reliable websites, additionally NYTimes and Webhose English News Articles articles have been included to balance the classes better. The dataset is still work in progress, and for now, the public version includes only 9,408,908 articles (745 out of 1001 domains).</p>
+</blockquote>
 
-<p style="text-align: center;"><img src="/images/content_by_url_count.png" alt="Content by URL Count" /></p>
+<p>The available data more than 26GB on disk when we unzip the file and more than 75GB in RAM using pandas. For that reason, I considered using <a href="https://dask.org/">dask</a>. However, loading the CSV file ended in a ParserError (<code class="highlighter-rouge">Error tokenizing data. C error: EOF inside string starting at row 63</code>) and apparently, this is a <a href="https://stackoverflow.com/q/45752805/5983691">known problem</a> with dask’s read_csv if the file contains a newline character between quotes.</p>
 
-<p>However, I went ahead and collected as much data as possible and as it turns out correctly so. As we can see in the image below the distribution turned up-side-down. I wasn’t expecting that at all.</p>
+<p>To read the CSV file with pandas, the same row (63) ended in a <code class="highlighter-rouge">_csv.Error: field larger than field limit (131072)</code>. To address that error we have to increase the <code class="highlighter-rouge">csv.field_size_limit</code>.</p>
 
-<p style="text-align: center;"><img src="/images/content_by_article_count.png" alt="Content by Article Count" /></p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># _csv.Error: field larger than field limit (131072)
+# https://stackoverflow.com/a/15063941/5983691
+</span><span class="k">def</span> <span class="nf">csv_field_limit</span><span class="p">():</span>
+    <span class="n">maxInt</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">maxsize</span>
+    <span class="n">decrement</span> <span class="o">=</span> <span class="bp">True</span>
+    
+    <span class="k">while</span> <span class="n">decrement</span><span class="p">:</span>
+        <span class="c1"># decrease the maxInt value by factor 10 
+</span>        <span class="c1"># as long as the OverflowError occurs.
+</span>        <span class="n">decrement</span> <span class="o">=</span> <span class="bp">False</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">csv</span><span class="o">.</span><span class="n">field_size_limit</span><span class="p">(</span><span class="n">maxInt</span><span class="p">)</span>
+        <span class="k">except</span> <span class="nb">OverflowError</span><span class="p">:</span>
+            <span class="n">maxInt</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">maxInt</span><span class="o">/</span><span class="mi">10</span><span class="p">)</span>
+            <span class="n">decrement</span> <span class="o">=</span> <span class="bp">True</span>
+</code></pre></div></div>
 
-<p>So we don’t need the extra content we got from the archived data at <a href="https://webhose.io/">webhose.io</a>.</p>
+<p>The dataset is not huge but is also larger than we’d like to manage on a laptop, especially if we value interactivity. In any case, let’s have a look at the first 100 rows to see what we have and determine what features we can drop and others we need to keep.</p>
 
-<h2 id="sentiment">Sentiment</h2>
+<figure>
+    
+    <a href="/images/BigDataTable.png"><img src="/images/BigDataTable.png" alt="" /></a>
+    
+    <figcaption></figcaption>
+</figure>
 
-<p>In natural language analysis, one of the first steps one wants to do is understand the sentiment of a given text. Our data is to 75% neutral, which I guess is a good thing. The interesting part here is the thing that for the rest of our data the negative content overweights the positive content drastically.</p>
+<p>To fix the <code class="highlighter-rouge">EOF</code> problem, we can load in the dataset in chunks and loop that way through the dataset. Loading the CSV file in chunks helps but it is impractical to get a full picture of our data. With dask, we can utilise all the cores we have on our laptop.</p>
 
-<p style="text-align: center;"><img src="/images/Positive-Neutral-Negative_Content_Distribution.png" alt="Positive-Neutral-Negative Content Distribution" /></p>
+<p style="text-align: center;"><img src="/images/DaskClient.png" alt="Content by URL Count" /></p>
 
-<p>Moreover, we can see that also in the distribution about the number of words in an article and its sentiment weighting. The shorter an article is, the more likely it is that it is negative content.</p>
+<p>Now we can get a quick overview of what we have in out dataset:</p>
 
-<p style="text-align: center;"><img src="/images/posneg_sentiment.png" alt="Positive/Negative Sentiment" /></p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">categories</span> <span class="o">=</span> <span class="n">ddf</span><span class="o">.</span><span class="n">category</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">compute</span><span class="p">()</span>
+<span class="n">categories</span>
+</code></pre></div></div>
 
-<h2 id="visualizing-differences-based-only-on-term-frequencies">Visualizing differences based only on term frequencies</h2>
+<p style="text-align: center;"><img src="/images/BigDataCategories.png" alt="Content by URL Count" /></p>
 
-<p>Occasionally, only term frequency statistics are available. In the case where this may happen like in very large, lost, or proprietary data sets. To help us here we can use the tool <a href="https://github.com/JasonKessler/scattertext"><code class="highlighter-rouge">scattertext</code></a> which is based on <a href="https://spacy.io/"><code class="highlighter-rouge">spaCy</code></a>. <code class="highlighter-rouge">TermCategoryFrequencies</code> function is a corpus representation, that can accept this sort of data, along with any categorised documents that happen to be available.</p>
+<p>As we can see we need to do some cleaning. We have some oddly named categories and also checked for null values. From our data exploration, we have a few handy functions to clean the data. For example, remove all digits, HTML strings and stopwords from our text and to lemmatise the words.</p>
 
-<p style="text-align: center;"><img src="/images/TermCategoryFrequencies.png" alt="Visualisation Term Category Frequencies" /></p>
-<p><a href="https://stephanosterburg.github.io/data/reliable_vs_unreliable.html" target="_blank">Visualizing TermCategoryFrequencies</a> (link opens in new tab)</p>
+<p>To send the data to separate processes for processing, we can configure dask’s scheduler and set it globally. This option is useful when operating on pure Python objects like strings.</p>
 
-<p>The critical part to note here is that the data represented in this plot comes from unbalanced data.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">dask</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="nb">set</span><span class="p">(</span><span class="n">scheduler</span><span class="o">=</span><span class="s">'processes'</span><span class="p">)</span>
+</code></pre></div></div>
 
-<h2 id="topic-modeling">Topic Modeling</h2>
+<h2 id="parquet">Parquet</h2>
 
-<p>Another question we can try to find an answer to is what are the most written about topics in our news content. We can use Gensim/LDA here to find them but there is a more intuitive and interactive way to help visualise topic model using <a href="https://scikit-learn.org/stable/index.html">sklearn</a> and the python library <a href="https://pyldavis.readthedocs.io/en/latest/">pyLDAvis</a> which is a port of the fabulous <a href="https://github.com/cpsievert/LDAvis">R package</a> by <a href="https://cpsievert.me/">Carson Sievert</a> and <a href="http://www.kennyshirley.com/">Kenny Shirley</a>.</p>
+<p>To save disk space dask encourages dataframes (pandas) users like us to use <a href="https://parquet.apache.org/">Parquet</a>. It is a columnar binary format that is easy to split into multiple files (easier for parallel loading) and is generally much simpler to deal with than compared to HDF5 a popular choice for Pandas users with high-performance needs. It is also a common format used by other big data systems like <a href="https://spark.apache.org/">Apache Spark</a> and <a href="https://impala.apache.org/">Apache Impala</a>.</p>
 
-<noscript><pre>400: Invalid request
-</pre></noscript>
-<script src="https://gist.github.com/15b93ef69472c10df40598c20e42149e.js"> </script>
+<p>For data-sets too big to fit conveniently into memory, like ours, we want to read it in line by line or iterate through the row-groups in a similar way to reading by chunks from CSV with pandas. For the latter, <a href="https://fastparquet.readthedocs.io/en">fastparquet</a> makes it possible to do that using <a href="https://fastparquet.readthedocs.io/en/latest/api.html#fastparquet.ParquetFile.iter_row_groups">iter_row_groups API</a>.</p>
 
-<p>pyLDAvis is designed to help users interpret the topics in a topic model that has been fit to a corpus of text data. The package extracts information from a fitted LDA topic model to inform an interactive web-based visualisation.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">pf</span> <span class="o">=</span> <span class="n">ParquetFile</span><span class="p">(</span><span class="s">'myfile.parq'</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">df</span> <span class="ow">in</span> <span class="n">pf</span><span class="o">.</span><span class="n">iter_row_groups</span><span class="p">():</span>
+	<span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+	<span class="c1"># process sub-data-frame df
+</span></code></pre></div></div>
 
-<p>The pyLDAvis interface:</p>
+<p>As an alternative option, I found the <a href="http://turicas.info/rows/">rows package</a> by  Álvaro Justen.</p>
 
-<ul>
-  <li>the left panel shows how common and how each topic relates to each other in 2D space.</li>
-  <li>the right panel shows us a list of the most notable word (topics) and its frequency. If we select a topic, we see the topic-specific frequency of each term (red) and the corpus-wide frequency (blue).</li>
-</ul>
+<h2 id="deep-learning-model">Deep Learning Model</h2>
 
-<!-- <a href="http://example.com/" target="_blank">Hello, world!</a> -->
+<p>For the initial model, I choose to create a convolutional neural network (CNN) using keras:</p>
 
-<p style="text-align: center;"><img src="/images/pyLDAvis.png" alt="LDA visualisation" /></p>
-<p><a href="https://stephanosterburg.github.io/data/LDAvis_ReliableNews.html" target="_blank">Visualizing LDA</a> (link opens in new tab)</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">model</span> <span class="o">=</span> <span class="n">Sequential</span><span class="p">([</span>
+	<span class="n">Conv1D</span><span class="p">(</span><span class="n">filters</span><span class="p">,</span> <span class="n">kernel_size</span><span class="p">,</span> <span class="n">input_shape</span><span class="o">=</span><span class="p">(</span><span class="n">input_shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">input_shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span>
+	    <span class="n">padding</span><span class="o">=</span><span class="s">'valid'</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s">'relu'</span><span class="p">,</span> <span class="n">strides</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span>
+	<span class="n">GlobalMaxPooling1D</span><span class="p">(),</span>
+	<span class="n">Dense</span><span class="p">(</span><span class="n">hidden_dims</span><span class="p">),</span>
+	<span class="n">Dropout</span><span class="p">(</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s">'relu'</span><span class="p">),</span>
+	<span class="n">Dense</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s">'sigmoid'</span><span class="p">)</span>
+	<span class="p">])</span>
+        
+<span class="n">model</span><span class="o">.</span><span class="nb">compile</span><span class="p">(</span><span class="n">loss</span><span class="o">=</span><span class="s">'binary_crossentropy'</span><span class="p">,</span> <span class="n">optimizer</span><span class="o">=</span><span class="s">'adam'</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s">'accuracy'</span><span class="p">])</span>
+</code></pre></div></div>
 
-<h2 id="linguistic-features">Linguistic Features</h2>
+<p>Also, to be able to read in the data I needed to create a custom generator to process each line in the CSV file:</p>
 
-<p><a href="https://spacy.io/">spaCy</a> offers excellent tools to process raw text. Most words are rare, and it’s common for words that look entirely different to mean almost the same thing. The same words in a different order can mean something completely different. Even splitting text into useful word-like units can be difficult in many languages. While it’s possible to solve some problems starting from only the raw characters, it’s usually better to use linguistic knowledge to add useful information. That’s exactly what spaCy is designed to do: you put in raw text and get back a Doc object, that comes with a variety of annotations.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">_generator_process_line</span><span class="p">(</span><span class="n">line</span><span class="p">):</span>
+    <span class="n">embedding</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">max_words</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span>
+    
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">word</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">line</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">()[:</span><span class="n">max_words</span><span class="p">]):</span>
+        <span class="k">if</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">glove</span><span class="p">:</span>
+            <span class="n">embedding</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">glove</span><span class="p">[</span><span class="n">word</span><span class="p">]</span>
+            
+    <span class="k">return</span> <span class="n">embedding</span><span class="p">,</span> <span class="n">line</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
 
-<p>To continue working on our Exploratory Data Analysis and help us understand our content we shall use spaCy’s statistical entity recognition system as well as <code class="highlighter-rouge">spacy-vis</code>, a visualisation tool using <a href="https://allenai.github.io/hierplane/"><code class="highlighter-rouge">Hierplane</code></a>.</p>
+<span class="k">def</span> <span class="nf">Generator</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">):</span>
+    <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="s">'r'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="c1"># skip header
+</span>            <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">):</span>
+                <span class="nb">next</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+                
+            <span class="n">batch_i</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="n">batch_embedding</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">max_words</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span>
+            <span class="n">batch_label</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">batch_size</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+            
+            <span class="n">reader</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">reader</span><span class="p">:</span>
+                <span class="n">embedding</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="n">_generator_process_line</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>                
+
+                <span class="k">if</span> <span class="p">(</span><span class="n">batch_i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="n">batch_size</span><span class="p">:</span>
+                    <span class="k">yield</span> <span class="n">batch_embedding</span><span class="p">,</span> <span class="n">batch_label</span>
+                    
+                    <span class="n">batch_embedding</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">max_words</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span>
+                    <span class="n">batch_label</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">batch_size</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+                    <span class="n">batch_i</span> <span class="o">=</span> <span class="mi">0</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">batch_embedding</span><span class="p">[</span><span class="n">batch_i</span><span class="p">]</span> <span class="o">=</span> <span class="n">embedding</span>
+                    <span class="n">batch_label</span><span class="p">[</span><span class="n">batch_i</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">label</span>
+                    <span class="n">batch_i</span> <span class="o">+=</span> <span class="mi">1</span>
+</code></pre></div></div>
+
+<p>The following code snippet trains the model on data generated batch-by-batch by the python generator above.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="s">'/gpu:0'</span><span class="p">):</span>
+    <span class="n">history</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit_generator</span><span class="p">(</span><span class="n">Generator</span><span class="p">(</span><span class="n">train_data</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">),</span> 
+                                  <span class="n">steps_per_epoch</span><span class="o">=</span><span class="n">train_size</span><span class="o">//</span><span class="n">batch_size</span><span class="p">,</span>
+                                  <span class="n">validation_data</span><span class="o">=</span><span class="n">Generator</span><span class="p">(</span><span class="n">valid_data</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">),</span> 
+                                  <span class="n">validation_steps</span><span class="o">=</span><span class="n">valid_size</span><span class="o">//</span><span class="n">batch_size</span><span class="p">,</span>
+                                  <span class="n">epochs</span><span class="o">=</span><span class="n">epochs</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Our model returns a near perfect accuracy score of 97.83%, and if we are also looking at the training and validation results, we might be inclined to save the keras model into a single HDF5 file at each epoch. That way we can save the best possible model. We probably could have stopped with the third epoch and saved us a lot of time.</p>
+
+<p style="text-align: center;"><img src="/images/training_validation_results.png" alt="Content by URL Count" /></p>
+
+<h2 id="gpu">GPU</h2>
+
+<p>You may notice the <code class="highlighter-rouge">with</code>-statement and recall that I am working on a laptop. To train the model on the laptop is not manageable. To be able to train the model I used <a href="https://www.paperspace.com/gradient">paperspace’s</a> gradient service, which includes jupyter notebooks, a job runner, and a python module to run any code on Paperspace GPU cloud.</p>
+
+<h2 id="final-note">Final Note</h2>
+
+<p>What is next? I like to create two more keras models, one which focuses on its “content” and the other model on its “context”. Furthermore, be able to predict what type of news article do we have - reliable or unreliable.</p>
+
+<p>Finally, build a <a href="https://dash.plot.ly/">dashboard</a>.</p>
 
   </div><!-- /.entry-content -->
 </article><!-- /.hentry -->
@@ -315,6 +403,10 @@ Reading time ~3 minutes
 <p><a href="https://spacy.io/">spaCy</a> offers excellent tools to process raw text. Most words are rare, and it’s common for words that look entirely different to mean almost the same thing. The same words in a different order can mean something completely different. Even splitting text into useful word-like units can be difficult in many languages. While it’s possible to solve some problems starting from only the raw characters, it’s usually better to use linguistic knowledge to add useful information. That’s exactly what spaCy is designed to do: you put in raw text and get back a Doc object, that comes with a variety of annotations.</p>
 
 <p>To continue working on our Exploratory Data Analysis and help us understand our content we shall use spaCy’s statistical entity recognition system as well as <code class="highlighter-rouge">spacy-vis</code>, a visualisation tool using <a href="https://allenai.github.io/hierplane/"><code class="highlighter-rouge">Hierplane</code></a>.</p>
+
+<h2 id="upcoming">Upcoming</h2>
+
+<p>In the next part, I am going to explore how to approach “big” data.</p>
 
   </div><!-- /.entry-content -->
 </article><!-- /.hentry -->

@@ -1,4 +1,151 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-04-07T11:38:22+01:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Data Ocean</title><subtitle>A discovery into the world of data.</subtitle><entry><title type="html">Text Classification (Part 2)</title><link href="http://localhost:4000/text_classification_part_3/" rel="alternate" type="text/html" title="Text Classification (Part 2)" /><published>2019-04-07T00:00:00+01:00</published><updated>2019-04-07T00:00:00+01:00</updated><id>http://localhost:4000/text_classification_part_3</id><content type="html" xml:base="http://localhost:4000/text_classification_part_3/">&lt;h2 id=&quot;exploratory-data-analysis&quot;&gt;Exploratory Data Analysis&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-04-07T19:46:46+01:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Data Ocean</title><subtitle>A discovery into the world of data.</subtitle><entry><title type="html">Text Classification (Part 3)</title><link href="http://localhost:4000/text_classification_part_3/" rel="alternate" type="text/html" title="Text Classification (Part 3)" /><published>2019-04-07T00:00:00+01:00</published><updated>2019-04-07T00:00:00+01:00</updated><id>http://localhost:4000/text_classification_part_3</id><content type="html" xml:base="http://localhost:4000/text_classification_part_3/">&lt;h2 id=&quot;using-big-data&quot;&gt;Using Big Data&lt;/h2&gt;
+
+&lt;p&gt;The dataset used for that project is an already &lt;a href=&quot;https://github.com/several27/FakeNewsCorpus&quot;&gt;polished and fairly large corpus&lt;/a&gt; by Maciej Szpakowski.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;This is an open source dataset composed of millions of news articles mostly scraped from a curated list of 1001 domains from http://www.opensources.co/. Because the list does not contain any reliable websites, additionally NYTimes and Webhose English News Articles articles have been included to balance the classes better. The dataset is still work in progress, and for now, the public version includes only 9,408,908 articles (745 out of 1001 domains).&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;The available data more than 26GB on disk when we unzip the file and more than 75GB in RAM using pandas. For that reason, I considered using &lt;a href=&quot;https://dask.org/&quot;&gt;dask&lt;/a&gt;. However, loading the CSV file ended in a ParserError (&lt;code class=&quot;highlighter-rouge&quot;&gt;Error tokenizing data. C error: EOF inside string starting at row 63&lt;/code&gt;) and apparently, this is a &lt;a href=&quot;https://stackoverflow.com/q/45752805/5983691&quot;&gt;known problem&lt;/a&gt; with dask’s read_csv if the file contains a newline character between quotes.&lt;/p&gt;
+
+&lt;p&gt;To read the CSV file with pandas, the same row (63) ended in a &lt;code class=&quot;highlighter-rouge&quot;&gt;_csv.Error: field larger than field limit (131072)&lt;/code&gt;. To address that error we have to increase the &lt;code class=&quot;highlighter-rouge&quot;&gt;csv.field_size_limit&lt;/code&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# _csv.Error: field larger than field limit (131072)
+# https://stackoverflow.com/a/15063941/5983691
+&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;csv_field_limit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;():&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;maxInt&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sys&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;maxsize&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;decrement&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;
+    
+    &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;decrement&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;# decrease the maxInt value by factor 10 
+&lt;/span&gt;        &lt;span class=&quot;c1&quot;&gt;# as long as the OverflowError occurs.
+&lt;/span&gt;        &lt;span class=&quot;n&quot;&gt;decrement&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;False&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;try&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;csv&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;field_size_limit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;maxInt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;except&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;OverflowError&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;maxInt&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;maxInt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;decrement&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The dataset is not huge but is also larger than we’d like to manage on a laptop, especially if we value interactivity. In any case, let’s have a look at the first 100 rows to see what we have and determine what features we can drop and others we need to keep.&lt;/p&gt;
+
+&lt;figure&gt;
+    
+    &lt;a href=&quot;/images/BigDataTable.png&quot;&gt;&lt;img src=&quot;/images/BigDataTable.png&quot; alt=&quot;&quot; /&gt;&lt;/a&gt;
+    
+    &lt;figcaption&gt;&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;To fix the &lt;code class=&quot;highlighter-rouge&quot;&gt;EOF&lt;/code&gt; problem, we can load in the dataset in chunks and loop that way through the dataset. Loading the CSV file in chunks helps but it is impractical to get a full picture of our data. With dask, we can utilise all the cores we have on our laptop.&lt;/p&gt;
+
+&lt;p style=&quot;text-align: center;&quot;&gt;&lt;img src=&quot;/images/DaskClient.png&quot; alt=&quot;Content by URL Count&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Now we can get a quick overview of what we have in out dataset:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;categories&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ddf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;category&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;value_counts&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;compute&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;categories&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p style=&quot;text-align: center;&quot;&gt;&lt;img src=&quot;/images/BigDataCategories.png&quot; alt=&quot;Content by URL Count&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;As we can see we need to do some cleaning. We have some oddly named categories and also checked for null values. From our data exploration, we have a few handy functions to clean the data. For example, remove all digits, HTML strings and stopwords from our text and to lemmatise the words.&lt;/p&gt;
+
+&lt;p&gt;To send the data to separate processes for processing, we can configure dask’s scheduler and set it globally. This option is useful when operating on pure Python objects like strings.&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;dask&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;config&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;scheduler&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'processes'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;parquet&quot;&gt;Parquet&lt;/h2&gt;
+
+&lt;p&gt;To save disk space dask encourages dataframes (pandas) users like us to use &lt;a href=&quot;https://parquet.apache.org/&quot;&gt;Parquet&lt;/a&gt;. It is a columnar binary format that is easy to split into multiple files (easier for parallel loading) and is generally much simpler to deal with than compared to HDF5 a popular choice for Pandas users with high-performance needs. It is also a common format used by other big data systems like &lt;a href=&quot;https://spark.apache.org/&quot;&gt;Apache Spark&lt;/a&gt; and &lt;a href=&quot;https://impala.apache.org/&quot;&gt;Apache Impala&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;For data-sets too big to fit conveniently into memory, like ours, we want to read it in line by line or iterate through the row-groups in a similar way to reading by chunks from CSV with pandas. For the latter, &lt;a href=&quot;https://fastparquet.readthedocs.io/en&quot;&gt;fastparquet&lt;/a&gt; makes it possible to do that using &lt;a href=&quot;https://fastparquet.readthedocs.io/en/latest/api.html#fastparquet.ParquetFile.iter_row_groups&quot;&gt;iter_row_groups API&lt;/a&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;pf&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ParquetFile&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'myfile.parq'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;df&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;iter_row_groups&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;():&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;df&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;shape&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+	&lt;span class=&quot;c1&quot;&gt;# process sub-data-frame df
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;As an alternative option, I found the &lt;a href=&quot;http://turicas.info/rows/&quot;&gt;rows package&lt;/a&gt; by  Álvaro Justen.&lt;/p&gt;
+
+&lt;h2 id=&quot;deep-learning-model&quot;&gt;Deep Learning Model&lt;/h2&gt;
+
+&lt;p&gt;For the initial model, I choose to create a convolutional neural network (CNN) using keras:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;model&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Sequential&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;Conv1D&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;filters&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;kernel_size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;input_shape&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;input_shape&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;input_shape&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]),&lt;/span&gt;
+	    &lt;span class=&quot;n&quot;&gt;padding&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'valid'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;activation&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'relu'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;strides&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;GlobalMaxPooling1D&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(),&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;Dense&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;hidden_dims&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;Dropout&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;0.2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;activation&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'relu'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;Dense&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;activation&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'sigmoid'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+	&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
+        
+&lt;span class=&quot;n&quot;&gt;model&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;compile&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;loss&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'binary_crossentropy'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;optimizer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'adam'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;metrics&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'accuracy'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Also, to be able to read in the data I needed to create a custom generator to process each line in the CSV file:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;_generator_process_line&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;line&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;embedding&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;zeros&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;max_words&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;100&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+    
+    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;word&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;enumerate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;line&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;split&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()[:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;max_words&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]):&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;word&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;glove&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;embedding&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;glove&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;word&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+            
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;embedding&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;line&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;Generator&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;batch_size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;with&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;open&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'r'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+            &lt;span class=&quot;c1&quot;&gt;# skip header
+&lt;/span&gt;            &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;range&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+                &lt;span class=&quot;nb&quot;&gt;next&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+                
+            &lt;span class=&quot;n&quot;&gt;batch_i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;batch_embedding&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;zeros&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;batch_size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;max_words&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;100&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;batch_label&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;zeros&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;batch_size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+            
+            &lt;span class=&quot;n&quot;&gt;reader&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;csv&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;reader&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;line&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;reader&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+                &lt;span class=&quot;n&quot;&gt;embedding&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;label&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_generator_process_line&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;line&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;                
+
+                &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;batch_i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;batch_size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+                    &lt;span class=&quot;k&quot;&gt;yield&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;batch_embedding&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;batch_label&lt;/span&gt;
+                    
+                    &lt;span class=&quot;n&quot;&gt;batch_embedding&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;zeros&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;batch_size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;max_words&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;100&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+                    &lt;span class=&quot;n&quot;&gt;batch_label&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;zeros&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;batch_size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+                    &lt;span class=&quot;n&quot;&gt;batch_i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
+                &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+                    &lt;span class=&quot;n&quot;&gt;batch_embedding&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;batch_i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;embedding&lt;/span&gt;
+                    &lt;span class=&quot;n&quot;&gt;batch_label&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;batch_i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;label&lt;/span&gt;
+                    &lt;span class=&quot;n&quot;&gt;batch_i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The following code snippet trains the model on data generated batch-by-batch by the python generator above.&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;with&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;device&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'/gpu:0'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;history&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;model&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fit_generator&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Generator&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;train_data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;batch_size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; 
+                                  &lt;span class=&quot;n&quot;&gt;steps_per_epoch&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;train_size&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;//&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;batch_size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+                                  &lt;span class=&quot;n&quot;&gt;validation_data&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Generator&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;valid_data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;batch_size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; 
+                                  &lt;span class=&quot;n&quot;&gt;validation_steps&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;valid_size&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;//&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;batch_size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+                                  &lt;span class=&quot;n&quot;&gt;epochs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;epochs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;verbose&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Our model returns a near perfect accuracy score of 97.83%, and if we are also looking at the training and validation results, we might be inclined to save the keras model into a single HDF5 file at each epoch. That way we can save the best possible model. We probably could have stopped with the third epoch and saved us a lot of time.&lt;/p&gt;
+
+&lt;p style=&quot;text-align: center;&quot;&gt;&lt;img src=&quot;/images/training_validation_results.png&quot; alt=&quot;Content by URL Count&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;gpu&quot;&gt;GPU&lt;/h2&gt;
+
+&lt;p&gt;You may notice the &lt;code class=&quot;highlighter-rouge&quot;&gt;with&lt;/code&gt;-statement and recall that I am working on a laptop. To train the model on the laptop is not manageable. To be able to train the model I used &lt;a href=&quot;https://www.paperspace.com/gradient&quot;&gt;paperspace’s&lt;/a&gt; gradient service, which includes jupyter notebooks, a job runner, and a python module to run any code on Paperspace GPU cloud.&lt;/p&gt;
+
+&lt;h2 id=&quot;final-note&quot;&gt;Final Note&lt;/h2&gt;
+
+&lt;p&gt;What is next? I like to create two more keras models, one which focuses on its “content” and the other model on its “context”. Furthermore, be able to predict what type of news article do we have - reliable or unreliable.&lt;/p&gt;
+
+&lt;p&gt;Finally, build a &lt;a href=&quot;https://dash.plot.ly/&quot;&gt;dashboard&lt;/a&gt;.&lt;/p&gt;</content><author><name></name></author><category term="data" /><category term="code" /><category term="content" /><summary type="html">Using Big Data</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/images/Newsstand.jpg" /></entry><entry><title type="html">Text Classification (Part 2)</title><link href="http://localhost:4000/text_classification_part_2/" rel="alternate" type="text/html" title="Text Classification (Part 2)" /><published>2019-04-06T00:00:00+01:00</published><updated>2019-04-06T00:00:00+01:00</updated><id>http://localhost:4000/text_classification_part_2</id><content type="html" xml:base="http://localhost:4000/text_classification_part_2/">&lt;h2 id=&quot;exploratory-data-analysis&quot;&gt;Exploratory Data Analysis&lt;/h2&gt;
 
 &lt;p&gt;After collecting our data, the first thing we want to do is to get an understanding of it. Exploratory Data Analysis or short EDA is one of the essential steps in the data analysis process. By trying to make sense of the data, we can start formulating questions and if necessary go back and make changes to where our data came from, and others.&lt;/p&gt;
 
@@ -57,66 +204,11 @@
 
 &lt;p&gt;&lt;a href=&quot;https://spacy.io/&quot;&gt;spaCy&lt;/a&gt; offers excellent tools to process raw text. Most words are rare, and it’s common for words that look entirely different to mean almost the same thing. The same words in a different order can mean something completely different. Even splitting text into useful word-like units can be difficult in many languages. While it’s possible to solve some problems starting from only the raw characters, it’s usually better to use linguistic knowledge to add useful information. That’s exactly what spaCy is designed to do: you put in raw text and get back a Doc object, that comes with a variety of annotations.&lt;/p&gt;
 
-&lt;p&gt;To continue working on our Exploratory Data Analysis and help us understand our content we shall use spaCy’s statistical entity recognition system as well as &lt;code class=&quot;highlighter-rouge&quot;&gt;spacy-vis&lt;/code&gt;, a visualisation tool using &lt;a href=&quot;https://allenai.github.io/hierplane/&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Hierplane&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;</content><author><name></name></author><category term="data" /><category term="code" /><category term="content" /><summary type="html">Exploratory Data Analysis</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/images/Newsstand.jpg" /></entry><entry><title type="html">Text Classification (Part 2)</title><link href="http://localhost:4000/text_classification_part_2/" rel="alternate" type="text/html" title="Text Classification (Part 2)" /><published>2019-04-06T00:00:00+01:00</published><updated>2019-04-06T00:00:00+01:00</updated><id>http://localhost:4000/text_classification_part_2</id><content type="html" xml:base="http://localhost:4000/text_classification_part_2/">&lt;h2 id=&quot;exploratory-data-analysis&quot;&gt;Exploratory Data Analysis&lt;/h2&gt;
+&lt;p&gt;To continue working on our Exploratory Data Analysis and help us understand our content we shall use spaCy’s statistical entity recognition system as well as &lt;code class=&quot;highlighter-rouge&quot;&gt;spacy-vis&lt;/code&gt;, a visualisation tool using &lt;a href=&quot;https://allenai.github.io/hierplane/&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Hierplane&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
 
-&lt;p&gt;After collecting our data, the first thing we want to do is to get an understanding of it. Exploratory Data Analysis or short EDA is one of the essential steps in the data analysis process. By trying to make sense of the data, we can start formulating questions and if necessary go back and make changes to where our data came from, and others.&lt;/p&gt;
+&lt;h2 id=&quot;upcoming&quot;&gt;Upcoming&lt;/h2&gt;
 
-&lt;p&gt;Remember, the number of source URLs is not very well balanced if we are looking at the categories. We started with 134 URLs categorised as &lt;code class=&quot;highlighter-rouge&quot;&gt;fake&lt;/code&gt; and from our source dataset with only 3 reliable URLs, which we increased to over 70 URLs with our own.&lt;/p&gt;
-
-&lt;p style=&quot;text-align: center;&quot;&gt;&lt;img src=&quot;/images/content_by_url_count.png&quot; alt=&quot;Content by URL Count&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;However, I went ahead and collected as much data as possible and as it turns out correctly so. As we can see in the image below the distribution turned up-side-down. I wasn’t expecting that at all.&lt;/p&gt;
-
-&lt;p style=&quot;text-align: center;&quot;&gt;&lt;img src=&quot;/images/content_by_article_count.png&quot; alt=&quot;Content by Article Count&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;So we don’t need the extra content we got from the archived data at &lt;a href=&quot;https://webhose.io/&quot;&gt;webhose.io&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h2 id=&quot;sentiment&quot;&gt;Sentiment&lt;/h2&gt;
-
-&lt;p&gt;In natural language analysis, one of the first steps one wants to do is understand the sentiment of a given text. Our data is to 75% neutral, which I guess is a good thing. The interesting part here is the thing that for the rest of our data the negative content overweights the positive content drastically.&lt;/p&gt;
-
-&lt;p style=&quot;text-align: center;&quot;&gt;&lt;img src=&quot;/images/Positive-Neutral-Negative_Content_Distribution.png&quot; alt=&quot;Positive-Neutral-Negative Content Distribution&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Moreover, we can see that also in the distribution about the number of words in an article and its sentiment weighting. The shorter an article is, the more likely it is that it is negative content.&lt;/p&gt;
-
-&lt;p style=&quot;text-align: center;&quot;&gt;&lt;img src=&quot;/images/posneg_sentiment.png&quot; alt=&quot;Positive/Negative Sentiment&quot; /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;visualizing-differences-based-only-on-term-frequencies&quot;&gt;Visualizing differences based only on term frequencies&lt;/h2&gt;
-
-&lt;p&gt;Occasionally, only term frequency statistics are available. In the case where this may happen like in very large, lost, or proprietary data sets. To help us here we can use the tool &lt;a href=&quot;https://github.com/JasonKessler/scattertext&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;scattertext&lt;/code&gt;&lt;/a&gt; which is based on &lt;a href=&quot;https://spacy.io/&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;spaCy&lt;/code&gt;&lt;/a&gt;. &lt;code class=&quot;highlighter-rouge&quot;&gt;TermCategoryFrequencies&lt;/code&gt; function is a corpus representation, that can accept this sort of data, along with any categorised documents that happen to be available.&lt;/p&gt;
-
-&lt;p style=&quot;text-align: center;&quot;&gt;&lt;img src=&quot;/images/TermCategoryFrequencies.png&quot; alt=&quot;Visualisation Term Category Frequencies&quot; /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://stephanosterburg.github.io/data/reliable_vs_unreliable.html&quot; target=&quot;_blank&quot;&gt;Visualizing TermCategoryFrequencies&lt;/a&gt; (link opens in new tab)&lt;/p&gt;
-
-&lt;p&gt;The critical part to note here is that the data represented in this plot comes from unbalanced data.&lt;/p&gt;
-
-&lt;h2 id=&quot;topic-modeling&quot;&gt;Topic Modeling&lt;/h2&gt;
-
-&lt;p&gt;Another question we can try to find an answer to is what are the most written about topics in our news content. We can use Gensim/LDA here to find them but there is a more intuitive and interactive way to help visualise topic model using &lt;a href=&quot;https://scikit-learn.org/stable/index.html&quot;&gt;sklearn&lt;/a&gt; and the python library &lt;a href=&quot;https://pyldavis.readthedocs.io/en/latest/&quot;&gt;pyLDAvis&lt;/a&gt; which is a port of the fabulous &lt;a href=&quot;https://github.com/cpsievert/LDAvis&quot;&gt;R package&lt;/a&gt; by &lt;a href=&quot;https://cpsievert.me/&quot;&gt;Carson Sievert&lt;/a&gt; and &lt;a href=&quot;http://www.kennyshirley.com/&quot;&gt;Kenny Shirley&lt;/a&gt;.&lt;/p&gt;
-
-&lt;noscript&gt;&lt;pre&gt;400: Invalid request
-&lt;/pre&gt;&lt;/noscript&gt;
-&lt;script src=&quot;https://gist.github.com/15b93ef69472c10df40598c20e42149e.js&quot;&gt; &lt;/script&gt;
-
-&lt;p&gt;pyLDAvis is designed to help users interpret the topics in a topic model that has been fit to a corpus of text data. The package extracts information from a fitted LDA topic model to inform an interactive web-based visualisation.&lt;/p&gt;
-
-&lt;p&gt;The pyLDAvis interface:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;the left panel shows how common and how each topic relates to each other in 2D space.&lt;/li&gt;
-  &lt;li&gt;the right panel shows us a list of the most notable word (topics) and its frequency. If we select a topic, we see the topic-specific frequency of each term (red) and the corpus-wide frequency (blue).&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;!-- &lt;a href=&quot;http://example.com/&quot; target=&quot;_blank&quot;&gt;Hello, world!&lt;/a&gt; --&gt;
-
-&lt;p style=&quot;text-align: center;&quot;&gt;&lt;img src=&quot;/images/pyLDAvis.png&quot; alt=&quot;LDA visualisation&quot; /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://stephanosterburg.github.io/data/LDAvis_ReliableNews.html&quot; target=&quot;_blank&quot;&gt;Visualizing LDA&lt;/a&gt; (link opens in new tab)&lt;/p&gt;
-
-&lt;h2 id=&quot;linguistic-features&quot;&gt;Linguistic Features&lt;/h2&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://spacy.io/&quot;&gt;spaCy&lt;/a&gt; offers excellent tools to process raw text. Most words are rare, and it’s common for words that look entirely different to mean almost the same thing. The same words in a different order can mean something completely different. Even splitting text into useful word-like units can be difficult in many languages. While it’s possible to solve some problems starting from only the raw characters, it’s usually better to use linguistic knowledge to add useful information. That’s exactly what spaCy is designed to do: you put in raw text and get back a Doc object, that comes with a variety of annotations.&lt;/p&gt;
-
-&lt;p&gt;To continue working on our Exploratory Data Analysis and help us understand our content we shall use spaCy’s statistical entity recognition system as well as &lt;code class=&quot;highlighter-rouge&quot;&gt;spacy-vis&lt;/code&gt;, a visualisation tool using &lt;a href=&quot;https://allenai.github.io/hierplane/&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Hierplane&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;</content><author><name></name></author><category term="data" /><category term="code" /><category term="content" /><summary type="html">Exploratory Data Analysis</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/images/Newsstand.jpg" /></entry><entry><title type="html">Text Classification (Part 1)</title><link href="http://localhost:4000/text_classification_part_1/" rel="alternate" type="text/html" title="Text Classification (Part 1)" /><published>2019-04-02T00:00:00+01:00</published><updated>2019-04-02T00:00:00+01:00</updated><id>http://localhost:4000/text_classification_part_1</id><content type="html" xml:base="http://localhost:4000/text_classification_part_1/">&lt;h2 id=&quot;reliable-or-unreliable&quot;&gt;Reliable or Unreliable?&lt;/h2&gt;
+&lt;p&gt;In the next part, I am going to explore how to approach “big” data.&lt;/p&gt;</content><author><name></name></author><category term="data" /><category term="code" /><category term="content" /><summary type="html">Exploratory Data Analysis</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/images/Newsstand.jpg" /></entry><entry><title type="html">Text Classification (Part 1)</title><link href="http://localhost:4000/text_classification_part_1/" rel="alternate" type="text/html" title="Text Classification (Part 1)" /><published>2019-04-02T00:00:00+01:00</published><updated>2019-04-02T00:00:00+01:00</updated><id>http://localhost:4000/text_classification_part_1</id><content type="html" xml:base="http://localhost:4000/text_classification_part_1/">&lt;h2 id=&quot;reliable-or-unreliable&quot;&gt;Reliable or Unreliable?&lt;/h2&gt;
 
 &lt;p&gt;Over the past two decades and especially since the United States presidential election 2016 there is an increase in unreliable news content. The question which got and still gets asked is how can we know which is which. To find an answer I started at &lt;a href=&quot;http://www.opensources.co/&quot;&gt;opensources&lt;/a&gt; which curates a list of online information sources. The websites listed range from credible news to misleading and outright fake.&lt;/p&gt;
 
