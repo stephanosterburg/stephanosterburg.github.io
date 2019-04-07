@@ -1,25 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="aefa8ca6-7d9c-4cf2-8af7-3d3ea59d7cd5" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.sass-cache/67e5b967e8dd22ecbe3f83828988061e5ca61dd3/_syntax.scssc" beforeDir="false" afterPath="$PROJECT_DIR$/.sass-cache/67e5b967e8dd22ecbe3f83828988061e5ca61dd3/_syntax.scssc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_posts/2019-04-06-text_classification_part_2.md" beforeDir="false" afterPath="$PROJECT_DIR$/_posts/2019-04-06-text_classification_part_2.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_posts/2019-04-07-text_classification_part_3.md" beforeDir="false" afterPath="$PROJECT_DIR$/_posts/2019-04-07-text_classification_part_3.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_sass/_syntax.scss" beforeDir="false" afterPath="$PROJECT_DIR$/_sass/_syntax.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_site/an_introductio_to_diffusion_maps/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/_site/an_introductio_to_diffusion_maps/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_site/assets/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/_site/assets/css/main.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_site/deep_learning_art_images/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/_site/deep_learning_art_images/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_site/feed.xml" beforeDir="false" afterPath="$PROJECT_DIR$/_site/feed.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_site/forest/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/_site/forest/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_site/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/_site/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_site/mapping_data_with_folium/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/_site/mapping_data_with_folium/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_site/posts/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/_site/posts/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_site/tags/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/_site/tags/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_site/text_classification_part_1/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/_site/text_classification_part_1/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_site/text_classification_part_2/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/_site/text_classification_part_2/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_site/text_classification_part_3/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/_site/text_classification_part_3/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_site/why/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/_site/why/index.html" afterDir="false" />
-    </list>
+    <list default="true" id="aefa8ca6-7d9c-4cf2-8af7-3d3ea59d7cd5" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,8 +14,8 @@
         <entry file="file://$PROJECT_DIR$/_posts/2019-04-07-text_classification_part_3.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="FIRST">
-              <first_editor relative-caret-position="1180">
-                <caret line="164" column="243" selection-start-line="164" selection-start-column="243" selection-end-line="164" selection-end-column="243" />
+              <first_editor relative-caret-position="500">
+                <caret line="127" column="12" lean-forward="true" selection-start-line="127" selection-start-column="12" selection-end-line="127" selection-end-column="12" />
               </first_editor>
               <second_editor />
             </state>
@@ -150,6 +132,9 @@
       <pane id="Scope" />
     </panes>
   </component>
+  <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+  </component>
   <component name="RunDashboard">
     <option name="ruleStates">
       <list>
@@ -177,7 +162,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1276" y="23" width="1284" height="1577" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info id="Favorites" side_tool="true" />
       <window_info content_ui="combo" id="Project" order="0" weight="0.24940617" />
@@ -246,8 +230,8 @@
     <entry file="file://$PROJECT_DIR$/_posts/2019-04-07-text_classification_part_3.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="FIRST">
-          <first_editor relative-caret-position="1180">
-            <caret line="164" column="243" selection-start-line="164" selection-start-column="243" selection-end-line="164" selection-end-column="243" />
+          <first_editor relative-caret-position="500">
+            <caret line="127" column="12" lean-forward="true" selection-start-line="127" selection-start-column="12" selection-end-line="127" selection-end-column="12" />
           </first_editor>
           <second_editor />
         </state>
