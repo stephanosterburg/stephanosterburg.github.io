@@ -160,7 +160,7 @@ MathJax.Hub.Config({
       <span class="entry-reading-time">
         <i class="fa fa-clock-o"></i>
         
-Reading time ~2 minutes
+Reading time ~3 minutes
       </span><!-- /.entry-reading-time -->
       
     </div><!-- /.entry-meta -->
@@ -175,11 +175,11 @@ Reading time ~2 minutes
 
 <p>Remember, the number of source URLs is not very well balanced if we are looking at the categories. We started with 134 URLs categorised as <code class="highlighter-rouge">fake</code> and from our source dataset with only 3 reliable URLs, which we increased to over 70 URLs with our own.</p>
 
-<p style="text-align: center;"><img src="/images/content_by_url_count.png" alt="Count Category" /></p>
+<p style="text-align: center;"><img src="/images/content_by_url_count.png" alt="Content by URL Count" /></p>
 
 <p>However, I went ahead and collected as much data as possible and as it turns out correctly so. As we can see in the image below the distribution turned up-side-down. I wasn’t expecting that at all.</p>
 
-<p style="text-align: center;"><img src="/images/content_by_article_count.png" alt="Count Category" /></p>
+<p style="text-align: center;"><img src="/images/content_by_article_count.png" alt="Content by Article Count" /></p>
 
 <p>So we don’t need the extra content we got from the archived data at <a href="https://webhose.io/">webhose.io</a>.</p>
 
@@ -187,11 +187,11 @@ Reading time ~2 minutes
 
 <p>In natural language analysis, one of the first steps one wants to do is understand the sentiment of a given text. Our data is to 75% neutral, which I guess is a good thing. The interesting part here is the thing that for the rest of our data the negative content overweights the positive content drastically.</p>
 
-<p style="text-align: center;"><img src="/images/Positive-Neutral-Negative_Content_Distribution.png" alt="Count Category" /></p>
+<p style="text-align: center;"><img src="/images/Positive-Neutral-Negative_Content_Distribution.png" alt="Positive-Neutral-Negative Content Distribution" /></p>
 
 <p>Moreover, we can see that also in the distribution about the number of words in an article and its sentiment weighting. The shorter an article is, the more likely it is that it is negative content.</p>
 
-<p style="text-align: center;"><img src="/images/posneg_sentiment.png" alt="Count Category" /></p>
+<p style="text-align: center;"><img src="/images/posneg_sentiment.png" alt="Positive/Negative Sentiment" /></p>
 
 <h2 id="visualizing-differences-based-only-on-term-frequencies">Visualizing differences based only on term frequencies</h2>
 
@@ -6794,12 +6794,20 @@ plotInterface = buildViz(500,1000,null,null,false,false,false,false,false,true,f
 
 <p>The pyLDAvis interface:</p>
 
-<p>the left panel shows how common and how each topic relates to each other in 2D space.
-the right panel shows us a list of the most notable word (topics) and its frequency. If we select a topic, we see the topic-specific frequency of each term (red) and the corpus-wide frequency (blue).</p>
+<ul>
+  <li>the left panel shows how common and how each topic relates to each other in 2D space.</li>
+  <li>the right panel shows us a list of the most notable word (topics) and its frequency. If we select a topic, we see the topic-specific frequency of each term (red) and the corpus-wide frequency (blue).</li>
+</ul>
 
 <!-- <a href="http://example.com/" target="_blank">Hello, world!</a> -->
 
-<p><a href="https://github.com/osterburg/dsc-5-capstone-project-online-ds-ft-100118/output/LDAvis_ReliableNews.html" target="_blank">Visualise reliable news content using pyLDAvis</a>  (opens in new tap)</p>
+<p style="text-align: center;"><img src="/images/pyLDAvis.png" alt="LDA visualisation" /></p>
+
+<h2 id="linguistic-features">Linguistic Features</h2>
+
+<p><a href="https://spacy.io/">spaCy</a> offers excellent tools to process raw text. Most words are rare, and it’s common for words that look entirely different to mean almost the same thing. The same words in a different order can mean something completely different. Even splitting text into useful word-like units can be difficult in many languages. While it’s possible to solve some problems starting from only the raw characters, it’s usually better to use linguistic knowledge to add useful information. That’s exactly what spaCy is designed to do: you put in raw text and get back a Doc object, that comes with a variety of annotations.</p>
+
+<p>To continue working on the EDA and help us analyse our content we shall use spaCy’s statistical entity recognition system as well as <code class="highlighter-rouge">spacy-vis</code>, a visualisation tool using Hierplane.</p>
 
   </div><!-- /.entry-content -->
 </article><!-- /.hentry -->
