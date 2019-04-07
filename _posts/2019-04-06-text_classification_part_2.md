@@ -45,7 +45,7 @@ Moreover, we can see that also in the distribution about the number of words in 
 Occasionally, only term frequency statistics are available. In the case where this may happen like in very large, lost, or proprietary data sets. To help us here we can use the tool [`scattertext`](https://github.com/JasonKessler/scattertext) which is based on [`spaCy`](https://spacy.io/). `TermCategoryFrequencies` function is a corpus representation, that can accept this sort of data, along with any categorised documents that happen to be available.
 
 {% include reliable_vs_unreliable.html %}
-
+ 
 
 The critical part to note here is that the data represented in this plot comes from unbalanced data.
 
