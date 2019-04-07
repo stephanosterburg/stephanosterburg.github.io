@@ -5,31 +5,31 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en"><!--<![endif]-->
 <head>
 <meta charset="utf-8">
-<title>Thoughts &#8211; Data Ocean</title>
-<meta name="description" content="Describe this nonsense.">
-<meta name="keywords" content="Jekyll, theme, themes, responsive, blog, modern">
+<title>Text Classification (Part 2) &#8211; Data Ocean</title>
+<meta name="description" content="Fake News">
+<meta name="keywords" content="data, code, content">
 
 <!-- Twitter Cards -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://localhost:4000/images/background.jpeg">
+<meta name="twitter:image" content="http://localhost:4000/images/Newsstand.jpg">
 
-<meta name="twitter:title" content="Thoughts">
-<meta name="twitter:description" content="Describe this nonsense.">
+<meta name="twitter:title" content="Text Classification (Part 2)">
+<meta name="twitter:description" content="Fake News">
 <meta name="twitter:creator" content="@sosterburg">
 
 <!-- Open Graph -->
 <meta property="og:locale" content="en_US">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Thoughts">
-<meta property="og:description" content="Describe this nonsense.">
-<meta property="og:url" content="http://localhost:4000/">
+<meta property="og:title" content="Text Classification (Part 2)">
+<meta property="og:description" content="Fake News">
+<meta property="og:url" content="http://localhost:4000/text_classification_part_2/">
 <meta property="og:site_name" content="Data Ocean">
 
 
 
 
 
-<link rel="canonical" href="http://localhost:4000/">
+<link rel="canonical" href="http://localhost:4000/text_classification_part_2/">
 <link href="http://localhost:4000/feed.xml" type="application/atom+xml" rel="alternate" title="Data Ocean Feed">
 
 <!-- http://t.co/dKP3o1e -->
@@ -82,7 +82,7 @@ MathJax.Hub.Config({
 
 </head>
 
-<body id="post-index" class="feature">
+<body id="post" class="feature">
 
 <!--[if lt IE 9]><div class="upgrade"><strong><a href="http://whatbrowser.org/">Your browser is quite old!</strong> Why not upgrade to a different browser to better enjoy this site?</a></div><![endif]-->
 <nav id="dl-menu" class="dl-menuwrapper" role="navigation">
@@ -130,46 +130,34 @@ MathJax.Hub.Config({
 </nav><!-- /.dl-menuwrapper -->
 
 
+
 <div class="entry-header">
   
-  
-    <div class="entry-image">
-      <img src="http://localhost:4000/images/background.jpeg" alt="Thoughts">
-    </div><!-- /.entry-image -->
-  
-  <div class="header-title">
-    <div class="header-title-wrap">
-      <h1>Data Ocean</h1>
-      <h2>Thoughts</h2>
-    </div><!-- /.header-title-wrap -->
-  </div><!-- /.header-title -->
+  <div class="entry-image">
+    <img src="http://localhost:4000/images/Newsstand.jpg" alt="Text Classification (Part 2)">
+  </div><!-- /.entry-image -->
 </div><!-- /.entry-header -->
 
+
 <div id="main" role="main">
-  
-<article class="hentry">
-  <header>
-    
-      <div class="entry-image-index">
-        <a href="http://localhost:4000/text_classification_part_2/" title="Text Classification (Part 2)"><img src="http://localhost:4000/images/Newsstand.jpg" alt="Text Classification (Part 2)"></a>
-      </div><!-- /.entry-image -->
-    
-    <div class="entry-meta">
-      <span class="entry-date date published updated"><time datetime="2019-04-06T00:00:00+01:00"><a href="http://localhost:4000/text_classification_part_2/">April 06, 2019</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Stephan Osterburg">Stephan Osterburg</a></span></span>
-      
-      <span class="entry-reading-time">
-        <i class="fa fa-clock-o"></i>
+  <article class="hentry">
+    <header class="header-title">
+      <div class="header-title-wrap">
         
+          <h1 class="entry-title"><a href="http://localhost:4000/text_classification_part_2/" rel="bookmark" title="Text Classification (Part 2)">Text Classification (Part 2)</a></h1>
+        
+        <h2><span class="entry-date date published"><time datetime="2019-04-06T00:00:00+01:00">April 06, 2019</time></span></h2>
+        
+        <p class="entry-reading-time">
+          <i class="fa fa-clock-o"></i>
+          
 Reading time ~2 minutes
-      </span><!-- /.entry-reading-time -->
-      
-    </div><!-- /.entry-meta -->
-    
-      <h1 class="entry-title"><a href="http://localhost:4000/text_classification_part_2/" rel="bookmark" title="Text Classification (Part 2)" itemprop="url">Text Classification (Part 2)</a></h1>
-    
-  </header>
-  <div class="entry-content">
-    <h2 id="exploratory-data-analysis">Exploratory Data Analysis</h2>
+        </p><!-- /.entry-reading-time -->
+        
+      </div><!-- /.header-title-wrap -->
+    </header>
+    <div class="entry-content">
+      <h2 id="exploratory-data-analysis">Exploratory Data Analysis</h2>
 
 <p>After collecting our data, the first thing we want to do is to get an understanding of it. Exploratory Data Analysis or short EDA is one of the essential steps in the data analysis process. By trying to make sense of the data, we can start formulating questions and if necessary go back and make changes to where our data came from, and others.</p>
 
@@ -6800,609 +6788,44 @@ the right panel shows us a list of the most notable word (topics) and its freque
 <p><a href="_includes/LDAvis_ReliableNews.html" target="_blank">Visualise reliable news content using pyLDAvis</a>  (opens in new tap)
 <!-- <a href="http://example.com/" target="_blank">Hello, world!</a> --></p>
 
-  </div><!-- /.entry-content -->
-</article><!-- /.hentry -->
-
-<article class="hentry">
-  <header>
-    
-      <div class="entry-image-index">
-        <a href="http://localhost:4000/text_classification_part_1/" title="Text Classification (Part 1)"><img src="http://localhost:4000/images/Newsstand.jpg" alt="Text Classification (Part 1)"></a>
-      </div><!-- /.entry-image -->
-    
-    <div class="entry-meta">
-      <span class="entry-date date published updated"><time datetime="2019-04-02T00:00:00+01:00"><a href="http://localhost:4000/text_classification_part_1/">April 02, 2019</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Stephan Osterburg">Stephan Osterburg</a></span></span>
-      
-      <span class="entry-reading-time">
-        <i class="fa fa-clock-o"></i>
+      <footer class="entry-meta">
+        <span class="entry-tags"><a href="http://localhost:4000/tags/#data" title="Pages tagged data" class="tag"><span class="term">data</span></a><a href="http://localhost:4000/tags/#code" title="Pages tagged code" class="tag"><span class="term">code</span></a><a href="http://localhost:4000/tags/#content" title="Pages tagged content" class="tag"><span class="term">content</span></a></span>
         
-Reading time ~3 minutes
-      </span><!-- /.entry-reading-time -->
-      
-    </div><!-- /.entry-meta -->
-    
-      <h1 class="entry-title"><a href="http://localhost:4000/text_classification_part_1/" rel="bookmark" title="Text Classification (Part 1)" itemprop="url">Text Classification (Part 1)</a></h1>
-    
-  </header>
-  <div class="entry-content">
-    <h2 id="reliable-or-unreliable">Reliable or Unreliable?</h2>
-
-<p>Over the past two decades and especially since the United States presidential election 2016 there is an increase in unreliable news content. The question which got and still gets asked is how can we know which is which. To find an answer I started at <a href="http://www.opensources.co/">opensources</a> which curates a list of online information sources. The websites listed range from credible news to misleading and outright fake.</p>
-
-<p>The following post is part one in a series of four blog posts:</p>
-<ul>
-  <li>collecting news content</li>
-  <li>preprocessing data</li>
-  <li>creating a keras model</li>
-  <li>possible next step(s)</li>
-</ul>
-
-<h2 id="collecting-news-content">Collecting News Content</h2>
-
-<p>The source list (CSV file) which we can download from <a href="http://www.opensources.co/">opensources</a>  has over 800 URLs. The first thing we want to do is to filter out all non-valid URLs.</p>
-
-<noscript><pre>400: Invalid request
-</pre></noscript>
-<script src="https://gist.github.com/163ce020ac062cf0e20d8533a132cb4d.js"> </script>
-
-<p>The resulting list we got back looks off. When we are looking at the categories and their number count we find that we need to do some cleaning:</p>
-
-<p style="text-align: center;"><img src="/images/CategoryCountList.png" alt="Count Category" /></p>
-
-<p>We have some oddly named categories and a meagre number of only 3 reliable URLs in the list. To address this imbalance, I added about 70 URLs I consider reliable (hopefully) of my own, which doesn’t balance the scale very much but at least pushes it into the right direction. Plus, let us see what and how much content we can scrape from the world wide web before we do something about the source list.</p>
-
-<h3 id="web-scraping">Web Scraping</h3>
-
-<p>There are several tools to get content from a website, <a href="https://scrapy.org/">scrapy</a> and <a href="https://www.crummy.com/software/BeautifulSoup/">beautifulsoup</a> are the two most popular tools probably out there. In both cases, we need to inspect the HTML code of a website. If you are interested to learn more about it, <a href="https://hackernoon.com/web-scraping-tutorial-with-python-tips-and-tricks-db070e70e071">here is an excellent tutorial with tips and tricks using python</a>.</p>
-
-<p>In any case, the primary challenge we are facing here is that every website has a different underlying architecture. To determine what the best options are I decided to look at <a href="https://www.nytimes.com/">NYTimes</a>. As we can see in the image below, each paragraph is in its separate HTML tag. Collecting content only from the NYTimes website won’t be impossible, it is just exceedingly complicated, and neither of the mentioned tools won’t do it in the long run. If we are considering that we have over 500 labelled URLs, for the scope of this project, it is just not practical. There must be more straightforward ways to tackle this.</p>
-
-<p style="text-align: center;"><img src="/images/nytimes_html.png" alt="Count Category" /></p>
-
-<h2 id="api">API</h2>
-
-<p>Luckily, the NYTimes offers an API to excess not only their archive but also search for the most current articles online. Even better, their developer site has a playground to sample what kind of results you can get and fine tune our query.</p>
-
-<noscript><pre>400: Invalid request
-</pre></noscript>
-<script src="https://gist.github.com/3dac0843b584b388d42a881209089876.js"> </script>
-
-<p>The NYTimes search API gives us a wide range of options to query for data, starting with date range and fields like <code class="highlighter-rouge">day_of_week</code>, <code class="highlighter-rouge">headline</code>, <code class="highlighter-rouge">subject</code> etcetera, as well as <code class="highlighter-rouge">news desk</code> values like blogs, cars, fashion and many more.</p>
-
-<p>Unfortunately, we only get the lead paragraph from our search which doesn’t help much if we are looking for the full articles. In the end, all we get is metadata, but that’s it.</p>
-
-<h2 id="webhoseio">webhose.io</h2>
-
-<p>There are a few websites which offer web scraping tools, for example <a href="https://www.import.io/">import.io</a>, <a href="https://www.webhose.io/">webhose.io</a> and <a href="https://dexi.io/">dexi.io</a>. We can find an extended list <a href="https://www.hongkiat.com/blog/web-scraping-tools/">here</a>. None are free, but some offer a free trial period and <a href="https://www.webhose.io/">webhose.io</a> is one of them which I ended up using.</p>
-
-<p>Like the NYTimes, webhose.io also has a playground to fine tune our query with the main difference that you can see your search request in different coding languages like ruby or python. However, be aware, that you only have 1000 free requests.</p>
-
-<p>Unfortunately, we can’t get access to all the URLs we have on our list. However, it gives us at least some data. We can also search through webhose.io’s archived data.</p>
-
-<h2 id="newsapi">newsapi</h2>
-
-<p>The final tool I used is the python API from <a href="https://newsapi.org/">newsapi</a>. The API is very similar to the NYTimes API in the way you write your code to collect the content we want. Like at the NYTimes we mainly get metadata. However, if we are willing to pay, we can get the full article content.</p>
-
-<noscript><pre>400: Invalid request
-</pre></noscript>
-<script src="https://gist.github.com/07ef8221be45378e931f42f923ad5b17.js"> </script>
-
-<h2 id="conclusion">Conclusion</h2>
-
-<p>If we are serious about getting proper up-to-date news content, I  believe that the API from newsapi is your API of choice. However, for the task ahead of us I choose to use the data I collected via webhose.io and may come back at a later time to update the project.</p>
-
-<p>Additionally, there is an already <a href="https://github.com/several27/FakeNewsCorpus">polished and fairly large corpus</a> we can use by Maciej Szpakowski.</p>
-
-<h2 id="upcoming">Upcoming</h2>
-
-<p>In the next part, I am going to discuss data exploration.</p>
-
-  </div><!-- /.entry-content -->
-</article><!-- /.hentry -->
-
-<article class="hentry">
-  <header>
-    
-      <div class="entry-image-index">
-        <a href="http://localhost:4000/an_introductio_to_diffusion_maps/" title="A short introduction to Diffusion Maps"><img src="http://localhost:4000/images/diffusion_map.png" alt="A short introduction to Diffusion Maps"></a>
-      </div><!-- /.entry-image -->
-    
-    <div class="entry-meta">
-      <span class="entry-date date published updated"><time datetime="2019-02-23T00:00:00+00:00"><a href="http://localhost:4000/an_introductio_to_diffusion_maps/">February 23, 2019</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Stephan Osterburg">Stephan Osterburg</a></span></span>
-      
-      <span class="entry-reading-time">
-        <i class="fa fa-clock-o"></i>
-        
-Reading time ~3 minutes
-      </span><!-- /.entry-reading-time -->
-      
-    </div><!-- /.entry-meta -->
-    
-      <h1 class="entry-title"><a href="http://localhost:4000/an_introductio_to_diffusion_maps/" rel="bookmark" title="A short introduction to Diffusion Maps" itemprop="url">A short introduction to Diffusion Maps</a></h1>
-    
-  </header>
-  <div class="entry-content">
-    <p>The <a href="https://inside.mines.edu/~whereman/talks/delaPorte-Herbst-Hereman-vanderWalt-DiffusionMaps-PRASA2008.pdf">paper</a> published by J. de la Porte<sup id="fnref:4"><a href="#fn:4" class="footnote">1</a></sup>, B. M. Herbst<sup id="fnref:4:1"><a href="#fn:4" class="footnote">1</a></sup>, W. Hereman<sup id="fnref:5"><a href="#fn:5" class="footnote">2</a></sup> and S. J. van der Walt<sup id="fnref:4:2"><a href="#fn:4" class="footnote">1</a></sup> in November 2008 describes the mathematical technique for dealing with reducing dimensionality in data. In that paper, the authors give an overview of three well-known dimensionality reduction techniques and introduce diffusion maps and its functionality, process and how it compares with the other methods.</p>
-
-<h3 id="dimensionality-reduction">Dimensionality Reduction</h3>
-
-<p>We are limited in visualising information beyond the third dimension. For simplicity reasons, imagine a black and white image (grey scale) of 100 by 100 pixels, where each pixel represents a variable. The dimensionality would add up to be 10,000. A <strong>human</strong> would not have any issues with reading the following digits in the picture below, but a <strong>computer</strong> sees them as a data point in an <em>nm</em>-dimensional coordinate space.</p>
-
-<figure>
-    
-    <a href="/images/Two-images-of-the-same-digit-at-different-rotation-angles.png"><img src="/images/Two-images-of-the-same-digit-at-different-rotation-angles.png" alt="" /></a>
-    
-    <figcaption></figcaption>
-</figure>
-
-<p>Dimensionality reduction is about converting data of very high dimensionality into data of lower dimensionality while preserving the original information. We can achieve these if one would be able to measure the distance between data points on the manifold itself instead of in Euclidean space by taking into account the data global space.</p>
-
-<p>We can use the analogy of zipping text files, compressing large text data into smaller equivalent data. With the minor but significant difference that in dimensionality reduction we will lose some information. The goal here is to not lose too many of the essential features in the data.</p>
-
-<h3 id="popular-techniques">Popular Techniques</h3>
-
-<p>The most popular reduction methods are</p>
-
-<ul>
-  <li>Principle Component Analysis (PCA)<sup id="fnref:6"><a href="#fn:6" class="footnote">3</a></sup>, a linear dimensionality reduction technique using Singular Value Decomposition of the data to project it to a lower dimensional space.<sup id="fnref:7"><a href="#fn:7" class="footnote">4</a></sup></li>
-  <li>Multi-dimensional Scaling (MDS)<sup id="fnref:8"><a href="#fn:8" class="footnote">5</a></sup> seeks a low-dimensional representation of the data in which the distances respect well the distances in the original high-dimensional space.<sup id="fnref:9"><a href="#fn:9" class="footnote">6</a></sup></li>
-  <li>Isometric Feature Map (Isomap)<sup id="fnref:10"><a href="#fn:10" class="footnote">7</a></sup>, a non-linear dimensionality reduction through Isometric Mapping.<sup id="fnref:11"><a href="#fn:11" class="footnote">8</a></sup></li>
-</ul>
-
-<h3 id="diffusion-maps">Diffusion Maps</h3>
-
-<p>Diffusion maps are a non-linear technique. Similar to taking a random walk on our data, where we jump between data points in feature space (see image below), we  are analysing the connectivity of the data. The goal is to reveal the geometric structure of our data at different scales, defining a “time-dependent” diffusion metrics.</p>
-
-<figure>
-    
-    <a href="/images/A-random-walk-on-a-data-set-Each-jump-has-a-probability-associated-with-it-The-green.png"><img src="/images/A-random-walk-on-a-data-set-Each-jump-has-a-probability-associated-with-it-The-green.png" alt="" /></a>
-    
-    <figcaption></figcaption>
-</figure>
-
-<p>By measuring the distances between data points (i.e. Euclidean space), we can define neighbourhoods. In order to achieve it, we define a threshold value in the way of a function (kernel) to obtain the similarity within the geometric structure, which allows us to preserve the underlying information of the given data and be able to connect each neighbourhood.</p>
-
-<p>The basic diffusion mapping algorithm can be defined as follows:</p>
-
-<p>INPUT: High dimensional data set</p>
-
-<ol>
-  <li>Define a kernel, <script type="math/tex">k(x, y)</script> and create a kernel matrix, <script type="math/tex">K</script>, such that <script type="math/tex">K_{i,j} = k(X_i, X_j)</script>.</li>
-  <li>Create the diffusion matrix by normalising the rows of the kernel matrix</li>
-  <li>Calculate the eigenvectors of the diffusion matrix.</li>
-  <li>Map to the <script type="math/tex">d</script>-dimensional diffusion space at time <script type="math/tex">t</script>, using the <script type="math/tex">d</script> dominant eigenvectors and -values</li>
-</ol>
-
-<p>OUTPUT: Lower dimensional data set</p>
-
-<h3 id="comparison">Comparison</h3>
-
-<p>The authors also investigated the performance of the different algorithms using a data set with an underlying C-shape for the change of the parameters. As for PCA, once the data is projected onto the two primary axes of variation the ordering of the data along the non-linear C-shape is lost and fails to detect a single parameter. MDS makes a better job in preserving data points in Euclidean space but due to the non-linear structure of the data, MDS cannot preserve the underlying clusters.</p>
-
-<h3 id="conclusion">Conclusion</h3>
-
-<p>Diffusion mapping is more robust to noise perturbation and is the only technique that allows geometric analysis at different scales.</p>
-
-<hr />
-
-<h5 id="footnotes">Footnotes</h5>
-
-<!-- An example of a Gist embed below. -->
-<!-- <noscript><pre>404: Not Found
-</pre></noscript><script src="https://gist.github.com/mmistakes/6589546.js"> </script> -->
-<div class="footnotes">
-  <ol>
-    <li id="fn:4">
-      <p>Applied Mathematics Division, Department of Mathematical Sciences, University of Stellenbosch, South Africa <a href="#fnref:4" class="reversefootnote">&#8617;</a> <a href="#fnref:4:1" class="reversefootnote">&#8617;<sup>2</sup></a> <a href="#fnref:4:2" class="reversefootnote">&#8617;<sup>3</sup></a></p>
-    </li>
-    <li id="fn:5">
-      <p>Colorado School of Mines, United States of America <a href="#fnref:5" class="reversefootnote">&#8617;</a></p>
-    </li>
-    <li id="fn:6">
-      <p>I.T. Jolliffe. Principal component analysis. Springer Verlag New York, 1986. <a href="#fnref:6" class="reversefootnote">&#8617;</a></p>
-    </li>
-    <li id="fn:7">
-      <p><a href="https://scikit-learn.org/stable/modules/decomposition.html#pca">https://scikit-learn.org/stable/modules/decomposition.html#pca</a> <a href="#fnref:7" class="reversefootnote">&#8617;</a></p>
-    </li>
-    <li id="fn:8">
-      <p>W.S. Torgerson. Multidimensional scaling: I. Theory and method. Psychometrika, 17(4):401–419, 1952. <a href="#fnref:8" class="reversefootnote">&#8617;</a></p>
-    </li>
-    <li id="fn:9">
-      <p><a href="https://scikit-learn.org/stable/modules/manifold.html#multidimensional-scaling">https://scikit-learn.org/stable/modules/manifold.html#multidimensional-scaling</a> <a href="#fnref:9" class="reversefootnote">&#8617;</a></p>
-    </li>
-    <li id="fn:10">
-      <p>Joshua B. Tenenbaum, Vin de Silva, and John C. Langford. A Global Geometric Framework for Nonlinear Dimensionality Reduction. Science, 290(5500):2319–2323, 2000. <a href="#fnref:10" class="reversefootnote">&#8617;</a></p>
-    </li>
-    <li id="fn:11">
-      <p><a href="https://scikit-learn.org/stable/modules/manifold.html#isomap">https://scikit-learn.org/stable/modules/manifold.html#isomap</a> <a href="#fnref:11" class="reversefootnote">&#8617;</a></p>
-    </li>
-  </ol>
-</div>
-
-  </div><!-- /.entry-content -->
-</article><!-- /.hentry -->
-
-<article class="hentry">
-  <header>
-    
-      <div class="entry-image-index">
-        <a href="http://localhost:4000/deep_learning_art_images/" title="Deep Learning and Art Images"><img src="http://localhost:4000/images/GoogleArt_cropped.png" alt="Deep Learning and Art Images"></a>
-      </div><!-- /.entry-image -->
-    
-    <div class="entry-meta">
-      <span class="entry-date date published updated"><time datetime="2019-02-09T00:00:00+00:00"><a href="http://localhost:4000/deep_learning_art_images/">February 09, 2019</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Stephan Osterburg">Stephan Osterburg</a></span></span>
-      
-      <span class="entry-reading-time">
-        <i class="fa fa-clock-o"></i>
-        
-Reading time ~3 minutes
-      </span><!-- /.entry-reading-time -->
-      
-    </div><!-- /.entry-meta -->
-    
-      <h1 class="entry-title"><a href="http://localhost:4000/deep_learning_art_images/" rel="bookmark" title="Deep Learning and Art Images" itemprop="url">Deep Learning and Art Images</a></h1>
-    
-  </header>
-  <div class="entry-content">
-    <p>At <a href="https://www.kaggle.com">kaggle</a> we can find a dataset containing a collection of art images of google images, yandex images and from <a href="http://rusmuseumvrm.ru/collections/?lang=en">The Virtual Russian Museum</a>. The dataset has about 9000 images with five categories:</p>
-<ol>
-  <li>Drawings and Watercolors</li>
-  <li>Paintings</li>
-  <li>Sculpture</li>
-  <li>Graphic Art</li>
-  <li>Iconography (old Russian art)</li>
-</ol>
-
-<p>Because it is a classification problem, I wanted to use my newly learned knowledge in deep learning and convolutional neural networks (CNN). However, first things first, the downloaded zip file has two more zip files, which it turns out are somewhat similar in context but not quiet. So I decided to combine the two into one dataset.</p>
-
-<h2 id="approach">Approach</h2>
-
-<p>When I started to research how to tackle the issue for image classification, I found three possible options:</p>
-<ul>
-  <li><code class="highlighter-rouge">train_test_split</code>, we have to create the train and test data ourselves.</li>
-  <li><code class="highlighter-rouge">flow_from_dataframe</code>, we need to create first the dataframe ourselves.</li>
-  <li><code class="highlighter-rouge">flow_from_dictonary</code>, here we don’t need to do any extra work.</li>
-</ul>
-
-<p>I, as you may guessed it already, opted for the later.</p>
-
-<h2 id="how-deep-is-too-deep">How deep is too deep?</h2>
-
-<p>To answer that question, here we need to know one fact first. I am working on a MacBook Pro (2015) with a 2.2 GHz Intel Core i7 processor and 16GB of RAM.</p>
-
-<p>So, how deep is too deep? How many layers can I run on my computer without feeling the pain? To find out I approached it very gingerly, step by step. Or shall I say layer by layer?</p>
-
-<p>For the first try, I had only a few layers, which helped with the computation time. However, the result showed a test accuracy of less than 50%.</p>
-
-<noscript><pre>400: Invalid request
-</pre></noscript>
-<script src="https://gist.github.com/8011d4e50fc6e22d9eb73b7763124003.js"> </script>
-
-<p>To improve the test accuracy, I kept adding layers. I ended up adding several more layers, including <code class="highlighter-rouge">Dropout</code> layers to help to avoid over-fitting.</p>
-
-<noscript><pre>400: Invalid request
-</pre></noscript>
-<script src="https://gist.github.com/57eff9c73a1f613847a2985a86c499fa.js"> </script>
-
-<p>With the simple sequential model the computational time wasn’t too bad but with the  model, seen above, the time went up from several minutes per epochs to nearly 30 minutes per epochs.</p>
-
-<h3 id="epochsbatch_size">epochs/batch_size</h3>
-
-<p>An <code class="highlighter-rouge">epochs</code> is an iteration over the entire provided data; for example, if we have <code class="highlighter-rouge">epochs=25</code> we iterate 25 times over the data. The <code class="highlighter-rouge">batch_size</code> is the number of samples that will propagate through the network, by default 32. In our case where we have about 8000 images in the training set, we have 250 batches per epochs.</p>
-
-<p>The question is, do we decrease the batch_size to 16 or increase the number to 64? If we decrease the number, we have 500 batches vs 125 batches if we increase the number. Large batch size result in faster processing time and vice versa. In regards to epochs, the model improves with more but only to a point. They start to plateau in accuracy as they converge.</p>
-
-<h2 id="pre-trained-network">Pre-Trained Network</h2>
-
-<p>To improve not only the accuracy but also the processing time (so I hoped), I decided to use a pre-trained network. There are a few we can choose from, for example <a href="https://keras.io/applications/#vgg16">VGG16</a>, <a href="https://keras.io/applications/#vgg19">VGG19</a>, <a href="https://keras.io/applications/#inceptionv3">InceptionV3</a>, and <a href="https://keras.io/applications/#resnet50">ResNet50</a> etcetera. I resorted to the <a href="https://arxiv.org/abs/1409.1556">VGG</a> model to keep it simple for the time being.</p>
-
-<p><strong>VGG</strong> is a convolutional neural network model for image recognition proposed by the <strong>Visual Geometry Group in the University of Oxford</strong>, where <em>VGG16</em> refers to a VGG model with 16 weight layers, and <em>VGG19</em> refers to a VGG model with 19 weight layers.</p>
-
-<p>Because we have an already trained model, all we have to do is add at least two more layers (<code class="highlighter-rouge">Flatten</code> and the output <code class="highlighter-rouge">Dense</code> layer) to test what the pre-trained network can do with our dataset. In my case I ended up adding six layers in total:</p>
-
-<noscript><pre>400: Invalid request
-</pre></noscript>
-<script src="https://gist.github.com/2960515a509218482bbbff1a45add65c.js"> </script>
-
-<p>Now, the accuracy improved to 96.68%, up &gt;5% from my previous model, but not the processing time.</p>
-
-<h2 id="aws">AWS</h2>
-
-<p>In the end, it took several hours to run the model. Moreover, it makes it even more painful if you forget to change your default setting on your MacBook and the computer goes into sleep mode, and nothing get processed at all.</p>
-
-<p>To free up the computer I resorted to - welcome - <a href="https://www.paperspace.com">paperspace</a>.</p>
-
-<p>Which allows me to prototype locally (prove of concept) and compute in the cloud.</p>
-
-<h2 id="conclusion">Conclusion</h2>
-
-<p>Use where you can pre-trained networks and if you are using large data use cloud services.</p>
-
-
-  </div><!-- /.entry-content -->
-</article><!-- /.hentry -->
-
-<article class="hentry">
-  <header>
-    
-      <div class="entry-image-index">
-        <a href="http://localhost:4000/forest/" title="Forest Cover Type"><img src="http://localhost:4000/images/dataset-cover.jpeg" alt="Forest Cover Type"></a>
-      </div><!-- /.entry-image -->
-    
-    <div class="entry-meta">
-      <span class="entry-date date published updated"><time datetime="2019-01-14T00:00:00+00:00"><a href="http://localhost:4000/forest/">January 14, 2019</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Stephan Osterburg">Stephan Osterburg</a></span></span>
-      
-      <span class="entry-reading-time">
-        <i class="fa fa-clock-o"></i>
-        
-Reading time ~6 minutes
-      </span><!-- /.entry-reading-time -->
-      
-    </div><!-- /.entry-meta -->
-    
-      <h1 class="entry-title"><a href="http://localhost:4000/forest/" rel="bookmark" title="Forest Cover Type" itemprop="url">Forest Cover Type</a></h1>
-    
-  </header>
-  <div class="entry-content">
-    <h2 id="or-who-cannot-see-the-wood-for-the-trees">Or who cannot see the wood for the trees?</h2>
-
-<p>Researchers at the Department of Forest Sciences at Colorado State University collected over half a million measurements from tree observations from four areas of the Roosevelt National Forest in Colorado. All observations are cartographic variables (no remote sensing) from 30-meter x 30-meter sections of forest.</p>
-
-<p>The resulting dataset includes information on tree type, shadow coverage, distance to nearby landmarks (roads etcetera), soil type, and local topography. In total there are 55 columns/features.</p>
-
-<h3 id="problem">Problem</h3>
-
-<p>Can we build a model that predicts what types of trees grow in an area based on the surrounding characteristics? Like elevation, slope, distance, soil type etcetera.</p>
-
-<h3 id="dataset">Dataset</h3>
-
-<p>The dataset has 55 columns in total where <code class="highlighter-rouge">Wilderness_Area</code> consists of 4 dummy variables and <code class="highlighter-rouge">Soil_Tpye</code> consists of 40 dummy variables.</p>
-
-<p>Continuous Data</p>
-<ul>
-  <li><code class="highlighter-rouge">Elevation</code> (in meters)</li>
-  <li><code class="highlighter-rouge">Aspect</code> (in degrees azimuth<sup id="fnref:2"><a href="#fn:2" class="footnote">1</a></sup>)</li>
-  <li><code class="highlighter-rouge">Slope</code> (in degrees)</li>
-  <li><code class="highlighter-rouge">Horizontal_Distance_To_Hydrology</code> (Horizontal distance to nearest surface water features in meters)</li>
-  <li><code class="highlighter-rouge">Horizontal_Distance_To_Roadways</code> (Horizontal distance to nearest roadway in meters)</li>
-  <li><code class="highlighter-rouge">Horizontal_Distance_To_Fire_Points</code> (Horizontal distance to nearest wildfire ignition points in meters)</li>
-  <li><code class="highlighter-rouge">Vertical_Distance_To_Hydrology</code> (Vertical distance to nearest surface water features in meters)</li>
-  <li><code class="highlighter-rouge">Hillshade_9am</code> (Hill shade index at 9am, summer solstice. Value out of 255)</li>
-  <li><code class="highlighter-rouge">Hillshade_Noon</code> (Hill shade index at noon, summer solstice. Value out of 255)</li>
-  <li><code class="highlighter-rouge">Hillshade_3pm</code> (Hill shade index at 3pm, summer solstice. Value out of 255)</li>
-</ul>
-
-<p>Categorical Data</p>
-<ul>
-  <li><code class="highlighter-rouge">Wilderness Area</code> (4 dummy variable binary columns, 0 = absence or 1 = presence)</li>
-  <li><code class="highlighter-rouge">Soil Type</code> (40 dummy variable binary columns, 0 = absence or 1 = presence)</li>
-</ul>
-
-<p>The target variable <code class="highlighter-rouge">Cover_Type</code> is defined as an integer value between <code class="highlighter-rouge">1</code> and <code class="highlighter-rouge">7</code>, with the following key:</p>
-
-<ol>
-  <li>Spruce/Fir.</li>
-  <li>Lodgepole Pine.</li>
-  <li>Ponderosa Pine.</li>
-  <li>Cottonwood/Willow</li>
-  <li>Aspen</li>
-  <li>Douglas-fir</li>
-  <li>Krummholz</li>
-</ol>
-
-<h3 id="approach">Approach</h3>
-
-<h4 id="eda">EDA</h4>
-
-<p>The first step with every dataset is to do an <code class="highlighter-rouge">Exploratory Data Analysis</code> (EDA). What kind of data do we have? Text or numerical (continues or categorical)? Do we have missing data, or just merely wrong data — values which do not make any sense in the given context, i.e., 9999.</p>
-
-<p>Because of the sheer number of soil types and wilderness areas I had a look at them first. Luckily, the researchers here were efficient in the sense that they document everything meticulously. Everything we need to know with a detailed description can be found online<sup id="fnref:3"><a href="#fn:3" class="footnote">2</a></sup>.</p>
-
-<p>From that document, we can find out that</p>
-<blockquote>
-  <p>This study area includes four wilderness areas located in the
-   Roosevelt National Forest of northern Colorado.  These areas
-   represent forests with minimal human-caused disturbances,
-   so that existing forest cover types are more a result of 
-   ecological processes rather than forest management practices.</p>
-</blockquote>
-
-<p>Not that this is of any importance for our data exploration or to make a prediction, but I found it interesting to read. Because it makes you think about what kind of implications your result can potentially have.</p>
-
-<p>However, what we want to find out is how the data is distributed by <code class="highlighter-rouge">Cover_Type</code>. Here I created a <code class="highlighter-rouge">seaborn.countplot</code>.</p>
-
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">tmpList</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">soil_df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
-    <span class="n">tmpList</span> <span class="o">+=</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">c</span><span class="p">)]</span> <span class="o">*</span> <span class="n">soil_df</span><span class="p">[</span><span class="n">c</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span>
-
-<span class="n">se</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">tmpList</span><span class="p">)</span>
-<span class="n">df</span><span class="p">[</span><span class="s">'Soil_Types'</span><span class="p">]</span> <span class="o">=</span> <span class="n">se</span><span class="o">.</span><span class="n">values</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">countplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s">'Soil_Types'</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s">'Cover_Type'</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s">'Number of Observation by Cover Type'</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">90</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">();</span>
-</code></pre></div></div>
-
-<figure>
-    
-    <a href="/images/SoilType.png"><img src="/images/SoilType.png" alt="" /></a>
-    
-    <figcaption></figcaption>
-</figure>
-
-<p>Looking more closely at the data we can find that the top 5 soil types count for more than 50% of the measurements in the collected data.</p>
-
-<p>Unlike categorical data, the continues data is even more interesting to investigate. The questions we want to find answers for are</p>
-
-<ul>
-  <li>Do we need to scale/normalise the continuous data?</li>
-  <li>What about skewness/kurtosis?</li>
-  <li>Does it matter if the data is in meter, degree or index?</li>
-</ul>
-
-<figure>
-    
-    <a href="/images/ContinuesData.png"><img src="/images/ContinuesData.png" alt="" /></a>
-    
-    <figcaption></figcaption>
-</figure>
-
-<h3 id="feature-selection">Feature Selection</h3>
-
-<p>There are several ways to explore what features we need to keep around to make our prediction. The labour intensive workflow and the much quicker workflow - what I would like to call the “blindfolded method”. For the purpose of gaining more inside, I choose to do both.</p>
-
-<p>In the first workflow, I used several classifiers from the <code class="highlighter-rouge">sklearn.ensemble</code> Library. These are, <code class="highlighter-rouge">AdaBoostClassifier</code>,  <code class="highlighter-rouge">RandomForestClassifier</code>, <code class="highlighter-rouge">GradientBoostingClassifier</code> and <code class="highlighter-rouge">ExtraTreeClassifier</code>. All these classifiers have one thing in common, which is the attribute <code class="highlighter-rouge">feature_importances_</code>, which returns the feature importance (the higher the value, the more important the feature).</p>
-
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Create an empty dataframe to hold our findings for feature_importances_
-</span><span class="n">ranking_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
-
-<span class="n">RFC_model</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">RFC_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
-
-<span class="n">importances</span> <span class="o">=</span> <span class="n">RFC_model</span><span class="o">.</span><span class="n">feature_importances_</span>
-<span class="n">indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">importances</span><span class="p">)[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-
-<span class="c1"># Get feature name
-</span><span class="n">rfc_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">X</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="n">indices</span><span class="p">[</span><span class="n">f</span><span class="p">]]</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])]</span>
-<span class="n">ranking_df</span><span class="p">[</span><span class="s">'RFC'</span><span class="p">]</span> <span class="o">=</span> <span class="n">rfc_list</span>
-
-<span class="c1"># Get feature importance
-</span><span class="n">rfci_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">importances</span><span class="p">[</span><span class="n">indices</span><span class="p">[</span><span class="n">f</span><span class="p">]]</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])]</span>
-<span class="n">ranking_df</span><span class="p">[</span><span class="s">'RFC importance'</span><span class="p">]</span> <span class="o">=</span> <span class="n">rfci_list</span>
-</code></pre></div></div>
-
-<p>The result was a pandas data frame with all features from the dataset in order of importance, which allows us to pick the best features. Interestingly, <code class="highlighter-rouge">RandomForestClassifier</code> and <code class="highlighter-rouge">ExtraTreeClassifier</code> had the most similar results. Other findings from that list were,</p>
-
-<ul>
-  <li><code class="highlighter-rouge">Gradian Boosting</code> shows similar names just in a different order compared to <code class="highlighter-rouge">Random Forest</code> and <code class="highlighter-rouge">Extra Tree</code>.</li>
-  <li><code class="highlighter-rouge">AdaBoost</code> on the other hand shows an exciting and unique result. The top 8 features alone are enough to make a good class prediction. Compared to all the other classifiers, here we have <code class="highlighter-rouge">Wilderness_Area4</code> on above <code class="highlighter-rouge">Elevation</code> in the list.</li>
-  <li><code class="highlighter-rouge">Elevation</code> dominates in all classifiers with a range of <code class="highlighter-rouge">18-25%</code>, up to <code class="highlighter-rouge">65%</code> in <code class="highlighter-rouge">GBC</code>.</li>
-  <li><code class="highlighter-rouge">Hillshade</code> features are seen in the top 20 in 3 out of 4 classifiers. <code class="highlighter-rouge">Random Forest</code> and <code class="highlighter-rouge">Extra Tree Classifier</code> show <code class="highlighter-rouge">Hillshade</code> features having similar ranges.</li>
-  <li><code class="highlighter-rouge">Horizontal_Distance_To_Hydrology</code> and <code class="highlighter-rouge">Vertical_Distance_To_Hydrology</code> are in all classifiers in the top 10.</li>
-  <li><code class="highlighter-rouge">Horizontal_Distance_To_Roadways</code> and <code class="highlighter-rouge">Horizontal_Distance_To_Fire_Points</code> are represented at the top 3 out of 4 classifiers.</li>
-  <li><code class="highlighter-rouge">Aspect</code> and <code class="highlighter-rouge">Slope</code> also show up in the top 20 across all classifiers, with the exception of Gradian Boosting Slope which isn’t in the top 20.</li>
-  <li>In regards to <code class="highlighter-rouge">Soil_Type</code>, it is hard to find some commonality. Here I choose to select: <code class="highlighter-rouge">Soil_Type2</code>, <code class="highlighter-rouge">Soil_Type4</code>, <code class="highlighter-rouge">Soil_Type10</code>, <code class="highlighter-rouge">Soil_Type22</code>, <code class="highlighter-rouge">Soil_Type23</code> and <code class="highlighter-rouge">Soil_Type39</code>.</li>
-</ul>
-
-<p>The question I asked myself at this point is, was the time wisely spend? After all, it took almost 20 minutes to calculate. One advantage this approach has is, we know our selected features.</p>
-
-<p>The other approach we can choose is using <code class="highlighter-rouge">PCA</code> (Principal Component Analysis) from sklearn.</p>
-
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s">'Cover_Type'</span><span class="p">]</span>
-<span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s">'Cover_Type'</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-
-<span class="n">scaler</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
-<span class="n">X_scaled</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
-
-<span class="n">pca</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
-<span class="n">X_pca</span> <span class="o">=</span> <span class="n">pca</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_scaled</span><span class="p">)</span>
-</code></pre></div></div>
-
-<p>The big advantage to this is the short processing time. However, the drawback, we are losing any knowledge regarding our features. Is that important? Possibly.</p>
-
-<p>As you can see in the code snippet above, I opted to scale the features. Researching that topic, I found that there is a multitude of approaches, some use a combination of <code class="highlighter-rouge">StandardScaler</code>, <code class="highlighter-rouge">MinMaxScaler</code> and <code class="highlighter-rouge">Normalizer</code> method and others just picked one of the methods for scaling, centring, normalisation, binarisation and imputation the <code class="highlighter-rouge">sklearn.preprocessing</code> module. Some just scale only the continuous features and not the categorical, etcetera. The list of possibilities goes on. For now, I just used the most straightforward way.</p>
-
-<h3 id="evaluate-model">Evaluate Model</h3>
-
-<p>By hand selecting our features, we get an <code class="highlighter-rouge">accuracy of 92.23%</code> and an <code class="highlighter-rouge">f1_score of 86.74%</code> using cross validation. In contrast, <code class="highlighter-rouge">PCA</code> has an <code class="highlighter-rouge">accuracy of 90.72%</code> and an <code class="highlighter-rouge">f1_score of 84.44%</code>. Is that a big enough difference to justify the time spent to find our features? Maybe.</p>
-
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X_pca</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-
-<span class="n">clf</span> <span class="o">=</span> <span class="n">KNeighborsClassifier</span><span class="p">(</span><span class="n">weights</span><span class="o">=</span><span class="s">'distance'</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
-
-<span class="n">accuracy</span> <span class="o">=</span> <span class="n">cross_val_score</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">cv</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="n">scoring</span> <span class="o">=</span> <span class="s">'accuracy'</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">f1_score</span> <span class="o">=</span> <span class="n">cross_val_score</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">cv</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="n">scoring</span> <span class="o">=</span> <span class="s">'f1_macro'</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
-
-<span class="c1"># predict
-</span><span class="n">predict</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
-
-<span class="c1"># calculating accuracy
-</span><span class="n">accuracy</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">predict</span><span class="p">)</span>
-
-<span class="k">print</span><span class="p">(</span><span class="s">'KNeighbors Classifier model'</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="s">'Accuracy: {:.2f}</span><span class="si">%</span><span class="s">'</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span><span class="n">accuracy</span> <span class="o">*</span> <span class="mi">100</span><span class="p">))</span>
-
-<span class="n">knn_classification_report</span> <span class="o">=</span> <span class="n">classification_report</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">predict</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">knn_classification_report</span><span class="p">)</span>
-</code></pre></div></div>
-
-<figure>
-    
-    <a href="/images/CrossValidation.png"><img src="/images/CrossValidation.png" alt="" /></a>
-    
-    <figcaption></figcaption>
-</figure>
-
-<p>To test how accurate we can predict the <code class="highlighter-rouge">Cover_Type</code> I used the <code class="highlighter-rouge">KNeighborsClassifier</code> from sklearn, and we got an accuracy of <code class="highlighter-rouge">91.02%</code>. That is great.</p>
-
-<h2 id="conclusion">Conclusion</h2>
-
-<p><strong>Yes</strong>, we can build a model that predicts what types of trees grow in an area based on the surrounding characteristics.</p>
-
-<h2 id="final-thought">Final Thought</h2>
-
-<p>We can use sklearn’s <code class="highlighter-rouge">GridSearchCV</code> to find our features (exhaustive search over specified parameter values for an estimator). Moreover, we should make use of sklearn’s <code class="highlighter-rouge">Pipeline</code> functionality to write clean and manageable code.</p>
-
-<p>One last question, could we use clustering to make our prediction?</p>
-
-<h5 id="footnotes">Footnotes</h5>
-
-<noscript><pre>404: Not Found
-</pre></noscript>
-<script src="https://gist.github.com/mmistakes/6589546.js"> </script>
-
-<div class="footnotes">
-  <ol>
-    <li id="fn:2">
-      <p><a href="https://en.wikipedia.org/wiki/Azimuth">https://en.wikipedia.org/wiki/Azimuth</a> <a href="#fnref:2" class="reversefootnote">&#8617;</a></p>
-    </li>
-    <li id="fn:3">
-      <p><a href="https://archive.ics.uci.edu/ml/machine-learning-databases/covtype/covtype.info">https://archive.ics.uci.edu/ml/machine-learning-databases/covtype/covtype.info</a> <a href="#fnref:3" class="reversefootnote">&#8617;</a></p>
-    </li>
-  </ol>
-</div>
-
-  </div><!-- /.entry-content -->
-</article><!-- /.hentry -->
-
-
-
-<div class="pagination">
-  <ul class="inline-list">
-    
-    
-
-    
-    
-      <li><strong class="current-page">1</strong></li>
-    
-
-    
-    
-
-    
-    
-    
-
-    
-
-    
-    
-
-    
-      <li><a href="http://localhost:4000/page2/">2</a></li>
-    
-
-    
-    
-      <li><a href="http://localhost:4000/page2/" class="btn">Next</a></li>
-    
+        <div class="social-share">
+  <ul class="socialcount socialcount-small inline-list">
+    <li class="facebook"><a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/text_classification_part_2/" title="Share on Facebook"><span class="count"><i class="fa fa-facebook-square"></i> Like</span></a></li>
+    <li class="twitter"><a href="https://twitter.com/intent/tweet?text=http://localhost:4000/text_classification_part_2/" title="Share on Twitter"><span class="count"><i class="fa fa-twitter-square"></i> Tweet</span></a></li>
+    <li class="googleplus"><a href="https://plus.google.com/share?url=http://localhost:4000/text_classification_part_2/" title="Share on Google Plus"><span class="count"><i class="fa fa-google-plus-square"></i> +1</span></a></li>
   </ul>
-</div>
-
+</div><!-- /.social-share -->
+      </footer>
+    </div><!-- /.entry-content -->
+    
+    <div class="read-more">
+  
+    <div class="read-more-header">
+      <a href="http://localhost:4000/text_classification_part_1/" class="read-more-btn">Read More</a>
+    </div><!-- /.read-more-header -->
+    <div class="read-more-content">
+      <h3><a href="http://localhost:4000/text_classification_part_1/" title="Text Classification (Part 1)">Text Classification (Part 1)</a></h3>
+      <p>Fake News <a href="http://localhost:4000/text_classification_part_1/">Continue reading</a></p>
+    </div><!-- /.read-more-content -->
+  
+  <div class="read-more-list">
+    
+      <div class="list-item">
+        <h4><a href="http://localhost:4000/an_introductio_to_diffusion_maps/" title="A short introduction to Diffusion Maps">A short introduction to Diffusion Maps</a></h4>
+        <span>Published on February 23, 2019</span>
+      </div><!-- /.list-item -->
+    
+      <div class="list-item">
+        <h4><a href="http://localhost:4000/deep_learning_art_images/" title="Deep Learning and Art Images">Deep Learning and Art Images</a></h4>
+        <span>Published on February 09, 2019</span>
+      </div><!-- /.list-item -->
+    
+  </div><!-- /.read-more-list -->
+</div><!-- /.read-more -->
+  </article>
 </div><!-- /#main -->
 
 <div class="footer-wrapper">
@@ -7417,7 +6840,7 @@ Reading time ~6 minutes
 
 
 
-          
+
 
 </body>
 </html>

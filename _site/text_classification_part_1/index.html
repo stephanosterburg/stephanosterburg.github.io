@@ -5,7 +5,7 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en"><!--<![endif]-->
 <head>
 <meta charset="utf-8">
-<title>Text Classification &#8211; Data Ocean</title>
+<title>Text Classification (Part 1) &#8211; Data Ocean</title>
 <meta name="description" content="Fake News">
 <meta name="keywords" content="data, code, content">
 
@@ -13,14 +13,14 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="http://localhost:4000/images/Newsstand.jpg">
 
-<meta name="twitter:title" content="Text Classification">
+<meta name="twitter:title" content="Text Classification (Part 1)">
 <meta name="twitter:description" content="Fake News">
 <meta name="twitter:creator" content="@sosterburg">
 
 <!-- Open Graph -->
 <meta property="og:locale" content="en_US">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Text Classification">
+<meta property="og:title" content="Text Classification (Part 1)">
 <meta property="og:description" content="Fake News">
 <meta property="og:url" content="http://localhost:4000/text_classification_part_1/">
 <meta property="og:site_name" content="Data Ocean">
@@ -134,7 +134,7 @@ MathJax.Hub.Config({
 <div class="entry-header">
   
   <div class="entry-image">
-    <img src="http://localhost:4000/images/Newsstand.jpg" alt="Text Classification">
+    <img src="http://localhost:4000/images/Newsstand.jpg" alt="Text Classification (Part 1)">
   </div><!-- /.entry-image -->
 </div><!-- /.entry-header -->
 
@@ -144,7 +144,7 @@ MathJax.Hub.Config({
     <header class="header-title">
       <div class="header-title-wrap">
         
-          <h1 class="entry-title"><a href="http://localhost:4000/text_classification_part_1/" rel="bookmark" title="Text Classification">Text Classification</a></h1>
+          <h1 class="entry-title"><a href="http://localhost:4000/text_classification_part_1/" rel="bookmark" title="Text Classification (Part 1)">Text Classification (Part 1)</a></h1>
         
         <h2><span class="entry-date date published"><time datetime="2019-04-02T00:00:00+01:00">April 02, 2019</time></span></h2>
         
@@ -159,14 +159,14 @@ Reading time ~3 minutes
     <div class="entry-content">
       <h2 id="reliable-or-unreliable">Reliable or Unreliable?</h2>
 
-<p>Over the past two decades and especially since the United States presidential election 2016 there is an increase in unreliable news content. The question which got and still get asked is how can we know which is which. To find an answer I started at <a href="http://www.opensources.co/">opensources</a> which curates a list of online information sources. The websites listed range from credible news to misleading and outright fake.</p>
+<p>Over the past two decades and especially since the United States presidential election 2016 there is an increase in unreliable news content. The question which got and still gets asked is how can we know which is which. To find an answer I started at <a href="http://www.opensources.co/">opensources</a> which curates a list of online information sources. The websites listed range from credible news to misleading and outright fake.</p>
 
 <p>The following post is part one in a series of four blog posts:</p>
 <ul>
   <li>collecting news content</li>
   <li>preprocessing data</li>
-  <li>create keras model</li>
-  <li>next possible step(s)</li>
+  <li>creating a keras model</li>
+  <li>possible next step(s)</li>
 </ul>
 
 <h2 id="collecting-news-content">Collecting News Content</h2>
@@ -181,35 +181,35 @@ Reading time ~3 minutes
 
 <p style="text-align: center;"><img src="/images/CategoryCountList.png" alt="Count Category" /></p>
 
-<p>We have some oddly named categories and a meagre number of only 3 reliable URLs in the list. To address this imbalance, I added about 70 URLs I consider reliable (hopefully) of my own, which doesn’t balance the scale very much but at least pushes it into the right direction. Plus, let us see what and how much content we can scrap from the world wide web before we do something about the source list.</p>
+<p>We have some oddly named categories and a meagre number of only 3 reliable URLs in the list. To address this imbalance, I added about 70 URLs I consider reliable (hopefully) of my own, which doesn’t balance the scale very much but at least pushes it into the right direction. Plus, let us see what and how much content we can scrape from the world wide web before we do something about the source list.</p>
 
 <h3 id="web-scraping">Web Scraping</h3>
 
 <p>There are several tools to get content from a website, <a href="https://scrapy.org/">scrapy</a> and <a href="https://www.crummy.com/software/BeautifulSoup/">beautifulsoup</a> are the two most popular tools probably out there. In both cases, we need to inspect the HTML code of a website. If you are interested to learn more about it, <a href="https://hackernoon.com/web-scraping-tutorial-with-python-tips-and-tricks-db070e70e071">here is an excellent tutorial with tips and tricks using python</a>.</p>
 
-<p>In any case, the main problem we are facing here is that every website has a different underlying architecture. To determine what the best options there are I decided to look at <a href="https://www.nytimes.com/">NYTimes</a>. As we can see in the image below, each paragraph is in its separate HTML tag. To collect content only from the NYTimes website won’t be impossible, just bloody difficult and neither of the mentioned tools won’t do it in the long run. And if we are considering that we have over 500 labelled URLs and for the scope of this project it is just not visible. There must be more straightforward ways to tackle this.</p>
+<p>In any case, the primary challenge we are facing here is that every website has a different underlying architecture. To determine what the best options are I decided to look at <a href="https://www.nytimes.com/">NYTimes</a>. As we can see in the image below, each paragraph is in its separate HTML tag. Collecting content only from the NYTimes website won’t be impossible, it is just exceedingly complicated, and neither of the mentioned tools won’t do it in the long run. If we are considering that we have over 500 labelled URLs, for the scope of this project, it is just not practical. There must be more straightforward ways to tackle this.</p>
 
 <p style="text-align: center;"><img src="/images/nytimes_html.png" alt="Count Category" /></p>
 
 <h2 id="api">API</h2>
 
-<p>Luckily, the NYTimes offers an API to excess not only their archive but also search for the most current articles online. Even better, their developer site has a playground to toy around to see what kind of results you can get and fine tune our query.</p>
+<p>Luckily, the NYTimes offers an API to excess not only their archive but also search for the most current articles online. Even better, their developer site has a playground to sample what kind of results you can get and fine tune our query.</p>
 
 <noscript><pre>400: Invalid request
 </pre></noscript>
 <script src="https://gist.github.com/3dac0843b584b388d42a881209089876.js"> </script>
 
-<p>The NYTimes search API gives us a wide range of options to query for data, starting from with date range and fields like <code class="highlighter-rouge">day_of_week</code>, <code class="highlighter-rouge">headline</code>, <code class="highlighter-rouge">subject</code> etcetera, as well as <code class="highlighter-rouge">news desk</code> values like blogs, cars, fashion and many more.</p>
+<p>The NYTimes search API gives us a wide range of options to query for data, starting with date range and fields like <code class="highlighter-rouge">day_of_week</code>, <code class="highlighter-rouge">headline</code>, <code class="highlighter-rouge">subject</code> etcetera, as well as <code class="highlighter-rouge">news desk</code> values like blogs, cars, fashion and many more.</p>
 
-<p>Unfortunately, we only get the lead paragraph from our search which doesn’t help much if we are looking for the full articles. At the end all we get is metadata, but that’s it.</p>
+<p>Unfortunately, we only get the lead paragraph from our search which doesn’t help much if we are looking for the full articles. In the end, all we get is metadata, but that’s it.</p>
 
 <h2 id="webhoseio">webhose.io</h2>
 
-<p>There are a few websites which offer web scraping tools, for example <a href="https://www.import.io/">import.io</a>, <a href="https://www.webhose.io/">webhose.io</a> and <a href="https://dexi.io/">dexi.io</a>. We can find an extended list <a href="https://www.hongkiat.com/blog/web-scraping-tools/">here</a>. None are free, but some offer a free trial period. Because of that, I ended up using webhose.io.</p>
+<p>There are a few websites which offer web scraping tools, for example <a href="https://www.import.io/">import.io</a>, <a href="https://www.webhose.io/">webhose.io</a> and <a href="https://dexi.io/">dexi.io</a>. We can find an extended list <a href="https://www.hongkiat.com/blog/web-scraping-tools/">here</a>. None are free, but some offer a free trial period and <a href="https://www.webhose.io/">webhose.io</a> is one of them which I ended up using.</p>
 
-<p>Like the NYTimes, webhose.io also has a playground to fine tune our query with the main difference that you can see your search request in different coding languages like ruby or python. However, be mindful, you only have 1000 requests free.</p>
+<p>Like the NYTimes, webhose.io also has a playground to fine tune our query with the main difference that you can see your search request in different coding languages like ruby or python. However, be aware, that you only have 1000 free requests.</p>
 
-<p>Unfortunately, we can’t get excess to all the URLs we have on our list. However, it gives us at least some data. Also, webhose.io has archived data we can search.</p>
+<p>Unfortunately, we can’t get access to all the URLs we have on our list. However, it gives us at least some data. We can also search through webhose.io’s archived data.</p>
 
 <h2 id="newsapi">newsapi</h2>
 
@@ -221,11 +221,13 @@ Reading time ~3 minutes
 
 <h2 id="conclusion">Conclusion</h2>
 
-<p>If we are serious about getting proper up-to-date news content, I  believe that the API from newsapi is your API of choice. However, for the task ahead of us I ended up using the data I collected via webhose.io and may come back at a later time to update the project.</p>
+<p>If we are serious about getting proper up-to-date news content, I  believe that the API from newsapi is your API of choice. However, for the task ahead of us I choose to use the data I collected via webhose.io and may come back at a later time to update the project.</p>
 
-<p>Also, there is an already polished and fairly large corpus <a href="https://github.com/several27/FakeNewsCorpus">here</a> we can use.</p>
+<p>Additionally, there is an already <a href="https://github.com/several27/FakeNewsCorpus">polished and fairly large corpus</a> we can use by Maciej Szpakowski.</p>
 
-<p>In the next upcoming part, I will discuss <a href="https://stephanosterburg.github.io/text_classification_part_2">data preprocessing</a>.</p>
+<h2 id="upcoming">Upcoming</h2>
+
+<p>In the next part, I am going to discuss data exploration.</p>
 
       <footer class="entry-meta">
         <span class="entry-tags"><a href="http://localhost:4000/tags/#data" title="Pages tagged data" class="tag"><span class="term">data</span></a><a href="http://localhost:4000/tags/#code" title="Pages tagged code" class="tag"><span class="term">code</span></a><a href="http://localhost:4000/tags/#content" title="Pages tagged content" class="tag"><span class="term">content</span></a></span>
@@ -246,20 +248,20 @@ Reading time ~3 minutes
       <a href="http://localhost:4000/an_introductio_to_diffusion_maps/" class="read-more-btn">Read More</a>
     </div><!-- /.read-more-header -->
     <div class="read-more-content">
-      <h3><a href="http://localhost:4000/an_introductio_to_diffusion_maps/" title="A short introduction to Diffusion Maps">A short introduction to Diffusion Maps</a></h3>
-      <p>An interpretation of the paper <a href="http://localhost:4000/an_introductio_to_diffusion_maps/">Continue reading</a></p>
+      <h3><a href="http://localhost:4000/text_classification_part_2/" title="Text Classification (Part 2)">Text Classification (Part 2)</a></h3>
+      <p>Fake News <a href="http://localhost:4000/text_classification_part_2/">Continue reading</a></p>
     </div><!-- /.read-more-content -->
   
   <div class="read-more-list">
     
       <div class="list-item">
-        <h4><a href="http://localhost:4000/deep_learning_art_images/" title="Deep Learning and Art Images">Deep Learning and Art Images</a></h4>
-        <span>Published on February 09, 2019</span>
+        <h4><a href="http://localhost:4000/an_introductio_to_diffusion_maps/" title="A short introduction to Diffusion Maps">A short introduction to Diffusion Maps</a></h4>
+        <span>Published on February 23, 2019</span>
       </div><!-- /.list-item -->
     
       <div class="list-item">
-        <h4><a href="http://localhost:4000/forest/" title="Forest Cover Type">Forest Cover Type</a></h4>
-        <span>Published on January 14, 2019</span>
+        <h4><a href="http://localhost:4000/deep_learning_art_images/" title="Deep Learning and Art Images">Deep Learning and Art Images</a></h4>
+        <span>Published on February 09, 2019</span>
       </div><!-- /.list-item -->
     
   </div><!-- /.read-more-list -->
