@@ -72,4 +72,4 @@ The pyLDAvis interface:
 
 [spaCy](https://spacy.io/) offers excellent tools to process raw text. Most words are rare, and it’s common for words that look entirely different to mean almost the same thing. The same words in a different order can mean something completely different. Even splitting text into useful word-like units can be difficult in many languages. While it’s possible to solve some problems starting from only the raw characters, it’s usually better to use linguistic knowledge to add useful information. That’s exactly what spaCy is designed to do: you put in raw text and get back a Doc object, that comes with a variety of annotations.
 
-To continue working on the EDA and help us analyse our content we shall use spaCy's statistical entity recognition system as well as `spacy-vis`, a visualisation tool using Hierplane.
+To continue working on our Exploratory Data Analysis and help us understand our content we shall use spaCy's statistical entity recognition system as well as `spacy-vis`, a visualisation tool using Hierplane.
