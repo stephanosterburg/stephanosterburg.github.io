@@ -74,4 +74,4 @@ Additionally, there is an already [polished and fairly large corpus](https://git
 
 ## Upcoming
 
-In the next part, I am going to discuss data exploration.
+[Part 2: I am going to discuss data exploration.]({% post_url 2019-04-06-text_classification_part_2 %})

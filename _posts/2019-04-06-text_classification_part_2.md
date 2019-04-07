@@ -79,4 +79,4 @@ To continue working on our Exploratory Data Analysis and help us understand our 
 
 ## Upcoming
 
-In the next part, I am going to explore how to approach "big" data.
+[Part 3: I am going to explore how to approach "big" data.]({% post_url 2019-04-07-text_classification_part_3 %})
