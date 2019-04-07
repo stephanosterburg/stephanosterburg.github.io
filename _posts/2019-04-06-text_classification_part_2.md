@@ -61,5 +61,6 @@ The pyLDAvis interface:
 the left panel shows how common and how each topic relates to each other in 2D space.
 the right panel shows us a list of the most notable word (topics) and its frequency. If we select a topic, we see the topic-specific frequency of each term (red) and the corpus-wide frequency (blue).
 
-<a href="_includes/LDAvis_ReliableNews.html" target="_blank">Visualise reliable news content using pyLDAvis</a>  (opens in new tap)
 <!-- <a href="http://example.com/" target="_blank">Hello, world!</a> -->
+
+<a href="https://github.com/osterburg/dsc-5-capstone-project-online-ds-ft-100118/output/LDAvis_ReliableNews.html" target="_blank">Visualise reliable news content using pyLDAvis</a>  (opens in new tap)
