@@ -164,8 +164,8 @@ Our model returns a near perfect accuracy score of 97.83%, and if we are also lo
 
 You may notice the `with`-statement and recall that I am working on a laptop. To train the model on the laptop is not manageable. To be able to train the model I used [paperspace's](https://www.paperspace.com/gradient) gradient service, which includes jupyter notebooks, a job runner, and a python module to run any code on Paperspace GPU cloud.
 
-## Final Note
+## What is next?
 
-What is next? I like to create two more keras models, one which focuses on its "content" and the other model on its "context". Furthermore, be able to predict what type of news article do we have - reliable or unreliable.
+Create two more keras models, one which focuses on its "content" and the other model on its "context". Furthermore, be able to predict what type of news article do we have - reliable or unreliable.
 
 Finally, build a [dashboard](https://dash.plot.ly/).
