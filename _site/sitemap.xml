@@ -43,4 +43,8 @@
 <url>
 <loc>http://localhost:4000/page2/</loc>
 </url>
+<url>
+<loc>http://localhost:4000/data/LDAvis_ReliableNews.html</loc>
+<lastmod>2019-04-07T08:45:38+01:00</lastmod>
+</url>
 </urlset>

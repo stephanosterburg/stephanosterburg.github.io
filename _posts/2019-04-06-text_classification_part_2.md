@@ -67,6 +67,7 @@ The pyLDAvis interface:
 {:refdef: style="text-align: center;"}
 ![LDA visualisation]({{ site.baseimg }}/images/pyLDAvis.png)
 {: refdef}
+<a href="https://stephanosterburg.github.io/data/LDAvis_ReliableNews.html" target="_blank">Hello, world!</a>
 
 ## Linguistic Features
 
