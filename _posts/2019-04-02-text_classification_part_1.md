@@ -4,8 +4,8 @@ title: Text Classification (Part 1)
 description: "Fake News"
 tags: [data, code, content]
 image:
-  path: /images/Newsstand.jpg
-  feature: Newsstand.jpg
+  path: /images/Newstand_part1.jpg
+  feature: Newstand_part1.jpg
 ---
 
 ## Reliable or Unreliable?

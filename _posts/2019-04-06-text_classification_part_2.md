@@ -4,8 +4,8 @@ title: Text Classification (Part 2)
 description: "Fake News"
 tags: [data, code, content]
 image:
-  path: /images/Newsstand.jpg
-  feature: Newsstand.jpg
+  path: /images/Newstand_part2.jpg
+  feature: Newstand_part2.jpg
 ---
 
 ## Exploratory Data Analysis

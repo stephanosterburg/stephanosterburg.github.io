@@ -4,13 +4,13 @@ title: Text Classification (Part 3)
 description: "Fake News"
 tags: [data, code, content]
 image:
-  path: /images/Newsstand.jpg
-  feature: Newsstand.jpg
+  path: /images/Newstand_part3.jpg
+  feature: Newstand_part3.jpg
 ---
 
 ## Using Big Data
 
-The dataset used for that project is an already [polished and fairly large corpus](https://github.com/several27/FakeNewsCorpus) by Maciej Szpakowski. 
+The dataset used for that project is an already [polished and fairly large corpus](https://github.com/several27/FakeNewsCorpus) by Maciej Szpakowski.
 
 > This is an open source dataset composed of millions of news articles mostly scraped from a curated list of 1001 domains from http://www.opensources.co/. Because the list does not contain any reliable websites, additionally NYTimes and Webhose English News Articles articles have been included to balance the classes better. The dataset is still work in progress, and for now, the public version includes only 9,408,908 articles (745 out of 1001 domains).
 
@@ -24,9 +24,9 @@ To read the CSV file with pandas, the same row (63) ended in a `_csv.Error: fiel
 def csv_field_limit():
     maxInt = sys.maxsize
     decrement = True
-    
+
     while decrement:
-        # decrease the maxInt value by factor 10 
+        # decrease the maxInt value by factor 10
         # as long as the OverflowError occurs.
         decrement = False
         try:
@@ -63,7 +63,7 @@ categories
 }}/images/BigDataCategories.png)
 {: refdef}
 
-As we can see we need to do some cleaning. We have some oddly named categories and also checked for null values. From our data exploration, we have a few handy functions to clean the data. For example, remove all digits, HTML strings and stopwords from our text and to lemmatise the words. 
+As we can see we need to do some cleaning. We have some oddly named categories and also checked for null values. From our data exploration, we have a few handy functions to clean the data. For example, remove all digits, HTML strings and stopwords from our text and to lemmatise the words.
 
 To send the data to separate processes for processing, we can configure dask's scheduler and set it globally. This option is useful when operating on pure Python objects like strings.
 
@@ -73,7 +73,7 @@ dask.config.set(scheduler='processes')
 
 ## Parquet
 
-To save disk space dask encourages dataframes (pandas) users like us to use [Parquet](https://parquet.apache.org/). It is a columnar binary format that is easy to split into multiple files (easier for parallel loading) and is generally much simpler to deal with than compared to HDF5 a popular choice for Pandas users with high-performance needs. It is also a common format used by other big data systems like [Apache Spark](https://spark.apache.org/) and [Apache Impala](https://impala.apache.org/). 
+To save disk space dask encourages dataframes (pandas) users like us to use [Parquet](https://parquet.apache.org/). It is a columnar binary format that is easy to split into multiple files (easier for parallel loading) and is generally much simpler to deal with than compared to HDF5 a popular choice for Pandas users with high-performance needs. It is also a common format used by other big data systems like [Apache Spark](https://spark.apache.org/) and [Apache Impala](https://impala.apache.org/).
 
 For data-sets too big to fit conveniently into memory, like ours, we want to read it in line by line or iterate through the row-groups in a similar way to reading by chunks from CSV with pandas. For the latter, [fastparquet](https://fastparquet.readthedocs.io/en) makes it possible to do that using [iter_row_groups API](https://fastparquet.readthedocs.io/en/latest/api.html#fastparquet.ParquetFile.iter_row_groups).
 
@@ -99,7 +99,7 @@ model = Sequential([
 	Dropout(0.2, activation='relu'),
 	Dense(1, activation='sigmoid')
 	])
-        
+
 model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
 ```
 
@@ -108,11 +108,11 @@ Also, to be able to read in the data I needed to create a custom generator to pr
 ```python
 def _generator_process_line(line):
     embedding = np.zeros((max_words, 100))
-    
+
     for i, word in enumerate(line[0].split()[:max_words]):
         if word in glove:
             embedding[i] = glove[word]
-            
+
     return embedding, line[1]
 
 def Generator(data, batch_size):
@@ -121,18 +121,18 @@ def Generator(data, batch_size):
             # skip header
             for _ in range(1):
                 next(f)
-                
+
             batch_i = 0
             batch_embedding = np.zeros((batch_size, max_words, 100))
             batch_label = np.zeros((batch_size, 1))
-            
+
             reader = csv.reader(f)
             for line in reader:
                 embedding, label = _generator_process_line(line)                
 
                 if (batch_i + 1) == batch_size:
                     yield batch_embedding, batch_label
-                    
+
                     batch_embedding = np.zeros((batch_size, max_words, 100))
                     batch_label = np.zeros((batch_size, 1))
                     batch_i = 0
@@ -142,13 +142,13 @@ def Generator(data, batch_size):
                     batch_i += 1
 ```
 
-The following code snippet trains the model on data generated batch-by-batch by the python generator above. 
+The following code snippet trains the model on data generated batch-by-batch by the python generator above.
 
 ```python
 with tf.device('/gpu:0'):
-    history = model.fit_generator(Generator(train_data, batch_size), 
+    history = model.fit_generator(Generator(train_data, batch_size),
                                   steps_per_epoch=train_size//batch_size,
-                                  validation_data=Generator(valid_data, batch_size), 
+                                  validation_data=Generator(valid_data, batch_size),
                                   validation_steps=valid_size//batch_size,
                                   epochs=epochs, verbose=1)
 ```

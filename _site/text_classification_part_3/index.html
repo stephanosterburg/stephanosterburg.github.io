@@ -11,7 +11,7 @@
 
 <!-- Twitter Cards -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://localhost:4000/images/Newsstand.jpg">
+<meta name="twitter:image" content="http://localhost:4000/images/Newstand_part3.jpg">
 
 <meta name="twitter:title" content="Text Classification (Part 3)">
 <meta name="twitter:description" content="Fake News">
@@ -134,7 +134,7 @@ MathJax.Hub.Config({
 <div class="entry-header">
   
   <div class="entry-image">
-    <img src="http://localhost:4000/images/Newsstand.jpg" alt="Text Classification (Part 3)">
+    <img src="http://localhost:4000/images/Newstand_part3.jpg" alt="Text Classification (Part 3)">
   </div><!-- /.entry-image -->
 </div><!-- /.entry-header -->
 
@@ -174,9 +174,9 @@ Reading time ~4 minutes
 </span><span class="k">def</span> <span class="nf">csv_field_limit</span><span class="p">():</span>
     <span class="n">maxInt</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">maxsize</span>
     <span class="n">decrement</span> <span class="o">=</span> <span class="bp">True</span>
-    
+
     <span class="k">while</span> <span class="n">decrement</span><span class="p">:</span>
-        <span class="c1"># decrease the maxInt value by factor 10 
+        <span class="c1"># decrease the maxInt value by factor 10
 </span>        <span class="c1"># as long as the OverflowError occurs.
 </span>        <span class="n">decrement</span> <span class="o">=</span> <span class="bp">False</span>
         <span class="k">try</span><span class="p">:</span>
@@ -240,7 +240,7 @@ Reading time ~4 minutes
 	<span class="n">Dropout</span><span class="p">(</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s">'relu'</span><span class="p">),</span>
 	<span class="n">Dense</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s">'sigmoid'</span><span class="p">)</span>
 	<span class="p">])</span>
-        
+
 <span class="n">model</span><span class="o">.</span><span class="nb">compile</span><span class="p">(</span><span class="n">loss</span><span class="o">=</span><span class="s">'binary_crossentropy'</span><span class="p">,</span> <span class="n">optimizer</span><span class="o">=</span><span class="s">'adam'</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s">'accuracy'</span><span class="p">])</span>
 </code></pre></div></div>
 
@@ -248,11 +248,11 @@ Reading time ~4 minutes
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">_generator_process_line</span><span class="p">(</span><span class="n">line</span><span class="p">):</span>
     <span class="n">embedding</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">max_words</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span>
-    
+
     <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">word</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">line</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">()[:</span><span class="n">max_words</span><span class="p">]):</span>
         <span class="k">if</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">glove</span><span class="p">:</span>
             <span class="n">embedding</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">glove</span><span class="p">[</span><span class="n">word</span><span class="p">]</span>
-            
+
     <span class="k">return</span> <span class="n">embedding</span><span class="p">,</span> <span class="n">line</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
 
 <span class="k">def</span> <span class="nf">Generator</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">):</span>
@@ -261,18 +261,18 @@ Reading time ~4 minutes
             <span class="c1"># skip header
 </span>            <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">):</span>
                 <span class="nb">next</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
-                
+
             <span class="n">batch_i</span> <span class="o">=</span> <span class="mi">0</span>
             <span class="n">batch_embedding</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">max_words</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span>
             <span class="n">batch_label</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">batch_size</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
-            
+
             <span class="n">reader</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
             <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">reader</span><span class="p">:</span>
                 <span class="n">embedding</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="n">_generator_process_line</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>                
 
                 <span class="k">if</span> <span class="p">(</span><span class="n">batch_i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="n">batch_size</span><span class="p">:</span>
                     <span class="k">yield</span> <span class="n">batch_embedding</span><span class="p">,</span> <span class="n">batch_label</span>
-                    
+
                     <span class="n">batch_embedding</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">max_words</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span>
                     <span class="n">batch_label</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">batch_size</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
                     <span class="n">batch_i</span> <span class="o">=</span> <span class="mi">0</span>
@@ -285,9 +285,9 @@ Reading time ~4 minutes
 <p>The following code snippet trains the model on data generated batch-by-batch by the python generator above.</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="s">'/gpu:0'</span><span class="p">):</span>
-    <span class="n">history</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit_generator</span><span class="p">(</span><span class="n">Generator</span><span class="p">(</span><span class="n">train_data</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">),</span> 
+    <span class="n">history</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit_generator</span><span class="p">(</span><span class="n">Generator</span><span class="p">(</span><span class="n">train_data</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">),</span>
                                   <span class="n">steps_per_epoch</span><span class="o">=</span><span class="n">train_size</span><span class="o">//</span><span class="n">batch_size</span><span class="p">,</span>
-                                  <span class="n">validation_data</span><span class="o">=</span><span class="n">Generator</span><span class="p">(</span><span class="n">valid_data</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">),</span> 
+                                  <span class="n">validation_data</span><span class="o">=</span><span class="n">Generator</span><span class="p">(</span><span class="n">valid_data</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">),</span>
                                   <span class="n">validation_steps</span><span class="o">=</span><span class="n">valid_size</span><span class="o">//</span><span class="n">batch_size</span><span class="p">,</span>
                                   <span class="n">epochs</span><span class="o">=</span><span class="n">epochs</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 </code></pre></div></div>
