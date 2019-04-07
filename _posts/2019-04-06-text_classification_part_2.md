@@ -44,8 +44,10 @@ Moreover, we can see that also in the distribution about the number of words in 
 
 Occasionally, only term frequency statistics are available. In the case where this may happen like in very large, lost, or proprietary data sets. To help us here we can use the tool [`scattertext`](https://github.com/JasonKessler/scattertext) which is based on [`spaCy`](https://spacy.io/). `TermCategoryFrequencies` function is a corpus representation, that can accept this sort of data, along with any categorised documents that happen to be available.
 
-{% include reliable_vs_unreliable.html %}
-.
+{:refdef: style="text-align: center;"}
+![Visualisation Term Category Frequencies]({{ site.baseimg }}/images/TermCategoryFrequencies.png)
+{: refdef}
+<a href="https://stephanosterburg.github.io/data/reliable_vs_unreliable.html" target="_blank">Visualizing TermCategoryFrequencies</a> (link opens in new tab)
 
 The critical part to note here is that the data represented in this plot comes from unbalanced data.
 
@@ -67,7 +69,7 @@ The pyLDAvis interface:
 {:refdef: style="text-align: center;"}
 ![LDA visualisation]({{ site.baseimg }}/images/pyLDAvis.png)
 {: refdef}
-<a href="https://stephanosterburg.github.io/data/LDAvis_ReliableNews.html" target="_blank">Visualizing LDA (link opens in new tab)</a>
+<a href="https://stephanosterburg.github.io/data/LDAvis_ReliableNews.html" target="_blank">Visualizing LDA</a> (link opens in new tab)
 
 ## Linguistic Features
 
