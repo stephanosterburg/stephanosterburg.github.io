@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-04-07T11:27:18+01:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Data Ocean</title><subtitle>A discovery into the world of data.</subtitle><entry><title type="html">Text Classification (Part 2)</title><link href="http://localhost:4000/text_classification_part_2/" rel="alternate" type="text/html" title="Text Classification (Part 2)" /><published>2019-04-06T00:00:00+01:00</published><updated>2019-04-06T00:00:00+01:00</updated><id>http://localhost:4000/text_classification_part_2</id><content type="html" xml:base="http://localhost:4000/text_classification_part_2/">&lt;h2 id=&quot;exploratory-data-analysis&quot;&gt;Exploratory Data Analysis&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-04-07T11:38:22+01:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Data Ocean</title><subtitle>A discovery into the world of data.</subtitle><entry><title type="html">Text Classification (Part 2)</title><link href="http://localhost:4000/text_classification_part_3/" rel="alternate" type="text/html" title="Text Classification (Part 2)" /><published>2019-04-07T00:00:00+01:00</published><updated>2019-04-07T00:00:00+01:00</updated><id>http://localhost:4000/text_classification_part_3</id><content type="html" xml:base="http://localhost:4000/text_classification_part_3/">&lt;h2 id=&quot;exploratory-data-analysis&quot;&gt;Exploratory Data Analysis&lt;/h2&gt;
 
 &lt;p&gt;After collecting our data, the first thing we want to do is to get an understanding of it. Exploratory Data Analysis or short EDA is one of the essential steps in the data analysis process. By trying to make sense of the data, we can start formulating questions and if necessary go back and make changes to where our data came from, and others.&lt;/p&gt;
 
@@ -57,7 +57,66 @@
 
 &lt;p&gt;&lt;a href=&quot;https://spacy.io/&quot;&gt;spaCy&lt;/a&gt; offers excellent tools to process raw text. Most words are rare, and it’s common for words that look entirely different to mean almost the same thing. The same words in a different order can mean something completely different. Even splitting text into useful word-like units can be difficult in many languages. While it’s possible to solve some problems starting from only the raw characters, it’s usually better to use linguistic knowledge to add useful information. That’s exactly what spaCy is designed to do: you put in raw text and get back a Doc object, that comes with a variety of annotations.&lt;/p&gt;
 
-&lt;p&gt;To continue working on our Exploratory Data Analysis and help us understand our content we shall use spaCy’s statistical entity recognition system as well as &lt;code class=&quot;highlighter-rouge&quot;&gt;spacy-vis&lt;/code&gt;, a visualisation tool using Hierplane.&lt;/p&gt;</content><author><name></name></author><category term="data" /><category term="code" /><category term="content" /><summary type="html">Exploratory Data Analysis</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/images/Newsstand.jpg" /></entry><entry><title type="html">Text Classification (Part 1)</title><link href="http://localhost:4000/text_classification_part_1/" rel="alternate" type="text/html" title="Text Classification (Part 1)" /><published>2019-04-02T00:00:00+01:00</published><updated>2019-04-02T00:00:00+01:00</updated><id>http://localhost:4000/text_classification_part_1</id><content type="html" xml:base="http://localhost:4000/text_classification_part_1/">&lt;h2 id=&quot;reliable-or-unreliable&quot;&gt;Reliable or Unreliable?&lt;/h2&gt;
+&lt;p&gt;To continue working on our Exploratory Data Analysis and help us understand our content we shall use spaCy’s statistical entity recognition system as well as &lt;code class=&quot;highlighter-rouge&quot;&gt;spacy-vis&lt;/code&gt;, a visualisation tool using &lt;a href=&quot;https://allenai.github.io/hierplane/&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Hierplane&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;</content><author><name></name></author><category term="data" /><category term="code" /><category term="content" /><summary type="html">Exploratory Data Analysis</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/images/Newsstand.jpg" /></entry><entry><title type="html">Text Classification (Part 2)</title><link href="http://localhost:4000/text_classification_part_2/" rel="alternate" type="text/html" title="Text Classification (Part 2)" /><published>2019-04-06T00:00:00+01:00</published><updated>2019-04-06T00:00:00+01:00</updated><id>http://localhost:4000/text_classification_part_2</id><content type="html" xml:base="http://localhost:4000/text_classification_part_2/">&lt;h2 id=&quot;exploratory-data-analysis&quot;&gt;Exploratory Data Analysis&lt;/h2&gt;
+
+&lt;p&gt;After collecting our data, the first thing we want to do is to get an understanding of it. Exploratory Data Analysis or short EDA is one of the essential steps in the data analysis process. By trying to make sense of the data, we can start formulating questions and if necessary go back and make changes to where our data came from, and others.&lt;/p&gt;
+
+&lt;p&gt;Remember, the number of source URLs is not very well balanced if we are looking at the categories. We started with 134 URLs categorised as &lt;code class=&quot;highlighter-rouge&quot;&gt;fake&lt;/code&gt; and from our source dataset with only 3 reliable URLs, which we increased to over 70 URLs with our own.&lt;/p&gt;
+
+&lt;p style=&quot;text-align: center;&quot;&gt;&lt;img src=&quot;/images/content_by_url_count.png&quot; alt=&quot;Content by URL Count&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;However, I went ahead and collected as much data as possible and as it turns out correctly so. As we can see in the image below the distribution turned up-side-down. I wasn’t expecting that at all.&lt;/p&gt;
+
+&lt;p style=&quot;text-align: center;&quot;&gt;&lt;img src=&quot;/images/content_by_article_count.png&quot; alt=&quot;Content by Article Count&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;So we don’t need the extra content we got from the archived data at &lt;a href=&quot;https://webhose.io/&quot;&gt;webhose.io&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;sentiment&quot;&gt;Sentiment&lt;/h2&gt;
+
+&lt;p&gt;In natural language analysis, one of the first steps one wants to do is understand the sentiment of a given text. Our data is to 75% neutral, which I guess is a good thing. The interesting part here is the thing that for the rest of our data the negative content overweights the positive content drastically.&lt;/p&gt;
+
+&lt;p style=&quot;text-align: center;&quot;&gt;&lt;img src=&quot;/images/Positive-Neutral-Negative_Content_Distribution.png&quot; alt=&quot;Positive-Neutral-Negative Content Distribution&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Moreover, we can see that also in the distribution about the number of words in an article and its sentiment weighting. The shorter an article is, the more likely it is that it is negative content.&lt;/p&gt;
+
+&lt;p style=&quot;text-align: center;&quot;&gt;&lt;img src=&quot;/images/posneg_sentiment.png&quot; alt=&quot;Positive/Negative Sentiment&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;visualizing-differences-based-only-on-term-frequencies&quot;&gt;Visualizing differences based only on term frequencies&lt;/h2&gt;
+
+&lt;p&gt;Occasionally, only term frequency statistics are available. In the case where this may happen like in very large, lost, or proprietary data sets. To help us here we can use the tool &lt;a href=&quot;https://github.com/JasonKessler/scattertext&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;scattertext&lt;/code&gt;&lt;/a&gt; which is based on &lt;a href=&quot;https://spacy.io/&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;spaCy&lt;/code&gt;&lt;/a&gt;. &lt;code class=&quot;highlighter-rouge&quot;&gt;TermCategoryFrequencies&lt;/code&gt; function is a corpus representation, that can accept this sort of data, along with any categorised documents that happen to be available.&lt;/p&gt;
+
+&lt;p style=&quot;text-align: center;&quot;&gt;&lt;img src=&quot;/images/TermCategoryFrequencies.png&quot; alt=&quot;Visualisation Term Category Frequencies&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://stephanosterburg.github.io/data/reliable_vs_unreliable.html&quot; target=&quot;_blank&quot;&gt;Visualizing TermCategoryFrequencies&lt;/a&gt; (link opens in new tab)&lt;/p&gt;
+
+&lt;p&gt;The critical part to note here is that the data represented in this plot comes from unbalanced data.&lt;/p&gt;
+
+&lt;h2 id=&quot;topic-modeling&quot;&gt;Topic Modeling&lt;/h2&gt;
+
+&lt;p&gt;Another question we can try to find an answer to is what are the most written about topics in our news content. We can use Gensim/LDA here to find them but there is a more intuitive and interactive way to help visualise topic model using &lt;a href=&quot;https://scikit-learn.org/stable/index.html&quot;&gt;sklearn&lt;/a&gt; and the python library &lt;a href=&quot;https://pyldavis.readthedocs.io/en/latest/&quot;&gt;pyLDAvis&lt;/a&gt; which is a port of the fabulous &lt;a href=&quot;https://github.com/cpsievert/LDAvis&quot;&gt;R package&lt;/a&gt; by &lt;a href=&quot;https://cpsievert.me/&quot;&gt;Carson Sievert&lt;/a&gt; and &lt;a href=&quot;http://www.kennyshirley.com/&quot;&gt;Kenny Shirley&lt;/a&gt;.&lt;/p&gt;
+
+&lt;noscript&gt;&lt;pre&gt;400: Invalid request
+&lt;/pre&gt;&lt;/noscript&gt;
+&lt;script src=&quot;https://gist.github.com/15b93ef69472c10df40598c20e42149e.js&quot;&gt; &lt;/script&gt;
+
+&lt;p&gt;pyLDAvis is designed to help users interpret the topics in a topic model that has been fit to a corpus of text data. The package extracts information from a fitted LDA topic model to inform an interactive web-based visualisation.&lt;/p&gt;
+
+&lt;p&gt;The pyLDAvis interface:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;the left panel shows how common and how each topic relates to each other in 2D space.&lt;/li&gt;
+  &lt;li&gt;the right panel shows us a list of the most notable word (topics) and its frequency. If we select a topic, we see the topic-specific frequency of each term (red) and the corpus-wide frequency (blue).&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;!-- &lt;a href=&quot;http://example.com/&quot; target=&quot;_blank&quot;&gt;Hello, world!&lt;/a&gt; --&gt;
+
+&lt;p style=&quot;text-align: center;&quot;&gt;&lt;img src=&quot;/images/pyLDAvis.png&quot; alt=&quot;LDA visualisation&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://stephanosterburg.github.io/data/LDAvis_ReliableNews.html&quot; target=&quot;_blank&quot;&gt;Visualizing LDA&lt;/a&gt; (link opens in new tab)&lt;/p&gt;
+
+&lt;h2 id=&quot;linguistic-features&quot;&gt;Linguistic Features&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://spacy.io/&quot;&gt;spaCy&lt;/a&gt; offers excellent tools to process raw text. Most words are rare, and it’s common for words that look entirely different to mean almost the same thing. The same words in a different order can mean something completely different. Even splitting text into useful word-like units can be difficult in many languages. While it’s possible to solve some problems starting from only the raw characters, it’s usually better to use linguistic knowledge to add useful information. That’s exactly what spaCy is designed to do: you put in raw text and get back a Doc object, that comes with a variety of annotations.&lt;/p&gt;
+
+&lt;p&gt;To continue working on our Exploratory Data Analysis and help us understand our content we shall use spaCy’s statistical entity recognition system as well as &lt;code class=&quot;highlighter-rouge&quot;&gt;spacy-vis&lt;/code&gt;, a visualisation tool using &lt;a href=&quot;https://allenai.github.io/hierplane/&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Hierplane&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;</content><author><name></name></author><category term="data" /><category term="code" /><category term="content" /><summary type="html">Exploratory Data Analysis</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/images/Newsstand.jpg" /></entry><entry><title type="html">Text Classification (Part 1)</title><link href="http://localhost:4000/text_classification_part_1/" rel="alternate" type="text/html" title="Text Classification (Part 1)" /><published>2019-04-02T00:00:00+01:00</published><updated>2019-04-02T00:00:00+01:00</updated><id>http://localhost:4000/text_classification_part_1</id><content type="html" xml:base="http://localhost:4000/text_classification_part_1/">&lt;h2 id=&quot;reliable-or-unreliable&quot;&gt;Reliable or Unreliable?&lt;/h2&gt;
 
 &lt;p&gt;Over the past two decades and especially since the United States presidential election 2016 there is an increase in unreliable news content. The question which got and still gets asked is how can we know which is which. To find an answer I started at &lt;a href=&quot;http://www.opensources.co/&quot;&gt;opensources&lt;/a&gt; which curates a list of online information sources. The websites listed range from credible news to misleading and outright fake.&lt;/p&gt;
 

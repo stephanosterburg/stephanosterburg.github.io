@@ -151,6 +151,92 @@ MathJax.Hub.Config({
   <header>
     
       <div class="entry-image-index">
+        <a href="http://localhost:4000/text_classification_part_3/" title="Text Classification (Part 2)"><img src="http://localhost:4000/images/Newsstand.jpg" alt="Text Classification (Part 2)"></a>
+      </div><!-- /.entry-image -->
+    
+    <div class="entry-meta">
+      <span class="entry-date date published updated"><time datetime="2019-04-07T00:00:00+01:00"><a href="http://localhost:4000/text_classification_part_3/">April 07, 2019</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Stephan Osterburg">Stephan Osterburg</a></span></span>
+      
+      <span class="entry-reading-time">
+        <i class="fa fa-clock-o"></i>
+        
+Reading time ~3 minutes
+      </span><!-- /.entry-reading-time -->
+      
+    </div><!-- /.entry-meta -->
+    
+      <h1 class="entry-title"><a href="http://localhost:4000/text_classification_part_3/" rel="bookmark" title="Text Classification (Part 2)" itemprop="url">Text Classification (Part 2)</a></h1>
+    
+  </header>
+  <div class="entry-content">
+    <h2 id="exploratory-data-analysis">Exploratory Data Analysis</h2>
+
+<p>After collecting our data, the first thing we want to do is to get an understanding of it. Exploratory Data Analysis or short EDA is one of the essential steps in the data analysis process. By trying to make sense of the data, we can start formulating questions and if necessary go back and make changes to where our data came from, and others.</p>
+
+<p>Remember, the number of source URLs is not very well balanced if we are looking at the categories. We started with 134 URLs categorised as <code class="highlighter-rouge">fake</code> and from our source dataset with only 3 reliable URLs, which we increased to over 70 URLs with our own.</p>
+
+<p style="text-align: center;"><img src="/images/content_by_url_count.png" alt="Content by URL Count" /></p>
+
+<p>However, I went ahead and collected as much data as possible and as it turns out correctly so. As we can see in the image below the distribution turned up-side-down. I wasn’t expecting that at all.</p>
+
+<p style="text-align: center;"><img src="/images/content_by_article_count.png" alt="Content by Article Count" /></p>
+
+<p>So we don’t need the extra content we got from the archived data at <a href="https://webhose.io/">webhose.io</a>.</p>
+
+<h2 id="sentiment">Sentiment</h2>
+
+<p>In natural language analysis, one of the first steps one wants to do is understand the sentiment of a given text. Our data is to 75% neutral, which I guess is a good thing. The interesting part here is the thing that for the rest of our data the negative content overweights the positive content drastically.</p>
+
+<p style="text-align: center;"><img src="/images/Positive-Neutral-Negative_Content_Distribution.png" alt="Positive-Neutral-Negative Content Distribution" /></p>
+
+<p>Moreover, we can see that also in the distribution about the number of words in an article and its sentiment weighting. The shorter an article is, the more likely it is that it is negative content.</p>
+
+<p style="text-align: center;"><img src="/images/posneg_sentiment.png" alt="Positive/Negative Sentiment" /></p>
+
+<h2 id="visualizing-differences-based-only-on-term-frequencies">Visualizing differences based only on term frequencies</h2>
+
+<p>Occasionally, only term frequency statistics are available. In the case where this may happen like in very large, lost, or proprietary data sets. To help us here we can use the tool <a href="https://github.com/JasonKessler/scattertext"><code class="highlighter-rouge">scattertext</code></a> which is based on <a href="https://spacy.io/"><code class="highlighter-rouge">spaCy</code></a>. <code class="highlighter-rouge">TermCategoryFrequencies</code> function is a corpus representation, that can accept this sort of data, along with any categorised documents that happen to be available.</p>
+
+<p style="text-align: center;"><img src="/images/TermCategoryFrequencies.png" alt="Visualisation Term Category Frequencies" /></p>
+<p><a href="https://stephanosterburg.github.io/data/reliable_vs_unreliable.html" target="_blank">Visualizing TermCategoryFrequencies</a> (link opens in new tab)</p>
+
+<p>The critical part to note here is that the data represented in this plot comes from unbalanced data.</p>
+
+<h2 id="topic-modeling">Topic Modeling</h2>
+
+<p>Another question we can try to find an answer to is what are the most written about topics in our news content. We can use Gensim/LDA here to find them but there is a more intuitive and interactive way to help visualise topic model using <a href="https://scikit-learn.org/stable/index.html">sklearn</a> and the python library <a href="https://pyldavis.readthedocs.io/en/latest/">pyLDAvis</a> which is a port of the fabulous <a href="https://github.com/cpsievert/LDAvis">R package</a> by <a href="https://cpsievert.me/">Carson Sievert</a> and <a href="http://www.kennyshirley.com/">Kenny Shirley</a>.</p>
+
+<noscript><pre>400: Invalid request
+</pre></noscript>
+<script src="https://gist.github.com/15b93ef69472c10df40598c20e42149e.js"> </script>
+
+<p>pyLDAvis is designed to help users interpret the topics in a topic model that has been fit to a corpus of text data. The package extracts information from a fitted LDA topic model to inform an interactive web-based visualisation.</p>
+
+<p>The pyLDAvis interface:</p>
+
+<ul>
+  <li>the left panel shows how common and how each topic relates to each other in 2D space.</li>
+  <li>the right panel shows us a list of the most notable word (topics) and its frequency. If we select a topic, we see the topic-specific frequency of each term (red) and the corpus-wide frequency (blue).</li>
+</ul>
+
+<!-- <a href="http://example.com/" target="_blank">Hello, world!</a> -->
+
+<p style="text-align: center;"><img src="/images/pyLDAvis.png" alt="LDA visualisation" /></p>
+<p><a href="https://stephanosterburg.github.io/data/LDAvis_ReliableNews.html" target="_blank">Visualizing LDA</a> (link opens in new tab)</p>
+
+<h2 id="linguistic-features">Linguistic Features</h2>
+
+<p><a href="https://spacy.io/">spaCy</a> offers excellent tools to process raw text. Most words are rare, and it’s common for words that look entirely different to mean almost the same thing. The same words in a different order can mean something completely different. Even splitting text into useful word-like units can be difficult in many languages. While it’s possible to solve some problems starting from only the raw characters, it’s usually better to use linguistic knowledge to add useful information. That’s exactly what spaCy is designed to do: you put in raw text and get back a Doc object, that comes with a variety of annotations.</p>
+
+<p>To continue working on our Exploratory Data Analysis and help us understand our content we shall use spaCy’s statistical entity recognition system as well as <code class="highlighter-rouge">spacy-vis</code>, a visualisation tool using <a href="https://allenai.github.io/hierplane/"><code class="highlighter-rouge">Hierplane</code></a>.</p>
+
+  </div><!-- /.entry-content -->
+</article><!-- /.hentry -->
+
+<article class="hentry">
+  <header>
+    
+      <div class="entry-image-index">
         <a href="http://localhost:4000/text_classification_part_2/" title="Text Classification (Part 2)"><img src="http://localhost:4000/images/Newsstand.jpg" alt="Text Classification (Part 2)"></a>
       </div><!-- /.entry-image -->
     
@@ -228,7 +314,7 @@ Reading time ~3 minutes
 
 <p><a href="https://spacy.io/">spaCy</a> offers excellent tools to process raw text. Most words are rare, and it’s common for words that look entirely different to mean almost the same thing. The same words in a different order can mean something completely different. Even splitting text into useful word-like units can be difficult in many languages. While it’s possible to solve some problems starting from only the raw characters, it’s usually better to use linguistic knowledge to add useful information. That’s exactly what spaCy is designed to do: you put in raw text and get back a Doc object, that comes with a variety of annotations.</p>
 
-<p>To continue working on our Exploratory Data Analysis and help us understand our content we shall use spaCy’s statistical entity recognition system as well as <code class="highlighter-rouge">spacy-vis</code>, a visualisation tool using Hierplane.</p>
+<p>To continue working on our Exploratory Data Analysis and help us understand our content we shall use spaCy’s statistical entity recognition system as well as <code class="highlighter-rouge">spacy-vis</code>, a visualisation tool using <a href="https://allenai.github.io/hierplane/"><code class="highlighter-rouge">Hierplane</code></a>.</p>
 
   </div><!-- /.entry-content -->
 </article><!-- /.hentry -->
@@ -548,252 +634,6 @@ Reading time ~3 minutes
 
 <p>Use where you can pre-trained networks and if you are using large data use cloud services.</p>
 
-
-  </div><!-- /.entry-content -->
-</article><!-- /.hentry -->
-
-<article class="hentry">
-  <header>
-    
-      <div class="entry-image-index">
-        <a href="http://localhost:4000/forest/" title="Forest Cover Type"><img src="http://localhost:4000/images/dataset-cover.jpeg" alt="Forest Cover Type"></a>
-      </div><!-- /.entry-image -->
-    
-    <div class="entry-meta">
-      <span class="entry-date date published updated"><time datetime="2019-01-14T00:00:00+00:00"><a href="http://localhost:4000/forest/">January 14, 2019</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Stephan Osterburg">Stephan Osterburg</a></span></span>
-      
-      <span class="entry-reading-time">
-        <i class="fa fa-clock-o"></i>
-        
-Reading time ~6 minutes
-      </span><!-- /.entry-reading-time -->
-      
-    </div><!-- /.entry-meta -->
-    
-      <h1 class="entry-title"><a href="http://localhost:4000/forest/" rel="bookmark" title="Forest Cover Type" itemprop="url">Forest Cover Type</a></h1>
-    
-  </header>
-  <div class="entry-content">
-    <h2 id="or-who-cannot-see-the-wood-for-the-trees">Or who cannot see the wood for the trees?</h2>
-
-<p>Researchers at the Department of Forest Sciences at Colorado State University collected over half a million measurements from tree observations from four areas of the Roosevelt National Forest in Colorado. All observations are cartographic variables (no remote sensing) from 30-meter x 30-meter sections of forest.</p>
-
-<p>The resulting dataset includes information on tree type, shadow coverage, distance to nearby landmarks (roads etcetera), soil type, and local topography. In total there are 55 columns/features.</p>
-
-<h3 id="problem">Problem</h3>
-
-<p>Can we build a model that predicts what types of trees grow in an area based on the surrounding characteristics? Like elevation, slope, distance, soil type etcetera.</p>
-
-<h3 id="dataset">Dataset</h3>
-
-<p>The dataset has 55 columns in total where <code class="highlighter-rouge">Wilderness_Area</code> consists of 4 dummy variables and <code class="highlighter-rouge">Soil_Tpye</code> consists of 40 dummy variables.</p>
-
-<p>Continuous Data</p>
-<ul>
-  <li><code class="highlighter-rouge">Elevation</code> (in meters)</li>
-  <li><code class="highlighter-rouge">Aspect</code> (in degrees azimuth<sup id="fnref:2"><a href="#fn:2" class="footnote">1</a></sup>)</li>
-  <li><code class="highlighter-rouge">Slope</code> (in degrees)</li>
-  <li><code class="highlighter-rouge">Horizontal_Distance_To_Hydrology</code> (Horizontal distance to nearest surface water features in meters)</li>
-  <li><code class="highlighter-rouge">Horizontal_Distance_To_Roadways</code> (Horizontal distance to nearest roadway in meters)</li>
-  <li><code class="highlighter-rouge">Horizontal_Distance_To_Fire_Points</code> (Horizontal distance to nearest wildfire ignition points in meters)</li>
-  <li><code class="highlighter-rouge">Vertical_Distance_To_Hydrology</code> (Vertical distance to nearest surface water features in meters)</li>
-  <li><code class="highlighter-rouge">Hillshade_9am</code> (Hill shade index at 9am, summer solstice. Value out of 255)</li>
-  <li><code class="highlighter-rouge">Hillshade_Noon</code> (Hill shade index at noon, summer solstice. Value out of 255)</li>
-  <li><code class="highlighter-rouge">Hillshade_3pm</code> (Hill shade index at 3pm, summer solstice. Value out of 255)</li>
-</ul>
-
-<p>Categorical Data</p>
-<ul>
-  <li><code class="highlighter-rouge">Wilderness Area</code> (4 dummy variable binary columns, 0 = absence or 1 = presence)</li>
-  <li><code class="highlighter-rouge">Soil Type</code> (40 dummy variable binary columns, 0 = absence or 1 = presence)</li>
-</ul>
-
-<p>The target variable <code class="highlighter-rouge">Cover_Type</code> is defined as an integer value between <code class="highlighter-rouge">1</code> and <code class="highlighter-rouge">7</code>, with the following key:</p>
-
-<ol>
-  <li>Spruce/Fir.</li>
-  <li>Lodgepole Pine.</li>
-  <li>Ponderosa Pine.</li>
-  <li>Cottonwood/Willow</li>
-  <li>Aspen</li>
-  <li>Douglas-fir</li>
-  <li>Krummholz</li>
-</ol>
-
-<h3 id="approach">Approach</h3>
-
-<h4 id="eda">EDA</h4>
-
-<p>The first step with every dataset is to do an <code class="highlighter-rouge">Exploratory Data Analysis</code> (EDA). What kind of data do we have? Text or numerical (continues or categorical)? Do we have missing data, or just merely wrong data — values which do not make any sense in the given context, i.e., 9999.</p>
-
-<p>Because of the sheer number of soil types and wilderness areas I had a look at them first. Luckily, the researchers here were efficient in the sense that they document everything meticulously. Everything we need to know with a detailed description can be found online<sup id="fnref:3"><a href="#fn:3" class="footnote">2</a></sup>.</p>
-
-<p>From that document, we can find out that</p>
-<blockquote>
-  <p>This study area includes four wilderness areas located in the
-   Roosevelt National Forest of northern Colorado.  These areas
-   represent forests with minimal human-caused disturbances,
-   so that existing forest cover types are more a result of 
-   ecological processes rather than forest management practices.</p>
-</blockquote>
-
-<p>Not that this is of any importance for our data exploration or to make a prediction, but I found it interesting to read. Because it makes you think about what kind of implications your result can potentially have.</p>
-
-<p>However, what we want to find out is how the data is distributed by <code class="highlighter-rouge">Cover_Type</code>. Here I created a <code class="highlighter-rouge">seaborn.countplot</code>.</p>
-
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">tmpList</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">soil_df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
-    <span class="n">tmpList</span> <span class="o">+=</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">c</span><span class="p">)]</span> <span class="o">*</span> <span class="n">soil_df</span><span class="p">[</span><span class="n">c</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span>
-
-<span class="n">se</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">tmpList</span><span class="p">)</span>
-<span class="n">df</span><span class="p">[</span><span class="s">'Soil_Types'</span><span class="p">]</span> <span class="o">=</span> <span class="n">se</span><span class="o">.</span><span class="n">values</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">countplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s">'Soil_Types'</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s">'Cover_Type'</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s">'Number of Observation by Cover Type'</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">90</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">();</span>
-</code></pre></div></div>
-
-<figure>
-    
-    <a href="/images/SoilType.png"><img src="/images/SoilType.png" alt="" /></a>
-    
-    <figcaption></figcaption>
-</figure>
-
-<p>Looking more closely at the data we can find that the top 5 soil types count for more than 50% of the measurements in the collected data.</p>
-
-<p>Unlike categorical data, the continues data is even more interesting to investigate. The questions we want to find answers for are</p>
-
-<ul>
-  <li>Do we need to scale/normalise the continuous data?</li>
-  <li>What about skewness/kurtosis?</li>
-  <li>Does it matter if the data is in meter, degree or index?</li>
-</ul>
-
-<figure>
-    
-    <a href="/images/ContinuesData.png"><img src="/images/ContinuesData.png" alt="" /></a>
-    
-    <figcaption></figcaption>
-</figure>
-
-<h3 id="feature-selection">Feature Selection</h3>
-
-<p>There are several ways to explore what features we need to keep around to make our prediction. The labour intensive workflow and the much quicker workflow - what I would like to call the “blindfolded method”. For the purpose of gaining more inside, I choose to do both.</p>
-
-<p>In the first workflow, I used several classifiers from the <code class="highlighter-rouge">sklearn.ensemble</code> Library. These are, <code class="highlighter-rouge">AdaBoostClassifier</code>,  <code class="highlighter-rouge">RandomForestClassifier</code>, <code class="highlighter-rouge">GradientBoostingClassifier</code> and <code class="highlighter-rouge">ExtraTreeClassifier</code>. All these classifiers have one thing in common, which is the attribute <code class="highlighter-rouge">feature_importances_</code>, which returns the feature importance (the higher the value, the more important the feature).</p>
-
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Create an empty dataframe to hold our findings for feature_importances_
-</span><span class="n">ranking_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
-
-<span class="n">RFC_model</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">RFC_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
-
-<span class="n">importances</span> <span class="o">=</span> <span class="n">RFC_model</span><span class="o">.</span><span class="n">feature_importances_</span>
-<span class="n">indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">importances</span><span class="p">)[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-
-<span class="c1"># Get feature name
-</span><span class="n">rfc_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">X</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="n">indices</span><span class="p">[</span><span class="n">f</span><span class="p">]]</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])]</span>
-<span class="n">ranking_df</span><span class="p">[</span><span class="s">'RFC'</span><span class="p">]</span> <span class="o">=</span> <span class="n">rfc_list</span>
-
-<span class="c1"># Get feature importance
-</span><span class="n">rfci_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">importances</span><span class="p">[</span><span class="n">indices</span><span class="p">[</span><span class="n">f</span><span class="p">]]</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])]</span>
-<span class="n">ranking_df</span><span class="p">[</span><span class="s">'RFC importance'</span><span class="p">]</span> <span class="o">=</span> <span class="n">rfci_list</span>
-</code></pre></div></div>
-
-<p>The result was a pandas data frame with all features from the dataset in order of importance, which allows us to pick the best features. Interestingly, <code class="highlighter-rouge">RandomForestClassifier</code> and <code class="highlighter-rouge">ExtraTreeClassifier</code> had the most similar results. Other findings from that list were,</p>
-
-<ul>
-  <li><code class="highlighter-rouge">Gradian Boosting</code> shows similar names just in a different order compared to <code class="highlighter-rouge">Random Forest</code> and <code class="highlighter-rouge">Extra Tree</code>.</li>
-  <li><code class="highlighter-rouge">AdaBoost</code> on the other hand shows an exciting and unique result. The top 8 features alone are enough to make a good class prediction. Compared to all the other classifiers, here we have <code class="highlighter-rouge">Wilderness_Area4</code> on above <code class="highlighter-rouge">Elevation</code> in the list.</li>
-  <li><code class="highlighter-rouge">Elevation</code> dominates in all classifiers with a range of <code class="highlighter-rouge">18-25%</code>, up to <code class="highlighter-rouge">65%</code> in <code class="highlighter-rouge">GBC</code>.</li>
-  <li><code class="highlighter-rouge">Hillshade</code> features are seen in the top 20 in 3 out of 4 classifiers. <code class="highlighter-rouge">Random Forest</code> and <code class="highlighter-rouge">Extra Tree Classifier</code> show <code class="highlighter-rouge">Hillshade</code> features having similar ranges.</li>
-  <li><code class="highlighter-rouge">Horizontal_Distance_To_Hydrology</code> and <code class="highlighter-rouge">Vertical_Distance_To_Hydrology</code> are in all classifiers in the top 10.</li>
-  <li><code class="highlighter-rouge">Horizontal_Distance_To_Roadways</code> and <code class="highlighter-rouge">Horizontal_Distance_To_Fire_Points</code> are represented at the top 3 out of 4 classifiers.</li>
-  <li><code class="highlighter-rouge">Aspect</code> and <code class="highlighter-rouge">Slope</code> also show up in the top 20 across all classifiers, with the exception of Gradian Boosting Slope which isn’t in the top 20.</li>
-  <li>In regards to <code class="highlighter-rouge">Soil_Type</code>, it is hard to find some commonality. Here I choose to select: <code class="highlighter-rouge">Soil_Type2</code>, <code class="highlighter-rouge">Soil_Type4</code>, <code class="highlighter-rouge">Soil_Type10</code>, <code class="highlighter-rouge">Soil_Type22</code>, <code class="highlighter-rouge">Soil_Type23</code> and <code class="highlighter-rouge">Soil_Type39</code>.</li>
-</ul>
-
-<p>The question I asked myself at this point is, was the time wisely spend? After all, it took almost 20 minutes to calculate. One advantage this approach has is, we know our selected features.</p>
-
-<p>The other approach we can choose is using <code class="highlighter-rouge">PCA</code> (Principal Component Analysis) from sklearn.</p>
-
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s">'Cover_Type'</span><span class="p">]</span>
-<span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s">'Cover_Type'</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-
-<span class="n">scaler</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
-<span class="n">X_scaled</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
-
-<span class="n">pca</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
-<span class="n">X_pca</span> <span class="o">=</span> <span class="n">pca</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_scaled</span><span class="p">)</span>
-</code></pre></div></div>
-
-<p>The big advantage to this is the short processing time. However, the drawback, we are losing any knowledge regarding our features. Is that important? Possibly.</p>
-
-<p>As you can see in the code snippet above, I opted to scale the features. Researching that topic, I found that there is a multitude of approaches, some use a combination of <code class="highlighter-rouge">StandardScaler</code>, <code class="highlighter-rouge">MinMaxScaler</code> and <code class="highlighter-rouge">Normalizer</code> method and others just picked one of the methods for scaling, centring, normalisation, binarisation and imputation the <code class="highlighter-rouge">sklearn.preprocessing</code> module. Some just scale only the continuous features and not the categorical, etcetera. The list of possibilities goes on. For now, I just used the most straightforward way.</p>
-
-<h3 id="evaluate-model">Evaluate Model</h3>
-
-<p>By hand selecting our features, we get an <code class="highlighter-rouge">accuracy of 92.23%</code> and an <code class="highlighter-rouge">f1_score of 86.74%</code> using cross validation. In contrast, <code class="highlighter-rouge">PCA</code> has an <code class="highlighter-rouge">accuracy of 90.72%</code> and an <code class="highlighter-rouge">f1_score of 84.44%</code>. Is that a big enough difference to justify the time spent to find our features? Maybe.</p>
-
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X_pca</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-
-<span class="n">clf</span> <span class="o">=</span> <span class="n">KNeighborsClassifier</span><span class="p">(</span><span class="n">weights</span><span class="o">=</span><span class="s">'distance'</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
-
-<span class="n">accuracy</span> <span class="o">=</span> <span class="n">cross_val_score</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">cv</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="n">scoring</span> <span class="o">=</span> <span class="s">'accuracy'</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">f1_score</span> <span class="o">=</span> <span class="n">cross_val_score</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">cv</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="n">scoring</span> <span class="o">=</span> <span class="s">'f1_macro'</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
-
-<span class="c1"># predict
-</span><span class="n">predict</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
-
-<span class="c1"># calculating accuracy
-</span><span class="n">accuracy</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">predict</span><span class="p">)</span>
-
-<span class="k">print</span><span class="p">(</span><span class="s">'KNeighbors Classifier model'</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="s">'Accuracy: {:.2f}</span><span class="si">%</span><span class="s">'</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span><span class="n">accuracy</span> <span class="o">*</span> <span class="mi">100</span><span class="p">))</span>
-
-<span class="n">knn_classification_report</span> <span class="o">=</span> <span class="n">classification_report</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">predict</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">knn_classification_report</span><span class="p">)</span>
-</code></pre></div></div>
-
-<figure>
-    
-    <a href="/images/CrossValidation.png"><img src="/images/CrossValidation.png" alt="" /></a>
-    
-    <figcaption></figcaption>
-</figure>
-
-<p>To test how accurate we can predict the <code class="highlighter-rouge">Cover_Type</code> I used the <code class="highlighter-rouge">KNeighborsClassifier</code> from sklearn, and we got an accuracy of <code class="highlighter-rouge">91.02%</code>. That is great.</p>
-
-<h2 id="conclusion">Conclusion</h2>
-
-<p><strong>Yes</strong>, we can build a model that predicts what types of trees grow in an area based on the surrounding characteristics.</p>
-
-<h2 id="final-thought">Final Thought</h2>
-
-<p>We can use sklearn’s <code class="highlighter-rouge">GridSearchCV</code> to find our features (exhaustive search over specified parameter values for an estimator). Moreover, we should make use of sklearn’s <code class="highlighter-rouge">Pipeline</code> functionality to write clean and manageable code.</p>
-
-<p>One last question, could we use clustering to make our prediction?</p>
-
-<h5 id="footnotes">Footnotes</h5>
-
-<noscript><pre>404: Not Found
-</pre></noscript>
-<script src="https://gist.github.com/mmistakes/6589546.js"> </script>
-
-<div class="footnotes">
-  <ol>
-    <li id="fn:2">
-      <p><a href="https://en.wikipedia.org/wiki/Azimuth">https://en.wikipedia.org/wiki/Azimuth</a> <a href="#fnref:2" class="reversefootnote">&#8617;</a></p>
-    </li>
-    <li id="fn:3">
-      <p><a href="https://archive.ics.uci.edu/ml/machine-learning-databases/covtype/covtype.info">https://archive.ics.uci.edu/ml/machine-learning-databases/covtype/covtype.info</a> <a href="#fnref:3" class="reversefootnote">&#8617;</a></p>
-    </li>
-  </ol>
-</div>
 
   </div><!-- /.entry-content -->
 </article><!-- /.hentry -->
