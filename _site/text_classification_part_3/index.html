@@ -268,7 +268,7 @@ Reading time ~4 minutes
 
             <span class="n">reader</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
             <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">reader</span><span class="p">:</span>
-                <span class="n">embedding</span><span class="p">,</span> <span class="n">category</span> <span class="o">=</span> <span class="n">_generator_process_line</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>                
+                <span class="n">embedding</span><span class="p">,</span> <span class="n">category</span> <span class="o">=</span> <span class="n">_generator_process_line</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
 
                 <span class="k">if</span> <span class="p">(</span><span class="n">batch_i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="n">batch_size</span><span class="p">:</span>
                     <span class="k">yield</span> <span class="n">batch_embedding</span><span class="p">,</span> <span class="n">batch_category</span>
@@ -286,10 +286,10 @@ Reading time ~4 minutes
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="s">'/gpu:0'</span><span class="p">):</span>
 	<span class="n">history</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit_generator</span><span class="p">(</span><span class="n">Generator</span><span class="p">(</span><span class="n">train_data</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">),</span>
-                                  <span class="n">steps_per_epoch</span><span class="o">=</span><span class="n">train_size</span><span class="o">//</span><span class="n">batch_size</span><span class="p">,</span>
-                                  <span class="n">validation_data</span><span class="o">=</span><span class="n">Generator</span><span class="p">(</span><span class="n">valid_data</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">),</span>
-                                  <span class="n">validation_steps</span><span class="o">=</span><span class="n">valid_size</span><span class="o">//</span><span class="n">batch_size</span><span class="p">,</span>
-                                  <span class="n">epochs</span><span class="o">=</span><span class="n">epochs</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+					<span class="n">steps_per_epoch</span><span class="o">=</span><span class="n">train_size</span><span class="o">//</span><span class="n">batch_size</span><span class="p">,</span>
+					<span class="n">validation_data</span><span class="o">=</span><span class="n">Generator</span><span class="p">(</span><span class="n">valid_data</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">),</span>
+					<span class="n">validation_steps</span><span class="o">=</span><span class="n">valid_size</span><span class="o">//</span><span class="n">batch_size</span><span class="p">,</span>
+					<span class="n">epochs</span><span class="o">=</span><span class="n">epochs</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p>Our model returns a near perfect accuracy score of 97.83%, and if we are looking at the training and validation results, we might be inclined to save the keras model into a single HDF5 file at each epoch. That way we can save the best possible model. We probably could have stopped at the third epoch and saved us a lot of time.</p>
