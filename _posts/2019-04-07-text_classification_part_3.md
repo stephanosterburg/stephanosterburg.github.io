@@ -14,9 +14,9 @@ The dataset used for that project is an already [polished and fairly large corpu
 
 > This is an open source dataset composed of millions of news articles mostly scraped from a curated list of 1001 domains from http://www.opensources.co/. Because the list does not contain any reliable websites, additionally NYTimes and Webhose English News Articles articles have been included to balance the classes better. The dataset is still work in progress, and for now, the public version includes only 9,408,908 articles (745 out of 1001 domains).
 
-The available data more than 26GB on disk when we unzip the file and more than 75GB in RAM using pandas. For that reason, I considered using [dask](https://dask.org/). However, loading the CSV file ended in a ParserError (`Error tokenizing data. C error: EOF inside string starting at row 63`) and apparently, this is a [known problem](https://stackoverflow.com/q/45752805/5983691) with dask's read_csv if the file contains a newline character between quotes.
+The available data has more than 26GB on disk when we unzip the file and more than 75GB in RAM using pandas. For that reason, I considered using [dask](https://dask.org/). However, loading the CSV file ended in a ParserError (`Error tokenizing data. C error: EOF inside string starting at row 63`) and apparently, this is a [known problem](https://stackoverflow.com/q/45752805/5983691) with dask's read_csv if the file contains a newline character between quotes.
 
-To read the CSV file with pandas, the same row (63) ended in a `_csv.Error: field larger than field limit (131072)`. To address that error we have to increase the `csv.field_size_limit`.
+To read the CSV file with pandas, the same row (63) ended in a `_csv.Error: field larger than field limit (131072)`. To address that error we have to first increase the `csv.field_size_limit`.
 
 ```python
 # _csv.Error: field larger than field limit (131072)
@@ -36,7 +36,7 @@ def csv_field_limit():
             decrement = True
 ```
 
-The dataset is not huge but is also larger than we’d like to manage on a laptop, especially if we value interactivity. In any case, let's have a look at the first 100 rows to see what we have and determine what features we can drop and others we need to keep.
+The dataset is not huge but is also larger than we’d like to manage on a laptop, especially if we value interactivity. In any case, let's have a look at the first 100 rows to see what we have and determine what features we can drop and others we want to keep.
 
 {% capture images %}
     /images/BigDataTable.png
@@ -50,8 +50,7 @@ To fix the `EOF` problem, we can load in the dataset in chunks and loop that way
 }}/images/DaskClient.png)
 {: refdef}
 
-Now we can get a quick overview of what we have in out dataset:
-
+Now we can get a quick view of what categories and how many we have in our dataset:
 
 ```python
 categories = ddf.category.value_counts().compute()
@@ -63,7 +62,7 @@ categories
 }}/images/BigDataCategories.png)
 {: refdef}
 
-As we can see we need to do some cleaning. We have some oddly named categories and also checked for null values. From our data exploration, we have a few handy functions to clean the data. For example, remove all digits, HTML strings and stopwords from our text and to lemmatise the words.
+As we can see we need to do some cleaning. We have some oddly named categories and I also checked for null values. From our data exploration, we have a few handy functions to clean the data we will use here again. For example, remove all digits, HTML strings and stopwords from our text and to lemmatise the words.
 
 To send the data to separate processes for processing, we can configure dask's scheduler and set it globally. This option is useful when operating on pure Python objects like strings.
 
@@ -80,20 +79,20 @@ For data-sets too big to fit conveniently into memory, like ours, we want to rea
 ```python
 pf = ParquetFile('myfile.parq')
 for df in pf.iter_row_groups():
-	print(df.shape)
-	# process sub-data-frame df
+    print(df.shape)
+    # process sub-data-frame df
 ```
 
 As an alternative option, I found the [rows package](http://turicas.info/rows/) by  Álvaro Justen.
 
 ## Deep Learning Model
 
-For the initial model, I choose to create a convolutional neural network (CNN) using keras:
+For the initial model, I choose to create a Convolutional neural network (CNN)  using keras:
 
 ```python
 model = Sequential([
 	Conv1D(filters, kernel_size, input_shape=(input_shape[0], input_shape[1]),
-	    padding='valid', activation='relu', strides=1),
+		padding='valid', activation='relu', strides=1),
 	GlobalMaxPooling1D(),
 	Dense(hidden_dims),
 	Dropout(0.2, activation='relu'),
@@ -124,36 +123,38 @@ def Generator(data, batch_size):
 
             batch_i = 0
             batch_embedding = np.zeros((batch_size, max_words, 100))
-            batch_label = np.zeros((batch_size, 1))
+            batch_category = np.zeros((batch_size, 1))
 
             reader = csv.reader(f)
             for line in reader:
-                embedding, label = _generator_process_line(line)                
+                embedding, category = _generator_process_line(line)                
 
                 if (batch_i + 1) == batch_size:
-                    yield batch_embedding, batch_label
+                    yield batch_embedding, batch_category
 
                     batch_embedding = np.zeros((batch_size, max_words, 100))
-                    batch_label = np.zeros((batch_size, 1))
+                    batch_category = np.zeros((batch_size, 1))
                     batch_i = 0
                 else:
                     batch_embedding[batch_i] = embedding
-                    batch_label[batch_i, 0] = label
+                    batch_category[batch_i, 0] = category
                     batch_i += 1
 ```
 
+
 The following code snippet trains the model on data generated batch-by-batch by the python generator above.
+
 
 ```python
 with tf.device('/gpu:0'):
-    history = model.fit_generator(Generator(train_data, batch_size),
+	history = model.fit_generator(Generator(train_data, batch_size),
                                   steps_per_epoch=train_size//batch_size,
                                   validation_data=Generator(valid_data, batch_size),
                                   validation_steps=valid_size//batch_size,
                                   epochs=epochs, verbose=1)
 ```
 
-Our model returns a near perfect accuracy score of 97.83%, and if we are also looking at the training and validation results, we might be inclined to save the keras model into a single HDF5 file at each epoch. That way we can save the best possible model. We probably could have stopped with the third epoch and saved us a lot of time.
+Our model returns a near perfect accuracy score of 97.83%, and if we are looking at the training and validation results, we might be inclined to save the keras model into a single HDF5 file at each epoch. That way we can save the best possible model. We probably could have stopped at the third epoch and saved us a lot of time.
 
 {:refdef: style="text-align: center;"}
 ![Content by URL Count]({{ site.baseimg
@@ -162,10 +163,10 @@ Our model returns a near perfect accuracy score of 97.83%, and if we are also lo
 
 ## GPU
 
-You may notice the `with`-statement and recall that I am working on a laptop. To train the model on the laptop is not manageable. To be able to train the model I used [paperspace's](https://www.paperspace.com/gradient) gradient service, which includes jupyter notebooks, a job runner, and a python module to run any code on Paperspace GPU cloud.
+You may notice the `with`-statement and recall that I am working on a laptop. To train the model on the laptop is not manageable. To be able to train the model I used [paperspace's](https://www.paperspace.com/gradient) gradient service, which includes jupyter notebooks, a job runner, and a python module to run any code on Paperspace GPU cloud. The gradient machine I created is a Quadro P4000 with 8CPU's and 30GB RAM. One epoch needed about 45 minutes to calculate.
 
-## What is next?
+## What next?
 
-Create two more keras models, one which focuses on its "content" and the other model on its "context". Furthermore, be able to predict what type of news article do we have - reliable or unreliable.
+Create two more keras models, one which focuses on its "content" and the other model on its "context". Furthermore, be able to predict what type of news article do we have - reliable or unreliable. And as a bonus, I like to add linguistic analysis.
 
 Finally, build a [dashboard](https://dash.plot.ly/).
