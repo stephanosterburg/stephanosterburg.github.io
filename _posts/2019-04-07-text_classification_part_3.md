@@ -127,7 +127,7 @@ def Generator(data, batch_size):
 
             reader = csv.reader(f)
             for line in reader:
-                embedding, category = _generator_process_line(line)                
+                embedding, category = _generator_process_line(line)
 
                 if (batch_i + 1) == batch_size:
                     yield batch_embedding, batch_category
@@ -148,10 +148,10 @@ The following code snippet trains the model on data generated batch-by-batch by 
 ```python
 with tf.device('/gpu:0'):
 	history = model.fit_generator(Generator(train_data, batch_size),
-                                  steps_per_epoch=train_size//batch_size,
-                                  validation_data=Generator(valid_data, batch_size),
-                                  validation_steps=valid_size//batch_size,
-                                  epochs=epochs, verbose=1)
+					steps_per_epoch=train_size//batch_size,
+					validation_data=Generator(valid_data, batch_size),
+					validation_steps=valid_size//batch_size,
+					epochs=epochs, verbose=1)
 ```
 
 Our model returns a near perfect accuracy score of 97.83%, and if we are looking at the training and validation results, we might be inclined to save the keras model into a single HDF5 file at each epoch. That way we can save the best possible model. We probably could have stopped at the third epoch and saved us a lot of time.
