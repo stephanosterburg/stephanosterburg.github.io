@@ -126,6 +126,10 @@ If we are serious about getting proper up-to-date news content, I  believe that 
 
 Additionally, there is an already [polished and fairly large corpus](https://github.com/several27/FakeNewsCorpus) we can use by Maciej Szpakowski.
 
+## Jupyter Notebook
+
+Here is the [notebook](https://github.com/osterburg/dsc-5-capstone-project-online-ds-ft-100118/blob/master/01_data_collection.ipynb) to that post.
+
 ## Upcoming
 
 [Part 2: I am going to discuss data exploration.]({% post_url 2019-04-06-text_classification_part_2 %})

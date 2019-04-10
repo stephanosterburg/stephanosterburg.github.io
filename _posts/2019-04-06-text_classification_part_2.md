@@ -86,6 +86,12 @@ The pyLDAvis interface:
 
 To continue working on our Exploratory Data Analysis and help us understand our content we shall use spaCy's statistical entity recognition system as well as `spacy-vis`, a visualisation tool using [`Hierplane`](https://allenai.github.io/hierplane/).
 
+
+## Jupyter Notebook
+
+Here is the [notebook](https://github.com/osterburg/dsc-5-capstone-project-online-ds-ft-100118/blob/master/02_data_collection.ipynb) to that post.
+
+
 ## Upcoming
 
 [Part 3: I am going to explore how to approach "big" data.]({% post_url 2019-04-07-text_classification_part_3 %})

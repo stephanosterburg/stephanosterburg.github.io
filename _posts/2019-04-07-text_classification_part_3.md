@@ -52,6 +52,7 @@ Now we can get a quick view of what categories and how many we have in our datas
 categories = ddf.category.value_counts().compute()
 categories
 ```
+
 {:refdef: style="text-align: center;"}
 ![Content by URL Count]({{ site.baseurl }}/assets/images/BigDataCategories.png)
 {: refdef}
@@ -137,7 +138,7 @@ def Generator(data, batch_size):
 ```
 
 
-The following code snippet trains the model on data generated batch-by-batch by the python generator above.
+The following code snippet trains the model on data generated batch-by-batch by the python generator above on one GPU.
 
 
 ```python
@@ -156,6 +157,11 @@ Our model returns a near perfect accuracy score of 97.83%, and if we are looking
 ## GPU
 
 You may notice the `with`-statement and recall that I am working on a laptop. To train the model on the laptop is not manageable. To be able to train the model I used [paperspace's](https://www.paperspace.com/gradient) gradient service, which includes jupyter notebooks, a job runner, and a python module to run any code on Paperspace GPU cloud. The gradient machine I created is a Quadro P4000 with 8CPU's and 30GB RAM. One epoch needed about 45 minutes to calculate.
+
+
+## Jupyter Notebook
+
+Here is the [notebook](https://github.com/osterburg/dsc-5-capstone-project-online-ds-ft-100118/blob/master/03_data_collection.ipynb) to that post.
 
 ## What next?
 
