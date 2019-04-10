@@ -8,7 +8,7 @@ comments: false
 <div class="row justify-content-between">
 <div class="col-md-8 pr-5">
 
-<p>Stephan Osterburg, I am located in the San Francisco Bay Area. A computer graphics veteran with 30 plus years of experience on the quest to discover the world of data.</p>
+<p><b>Stephan Osterburg</b>, located in the San Francisco Bay Area, I am a computer graphics veteran with more then 30 years of experience on the quest to discover the world of data.</p>
 
 <p>Movies I worked on over the years.</p>
 
