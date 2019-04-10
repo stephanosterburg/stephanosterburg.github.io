@@ -1,0 +1,89 @@
+# Site
+name: "Data Ocean"
+title: "Data Ocean"
+description: "A discovery into the world of data."
+logo: 'assets/images/logo.jpeg'
+favicon: 'assets/images/logo.jpeg'
+baseurl: /stephanosterburg.github.io
+# google_analytics: 'UA-46278016-1'
+# disqus: 'demowebsite'
+# mailchimp-list: 'https://wowthemes.us11.list-manage.com/subscribe/post?u=8aeb20a530e124561927d3bd8&amp;id=8c3d2d214b'
+include: ["_pages"]
+permalink: /:title/
+
+timezone: US/Pacific
+
+# Authors
+authors:
+  stephan:
+    name: Stephan
+    display_name: Stephan
+    avatar: 'assets/images/avatar.jpg'
+    email: stephanosterburg@me.com
+    web: https://stephanosterburg.github.io
+    twitter: https://twitter.com/sosterburg
+    github: https://github.com/osterburg
+    linkedin: https://www.linkedin.com/in/stephanosterburg
+    description: "Computer graphics veteran with 30+ years experience on the quest to discover the world of data."
+
+# Plugins
+plugins:
+  - jekyll-paginate
+  - jekyll-sitemap
+  - jekyll-feed
+  - jekyll-gist
+  - jekyll-seo-tag
+  - jekyll-archives
+
+# Archives
+jekyll-archives:
+  enabled:
+    - categories
+  layout: archive
+  permalinks:
+    category: '/category/:name/'
+
+# Pagination
+paginate: 6
+paginate_path: /page:num/
+
+# Other
+markdown: kramdown
+
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    block:
+      line_numbers: true
+
+# Lazy Images ("enabled" or "disabled")
+lazyimages: "enabled"
+
+exclude:
+  - "*.less"
+  - "*.sublime-project"
+  - "*.sublime-workspace"
+  - .asset-cache
+  - .bundle
+  - .jekyll-assets-cache
+  - .sass-cache
+  - CHANGELOG
+  - Capfile
+  - Gemfile
+  - Gemfile.lock
+  - Gruntfile.js
+  - LICENSE
+  - LICENSE.txt
+  - README
+  - README.md
+  - Rakefile
+  - config
+  - changelog.md
+  - gulpfile.js
+  - lib
+  - log
+  - node_modules
+  - package.json
+  - spec
+  - tmp
