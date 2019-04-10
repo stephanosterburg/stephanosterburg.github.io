@@ -8,7 +8,7 @@ comments: false
 <div class="row justify-content-between">
 <div class="col-md-8 pr-5">
 
-<p>Computer graphics veteran with 30+ years experience on the quest to discover the world of data.</p>
+<p>Stephan Osterburg, I am located in the San Francisco Bay Area. A computer graphics veteran with 30 plus years of experience on the quest to discover the world of data.</p>
 
 <p>Movies I worked on over the years.</p>
 
@@ -36,7 +36,7 @@ comments: false
 
 <p>Thank you for checking our my blog! For more data science stuff I have done since October 2018, head over to  <a target="_blank" href="https://github.com/osterburg">github <i class="fab fa-github"></i></a>. Just remember, all the work you see there is me being a student at flatiron school.</p>
 
-<p>Head over to <a target="_blank" href="https://linkedin.com/in/stephanosterburg">linkedin <i class="fab fa-linkedin"></i></a> for information about me.</p>
+<p>Head over to <a target="_blank" href="https://linkedin.com/in/stephanosterburg">linkedin <i class="fab fa-linkedin"></i></a> for more information about me.</p>
 
 <!-- <a target="_blank" href="https://www.wowthemes.net/donate/" class="btn btn-danger">Buy me a coffee</a> <a target="_blank" href="https://bootstrapstarter.com/bootstrap-templates/template-mediumish-bootstrap-jekyll/" class="btn btn-warning">Documentation</a> -->
 
