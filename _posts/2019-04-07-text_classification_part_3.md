@@ -44,7 +44,9 @@ The dataset is not huge but is also larger than we’d like to manage on a lapto
 
 To fix the `EOF` problem, we can load in the dataset in chunks and loop that way through the dataset. Loading the CSV file in chunks helps but it is impractical to get a full picture of our data. With dask, we can utilise all the cores we have on our laptop.
 
+{:refdef: style="text-align: center;"}
 ![Content by URL Count]({{ site.baseurl }}/assets/images/DaskClient.png)
+{: refdef}
 
 Now we can get a quick view of what categories and how many we have in our dataset:
 
