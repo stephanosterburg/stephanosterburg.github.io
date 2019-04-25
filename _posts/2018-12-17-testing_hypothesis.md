@@ -4,7 +4,7 @@ title: Testing Hypothesis
 description: "The Art of Asking"
 author: stephan
 categories: [data, code, beginner]
-image: assets/images/hypothesis_bg.png
+image: assets/images/programming-languages-learn-header-image.jpg
 featured: false
 ---
 
