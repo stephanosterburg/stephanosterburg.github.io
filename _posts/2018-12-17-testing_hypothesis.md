@@ -4,7 +4,7 @@ title: Testing Hypothesis
 description: "The Art of Asking"
 author: stephan
 categories: [data, code, beginner]
-image: assets/images/GoogleArt_cropped.png
+image: assets/images/hypothesis_bg.png
 featured: false
 ---
 
