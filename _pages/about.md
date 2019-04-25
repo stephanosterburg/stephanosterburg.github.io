@@ -8,14 +8,26 @@ comments: false
 <div class="row justify-content-between">
 <div class="col-md-8 pr-5">
 
-<p><b>Stephan Osterburg</b>, located in the San Francisco Bay Area, I am a computer graphics veteran with more then 30 years of experience on the quest to discover the world of data.</p>
+<p><img src="{{site.baseurl}}/assets/images/stephan_small.jpg" alt="movie list" /></p>
 
-<p>Movies I worked on over the years.</p>
+<p>I am <b>Stephan Osterburg</b>, a Data Scientist and an accomplished digital production expert and computer artist, located in the San Francisco Bay Area. Since summer 2018, including six months at Flatiron School, I am on the quest to discover the world of data and worked relentlessly to gain all the necessary knowledge, and expertise one needs as a Data Scientist.
 
-<p class="mb-5"><img class="shadow-lg" src="{{site.baseurl}}/assets/images/movies.png" alt="movie list" /></p>
+I enjoy a challenging, progressive environment that offers room to innovate.
+
+My experience and knowledge include:
+    <ul type="circle">
+    <li>Overseeing a team on numerous animated feature film productions.</li>
+    <li>Serving in a wide range of technical and creative positions, ranging from software engineer to VFX and CG Supervisor.</li>
+    <li>Identifying opportunities for improvements and proposing realistic changes to streamline workflow processes and decrease production delays.</li>
+    <li>Data Science projects include analyzing news content of its authenticity, forest cover type classification and image classification etcetera.</li>
+    <li>Python, Pandas, Numpy, dask, keras/tensorflow, sklearn, Machine Learning, Deep Learning etcetera.</li>
+    </ul>
+</p>
 
 
-<p>Here is my last demoreel with work from movies I worked on while I was at PDI/Dreamworks.</p>
+<p>Here is small banner with all the movies I worked on over the years and my last demoreel with work from movies I worked on while I was at <a href="http://www.dreamworksanimation.com">PDI/Dreamworks</a>.</p>
+
+<p><img src="{{site.baseurl}}/assets/images/movies.png" alt="movie list" /></p>
 
 <p><iframe width="640" height="564" src="https://player.vimeo.com/video/178415077" frameborder="0" allowFullScreen></iframe></p>
 
@@ -34,7 +46,7 @@ comments: false
 <div class="sticky-top sticky-top-80">
 <h5>Current & Past</h5>
 
-<p>Thank you for checking our my blog! For more data science stuff I have done since October 2018, head over to  <a target="_blank" href="https://github.com/osterburg">github <i class="fab fa-github"></i></a>. Just remember, all the work you see there is me being a student at flatiron school.</p>
+<p>Thank you for checking our my blog! For more data science stuff I have done since October 2018, head over to  <a target="_blank" href="https://github.com/osterburg">github <i class="fab fa-github"></i></a>.</p>
 
 <p>Head over to <a target="_blank" href="https://linkedin.com/in/stephanosterburg">linkedin <i class="fab fa-linkedin"></i></a> for more information about me.</p>
 
