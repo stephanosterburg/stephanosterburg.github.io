@@ -14,7 +14,7 @@ When we are talking about hypothesis testing, what we are merely trying to do is
 
 And reframe it to:
 
-$H_0: \mu_{\text{discounts}} \leq \mu_{\text{no discounts}}$, the mean of the amount sold in orders with discounts is less or equal to the mean of the amount sold in orders without discounts.
+$$H_0: \mu_{\text{discounts}} \leq \mu_{\text{no discounts}}$$, the mean of the amount sold in orders with discounts is less or equal to the mean of the amount sold in orders without discounts.
 
 Our goal usually is to reject our formulated null hypothesis by calculating the p-value which we generally want to be **p < 0.05**   (i.e., there’s only a 5% chance that two identical distributions could have produced these results).
 

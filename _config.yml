@@ -50,12 +50,20 @@ paginate_path: /page:num/
 # Other
 markdown: kramdown
 
+# kramdown:
+#   input: GFM
+#   syntax_highlighter: rouge
+#   syntax_highlighter_opts:
+#     block:
+#       line_numbers: true
+
 kramdown:
   input: GFM
-  syntax_highlighter: rouge
-  syntax_highlighter_opts:
-    block:
-      line_numbers: true
+  auto_ids: true
+  footnote_nr: 1
+  entity_output: as_char
+  toc_levels: 1..6
+  enable_coderay: false
 
 # Lazy Images ("enabled" or "disabled")
 lazyimages: "enabled"
