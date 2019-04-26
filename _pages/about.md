@@ -10,10 +10,25 @@ comments: false
 
 <p><img src="{{site.baseurl}}/assets/images/stephan_small.jpg" alt="movie list" /></p>
 
-<p>I am <b>Stephan Osterburg</b>, a Data Scientist and an accomplished digital production expert and computer artist, located in the San Francisco Bay Area. Since summer 2018, including six months at Flatiron School, I am on the quest to discover the world of data and worked relentlessly to gain all the necessary knowledge, and expertise one needs as a Data Scientist.
+<h5> TL;DR </h5>
 
+<p>
+    I am <b>Stephan Osterburg</b>, located in the Bay Area - San Francisco, CA. I am a computer graphics veteran who is falling in love with data science.
+</p>
+
+<br><br>
+
+<h5> Hello, </h5>
+
+<p>I am <b>Stephan Osterburg</b>, a Data Scientist and an accomplished digital production expert and computer artist, located in the San Francisco Bay Area. After some unfortunate events in our live I made the bold decision to change my career.
+<br>
+Why you might ask. Well, it's not like it fall out of the sky. No, I had always a fascination with data and visualization.
+<br>
+After taking a well deserved brake last year and been able to reflect on what I would like to do, I found Data Science. Since summer 2018, including six months at <a href="https://flatironschool.com/">Flatiron School</a>, I am full gas on the quest to discover the world of data and worked relentlessly to gain all the necessary knowledge, and expertise one needs as a Data Scientist.
+<br>
 I enjoy a challenging, progressive environment that offers room to innovate.
-
+<br>
+<br>
 My experience and knowledge include:
     <ul type="circle">
     <li>Overseeing a team on numerous animated feature film productions.</li>
