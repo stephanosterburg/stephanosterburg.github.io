@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="{{@site.lang}}">
+<head>
+	{{!-- Document Settings --}}
+	<meta charset="utf-8">
+
+	{{!-- Page Meta --}}
+	<title>{{meta_title}}</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+	{{!-- Styles --}}
+	<link href="https://fonts.googleapis.com/css?family=Crimson+Text:400,400i,600,600i%7CKarla:400,400i,700,700i" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="{{asset "css/style.css"}}" />
+</head>
+<body class="error-template">
+
+	{{#if @site.cover_image}}
+	<div class="error-cover" style="background-image: url({{@site.cover_image}})"></div>
+	{{/if}}
+
+	<div id="page" class="site">
+		<div id="content" class="site-content">
+			<div class="inner">
+				<h1 class="error-code">{{t "404: Page Not Found"}}</h1>
+				<p class="error-description">{{t "The thing you were looking for is no longer here or never was."}}</p>
+				<a class="error-link" href="{{@site.url}}">{{{t "Go to the front page &rarr;"}}}</a>
+			</div><!-- .inner -->
+		</div><!-- .site-content -->
+	</div><!-- .site -->
+
+</body>
+</html>

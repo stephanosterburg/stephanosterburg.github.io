@@ -1,0 +1,91 @@
+{{!< default}}
+{{!-- The tag above means - insert everything in this file into the {body} of the default.hbs template --}}
+
+{{!-- The content area on the single post page --}}
+<main id="main" class="site-main">
+
+	{{!-- Everything inside the #post tags pulls data from the post --}}
+	{{#post}}
+
+	<article class="{{post_class}} post-full inner">
+
+		<header class="post-header">
+			<div class="post-meta">
+				{{#if featured}}<span class="featured-badge">{{t "Featured"}}</span> &ndash; {{/if}}<time class="published" datetime="{{date format='YYYY-MM-DD'}}">{{date format="LL"}}</time>
+			</div><!-- .post-meta -->
+			<h1 class="post-title">{{title}}</h1>
+			{{#if tags}}
+			<div class="post-tags">{{tags separator=" "}}</div>
+			{{/if}}
+		</header><!-- .post-header -->
+
+		{{#if feature_image}}
+		<div class="post-thumbnail">
+			<img srcset="{{img_url feature_image size="xs"}} 300w, {{img_url feature_image size="s"}} 600w, {{img_url feature_image size="m"}} 800w, {{img_url feature_image size="l"}} 1100w, {{img_url feature_image size="xl"}} 1600w" sizes="(max-width: 800px) 94vw, (max-width: 1000px) 64vw, (max-width: 1468px) calc(94vw - 300px), 1100px" src="{{img_url feature_image size="l"}}" alt="{{title}}" />
+		</div>
+		{{/if}}
+
+		<div class="post-content">
+			{{content}}
+		</div><!-- .post-content -->
+
+		<footer class="post-footer">
+			<p class="post-share">
+				<span class="post-share-title">{{t "Share:"}}</span>
+				<a target="_blank" href="https://twitter.com/intent/tweet?text={{encode title}}&amp;url={{url absolute="true"}}" rel="noopener">Twitter</a>
+				<a target="_blank" href="https://www.facebook.com/sharer.php?u={{url absolute="true"}}" rel="noopener">Facebook</a>
+				<a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url={{url absolute="true"}}&amp;title={{encode title}}&amp;source={{encode @site.title}}" rel="noopener">LinkedIn</a>
+			</p>
+		</footer><!-- .post-footer -->
+
+		{{!-- The tag below includes the Disqus comments - partials/disqus-comments.hbs --}}
+		{{> "disqus-comments"}}
+
+	</article><!-- .post -->
+
+	{{!-- The tag below includes the newsletter subscription section - partials/newsletter-box.hbs --}}
+	{{> "newsletter-box"}}
+
+	{{!-- Related posts --}}
+	{{#get "posts" filter="tags:[{{tags[*].slug}}]+id:-{{id}}" limit="2" include="tags" as |related_posts|}}
+		{{#foreach related_posts}}
+			{{#if @first}}
+			<section class="read-next inner">
+				<h2 class="read-next-title">{{t "Read Next"}}</h2>
+			{{/if}}
+				<article class="{{post_class}}">
+					<header class="post-header">
+						<div class="post-meta">
+							<time class="published" datetime="{{date format='YYYY-MM-DD'}}">{{date format="LL"}}</time>
+						</div><!-- .post-meta -->
+						<h3 class="post-title"><a href="{{{url}}}" rel="bookmark">{{title}}</a></h3>
+						{{#if tags}}
+						<p class="post-tags">{{tags separator=" "}}</p>
+						{{/if}}
+					</header><!-- .post-header -->
+				</article><!-- .post -->
+			{{#if @last}}
+			</section><!-- .read-next -->
+			{{/if}}
+		{{/foreach}}
+	{{/get}}
+
+	{{!-- Tagcloud --}}
+	{{#get "tags" limit="all" include="count.posts" order="count.posts desc"}}
+		{{#foreach tags}}
+			{{#if @first}}
+			<section class="tagcloud inner">
+				<h2 class="tagcloud-title">{{t "Tags"}}</h2>
+				<div class="tag-links">
+			{{/if}}
+					<a href="{{url}}">{{name}} ({{count.posts}})</a>
+			{{#if @last}}
+				</div><!-- .tag-links -->
+			</section><!-- .tagcloud -->
+			{{/if}}
+		{{/foreach}}
+	{{/get}}
+
+	{{/post}}
+
+</main><!-- .site-main -->

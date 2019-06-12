@@ -1,0 +1,28 @@
+{{!-- The post loop with featured posts excluded --}}
+{{#get "posts" include="tags" limit=@config.posts_per_page filter="featured:false" page=pagination.page}}
+
+	{{#foreach posts}}
+	<article class="{{post_class}}">
+		<header class="post-header">
+			<div class="post-meta">
+				<time class="published" datetime="{{date format='YYYY-MM-DD'}}">{{date format="LL"}}</time>
+			</div><!-- .post-meta -->
+			<h2 class="post-title"><a href="{{{url}}}" rel="bookmark">{{title}}</a></h2>
+		</header><!-- .post-header -->
+		<div class="post-content">
+			{{#if custom_excerpt}}
+			<p>{{custom_excerpt}}</p>
+			{{else}}
+			<p>{{excerpt words="40"}}&hellip;</p>
+			{{/if}}
+			{{#if tags}}
+			<p class="post-tags">{{tags separator=" "}}</p>
+			{{/if}}
+		</div><!-- .post-content -->
+	</article><!-- .post -->
+	{{/foreach}}
+
+	{{!-- Previous/next page links - displayed on every page --}}
+	{{pagination}}
+
+{{/get}}

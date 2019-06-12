@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="{{@site.lang}}">
+<head>
+	{{!-- Document Settings --}}
+	<meta charset="utf-8">
+
+	{{!-- Page Meta --}}
+	<title>{{meta_title}}</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+	{{!-- Styles --}}
+	<link href="https://fonts.googleapis.com/css?family=Crimson+Text:400,400i,600,600i%7CKarla:400,400i,700,700i" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="{{asset "css/style.css"}}" />
+
+	{{!-- Outputs SEO meta+structured data and other important settings --}}
+	{{ghost_head}}
+</head>
+<body class="{{body_class}}">
+
+	<div id="page" class="site">
+		{{!-- The tag below includes the theme header - partials/header.hbs --}}
+		{{> header}}
+		<div id="content" class="site-content">
+			<div class="inner-wide">
+				{{!-- All the main content gets inserted here, index.hbs, post.hbs, etc --}}
+				{{{body}}}
+				{{!-- The tag below includes the theme footer - partials/footer.hbs --}}
+				{{> footer}}
+			</div><!-- .inner-wide -->
+		</div><!-- .site-content -->
+	</div><!-- .site -->
+
+	{{!-- Scripts --}}
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+	<script>window.jQuery || document.write('<script src="{{asset "js/jquery-3.3.1.min.js"}}"><\/script>');</script>
+	<script src="{{asset "js/plugins.js"}}"></script>
+	<script src="{{asset "js/custom.js"}}"></script>
+
+	{{!-- Ghost outputs important scripts and data with this tag - it should always be the very last thing before the closing body tag --}}
+	{{ghost_foot}}
+
+</body>
+</html>

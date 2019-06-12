@@ -1,0 +1,8 @@
+{{!-- Section to display the Ghost subscribe form --}}
+{{#if @labs.subscribers}}
+<section class="newsletter-box inner">
+	<h2 class="newsletter-box-title">{{t "Subscribe to {blogtitle}" blogtitle=@site.title}}</h2>
+	<p>{{t "Get the latest and greatest from {blogtitle} delivered straight to your inbox every week." blogtitle=@site.title}}</p>
+	{{subscribe_form form_class="gh-subscribe-form" button_class="button" placeholder=(t "Your email address")}}
+</section><!-- .newsletter-box -->
+{{/if}}

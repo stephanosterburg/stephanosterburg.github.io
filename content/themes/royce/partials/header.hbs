@@ -1,0 +1,45 @@
+{{!-- The header of the theme --}}
+<header id="masthead" class="site-header">
+	<div class="site-header-wrap">
+		<div class="site-header-inside">
+
+			<div class="site-branding">
+				{{#if @site.logo}}
+				<p class="site-logo"><a href="{{@site.url}}"><img src="{{img_url @site.logo size="xs"}}" alt="{{@site.title}}" /></a></p>
+				{{else}}
+					{{#get "authors" limit="1" order="created_at asc" as |user|}}
+						{{#user}}
+							{{#if profile_image}}
+							<p class="profile"><a href="{{@site.url}}">
+								<img srcset="{{img_url profile_image size="xxs"}} 100w, {{img_url profile_image size="xs"}} 300w" sizes="(max-width: 800px) 45px, 100px" src="{{img_url profile_image size="xxs"}}" alt="{{name}}" class="avatar" /></a></p>
+							{{/if}}
+						{{/user}}
+					{{/get}}
+				{{/if}}
+				<div class="site-identity">
+					{{#is "index"}}
+					<h1 class="site-title"><a href="{{@site.url}}">{{@site.title}}</a></h1>
+					{{else}}
+					<p class="site-title"><a href="{{@site.url}}">{{@site.title}}</a></p>
+					{{/is}}
+					{{#if @site.description}}
+					<p class="site-description">{{@site.description}}</p>
+					{{/if}}
+				</div><!-- .site-identity -->
+				<button id="menu-toggle" class="menu-toggle"><span class="screen-reader-text">{{t "Menu"}}</span><span class="icon-menu" aria-hidden="true"></span></button>
+			</div><!-- .site-branding -->
+
+			<nav id="main-navigation" class="site-navigation" aria-label="Main Navigation">
+				<div class="site-nav-wrap">
+					<div class="site-nav-inside">
+						{{!-- The tag below includes the navigation menu - partials/navigation.hbs --}}
+						{{navigation}}
+						{{!-- The tag below includes the social links list - partials/social-links.hbs --}}
+						{{> "social-links"}}
+					</div><!-- .site-nav-inside -->
+				</div><!-- .site-nav-wrap -->
+			</nav><!-- .site-navigation -->
+
+		</div><!-- .site-header-inside -->
+	</div><!-- .site-header-wrap -->
+</header><!-- .site-header -->

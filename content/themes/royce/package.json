@@ -1,0 +1,47 @@
+{
+  "name": "royce",
+  "description": "A simple single-author Ghost theme for writers and bloggers.",
+  "demo": "https://royce.justgoodthemes.eu/",
+  "version": "1.0.1",
+  "engines": {
+    "ghost": ">=2.22.0",
+    "ghost-api": "v2"
+  },
+  "screenshots": {
+    "desktop": "assets/screenshot-desktop.jpg",
+    "mobile": "assets/screenshot-mobile.jpg"
+  },
+  "author": {
+    "name": "Just Good Themes",
+    "email": "hello@justgoodthemes.com",
+    "url": "https://justgoodthemes.com"
+  },
+  "keywords": [
+    "ghost",
+    "theme",
+    "ghost-theme"
+  ],
+  "config": {
+    "posts_per_page": 8,
+    "image_sizes": {
+      "xxs": {
+        "width": 100
+      },
+      "xs": {
+        "width": 300
+      },
+      "s": {
+        "width": 600
+      },
+      "m": {
+        "width": 800
+      },
+      "l": {
+        "width": 1100
+      },
+      "xl": {
+        "width": 1600
+      }
+    }
+  }
+}
