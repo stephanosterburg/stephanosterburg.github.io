@@ -29,11 +29,13 @@ codepen:
 
 # Navigation
 navigation:
-  - text: Home
+  - text: HOME
     url: /
-  - text: About
+  - text: ABOUT
     url: /about
-  - text: Contact Me
+  - text: SCRAPBOOK
+    url: https://app.gitbook.com/@osterburg/s/scrapbook/
+  - text: CONTACT ME
     url: /contact
 
 # Required Plugins
