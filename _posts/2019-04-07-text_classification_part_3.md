@@ -159,10 +159,11 @@ When we plot the training and validation accuracy (see below), we can see that t
 
 ![Content by URL Count]({{ site.baseurl }}/assets/images/posts/2019/training_validation_results.png)
 
+Question(s)? With about 98% accuracy, can we talk about overfitting here? Surely not. Or can we?
+
 ## GPU
 
 You may notice the `with`-statement and recall that I am working on a laptop. To train the model on the laptop is not manageable. To be able to train the model I used [paperspace's gradient service](https://www.paperspace.com/gradient), which includes jupyter notebooks, a job runner, and a python module to run any code on Paperspace GPU cloud. The gradient machine I created is a Quadro P4000 with 8CPU's and 30GB RAM. One epoch needed about 45 minutes to calculate.
-
 
 ## Jupyter Notebook
 
