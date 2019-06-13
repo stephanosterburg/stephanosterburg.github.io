@@ -1,4 +1,4 @@
-# Stephan's blog posts - Change Log
+# Royce Jekyll Theme
 
-## 2019-094-10
-- port to the Mediumish Jekyll Theme 
+## Version 1.0.0
+- initial release

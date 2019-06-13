@@ -5,7 +5,8 @@ description: "Fake News"
 author: stephan
 categories: [data, code, content]
 tags: [news, fake, deeplearning]
-image: assets//images/Newstand_part2.jpg
+featured_image_thumbnail:
+featured_image: assets//images/posts/2019/Newstand_part2.jpg
 featured: true
 hidden: true
 ---
@@ -16,11 +17,11 @@ After collecting our data, the first thing we want to do is to get an understand
 
 Remember, the number of source URLs is not very well balanced if we are looking at the categories. We started with 134 URLs categorised as `fake` and from our source dataset with only 3 reliable URLs, which we increased to over 70 URLs with our own.
 
-![Content by URL Count]({{ site.baseurl }}/assets/images/content_by_url_count.png)
+![Content by URL Count]({{ site.baseurl }}/assets/images/posts/2019/content_by_url_count.png)
 
 However, I went ahead and collected as much data as possible and as it turns out correctly so. As we can see in the image below the distribution turned up-side-down. I wasn't expecting that at all.
 
-![Content by Article Count]({{ site.baseurl }}/assets/images/content_by_article_count.png)
+![Content by Article Count]({{ site.baseurl }}/assets/images/posts/2019/content_by_article_count.png)
 
 So we don't need the extra content we got from the archived data at [webhose.io](https://webhose.io/).
 
@@ -28,17 +29,17 @@ So we don't need the extra content we got from the archived data at [webhose.io]
 
 In natural language analysis, one of the first steps one wants to do is understand the sentiment of a given text. Our data is to 75% neutral, which I guess is a good thing. The interesting part here is the thing that for the rest of our data the negative content overweights the positive content drastically.
 
-![Positive-Neutral-Negative Content Distribution]({{ site.baseurl }}/assets/images/Positive-Neutral-Negative_Content_Distribution.png)
+![Positive-Neutral-Negative Content Distribution]({{ site.baseurl }}/assets/images/posts/2019/Positive-Neutral-Negative_Content_Distribution.png)
 
 Moreover, we can see that also in the distribution about the number of words in an article and its sentiment weighting. The shorter an article is, the more likely it is that it is negative content.
 
-![Positive/Negative Sentiment]({{ site.baseurl }}/assets/images/posneg_sentiment.png)
+![Positive/Negative Sentiment]({{ site.baseurl }}/assets/images/posts/2019/posneg_sentiment.png)
 
 ## Visualizing differences based only on term frequencies
 
 Occasionally, only term frequency statistics are available. In the case where this may happen like in very large, lost, or proprietary data sets. To help us here we can use the tool [`scattertext`](https://github.com/JasonKessler/scattertext) which is based on [`spaCy`](https://spacy.io/). `TermCategoryFrequencies` function is a corpus representation, that can accept this sort of data, along with any categorised documents that happen to be available.
 
-![Visualisation Term Category Frequencies]({{ site.baseurl }}/assets/images/TermCategoryFrequencies.png)
+![Visualisation Term Category Frequencies]({{ site.baseurl }}/assets/images/posts/2019/TermCategoryFrequencies.png)
 
 <a href="https://stephanosterburg.github.io/data/reliable_vs_unreliable.html" target="_blank">Visualizing TermCategoryFrequencies</a> (link opens in new tab)
 

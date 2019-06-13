@@ -4,7 +4,8 @@ title: Bayes' Theorem
 description: "The probability of the hypothesis..."
 author: stephan
 categories: [data, code, Bayes]
-image: assets/images/Bayes_Theorem_MMB_01.jpg
+featured_image_thumbnail:
+featured_image: assets/images/posts/2018/Bayes_Theorem_MMB_01.jpg
 featured: false
 ---
 
@@ -19,11 +20,15 @@ Not sure why that is, but probability (P) doesn't come quickly to me, especially
 
 So back to my task. There are several ways to approach Bayes's Theorem, and the easiest one I found to help me make sense is a tree diagram. To understand the tree diagram for Bayes' Theorem, let's demonstrate it on an example. Assume that we have a group of teenagers (girls and boys) and we want to know how many do play soccer. We then would start drawing our tree diagram as follow:
 
-![]({{ site.baseurl }}/assets/images/blog3_01.jpeg){: .center-image }
+{:refdef: style="text-align: center;"}
+![]({{ site.baseurl }}/assets/images/posts/2018/blog3_01.jpeg){: .center-image }
+{: refdef}
 
 Now depending on how many boys and girls we have in the group we can give each branch some weighting. Let's say we have a group of 13 girls $$P(G)=0.65$$ and 7 boys $$P(B)=0.35$$, from which some play soccer $$S$$ and others not $$S^c$$. To visualize it on our tree diagram we are adding to each branch two more branches.
 
-![]({{ site.baseurl }}/assets/images/blog3_02.jpeg){: .center-image }
+{:refdef: style="text-align: center;"}
+![]({{ site.baseurl }}/assets/images/posts/2018/blog3_02.jpeg){: .center-image }
+{: refdef}
 
 If a teenager plays soccer or not intersects whether or not they are a girl or a boy - denoted as $$P(S \cap B)$$ for example. Which brings us to the conditional probability of soccer given it is a boy or a girl, eg. $$P(S∣B)P$$. Side note, if we write $$S^c$$ to describe the complement of S, we are saying "not playing soccer".
 
@@ -33,7 +38,9 @@ However, before we are moving on, here are two helpful rules to help us solve a 
 * all values from each branch have to add up to 1
 * we multiply all value going down a branch
 
-![]({{ site.baseurl }}/assets/images/blog3_03.jpeg){: .center-image }
+{:refdef: style="text-align: center;"}
+![]({{ site.baseurl }}/assets/images/posts/2018/blog3_03.jpeg){: .center-image }
+{: refdef}
 
 Now, before we can answer any questions, we need some more information, given variables. Like, what is the ratio of girls and boys - which already have from above - and what is the likelihood that a boy or girl plays soccer like so,
 
@@ -47,7 +54,9 @@ Ok, now we can ask questions, for example what is the probability that a girl pl
 
 $$ \large P(G|S) \rightarrow \frac{P(S \cap G)}{P(S)}$$
 
-![]({{ site.baseurl }}/assets/images/blog3_04.jpeg){: .center-image }
+{:refdef: style="text-align: center;"}
+![]({{ site.baseurl }}/assets/images/posts/2018/blog3_04.jpeg){: .center-image }
+{: refdef}
 
 We know what our numerator is by looking at our tree diagram, $$0.24$$. For the denumerator however, we need to find out the whole population playings soccer, both boys and girls, and add them together:
 

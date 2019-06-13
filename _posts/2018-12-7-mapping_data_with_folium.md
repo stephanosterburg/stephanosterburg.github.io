@@ -4,7 +4,8 @@ title: Mapping Data with folium
 description: "Visualising city data"
 author: stephan
 categories: [data, code, map]
-image: assets/images/9background.jpg
+featured_image_thumbnail:
+featured_image: assets/images/posts/2018/9background.jpg
 featured: false
 ---
 
@@ -12,8 +13,8 @@ For my first Data Science project at Flatiron, we got the King County Housing da
 
 I first wanted to know where King County is. Is the county in a rural area, suburban area or just a big city like New York or a combination of some or all of them. To get a basic understanding and feel for what is the data represents. After going through the scrubbing part and dealing with the not so clean data handed, and having a better understanding of what is in the dataset, which leads me to the following questions:
 
-* Is location of a house by zip code (neighbourhood) an indicator for the house price?
-* Do zip codes (neighbourhoods) with the higher housing density have an effect on selling price?
+* Is location of a house by zip code (neighborhood) an indicator for the house price?
+* Do zip codes (neighborhoods) with the higher housing density have an effect on selling price?
 
 Also, what visualisation technique should or can I use to present it best? My choice was to use a map to visualise the data. For that, I picked the folium package.
 
@@ -119,7 +120,7 @@ def map_feature_by_zipcode(zipcode_data, col):
 f.map_feature_by_zipcode(zipcode_data, 'count')
 ```
 
-![seattle_density_map]({{ site.baseurl }}/assets/images/seattle_density_map.png)
+![seattle_density_map]({{ site.baseurl }}/assets/images/posts/2018/seattle_density_map.png)
 
 The main strength I can see in our case is that we can answer our question regarding housing density by zip code.
 

@@ -4,7 +4,8 @@ title: Testing Hypothesis
 description: "The Art of Asking"
 author: stephan
 categories: [data, code, beginner]
-image: assets/images/programming-languages-learn-header-image.jpg
+featured_image_thumbnail:
+featured_image: assets/images/posts/2018/programming-languages-learn-header-image.jpg
 featured: false
 ---
 
@@ -30,7 +31,9 @@ We first want to find out what type of data we are dealing with whether it is co
 * 2 Sample i.e., comparing a control and treatment group or an A/B test
 * More than 2 Sample i.e., comparing three different variants of a landing page
 
-![Hypothesis Testing]({{ site.baseurl }}/assets/images/hypothesis_test_small.jpg)
+{:refdef: style="text-align: center;"}
+![Hypothesis Testing]({{ site.baseurl }}/assets/images/posts/2018/hypothesis_test_small.jpg)
+{: refdef}
 
 ### 1 Sample T-Test
 

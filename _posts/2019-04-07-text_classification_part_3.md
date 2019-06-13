@@ -1,11 +1,12 @@
 ---
 layout: post
-title: Text Classification (Part 3)
+title: 'Text Classification (Part 3)'
 description: "Fake News"
 author: stephan
 categories: [data, code, content]
 tags: [news, fake, deeplearning]
-image: assets/images/Newstand_part3.jpg
+featured_image_thumbnail:
+featured_image: assets/images/posts/2019/Newstand_part3.jpg
 featured: true
 hidden: true
 ---
@@ -14,7 +15,9 @@ hidden: true
 
 The dataset used for that project is an already [polished and fairly large corpus](https://github.com/several27/FakeNewsCorpus) by Maciej Szpakowski.
 
-> This is an open source dataset composed of millions of news articles mostly scraped from a curated list of 1001 domains from http://www.opensources.co/. Because the list does not contain any reliable websites, additionally NYTimes and Webhose English News Articles articles have been included to balance the classes better. The dataset is still work in progress, and for now, the public version includes only 9,408,908 articles (745 out of 1001 domains).
+> This is an open source dataset composed of millions of news articles mostly scraped from a curated list of 1001 domains from opensources.co. Because the list does not contain any reliable websites, additionally NYTimes and Webhose English News Articles articles have been included to balance the classes better. The dataset is still work in progress, and for now, the public version includes only 9,408,908 articles (745 out of 1001 domains).
+
+
 
 The available data has more than 26GB on disk when we unzip the file and more than 75GB in RAM using pandas. For that reason, I considered using [dask](https://dask.org/). However, loading the CSV file ended in a ParserError (`Error tokenizing data. C error: EOF inside string starting at row 63`) and apparently, this is a [known problem](https://stackoverflow.com/q/45752805/5983691) with dask's read_csv if the file contains a newline character between quotes.
 
@@ -40,12 +43,12 @@ def csv_field_limit():
 
 The dataset is not huge but is also larger than we’d like to manage on a laptop, especially if we value interactivity. In any case, let's have a look at the first 100 rows to see what we have and determine what features we can drop and others we want to keep.
 
-![Count Category]({{ site.baseurl }}/assets/images/BigDataTable.png)
+![Count Category]({{ site.baseurl }}/assets/images/posts/2019/BigDataTable.png)
 
 To fix the `EOF` problem, we can load in the dataset in chunks and loop that way through the dataset. Loading the CSV file in chunks helps but it is impractical to get a full picture of our data. With dask, we can utilise all the cores we have on our laptop.
 
 {:refdef: style="text-align: center;"}
-![Content by URL Count]({{ site.baseurl }}/assets/images/DaskClient.png)
+![Content by URL Count]({{ site.baseurl }}/assets/images/posts/2019/DaskClient.png)
 {: refdef}
 
 Now we can get a quick view of what categories and how many we have in our dataset:
@@ -56,7 +59,7 @@ categories
 ```
 
 {:refdef: style="text-align: center;"}
-![Content by URL Count]({{ site.baseurl }}/assets/images/BigDataCategories.png)
+![Content by URL Count]({{ site.baseurl }}/assets/images/posts/2019/BigDataCategories.png)
 {: refdef}
 
 
@@ -154,7 +157,7 @@ with tf.device('/gpu:0'):
 
 Our model returns a near perfect accuracy score of 97.83%, and if we are looking at the training and validation results, we might be inclined to save the keras model into a single HDF5 file at each epoch. That way we can save the best possible model. We probably could have stopped at the third epoch and saved us a lot of time.
 
-![Content by URL Count]({{ site.baseurl }}/assets/images/training_validation_results.png)
+![Content by URL Count]({{ site.baseurl }}/assets/images/posts/2019/training_validation_results.png)
 
 ## GPU
 

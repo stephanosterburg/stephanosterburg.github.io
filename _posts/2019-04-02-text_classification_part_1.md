@@ -5,7 +5,8 @@ description: "Fake News"
 author: stephan
 categories: [data, code, content]
 tags: [news, fake, deeplearning]
-image: assets/images/Newstand_part1.jpg
+featured_image_thumbnail:
+featured_image: assets/images/posts/2019/Newstand_part1.jpg
 featured: true
 hidden: true
 ---
@@ -36,7 +37,7 @@ for url in df['url']:
 The resulting list we got back looks off. When we are looking at the categories and their number count we find that we need to do some cleaning:
 
 {:refdef: style="text-align: center;"}
-![Count Category]({{ site.baseurl }}/assets/images/CategoryCountList.png)
+![Count Category]({{ site.baseurl }}/assets/images/posts/2019/CategoryCountList.png)
 {:refdef}
 
 We have some oddly named categories and a meagre number of only 3 reliable URLs in the list. To address this imbalance, I added about 70 URLs I consider reliable (hopefully) of my own, which doesn't balance the scale very much but at least pushes it into the right direction. Plus, let us see what and how much content we can scrape from the world wide web before we do something about the source list.
@@ -48,7 +49,7 @@ There are several tools to get content from a website, [scrapy](https://scrapy.o
 In any case, the primary challenge we are facing here is that every website has a different underlying architecture. To determine what the best options are I decided to look at [NYTimes](https://www.nytimes.com/). As we can see in the image below, each paragraph is in its separate HTML tag. Collecting content only from the NYTimes website won't be impossible, it is just exceedingly complicated, and neither of the mentioned tools won't do it in the long run. If we are considering that we have over 500 labelled URLs, for the scope of this project, it is just not practical. There must be more straightforward ways to tackle this.
 
 {:refdef: style="text-align: center;"}
-![Count Category]({{ site.baseurl }}/assets/images/nytimes_html.png)
+![Count Category]({{ site.baseurl }}/assets/images/posts/2019/nytimes_html.png)
 {:refdef}
 
 ## API

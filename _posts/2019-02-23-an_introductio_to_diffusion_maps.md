@@ -4,7 +4,8 @@ title: A short introduction to Diffusion Maps
 description: "An interpretation of the paper"
 author: stephan
 categories: [data, code, diffusion maps, papers]
-image: assets/images/diffusion_map.png
+featured_image_thumbnail:
+featured_image: assets/images/posts/2019/diffusion_map.png
 featured: false
 ---
 
@@ -19,7 +20,7 @@ The [paper](https://inside.mines.edu/~whereman/talks/delaPorte-Herbst-Hereman-va
 We are limited in visualising information beyond the third dimension. For simplicity reasons, imagine a black and white image (grey scale) of 100 by 100 pixels, where each pixel represents a variable. The dimensionality would add up to be 10,000. A **human** would not have any issues with reading the following digits in the picture below, but a **computer** sees them as a data point in an _nm_-dimensional coordinate space.
 
 
-![Dimensionality Reduction]({{ site.baseurl }}/assets/images/Two-images-of-the-same-digit-at-different-rotation-angles.png)
+![Dimensionality Reduction]({{ site.baseurl }}/assets/images/posts/2019/Two-images-of-the-same-digit-at-different-rotation-angles.png)
 
 
 Dimensionality reduction is about converting data of very high dimensionality into data of lower dimensionality while preserving the original information. We can achieve these if one would be able to measure the distance between data points on the manifold itself instead of in Euclidean space by taking into account the data global space.
@@ -48,7 +49,7 @@ The most popular reduction methods are
 Diffusion maps are a non-linear technique. Similar to taking a random walk on our data, where we jump between data points in feature space (see image below), we  are analysing the connectivity of the data. The goal is to reveal the geometric structure of our data at different scales, defining a "time-dependent" diffusion metrics.
 
 
-![Diffusion Maps]({{ site.baseurl }}/assets/images/A-random-walk-on-a-data-set-Each-jump-has-a-probability-associated-with-it-The-green.png)
+![Diffusion Maps]({{ site.baseurl }}/assets/images/posts/2019/A-random-walk-on-a-data-set-Each-jump-has-a-probability-associated-with-it-The-green.png)
 
 By measuring the distances between data points (i.e. Euclidean space), we can define neighbourhoods. In order to achieve it, we define a threshold value in the way of a function (kernel) to obtain the similarity within the geometric structure, which allows us to preserve the underlying information of the given data and be able to connect each neighbourhood.
 

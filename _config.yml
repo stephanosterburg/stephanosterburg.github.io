@@ -1,72 +1,80 @@
-# Site
-name: "Data Ocean"
-title: "Data Ocean"
-description: "A discovery into the world of data."
-logo: 'assets/images/logo.jpeg'
-favicon: 'assets/images/logo.jpeg'
-baseurl: 
-# google_analytics: 'UA-46278016-1'
-# disqus: 'demowebsite'
-# mailchimp-list: 'https://wowthemes.us11.list-manage.com/subscribe/post?u=8aeb20a530e124561927d3bd8&amp;id=8c3d2d214b'
-include: ["_pages"]
-permalink: /:title/
+# Site setings
+name: 'Stephan Osterburg'
+description: 'Data Scientist - ML/DL Engineer - Supervisor/Technical Lead'
+meta_description:
+logo:
+# Author image is used in site sidebar and greetings in the home page hero text
+author:
+  image: 'authorimage.jpg'
+  greetings: "Data Scientist with comprehensive expertise in computer graphics, visual effects, and animation, and a background in architecture."
+favicon: 'assets/images/favicon.ico'
+baseurl:
+production_url: https://stephanosterburg.github.io/
 
-timezone: US/Pacific
+# Add your GA Tracking Id
+ga_analytics:
 
-# Authors
-authors:
-  stephan:
-    name: Stephan
-    display_name: Stephan
-    avatar: 'assets/images/avatar.jpg'
-    email: stephanosterburg@me.com
-    web: https://stephanosterburg.github.io
-    twitter: https://twitter.com/sosterburg
-    github: https://github.com/osterburg
-    linkedin: https://www.linkedin.com/in/stephanosterburg
-    description: "Computer graphics veteran with 30+ years experience on the quest to discover the world of data."
+# Contact form setings
+email: stephanosterburg@gmail.com
+# contact_page_description: "Horace theme comes with a contact form built-in. You can use this form with Formspree service and get up to 50 submissions for free. Also, you can easily switch to another service if you want."
+thankyou_page_description: "Your message has been successfully sent. We will contact you very soon!"
 
-# Plugins
-plugins:
+# Social links
+twitter: 'sosterburg'
+medium: '@sosterburg'
+linkedin: 'stephanosterburg'
+github: 'osterburg'
+stackoverflow: 'osterburg'
+codepen: '@stephanosterburg'
+
+# Navigation
+navigation:
+  - text: Home
+    url: /
+  - text: About
+    url: /about
+  - text: Contact Me
+    url: /contact
+
+# Required Plugins
+plugins_dir:
   - jekyll-paginate
-  - jekyll-sitemap
-  - jekyll-feed
-  - jekyll-gist
+  - jekyll-tagsgenerator
   - jekyll-seo-tag
-  - jekyll-archives
-
-# Archives
-jekyll-archives:
-  enabled:
-    - categories
-  layout: archive
-  permalinks:
-    category: '/category/:name/'
+  - jekyll-sitemap
+  - jekyll-gist
 
 # Pagination
-paginate: 6
+paginate: 5
 paginate_path: /page:num/
+
+# Permalinks
+permalink: /:title
+
+timezone: US/Pacific
 
 # Other
 markdown: kramdown
 
-# kramdown:
-#   input: GFM
-#   syntax_highlighter: rouge
-#   syntax_highlighter_opts:
-#     block:
-#       line_numbers: true
-
+# Jekyll 3 now only supports Kramdown for Markdown
 kramdown:
+  # Use GitHub flavored markdown, including triple backtick fenced code blocks
   input: GFM
+  # Jekyll 3 and GitHub Pages now only support rouge for syntax highlighting
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    # Use existing pygments syntax highlighting css
+    css_class: 'highlight'
   auto_ids: true
   footnote_nr: 1
   entity_output: as_char
   toc_levels: 1..6
   enable_coderay: false
 
-# Lazy Images ("enabled" or "disabled")
-lazyimages: "enabled"
+# Set the Sass partials directory, as we're using @imports
+sass:
+  sass_dir: _sass
+  style: compressed  # You might prefer to minify using :compressed :expanded
 
 exclude:
   - "*.less"
