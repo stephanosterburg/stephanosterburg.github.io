@@ -23,7 +23,7 @@ The available data has more than 26GB on disk when we unzip the file and more th
 
 To read the CSV file with pandas, the same row (63) ended in a `_csv.Error: field larger than field limit (131072)`. To address that error we have to first increase the `csv.field_size_limit`.
 
-```python
+<pre><code class="language-python">
 # _csv.Error: field larger than field limit (131072)
 # https://stackoverflow.com/a/15063941/5983691
 def csv_field_limit():
@@ -39,7 +39,7 @@ def csv_field_limit():
         except OverflowError:
             maxInt = int(maxInt/10)
             decrement = True
-```
+</code></pre>
 
 The dataset is not huge but is also larger than we’d like to manage on a laptop, especially if we value interactivity. In any case, let's have a look at the first 100 rows to see what we have and determine what features we can drop and others we want to keep.
 
@@ -155,7 +155,7 @@ with tf.device('/gpu:0'):
 					epochs=epochs, verbose=1)
 ```
 
-Our model returns after only 20 epochs nearly perfect accuracy and loss values for our training data. But when we are looking at the graphs below the curves for our validation accuracy and loss indicates that we are overfitting and need to go back to the drawing board. Well, we should continue working on the TensorFlow model and find ways to improve the models' result.
+Our model returns after only 20 epochs nearly perfect accuracy and loss values for our training data. But when we are looking at the graphs below the curves for our validation accuracy and loss indicates that we are overfitting and need to go back to the drawing board. Well, we should continue working on our TensorFlow model and find ways to improve the models' result.
 
 ![Content by URL Count]({{ site.baseurl }}/assets/images/posts/2019/training_validation_results.png)
 
@@ -172,6 +172,5 @@ Here is the [notebook](https://github.com/osterburg/news-content-capstone-projec
 
 1. Iterate over the TensowFlow model to help improve our result.
 2. Create two more keras models, one which focuses on its "content" and the other model on its "context". Furthermore, be able to predict what type of news article do we have - reliable or unreliable. 
-3. And as a bonus, I like to add linguistic analysis.
-
-Finally, build a [dashboard](https://dash.plot.ly/).
+3. As a bonus, I like to add linguistic analysis.
+4. Build a dashboard using [Dash](https://dash.plot.ly/).
