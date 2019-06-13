@@ -15,7 +15,7 @@ hidden: true
 
 The dataset used for that project is an already [polished and fairly large corpus](https://github.com/several27/FakeNewsCorpus) by Maciej Szpakowski.
 
-> This is an open source dataset composed of millions of news articles mostly scraped from a curated list of 1001 domains from opensources.co. Because the list does not contain any reliable websites, additionally NYTimes and Webhose English News Articles articles have been included to balance the classes better. The dataset is still work in progress, and for now, the public version includes only 9,408,908 articles (745 out of 1001 domains).
+> This is an open source dataset composed of millions of news articles mostly scraped from a curated list of 1001 domains from opensources.co[^1]. Because the list does not contain any reliable websites, additionally NYTimes and Webhose English News Articles have been included to balance the classes better. The dataset is still work in progress, and for now, the public version includes only 9,408,908 articles (745 out of 1001 domains).
 
 
 
@@ -161,7 +161,7 @@ Our model returns after only 20 epochs nearly perfect accuracy and loss values f
 
 ## GPU
 
-You may notice the `with`-statement and recall that I am working on a laptop. To train the model on the laptop is not manageable. To be able to train the model I used [paperspace's](https://www.paperspace.com/gradient) gradient service, which includes jupyter notebooks, a job runner, and a python module to run any code on Paperspace GPU cloud. The gradient machine I created is a Quadro P4000 with 8CPU's and 30GB RAM. One epoch needed about 45 minutes to calculate.
+You may notice the `with`-statement and recall that I am working on a laptop. To train the model on the laptop is not manageable. To be able to train the model I used [paperspace's gradient service](https://www.paperspace.com/gradient), which includes jupyter notebooks, a job runner, and a python module to run any code on Paperspace GPU cloud. The gradient machine I created is a Quadro P4000 with 8CPU's and 30GB RAM. One epoch needed about 45 minutes to calculate.
 
 
 ## Jupyter Notebook
@@ -174,3 +174,9 @@ Here is the [notebook](https://github.com/osterburg/news-content-capstone-projec
 2. Create two more keras models, one which focuses on its "content" and the other model on its "context". Furthermore, be able to predict what type of news article do we have - reliable or unreliable. 
 3. As a bonus, I like to add linguistic analysis.
 4. Build a dashboard using [Dash](https://dash.plot.ly/).
+
+---
+
+#### Footnotes
+
+[^1]: It seems that the website opensources.co does not exist anymore. Therefore, and just in case you might be interested, here is the original [CSV file](https://github.com/osterburg/news-content-capstone-project/blob/master/data/sources.csv) I start of using for that project.

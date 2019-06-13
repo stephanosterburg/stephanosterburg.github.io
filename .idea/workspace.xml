@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c3f72d59-f4da-462c-86f9-39408d7fb169" name="Default Changelist" comment="" />
+    <list default="true" id="c3f72d59-f4da-462c-86f9-39408d7fb169" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/_posts/2019-04-07-text_classification_part_3.md" beforeDir="false" afterPath="$PROJECT_DIR$/_posts/2019-04-07-text_classification_part_3.md" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -14,8 +16,8 @@
         <entry file="file://$PROJECT_DIR$/_posts/2019-04-07-text_classification_part_3.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="FIRST">
-              <first_editor relative-caret-position="189">
-                <caret line="9" column="14" lean-forward="true" selection-start-line="9" selection-start-column="14" selection-end-line="9" selection-end-column="14" />
+              <first_editor relative-caret-position="318">
+                <caret line="163" column="235" selection-start-line="163" selection-start-column="235" selection-end-line="163" selection-end-column="235" />
               </first_editor>
               <second_editor />
             </state>
@@ -35,15 +37,16 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/_posts/2019-04-07-text_classification_part_3.md" />
         <option value="$PROJECT_DIR$/assets/js/plugins.js" />
         <option value="$PROJECT_DIR$/_layouts/default.html" />
         <option value="$PROJECT_DIR$/_config.yml" />
+        <option value="$PROJECT_DIR$/_posts/2019-04-07-text_classification_part_3.md" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="y" value="183" />
+    <option name="x" value="1283" />
+    <option name="y" value="23" />
     <option name="width" value="1277" />
     <option name="height" value="1417" />
   </component>
@@ -113,7 +116,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="183" width="1277" height="1417" extended-state="0" />
+    <frame x="1283" y="23" width="1277" height="1417" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" weight="0.24940239" />
@@ -285,8 +288,8 @@
     <entry file="file://$PROJECT_DIR$/_posts/2019-04-07-text_classification_part_3.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="FIRST">
-          <first_editor relative-caret-position="189">
-            <caret line="9" column="14" lean-forward="true" selection-start-line="9" selection-start-column="14" selection-end-line="9" selection-end-column="14" />
+          <first_editor relative-caret-position="318">
+            <caret line="163" column="235" selection-start-line="163" selection-start-column="235" selection-end-line="163" selection-end-column="235" />
           </first_editor>
           <second_editor />
         </state>
