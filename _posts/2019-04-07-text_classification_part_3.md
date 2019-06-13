@@ -155,7 +155,7 @@ with tf.device('/gpu:0'):
 					epochs=epochs, verbose=1)
 ```
 
-Our model returns after only 20 epochs nearly perfect accuracy and loss values for our training data. But when we are looking at the graphs below the curves for our validation accuracy and loss indicates that we are overfitting and need to go back to the drawing board. Well, we should continue working on our TensorFlow model and find ways to improve the models' result.
+When we plot the training and validation accuracy (see below), we can see that the training went towards one while the validation leveled out around 0.98. Which shows that the model isn't bad, but I didn't really earn anything after just three epochs. It fits the training data very well but the validation data needed work. These results are borne out in the loss where we can see that after three epochs, my training loss went down nicely, but my validation loss climbed. So as it is, the model is about 98 percent accurate-ish after three epochs, and I don't really need to train any further.  
 
 ![Content by URL Count]({{ site.baseurl }}/assets/images/posts/2019/training_validation_results.png)
 
