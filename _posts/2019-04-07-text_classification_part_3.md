@@ -155,7 +155,7 @@ with tf.device('/gpu:0'):
 					epochs=epochs, verbose=1)
 ```
 
-Our model returns a near perfect accuracy score of 97.83%, and if we are looking at the training and validation results, we might be inclined to save the keras model into a single HDF5 file at each epoch. That way we can save the best possible model. We probably could have stopped at the third epoch and saved us a lot of time.
+Our model returns after only 20 epochs nearly perfect accuracy and loss values for our training data. But when we are looking at the graphs below the curves for our validation accuracy and loss indicates that we are overfitting and need to go back to the drawing board. Well, we should continue working on the TensorFlow model and find ways to improve the models' result.
 
 ![Content by URL Count]({{ site.baseurl }}/assets/images/posts/2019/training_validation_results.png)
 
@@ -166,10 +166,12 @@ You may notice the `with`-statement and recall that I am working on a laptop. To
 
 ## Jupyter Notebook
 
-Here is the [notebook](https://github.com/osterburg/dsc-5-capstone-project-online-ds-ft-100118/blob/master/03_data_collection.ipynb) to that post.
+Here is the [notebook](https://github.com/osterburg/news-content-capstone-project/blob/master/03_data_modeling.ipynb) to that post.
 
 ## What next?
 
-Create two more keras models, one which focuses on its "content" and the other model on its "context". Furthermore, be able to predict what type of news article do we have - reliable or unreliable. And as a bonus, I like to add linguistic analysis.
+1. Iterate over the TensowFlow model to help improve our result.
+2. Create two more keras models, one which focuses on its "content" and the other model on its "context". Furthermore, be able to predict what type of news article do we have - reliable or unreliable. 
+3. And as a bonus, I like to add linguistic analysis.
 
 Finally, build a [dashboard](https://dash.plot.ly/).

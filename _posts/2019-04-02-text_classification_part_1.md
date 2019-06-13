@@ -131,7 +131,7 @@ Additionally, there is an already [polished and fairly large corpus](https://git
 
 ## Jupyter Notebook
 
-Here is the [notebook](https://github.com/osterburg/dsc-5-capstone-project-online-ds-ft-100118/blob/master/01_data_collection.ipynb) to that post.
+Here is the [notebook](https://github.com/osterburg/news-content-capstone-project/blob/master/01_data_collection.ipynb) to that post.
 
 ## Upcoming
 

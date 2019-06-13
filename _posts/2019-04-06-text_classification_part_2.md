@@ -90,7 +90,7 @@ To continue working on our Exploratory Data Analysis and help us understand our 
 
 ## Jupyter Notebook
 
-Here is the [notebook](https://github.com/osterburg/dsc-5-capstone-project-online-ds-ft-100118/blob/master/02_data_collection.ipynb) to that post.
+Here is the [notebook](https://github.com/osterburg/news-content-capstone-project/blob/master/02_data_exploration.ipynb) to that post.
 
 
 ## Upcoming
