@@ -142,7 +142,7 @@ Let take a practical example and work through it on the Northwind database Micro
 ```python
     data = pd.read_sql_query(your_sql_command, engine)
 ```
-$\tiny \ast \text{ The SQL statement should be inside of ```}$
+$$\tiny \ast \text{ The SQL statement should be inside of ```}$$
 
 2\. Extract all 'Unit price' and split them into two lists for simplicity:
 
@@ -160,7 +160,7 @@ $\tiny \ast \text{ The SQL statement should be inside of ```}$
     # Ttest_indResult(statistic=-2.9756718793666415, pvalue=0.0034331287209264576)
 ```
 
-4\. As a final step we want to calculate the effect size using Cohen's $d$. Cohen's $d$ is typically used to represent the magnitude of differences between two (or more) groups on a given variable, with larger values representing a greater differentiation between the two groups on that variable.
+4\. As a final step we want to calculate the effect size using Cohen's $$d$$. Cohen's $$d$$ is typically used to represent the magnitude of differences between two (or more) groups on a given variable, with larger values representing a greater differentiation between the two groups on that variable.
 
 ```python
     cohens_d = (mean(x) - mean(y)) / (sqrt((stdev(x)**2 + stdev(y)**2) / 2))

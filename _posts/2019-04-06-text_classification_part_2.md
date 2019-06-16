@@ -41,7 +41,7 @@ Occasionally, only term frequency statistics are available. In the case where th
 
 ![Visualisation Term Category Frequencies]({{ site.baseurl }}/assets/images/posts/2019/TermCategoryFrequencies.png)
 
-<a href="https://stephanosterburg.github.io/data/reliable_vs_unreliable.html" target="_blank">Visualizing TermCategoryFrequencies</a> (link opens in new tab)
+<a href="https://stephanosterburg.github.io/assets/data/posts/2019/reliable_vs_unreliable.html" target="_blank">Visualizing TermCategoryFrequencies</a> (link opens in new tab)
 
 The critical part to note here is that the data represented in this plot comes from unbalanced data.
 
@@ -77,9 +77,9 @@ The pyLDAvis interface:
 
 <!-- <a href="http://example.com/" target="_blank">Hello, world!</a> -->
 
-![LDA visualisation]({{ site.baseurl }}/assets/images/pyLDAvis.png)
+![LDA visualisation]({{ site.baseurl }}/assets/images/posts/2019/pyLDAvis.png)
 
-<a href="https://stephanosterburg.github.io/data/LDAvis_ReliableNews.html" target="_blank">Visualizing LDA</a> (link opens in new tab)
+<a href="https://stephanosterburg.github.io/assets/data/posts/2019/LDAvis_ReliableNews.html" target="_blank">Visualizing LDA</a> (link opens in new tab)
 
 ## Linguistic Features
 
