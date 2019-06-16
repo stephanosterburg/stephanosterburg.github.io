@@ -106,11 +106,11 @@ model = Sequential([
 
 Now, the accuracy improved to 96.68%, up >5% from my previous model, but not the processing time.
 
-## AWS
+## Cloud Services
 
 In the end, it took several hours to run the model. Moreover, it makes it even more painful if you forget to change your default setting on your MacBook and the computer goes into sleep mode, and nothing get processed at all.
 
-To free up the computer I resorted to - welcome - [paperspace](https://www.paperspace.com).
+To free up the computer I resorted to - welcome - [paperspace](https://www.paperspace.com). There is also [digitalocean](https://www.digitalocean.com/), [AWS](https://aws.amazon.com), [Azure](https://azure.microsoft.com/) and of course Google has also a cloud service available, and a few others I might have mist.
 
 Which allows me to prototype locally (prove of concept) and compute in the cloud.
 
