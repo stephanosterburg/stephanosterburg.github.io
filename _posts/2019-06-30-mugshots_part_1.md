@@ -37,8 +37,8 @@ The intro to the paper states
 > We apply basic statistical reasoning to signal reconstruction by machine learning -- learning to map corrupted observations to clean signals -- with a simple and powerful conclusion: it is possible to learn to restore images by only looking at corrupted examples, at performance at and sometimes exceeding training using clean data, without explicit image priors or likelihood models of the corruption. In practice, we show that a single model learns photographic noise removal, denoising synthetic Monte Carlo images, and reconstruction of undersampled MRI scans -- all corrupted by different processes -- based on noisy data only.
 
 So what are the next steps in my exploration?
-1. Read the papers listed above, mainly the paper [pix2pix](https://arxiv.org/abs/1611.07004)
-2. [TensorFlow](https://www.tensorflow.org/beta/tutorials/generative/pix2pix) has an excellent collection of material for the upcoming version 2.0 (currently in beta) you can experiment with.
-3. Apply it to the mug shot dataset.
+1. Read the papers listed above, mainly the paper about [pix2pix](https://arxiv.org/abs/1611.07004)
+2. TensorFlow has an excellent collection of material for the upcoming version 2.0 (currently in beta), but especially I am interested in the part about [pix2pix](https://www.tensorflow.org/beta/tutorials/generative/pix2pix).
+3. Apply everything I have learned and use it on the mug shot dataset.
 
 The initial work I have done so far over the past few days included mainly working through the online tutorial about image generation over at TensorFlow. Using that as my starting point, I tried also to implement the architecture shown in the appendix of the Noise2Noise paper. But I guess I am getting ahead of myself here, lets first cover the papers listed above (at least the pix2pix paper), which I should read first, not just skim over it.
