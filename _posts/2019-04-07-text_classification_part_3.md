@@ -2,12 +2,12 @@
 layout: post
 title: 'Text Classification (Part 3)'
 description: "Fake News"
-author: stephan
+author: Stephan
 categories: [data, code, content]
 tags: [news, fake, deeplearning]
 featured_image_thumbnail:
 featured_image: assets/images/posts/2019/Newstand_part3.jpg
-featured: true
+featured: false
 hidden: true
 ---
 
@@ -172,7 +172,7 @@ Here is the [notebook](https://github.com/osterburg/news-content-capstone-projec
 ## What next?
 
 1. Iterate over the TensowFlow model to help improve our result.
-2. Create two more keras models, one which focuses on its "content" and the other model on its "context". Furthermore, be able to predict what type of news article do we have - reliable or unreliable. 
+2. Create two more keras models, one which focuses on its "content" and the other model on its "context". Furthermore, be able to predict what type of news article do we have - reliable or unreliable.
 3. As a bonus, I like to add linguistic analysis.
 4. Build a dashboard using [Dash](https://dash.plot.ly/).
 

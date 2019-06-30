@@ -7,7 +7,7 @@ categories: [data, code, content]
 tags: [news, fake, deeplearning]
 featured_image_thumbnail:
 featured_image: assets/images/posts/2019/Newstand_part1.jpg
-featured: true
+featured: false
 hidden: true
 ---
 

@@ -5,12 +5,12 @@ featured_image: /assets/images/pages/movies.png
 ---
 
 ## TL;DR
-I am Stephan Osterburg, located in San Francisco, CA. I am a computer graphics veteran who is falling in love with data science.
+I am Stephan Osterburg, located in the San Francisco Bay Area, CA. A Machine Learning Engineer/Data Scientist with comprehensive expertise in computer graphics, visual effects, and animation among a background in architecture.
 
 ---
 
 ## Hello,
-I am a Data Scientist and an accomplished digital production expert and computer artist, located in the San Francisco Bay Area. After some unfortunate events in our live I made the bold decision to change my career.
+I am a Machine Learning Engineer/Data Scientist and an accomplished digital production expert and computer artist, located in the San Francisco Bay Area. After some unfortunate events in our live I made the bold decision to change my career.
 Why you might ask. Well, it's not like it fall out of the sky. No, I had always a fascination with data and visualization.
 After taking a well deserved brake last year and been able to reflect on what I would like to do, I found Data Science. Since summer 2018, including six months at [Flatiron School](https://www.flatironschool.com/), I am full gas on the quest to discover the world of data and worked relentlessly to gain all the necessary knowledge, and expertise one needs as a Data Scientist.
 I enjoy a challenging, progressive environment that offers room to innovate.
