@@ -29,7 +29,9 @@ In a conversation with Adam a while back, he told me that he saw the talk by [Ja
 
 > ...it kind of blew me away.
 
-The paper [Noise2Noise: Learning Image Restoration without Clean Data](https://arxiv.org/abs/1803.04189) was initially presented at [ICML](https://icml.cc/) and made multiple appearances in SIGGRAPH 2018 talks.
+I have to admit that all these advances in machine learning over the past few years are super fascinating, and one of the reasons why I wondered into that field. As a side note here, TensorFlow Graphics is definitely on my list to check out next.
+
+The paper [Noise2Noise: Learning Image Restoration without Clean Data](https://arxiv.org/abs/1803.04189) was initially presented at [ICML](https://icml.cc/) and made multiple appearances in talks at the SIGGRAPH 2018.
 
 The intro to the paper states
 > We apply basic statistical reasoning to signal reconstruction by machine learning -- learning to map corrupted observations to clean signals -- with a simple and powerful conclusion: it is possible to learn to restore images by only looking at corrupted examples, at performance at and sometimes exceeding training using clean data, without explicit image priors or likelihood models of the corruption. In practice, we show that a single model learns photographic noise removal, denoising synthetic Monte Carlo images, and reconstruction of undersampled MRI scans -- all corrupted by different processes -- based on noisy data only.
