@@ -42,3 +42,10 @@ So what are the next steps in my exploration?
 3. Apply everything I have learned and use it on the mug shot dataset.
 
 The initial work I have done so far over the past few days included mainly working through the online tutorial about image generation over at TensorFlow. Using that as my starting point, I tried also to implement the architecture shown in the appendix of the Noise2Noise paper. But I guess I am getting ahead of myself here, lets first cover the papers listed above (at least the pix2pix paper), which I should read first, not just skim over it.
+
+
+Before we dive into the pix2pix paper a few words about the mugshot database:
+* The dataset consists of 3248 images of various sizes as PNG format with corresponding metadata as TXT files.
+* There are images of 1573 individuals of which 1495 are male and 78 female.
+* The database contains both front and side (profile) views when available. There are 131 cases with two or more front views and 1418 with only one front view.
+* Profiles have 89 cases with two or more profiles and 1268 with only one profile. Cases with both fronts and profiles have 89 cases with two or more of both fronts and profiles, 27 with two or more fronts and one profile, and 1217 with only one front and one profile.
