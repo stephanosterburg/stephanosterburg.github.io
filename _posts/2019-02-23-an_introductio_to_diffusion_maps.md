@@ -4,7 +4,7 @@ title: A short introduction to Diffusion Maps
 description: "An interpretation of the paper"
 author: stephan
 categories: [data, code, diffusion maps, papers]
-featured_image_thumbnail:
+featured_image_thumbnail: assets/images/posts/2019/diffusion_map_thumbnail.png
 featured_image: assets/images/posts/2019/diffusion_map.png
 featured: false
 ---

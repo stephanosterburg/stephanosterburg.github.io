@@ -4,7 +4,7 @@ title: Deep Learning and Art Images
 description: "An interpretation of the paper"
 author: stephan
 categories: [data, code, art, deep learning, beginner]
-featured_image_thumbnail:
+featured_image_thumbnail: assets/images/posts/2019/art_thumbnail.png
 featured_image: assets/images/posts/2019/GoogleArt_cropped.png
 featured: false
 ---

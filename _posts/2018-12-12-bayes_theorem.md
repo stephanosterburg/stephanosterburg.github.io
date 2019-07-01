@@ -4,7 +4,7 @@ title: Bayes' Theorem
 description: "The probability of the hypothesis..."
 author: stephan
 categories: [data, code, Bayes]
-featured_image_thumbnail:
+featured_image_thumbnail: assets/images/posts/2018/Bayes_Theorem_thumbnail.png
 featured_image: assets/images/posts/2018/Bayes_Theorem_MMB_01.jpg
 featured: false
 ---
