@@ -21,7 +21,7 @@ Given the dataset of [mug shots](https://www.nist.gov/srd/nist-special-database-
 The primary literature I am going to use in my exploration is
 * [noise2noise](https://arxiv.org/abs/1803.04189)
 * [U-Net](https://arxiv.org/abs/1505.04597)
-* [pix2pix](https://arxiv.org/abs/1611.07004)
+* [Image-to-Image](https://arxiv.org/abs/1611.07004)
 
 There is also a large body of blog posts covering that topic. Jonathan Hui, for example, has a whole series covering [GAN — GAN Series \(from the beginning to the end\)](https://medium.com/@jonathan_hui/gan-gan-series-2d279f906e7b), which I found very helpful.
 
@@ -38,7 +38,7 @@ The intro to the paper states
 
 So what are the next steps in my exploration?
 1. Read the papers listed above, mainly the paper [Image-to-Image Translation with Conditional Adversarial Networks](https://arxiv.org/abs/1611.07004)
-2. TensorFlow has an excellent collection of material for the upcoming version 2.0 (currently in beta), but especially I am interested in the part about [pix2pix](https://www.tensorflow.org/beta/tutorials/generative/pix2pix).
+2. TensorFlow has an excellent collection of material for the upcoming version 2.0 (currently in beta), I am especially interested in the part about [pix2pix](https://www.tensorflow.org/beta/tutorials/generative/pix2pix).
 3. Apply everything I have learned and use it on the mug shot dataset.
 
 The initial work I have done so far over the past few days included mainly working through the online tutorial about image generation over at TensorFlow. Using that as my starting point, I tried also to implement the architecture shown in the appendix of the Noise2Noise paper. But I guess I am getting ahead of myself here, lets first cover the papers listed above (at least the pix2pix paper), which I should read first, not just skim over it.
