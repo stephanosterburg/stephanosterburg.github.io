@@ -8,7 +8,7 @@ tags: [news, fake, deeplearning]
 featured_image_thumbnail:
 featured_image: assets/images/posts/2019/Newstand_part1.jpg
 featured: false
-hidden: true
+hidden: false
 ---
 
 ## Reliable or Unreliable?
