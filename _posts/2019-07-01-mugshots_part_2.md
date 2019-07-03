@@ -5,7 +5,7 @@ description: "image-to-image - the paper"
 author: Stephan
 categories: [code, images, paper]
 tags: [machine learning, GAN, pix2pix]
-featured_image_thumbnail: assets/images/posts/2019/350px-Bertillon_selfportrait_mugshot.jpg
+featured_image_thumbnail: assets/images/posts/2019/pix2pix_thumbnail.png
 featured_image: assets/images/posts/2019/mugshots.png
 featured: false
 hidden: false
