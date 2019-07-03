@@ -49,7 +49,7 @@ As the paper makes the point, it is well known that the L2 loss - and L1 - produ
 
 The original GAN[^1] paper describes an approach to optimize a network by alternating between one gradient descent step on $$D$$, then one step on $$G$$. And as it is suggested there as well,  they instead train to maximize $$log D(x, G(x, z))$$.
 
-#### Experiments
+### Experiments
 
 To test the conditional GAN and its generality, the researchers used a variety of tasks and datasets:
 
@@ -63,15 +63,15 @@ To test the conditional GAN and its generality, the researchers used a variety o
 * _Thermal→color photos_, trained on data from [^7].
 * _Photo with missing pixels→inpainted photo_, trained on Paris StreetView from [^6].
 
-#### Conclusion
+### Conclusion
 
 The conclusion the researchers drew from the results presented in that paper suggests that conditional adversarial networks are a promising approach for many image-to-image translation tasks, especially those involving highly structured graphical outputs. These networks learn a loss adapted to the job and data at hand, which makes them applicable in a wide variety of settings.
 
-And for me reading the paper with the “mugshot” project in mind believe that it is possible - hopefully - to get from a front head shot to a side view.
+And for me reading the paper with the “mugshot” project in mind believe that it is possible - hopefully - to get from a front head shot to a side view. For a more in-depth read, I encourage you to read the paper itself.
 
-Next up is a read on U-Net.
+Next up is a read up (write up) on U-Net.
 
----
+--------
 
 ##### Footnotes
 
