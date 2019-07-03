@@ -46,7 +46,7 @@ The most popular reduction methods are
 
 ### Diffusion Maps
 
-Diffusion maps are a non-linear technique. Similar to taking a random walk on our data, where we jump between data points in feature space (see image below), we  are analysing the connectivity of the data. The goal is to reveal the geometric structure of our data at different scales, defining a "time-dependent" diffusion metrics.
+Diffusion maps are a non-linear technique. Similar to taking a random walk on our data, where we jump between data points in feature space (see image below), we are analysing the connectivity of the data. The goal is to reveal the geometric structure of our data at different scales, defining a "time-dependent" diffusion metrics.
 
 
 ![Diffusion Maps]({{ site.baseurl }}/assets/images/posts/2019/A-random-walk-on-a-data-set-Each-jump-has-a-probability-associated-with-it-The-green.png)
