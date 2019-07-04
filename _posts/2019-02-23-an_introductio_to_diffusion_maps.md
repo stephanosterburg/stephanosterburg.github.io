@@ -58,7 +58,7 @@ The basic diffusion mapping algorithm can be defined as follows:
 
 INPUT: High dimensional data set
 
-1. Define a kernel, $$k(x, y)$$ and create a kernel matrix, $$K$$, such that $$K_{i,j} = k(X_i, X_j)$$.
+1. Define a kernel, $$k(x, y)$$ and create a kernel matrix, $K$, such that $$K_{i,j} = k(X_i, X_j)$$.
 2. Create the diffusion matrix by normalising the rows of the kernel matrix
 3. Calculate the eigenvectors of the diffusion matrix.
 4. Map to the $$d$$-dimensional diffusion space at time $$t$$, using the $$d$$ dominant eigenvectors and -values
