@@ -33,6 +33,8 @@ navigation:
     url: /
   - text: ABOUT
     url: /about
+  - text: PORTFOLIO
+    url: /portfolio
   - text: SCRAPBOOK
     url: https://app.gitbook.com/@osterburg/s/scrapbook/
   - text: CONTACT ME

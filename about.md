@@ -1,7 +1,7 @@
 ---
 layout: page
 title: About
-featured_image: /assets/images/pages/movies.png
+featured_image:
 ---
 
 ## TL;DR
@@ -22,9 +22,3 @@ My experience and knowledge include:
 * Identifying opportunities for improvements and proposing realistic changes to streamline workflow processes and decrease production delays.
 * Data Science projects include analyzing news content of its authenticity, forest cover type classification and image classification etcetera.
 * Python, Pandas, Numpy, dask, keras/tensorflow, sklearn, Machine Learning, Deep Learning etcetera.
-
-Here is small banner with all the movies I worked on over the years and my last demoreel with work from movies I worked on while I was at [PDI/Dreamworks](http://www.dreamworksanimation.com).
-
-<!-- ![Movies]({{ site.baseurl }}/assets/images/pages/movies.png) -->
-
-<p><iframe width="640" height="564" src="https://player.vimeo.com/video/178415077" frameborder="0" allowFullScreen></iframe></p>
