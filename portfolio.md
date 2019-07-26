@@ -4,7 +4,7 @@ title: Protfolio
 featured_image: /assets/images/pages/movies.png
 ---
 
-Here is small banner with all the movies I worked on over the years and my last demoreel with work from movies I worked on while I was at [PDI/Dreamworks](http://www.dreamworksanimation.com).
+Here is small banner with all the movies I worked on over the years - see also [IMDb](https://www.imdb.com/name/nm0652339/) - and my last demoreel with work from movies I worked on while I was at [PDI/Dreamworks](http://www.dreamworksanimation.com). 
 
 <!-- ![Movies]({{ site.baseurl }}/assets/images/pages/movies.png) -->
 
