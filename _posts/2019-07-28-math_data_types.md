@@ -7,8 +7,8 @@ categories: [code, math]
 tags: [machine learning, mathematical]
 featured_image_thumbnail: assets/images/posts/2019/math_for_ml.jpg
 featured_image: assets/images/posts/2019/math_for_ml.jpg
-featured: true
-hidden: true
+featured: false
+hidden: false
 ---
 
 If you want to deep dive into machine learning and especially deep learning, it is vital to have a solid understanding of linear algebra. In the following handful posts or so to come, I hope to help build a good foundation, starting with a brief description of the different data types.
