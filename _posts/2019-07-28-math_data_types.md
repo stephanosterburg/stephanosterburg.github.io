@@ -15,7 +15,7 @@ If you want to deep dive into machine learning and especially deep learning, it 
 
 ## Scalars, Vectors, Matrixes and Tensors  
 
-**Scalars** are single numbers, i.e. 2 (integer) or 3.1415 (float), and are a 0th-order rank tensor. Within machine learning, there are various numbers of interest:
+**Scalars** are single numbers, i.e., 2 (integer) or 3.1415 (float), and are a 0th-order rank tensor. Within machine learning, there are various numbers of interest:
 * $\mathbb{N}$ represents positive integer numbers
 * $\mathbb{Z}$ represents positive, negative numbers including zero.
 * $\mathbb{Q}$ represents rational numbers
@@ -31,37 +31,37 @@ $$ V = \begin{bmatrix}
 
 The primary use for vectors is to represent a direction or a magnitude (weight, length). In machine learning, a vector often represents a feature with all their components specifying its importance. For example, a vector could represent the relative importance of a word in a given text or the intensity of pixels in an image.
 
-**Matrix**: is defined by $m x n$ numbers as a rectangular array, where $m$ defines the number of rows and $n$ the number of columns. In other words the matrix lives in a $mxn$-dimensional vector space, meaning that matrices are actually vectors that are written in a two-dimensional manner.
+**Matrix**: is defined by $m x n$ numbers as a rectangular array, where $m$ defines the number of rows and $n$ the number of columns. In other words, the matrix lives in an $mxn$-dimensional vector space, meaning that matrices are vectors that are written in a two-dimensional manner.
 
 $$ M =
 \begin{bmatrix}
     x_{11} & x_{12} & x_{13} & \cdots & x_{1n} \\\
     x_{21} & x_{22} & x_{23} & \cdots & x_{2n} \\\
     x_{31} & x_{32} & x_{33} & \cdots & x_{3n} \\\
-	\vdots & \vdots & \vdots & \ddots & \vdots\\\
+    \vdots & \vdots & \vdots & \ddots & \vdots\\\
     x_{m1} & x_{m2} & x_{m3} & \cdots & x_{mn}
 \end{bmatrix}
 $$
 
-In 3D computer graphics a typical transformation matrix is of $4x4$ dimensions, where different parts in the matrix represent different information, such as "translation," "scale," and "rotation"[^2] (see image below).
+In 3D computer graphics, a typical transformation matrix is of $4x4$ dimensions, where different parts in the matrix represent different information, such as "translation," "scale," and "rotation"[^2] (see image below).
 
 <div style="text-align:center">
 {% include image-caption.html imageurl="/assets/images/posts/2019/transformation_matrix.jpg" title="transformation matrix" caption="The so called 'do everything' (4x4) matrix" %}
 </div>
 
-In neural networks weights are stored as matrices and feature inputs are stored as vectors.
+In neural networks, weights are stored as matrices, and feature inputs are stored as vectors.
 
-**Tensors** encapsulates the above described data types (scalar, vector and matrix). A _tensor_ has $n$ indices and $m^n$ components, where each index in a tensor ranges over the number of dimensions of space. The notation for a tensor is similar to a matrix (for example, $A=(a_{ij})$, with the exception that a tensor can have an arbitrary number of indices $a_{ijk...}, a^{ijk...}, a_i^{jk}...$, etc.[^3][^4]
+**Tensors** encapsulates the above-described data types (scalar, vector, and matrix). A _tensor_ has $n$ indices and $m^n$ components, where each index in a tensor ranges over the number of dimensions of space. The notation for a tensor is similar to a matrix (for example, $A=(a_{ij})$, with the exception that a tensor can have an arbitrary number of indices $a_{ijk...}, a^{ijk...}, a_i^{jk}...$, etcetera.[^3][^4]
 
-As I alluded above, a tesnor is also described in terms of order. A 3rd-order tensor can describe the intensity of multiple channels of an image (RGB).
+As I alluded above, a tensor is also described in terms of the order. A 3rd-order tensor can describe the intensity of multiple channels of an image (RGB).
 
 <div style="text-align:center">
 {% include image-caption.html imageurl="/assets/images/posts/2019/Tensor.png" title="Tensor" %}
 </div>
 
+---
 
-
-Python examples:
+Below is the python equivalent representation of the data types:
 
 ```python
 import numpy as np
