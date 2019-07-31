@@ -53,7 +53,7 @@ In neural networks, weights are stored as matrices, and feature inputs are store
 
 **Tensors** encapsulates the above-described data types (scalar, vector, and matrix). A _tensor_ has $n$ indices and $m^n$ components, where each index in a tensor ranges over the number of dimensions of space. The notation for a tensor is similar to a matrix (for example, $A=(a_{ij})$, with the exception that a tensor can have an arbitrary number of indices $a_{ijk...}, a^{ijk...}, a_i^{jk}...$, etcetera.[^2][^3]
 
-As I alluded above, a tensor is also described in terms of the order. A 3rd-order tensor can describe the intensity of multiple channels of an image (RGB).
+As I alluded above, a tensor is also described in terms of rank. Rank is also known as "order", "degree", or "ndims." For example, a 3rd-order tensor can describe the intensity of multiple channels of an image (RGB) and there is also 4th, 5th and 6th order rank.
 
 <div style="text-align:center">
 {% include image-caption.html imageurl="/assets/images/posts/2019/Tensor.png" title="Tensor" %}
