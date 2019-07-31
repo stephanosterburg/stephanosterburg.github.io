@@ -51,7 +51,7 @@ In 3D computer graphics, a typical transformation matrix is of $4x4$ dimensions,
 
 In neural networks, weights are stored as matrices, and feature inputs are stored as vectors.
 
-**Tensors** encapsulates the above-described data types (scalar, vector, and matrix). A _tensor_ has $n$ indices and $m^n$ components, where each index in a tensor ranges over the number of dimensions of space. The notation for a tensor is similar to a matrix (for example, $A=(a_{ij})$, with the exception that a tensor can have an arbitrary number of indices $a_{ijk...}, a^{ijk...}, a_i^{jk}...$, etcetera.[^3][^4]
+**Tensors** encapsulates the above-described data types (scalar, vector, and matrix). A _tensor_ has $n$ indices and $m^n$ components, where each index in a tensor ranges over the number of dimensions of space. The notation for a tensor is similar to a matrix (for example, $A=(a_{ij})$, with the exception that a tensor can have an arbitrary number of indices $a_{ijk...}, a^{ijk...}, a_i^{jk}...$, etcetera.[^2][^3]
 
 As I alluded above, a tensor is also described in terms of the order. A 3rd-order tensor can describe the intensity of multiple channels of an image (RGB).
 
@@ -61,7 +61,7 @@ As I alluded above, a tensor is also described in terms of the order. A 3rd-orde
 
 ---
 
-Below is the python equivalent representation of the data types:
+Below is the python equivalent representation of the data types using numpy[^1]:
 
 ```python
 import numpy as np
@@ -81,3 +81,7 @@ T = np.array([[[1, 2, 3], [4, 5, 6], [7, 8, 9]],
               [[21, 22, 23], [24, 25, 26], [27, 28, 29]],
              ])
 ```
+
+[^1]: [numby array](https://docs.scipy.org/doc/numpy/reference/arrays.scalars.html)
+[^2]: https://en.wikipedia.org/wiki/Tensor
+[^3]: http://mathworld.wolfram.com/Tensor.html
