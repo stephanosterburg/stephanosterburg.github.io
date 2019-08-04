@@ -102,15 +102,21 @@ In regards to the discriminator model, I didn't make any alterations to what is 
 
 ### Result (so far)
 
-{:refdef: style="text-align: center;"}
+<!-- {:refdef: style="text-align: center;"}
 ![U-Net]({{ site.baseurl }}/assets/images/posts/2019/demo_profile.jpg)
-{: refdef}
+{: refdef} -->
+<figure>
+    <img src="/assets/images/posts/2019/demo_profile.jpg" alt="Concrete roads" />
 
-### Conclusion (Thoughts)
+        <figcaption class="caption-text">Credit: Adam Chin</figcaption>
 
-For an art project, it is indeed a very satisfying result. From a poor machine learning perspective, I learned a lot. Not only how to translate an academic paper into machine learning code but also to be able to modify it in a way that it is not breaking but improving the final result.
+</figure>
 
-Next step, I will try to keep the original number of images as is and try to use different augmentation techniques using tensorflow. As well as exploring various options to minimize the memory footprint, especially if we want to use images which are maybe $1024 * 1024$ instead of just $256*256$ in dimension.
+### Thoughts
+
+For an "art" project, it is interesting and very satisfying to see the first results. Also, I learned a lot, how to translate an academic paper into machine learning code but also to be able to modify it in a way that it is not breaking but improving the final result.
+
+Next step, I will try to keep the original number of images as is and try to use different augmentation techniques using tensorflow. As well as exploring various options to minimize the memory footprint, especially if we want to use images which are maybe $1024 * 1024$ instead of just $256 * 256$ in dimension.
 
 And finally, create a dashboard to drop in an image with a front view of a face to generate a side view.
 

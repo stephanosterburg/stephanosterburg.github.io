@@ -7,8 +7,8 @@ categories: [code, images]
 tags: [machine learning, GAN, pix2pix]
 featured_image_thumbnail: assets/images/posts/2019/350px-Bertillon_selfportrait_mugshot.jpg
 featured_image: assets/images/posts/2019/mugshots.png
-featured: true
-hidden: true
+featured: false
+hidden: false
 ---
 
 ## The Idea (a brief introduction)
@@ -16,7 +16,7 @@ hidden: true
 
 No, this is not my original idea. The credit goes to [Adam Chin](http://adamchinstuff.com/), an ex-co-worker and friend.
 
-Given the dataset of [mug shots](https://www.nist.gov/srd/nist-special-database-18) from the National Institute of Standards and Technology (NIST), we have the usual front and side headshots. The question arises what if there is one of the pictures missing? Can we use machine learning,  especially Generative Adversarial Networks (GAN), to fill in the missing image? Can we train a GAN model in such a way that it can generate an image showing the head from the side given a picture showing the head from the front or vice versa?
+Given the dataset of [mugshots](https://www.nist.gov/srd/nist-special-database-18) from the National Institute of Standards and Technology (NIST), we have the usual front and side headshots. The question arises what if there is one of the pictures missing? Can we use machine learning,  especially Generative Adversarial Networks (GAN), to fill in the missing image? Can we train a GAN model in such a way that it can generate an image showing the head from the side given a picture showing the head from the front or vice versa?
 
 The primary literature I am going to use in my exploration is
 * [noise2noise](https://arxiv.org/abs/1803.04189)
