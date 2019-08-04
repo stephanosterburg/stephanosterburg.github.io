@@ -120,6 +120,7 @@ $$
 
 If we know the matrix that describes the transformation, the determinant of that matrix will tell us the factor by which the area will get stretched or squished. That is what this Jacobian determinant is.
 
+---
 
 ##### Footnotes
 
