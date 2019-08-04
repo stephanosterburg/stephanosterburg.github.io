@@ -106,7 +106,7 @@ Here we can see that the determinant records the stretched or squished space of 
 </div>
 
 
-So, if we look at our starting point where we have a bases vectors and therefore a square shape of size $1x1$, we can see that is got stretched by the factor of 6, the determinant we have calculated. If we know the matrix that describes the transformation, the determinant of that matrix will tell us the factor by which the areas will get stretched or squished. That is what this Jacobian determinant is.
+So, if we look at our starting point where we have a bases vectors and therefore a square shape of size $1x1$, we can see that is got stretched by the factor of 6, the determinant we have calculated.
 
 $$
 \begin{align}
@@ -115,3 +115,7 @@ $$
     &= 1.227
 \end{align}
 $$
+
+### Conclusion
+
+If we know the matrix that describes the transformation, the determinant of that matrix will tell us the factor by which the area will get stretched or squished. That is what this Jacobian determinant is.
