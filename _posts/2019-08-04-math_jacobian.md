@@ -124,4 +124,4 @@ If we know the matrix that describes the transformation, the determinant of that
 
 ##### Footnotes
 
-[^1]: https://en.wikipedia.org/wiki/Jacobian_matrix_and_determinant
+[^1]: [Jacobian matrix and determinant](https://en.wikipedia.org/wiki/Jacobian_matrix_and_determinant)
