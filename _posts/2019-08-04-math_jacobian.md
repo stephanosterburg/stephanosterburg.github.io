@@ -3,8 +3,8 @@ layout: post
 title: 'Jacobian'
 description: "Mathematics notes #2"
 author: Stephan
-categories: [code, math]
-tags: [machine learning, mathematical]
+categories: [math]
+tags: [mathematical]
 featured_image_thumbnail: assets/images/posts/2019/Carl_Jacobi2.jpg
 featured_image: assets/images/posts/2019/Carl_Jacobi2.jpg
 featured: false
@@ -115,6 +115,40 @@ $$
     &= 1.227
 \end{align}
 $$
+
+### Python example
+
+In python we can use either the `sympy` library or [`JAX`](https://github.com/google/jax).
+
+```python
+from math import sin
+from math import cos
+from sympy import Matrix
+from sympy.abc import rho
+from sympy.abc import phi
+
+X = Matrix([rho * cos(phi), rho * sin(phi), pow(rho, 2)])
+Y = Matrix([rho, phi])
+
+X.jacobian(Y)
+```
+
+```python
+import jax.numpy as np
+from jax import grad
+from jax import jvp
+
+x = np.array([5, 3], dtype=float)
+
+def cost(x):
+    return pow(x[0], 2) / x[1] - np.log(x[1])
+
+gradient_cost = grad(cost)
+jacobian_cost = jvp(cost)
+
+gradient_cost(x)
+jacobian_cost(np.array([x, x, x]))
+```
 
 ### Conclusion
 
