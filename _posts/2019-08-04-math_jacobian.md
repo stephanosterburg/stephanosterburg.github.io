@@ -11,6 +11,7 @@ featured: false
 hidden: false
 ---
 
+
 The Jacobian keeps track of the stretching and warping when we change coordinate systems.[^1]
 
 ### Bases
@@ -45,15 +46,14 @@ L\begin{pmatrix}\begin{bmatrix}x\\y\end{bmatrix}\end{pmatrix} &= L\begin{pmatrix
 
 Here we are taking the principles from linear algebra to multivariable calculus. Consider the following equation:
 
-$$ f\begin{pmatrix}\begin{bmatrix}x\\y\end{bmatrix}\end{pmatrix} = \begin{bmatrix}x + sin(y)\\y + sin(x)\end{bmatrix}$$
+$$ f\begin{pmatrix}\begin{bmatrix}x\\y\end{bmatrix}\end{pmatrix} = \begin{bmatrix}x + sin(y)\\y + sin(x)\end{bmatrix}
+$$
 
-Before we are moving here, we want to focus on one point (very, very closely). Let's say we pick the following point:
+Before we are moving on, we want to focus on one point (very, very closely). Let's say we pick the following point:
 
 $$ \begin{bmatrix}\frac{\pi}{2}\\0\end{bmatrix} $$
 
-If we would that point it will be transformed linearly in space. Only problem here might be that the original grid, the lines are after its transformation are all curvy.
-
-But if we zoom in on a vertex, we can see that the grid lines are arguably linear transformed. And so we are talking about locally linear.  
+If we look at the zoomed-in point, we can see that the grid lines are arguably linear transformed. However, if we look at the original grid, the lines are all curvy after the transformation. In any case, we are talking about locally linear.  
 
 ### Matrix
 
@@ -61,7 +61,7 @@ First let us rename the function from above:
 
 $$ \begin{bmatrix}f_1(x, y)\\f_2(x, y)\end{bmatrix} = \begin{bmatrix}x + sin(y)\\y + sin(x)\end{bmatrix}$$
 
-If we would zoom in on the point $(-2, 1)$ after it is transformed, we can write the matrix as follows:
+If we would zoom in on the point $(-2, 1)$ after we transformed the vertex, we can write the matrix as follows:
 
 $$
 \begin{bmatrix}
@@ -89,7 +89,7 @@ $$
 
 ### Determinant
 
-If we have a $2x2$ matrix we can calculate the determinant as follows:
+If we have a $2x2$ matrix, we can calculate the determinant as follows:
 
 $$
 \begin{align}
@@ -106,7 +106,7 @@ Here we can see that the determinant records the stretched or squished space of 
 </div>
 
 
-So, if we look at our starting point where we have a bases vectors and therefore a square shape of size $1x1$, we can see that is got stretched by the factor of 6, the determinant we have calculated.
+So, if we look at our starting point where we have a bases vectors and therefore a square shape of size $1x1$, we can see that is getting stretched by the factor of 6, the determinant we have calculated.
 
 $$
 \begin{align}
