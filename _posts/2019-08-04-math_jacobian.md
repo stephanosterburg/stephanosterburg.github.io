@@ -11,7 +11,7 @@ featured: false
 hidden: false
 ---
 
-The Jacobian keeps track of the stretching and warping when we change coordinate systems.
+The Jacobian keeps track of the stretching and warping when we change coordinate systems.[^1]
 
 ### Bases
 
@@ -119,3 +119,8 @@ $$
 ### Conclusion
 
 If we know the matrix that describes the transformation, the determinant of that matrix will tell us the factor by which the area will get stretched or squished. That is what this Jacobian determinant is.
+
+
+##### Footnotes
+
+[^1]: https://en.wikipedia.org/wiki/Jacobian_matrix_and_determinant
