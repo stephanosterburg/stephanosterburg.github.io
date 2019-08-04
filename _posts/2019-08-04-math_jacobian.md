@@ -74,6 +74,7 @@ $$
 {% include image-caption.html imageurl="/assets/images/posts/2019/jacobian_matrix.png" title="jacobian matrix" %}
 </div>
 
+
 We have got this very non-linear transformation, and we see that if you zoom in on a specific point while that transformation is happening, it looks a lot like something linear and we can reason that you can figure out what linear transformation that looks like by taking the partial derivatives of your given function from above and then turning that into a matrix. 
 
 So if we calculate that we will get the following given $(-2, 1)$:
@@ -103,6 +104,7 @@ Here we can see that the determinant records the stretched or squished space of 
 <div style="text-align:center">
 {% include image-caption.html imageurl="/assets/images/posts/2019/jacobian_determinant.png" title="jacobian determinant" %}
 </div>
+
 
 So, if we look at our starting point where we have a bases vectors and therefore a square shape of size $1x1$, we can see that is got stretched by the factor of 6, the determinant we have calculated. If we know the matrix that describes the transformation, the determinant of that matrix will tell us the factor by which the areas will get stretched or squished. That is what this Jacobian determinant is.
 
