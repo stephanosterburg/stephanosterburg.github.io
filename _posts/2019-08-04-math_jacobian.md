@@ -66,7 +66,7 @@ If we would zoom in on the point $(-2, 1)$ after we transformed the vertex, we c
 $$
 \begin{bmatrix}
     \frac{\partial f_1}{\partial x} & \frac{\partial f_1}{\partial y} \\
-    \frac{\partial f_2}{\partial x} & \frac{\partial f_1}{\partial y}
+    \frac{\partial f_2}{\partial x} & \frac{\partial f_2}{\partial y}
 \end{bmatrix}
 $$
 
