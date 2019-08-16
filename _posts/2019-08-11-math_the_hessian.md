@@ -6,14 +6,14 @@ author: Stephan
 categories: [math]
 tags: [mathematical]
 featured_image_thumbnail: assets/images/posts/2019/Hessian_Surface.jpg
-featured_image:
+featured_image: assets/images/posts/2019/Hessian_Surface.jpg
 featured: false
 hidden: false
 ---
 
-<div style="text-align:center">
+<!-- <div style="text-align:center">
 {% include image-caption.html imageurl="/assets/images/posts/2019/Hessian_Surface.jpg" title="Hessian Surface" caption="Hessian Surface" %}
-</div>
+</div> -->
 
 The Hessian is additional concept which relates to multivariate systems. In many ways, the Hessian can be thought of as a simple extension of the Jacobian vector. For the Jacobian, we collected together all of the first order derivatives of a function into a vector. Now, we're going to collect all of the second order derivatives together into a matrix, which for a function of n variables, would look like this.
 
