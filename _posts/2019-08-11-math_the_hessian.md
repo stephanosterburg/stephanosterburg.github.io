@@ -19,9 +19,14 @@ The Hessian is additional concept which relates to multivariate systems. In many
 {% include image-caption.html imageurl="/assets/images/posts/2019/hessian_matrix.png" title="Tensor" %}
 </div>
 
-Hessian matrix can be an n by n square matrix, where n is the number of variables in our function f.
+Hessian matrix will be a n by n square matrix, where n is the number of variables in our function f.
 
-Here is a quick example, where we find the Jacobian first to make our life easier and then differentiate its terms again to find the Hessian.
+Here is a quick example, where we find the Jacobian first to make our life easier and then differentiate its terms again to find the Hessian.  
+
+First we are going to build the Jacobian, which is going to be denoted as $J$. We first differentiate with respect to x to get $2xyz$, differentiate with respect to y, which is going to get us $x^z$, and finally differentiate with respect to z to get $x^y$.
+
+Using the Jacobian, we can then differentiate again with respect to each of the variables, which will then give us our Hessian matrix.
+
 
 $$ f(x, y, z) = x^2yz \\\
    J = [2xyz, x^2z, x62y] \\\
