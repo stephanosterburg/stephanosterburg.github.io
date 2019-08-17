@@ -27,7 +27,6 @@ First we are going to build the Jacobian, which is going to be denoted as $J$. W
 
 Using the Jacobian, we can then differentiate again with respect to each of the variables, which will then give us our Hessian matrix.
 
-
 $$ f(x, y, z) = x^2yz \\\
    J = [2xyz, x^2z, x62y] \\\
    H = \begin{bmatrix} 2yz & 2xz & 2xy \\
