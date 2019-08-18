@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Protfolio
+title: Portfolio
 featured_image: /assets/images/pages/movies.png
 ---
 
