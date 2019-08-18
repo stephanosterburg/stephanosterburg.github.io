@@ -10,42 +10,40 @@ The above banner shows all the movies I worked on over the years - see also [IMD
 <iframe src="https://player.vimeo.com/video/353638267" width="640" height="360" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
 
 <div data-role="main" class="ui-content">
-  <div data-role="collapsible">
-    <h1>Click me - Christopher Robin Breakdown</h1>
-    <p><ul type="disc">
-        <li>Developed and implemented workflow toolset</li>
-        <li>Co-developed default qualoth sim rig, amongst other things defined simulation and collision settings (maps) for Tigger and Piglet</li>
-        <li>Fine-tuned qualoth setting</li>
-        <li>Tweaked hair simulation</li>
-        <li>Fixed hair collisions on Pooh</li>
-    </ul>
-    </p>
-  </div>
+    <div data-role="collapsible">
+    <!-- <h1>Click me - Christopher Robin Breakdown</h1> -->
+        <p><ul type="disc">
+            <li>Developed and implemented workflow toolset</li>
+            <li>Co-developed default qualoth sim rig, amongst other things defined simulation and collision settings (maps) for Tigger and Piglet</li>
+            <li>Fine-tuned qualoth setting</li>
+            <li>Tweaked hair simulation</li>
+            <li>Fixed hair collisions on Pooh</li>
+        </ul></p>
+    </div>
 </div>
 
 <iframe src="https://player.vimeo.com/video/353637915" width="640" height="360" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
 
 <div data-role="main" class="ui-content">
-  <div data-role="collapsible">
-    <h1>Click me - Thor Ragnarok Breakdown</h1>
+    <div data-role="collapsible">
+    <!-- <h1>Click me - Thor Ragnarok Breakdown</h1> -->
     <p><ul type="disc">
         <li>Created custom muscle collision rig for Hulk; feedback to R&D resulted in improved default muscle collision</li>
         <li>Tuned skin and muscle simulation</li>
-    </ul>
-    </p>
-  </div>
+    </ul></p>
+</div>
 </div>
 
 <iframe src="https://player.vimeo.com/video/178415077" width="640" height="360" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
 
 <div data-role="main" class="ui-content">
     <div data-role="collapsible">
-        <h1>Click me - DWA Breakdown</h1>
+        <!-- <h1>Click me - DWA Breakdown</h1> -->
         <p>
             <ul type="disc">
             00:00:00 - 00:33:06
             <br>
-            Trolls -  / Lead Character Technical Director
+            <b>Trolls / Lead Character Technical Director</b>
            <li>Set creative and technical direction</li>
            <li>Oversaw technical development, including writing custom deformation operators</li>
            <li>Oversaw motion system and body deformations work, both technical and aesthetically.</li>
@@ -56,7 +54,7 @@ The above banner shows all the movies I worked on over the years - see also [IMD
            <br>
            00:33:07 - 00:55:01
            <br>
-           Penguins of Madagascar / Lead Character Technical Director
+           <b>Penguins of Madagascar / Lead Character Technical Director</b>
            <li>same tasks as seen above</li>
            <li>Characters rigged: Classified (wolf) and the Penguins (as seen), and others</li>
            <li>Challenges building the penguin rig:</li>
@@ -68,7 +66,7 @@ The above banner shows all the movies I worked on over the years - see also [IMD
             <br>
             00:55:02 - 01:14:13
             <br>
-            Mr. Peabody & Sherman / Lead Character Technical Director
+            <b>Mr. Peabody & Sherman / Lead Character Technical Director</b>
            <li>Set creative and technical direction</li>
            <li>Oversaw technical development on that show and coordinated the development efforts from R&D for porting an older lattice box deformer to the shows needs </li>
            <li>Oversaw motion system and body deformations work, both technical and aesthetically.</li>
@@ -79,7 +77,7 @@ The above banner shows all the movies I worked on over the years - see also [IMD
            <br>
            01:14:14 - 01:50:16
            <br>
-           Megamind / Character Technical Director
+           <b>Megamind / Character Technical Director</b>
            <li>Rigged Hal/Titan and Roxanne (as seen)</li>
            <li>As well as the female generic characters and many things more.</li>
            <li>Created a custom muscle system for Titan.</li>
@@ -87,14 +85,14 @@ The above banner shows all the movies I worked on over the years - see also [IMD
            <br>
            01:50:17 - 02:02:14
            <br>
-            Kung Fu Panda 3 / Character Technical Director
+            <b>Kung Fu Panda 3 / Character Technical Director</b>
            <li>Rigged the Monkey (as seen)</li>
            <li>Developed a custom knuckle rocker motion system so that the monkey can rock on his fingers middle section</li>
 
            <br>
            02:02:15 – 02:16:01
            <br>
-           Madagascar 3 / Character Technical Director
+           <b>Madagascar 3 / Character Technical Director</b>
            <li>Character rigged: Alex and Carmen (as seen)</li>
            <li>As well as the elephant’s, dogs and many more characters</li>
            </ul>
