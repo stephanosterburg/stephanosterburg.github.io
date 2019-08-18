@@ -5,7 +5,7 @@ featured_image: /assets/images/pages/movies.png
 ---
 
 
-The above banner shows all the movies I worked on over the years - see also [IMDb](https://www.imdb.com/name/nm0652339/). Below you will find work samples from movies I worked while at [FRAMESTORE, London](https://www.framestore.com/), as well my demo reel with work from movies I worked on while I was at [Dreamworks Animation](http://www.dreamworksanimation.com).
+The above banner shows all the movies I worked on over the years - see also [IMDb](https://www.imdb.com/name/nm0652339/). Below you will find work samples from films I worked on while at [Framestore, London](https://www.framestore.com/) in the Creature FX department. As well as my demo reel with work from animation films I worked on while I was at [Dreamworks Animation](http://www.dreamworksanimation.com).
 
 ### Siggraph Paper
 
