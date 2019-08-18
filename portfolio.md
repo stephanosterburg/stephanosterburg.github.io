@@ -9,9 +9,10 @@ The above banner shows all the movies I worked on over the years - see also [IMD
 
 ### Siggraph Paper
 
-Before I forget, here is the siggraph paper from 2008 I co-wrote with Nathaniel Dirksen and Rob Vogt:
+Before I forget, here is the siggraph paper[^1] from 2008 I co-wrote with Nathaniel Dirksen and Rob Vogt:
 <p><a href="https://stephanosterburg.github.io/assets/data/posts/2019/1839-abstract.pdf" target="_blank">Art-Directable Dynamic-Hair Shells in "Madagascar: Escape 2 Africa"</a> (link opens in new tab)</p>
 
+[^1]:[ACM Digital Library](https://dl.acm.org/citation.cfm?id=1401094)
 
 ### Work Samples
 
@@ -52,10 +53,14 @@ Before I forget, here is the siggraph paper from 2008 I co-wrote with Nathaniel 
 <div class="content">
     <p><ul type="disc">
         <li>Developed and implemented workflow toolset</li>
-        <li>Co-developed default qualoth sim rig, amongst other things defined simulation and collision settings (maps) for Tigger and Piglet</li>
-        <li>Fine-tuned qualoth setting</li>
-        <li>Tweaked hair simulation</li>
-        <li>Fixed hair collisions on Pooh</li>
+        <li>Co-developed default qualoth sim rig, amongst other things defined simulation and collision settings for Tigger and Piglet</li>
+        <li>Shot work:</li>
+        <ul>
+            <li>Fine-tuned qualoth simulation (look, feel, wrinkles etc.)</li>
+            <li>Tweaked hair simulation</li>
+            <li>Addressed collisions on Pooh: hair, jumper</li>
+            <li>Addressed collisions on Eeyore: hair, jumper</li>
+        </ul>
     </ul></p>
 </div>
 <br><br>
@@ -66,8 +71,8 @@ Before I forget, here is the siggraph paper from 2008 I co-wrote with Nathaniel 
 <button class="collapsible">Thor: Ragnarok Work Smaple</button>
 <div class="content">
     <p><ul type="disc">
-        <li>Created custom muscle collision rig for Hulk; feedback to R&D resulted in improved default muscle collision</li>
-        <li>Tuned skin and muscle simulation</li>
+        <li>Created custom muscle self-collision rig for Hulk; feedback to R&D resulted in improved default muscle collision</li>
+        <li>Fine-tuned skin and muscle simulation</li>
     </ul></p>
 </div>
 <br><br>
