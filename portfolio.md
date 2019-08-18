@@ -57,7 +57,7 @@ Before I forget, here is the siggraph paper[^1] from 2008 I co-wrote with Nathan
         <li>Shot work:</li>
         <ul>
             <li>Fine-tuned qualoth simulation (look, feel, wrinkles etc.)</li>
-            <li>Tweaked hair simulation</li>
+            <li>Tweaked hair simulation, i.e. wind, walk s run, etcetera</li>
             <li>Addressed collisions on Pooh: hair, jumper</li>
             <li>Addressed collisions on Eeyore: hair, booklet</li>
         </ul>
