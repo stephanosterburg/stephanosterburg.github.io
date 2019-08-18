@@ -1,12 +1,12 @@
 # Site setings
 name: 'Stephan Osterburg'
-description: 'Machine Learning Engineer - Data Scientist - Supervisor/Technical Lead'
+description: 'Supervisor/Technical Lead - Machine Learning Engineer - Data Scientist'
 meta_description:
 logo:
 # Author image is used in site sidebar and greetings in the home page hero text
 author:
   image: 'authorimage.jpg'
-  greetings: "Machine Learning Engineer/Data Scientist with comprehensive expertise in computer graphics, visual effects, and animation, and a background in architecture."
+  greetings: "A computer graphics, visual effects, and animation expert with a background in architecture and a keen interest in machine learning."
 favicon: 'assets/images/favicon.ico'
 baseurl:
 production_url: https://stephanosterburg.github.io/
