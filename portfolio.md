@@ -7,6 +7,14 @@ featured_image: /assets/images/pages/movies.png
 
 The above banner shows all the movies I worked on over the years - see also [IMDb](https://www.imdb.com/name/nm0652339/). Below you will find work samples from movies I worked while at [FRAMESTORE, London](https://www.framestore.com/), as well my demo reel with work from movies I worked on while I was at [Dreamworks Animation](http://www.dreamworksanimation.com).
 
+### Siggraph Paper
+
+Before I forget, here is the siggraph paper from 2008 I co-wrote with Nathaniel Dirksen and Rob Vogt:
+<p><a href="https://stephanosterburg.github.io/assets/data/posts/2019/1839-abstract.pdf" target="_blank">Art-Directable Dynamic-Hair Shells in "Madagascar: Escape 2 Africa"</a> (link opens in new tab)</p>
+
+
+### Work Samples
+
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -15,7 +23,7 @@ The above banner shows all the movies I worked on over the years - see also [IMD
   background-color: #777;
   color: white;
   cursor: pointer;
-  padding: 18px;
+  padding: 16px;
   width: 100%;
   border: none;
   text-align: left;
@@ -106,7 +114,7 @@ The above banner shows all the movies I worked on over the years - see also [IMD
        <br>
        01:14:14 - 01:50:16
        <br>
-       <b>Megamind / Character Technical Director</b>
+       <b>Megamind / Lead Character Technical Director</b>
        <li>Rigged Hal/Titan and Roxanne (as seen)</li>
        <li>As well as the female generic characters and many things more.</li>
        <li>Created a custom muscle system for Titan.</li>
