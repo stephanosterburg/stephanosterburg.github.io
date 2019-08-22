@@ -66,7 +66,7 @@ Before I forget, here is the siggraph paper[^1] from 2008 I co-wrote with Nathan
 <iframe src="https://player.vimeo.com/video/353638267" width="640" height="360" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
 
 
-<button class="collapsible">Christopher Robin Work Sample</button>
+<button class="collapsible">Show/Hide Content - Christopher Robin Work Sample</button>
 <div class="content">
     <p><ul type="disc">
         <li>Developed and implemented workflow toolset</li>
@@ -85,7 +85,7 @@ Before I forget, here is the siggraph paper[^1] from 2008 I co-wrote with Nathan
 <iframe src="https://player.vimeo.com/video/353637915" width="640" height="360" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
 
 
-<button class="collapsible">Thor: Ragnarok Work Smaple</button>
+<button class="collapsible">Show/Hide Content - Thor: Ragnarok Work Smaple</button>
 <div class="content">
     <p><ul type="disc">
         <li>Created custom muscle self-collision rig for Hulk; feedback to R&D resulted in improved default muscle collision</li>
@@ -96,7 +96,7 @@ Before I forget, here is the siggraph paper[^1] from 2008 I co-wrote with Nathan
 
 <iframe src="https://player.vimeo.com/video/178415077" width="640" height="360" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
 
-<button class="collapsible">DWA Demo Reel Breakdown </button>
+<button class="collapsible">Show/Hide Content - DWA Demo Reel Breakdown </button>
 <div class="content">
     <p>
         <ul type="disc">
@@ -164,7 +164,7 @@ Before I forget, here is the siggraph paper[^1] from 2008 I co-wrote with Nathan
 
 <iframe src="https://player.vimeo.com/video/353644319" width="640" height="360" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
 
-<button class="collapsible">Unity Training from 2017</button>
+<button class="collapsible">Show/Hide Content - Unity Training from 2017</button>
 <div class="content">
     <p><ul type="disc">
         <li>Building sceen from the ground up</li>
