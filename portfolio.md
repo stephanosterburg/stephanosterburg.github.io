@@ -42,6 +42,23 @@ Before I forget, here is the siggraph paper[^1] from 2008 I co-wrote with Nathan
   overflow: hidden;
   background-color: #f1f1f1;
 }
+
+.hr {
+   display: block;
+   position: relative;
+   padding: 0;
+   margin: 8px auto;
+   height: 0;
+   width: 100%;
+   max-height: 0;
+   font-size: 1px;
+   line-height: 0;
+   clear: both;
+   border: none;
+   border-top: 1px solid #aaaaaa;
+   border-bottom: 1px solid #ffffff;
+}
+
 </style>
 </head>
 <body>
@@ -142,6 +159,20 @@ Before I forget, here is the siggraph paper[^1] from 2008 I co-wrote with Nathan
 </div>
 <br><br>
 
+
+<div class="hr"></div><br>
+
+<iframe src="https://player.vimeo.com/video/353644319" width="640" height="360" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+
+<button class="collapsible">Unity Training from 2017</button>
+<div class="content">
+    <p><ul type="disc">
+        <li>Building sceen from the ground up</li>
+        <li>Coding in C#</li>
+        <li>Using Maya to create animation for the characters</li>
+    </ul></p>
+</div>
+<br><br>
 
 <script>
     var coll = document.getElementsByClassName("collapsible");
