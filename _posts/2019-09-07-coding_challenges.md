@@ -80,3 +80,5 @@ The given data set here is small but you could imagine an extremely large data s
 neural network to solve this problem? For a specific data set with points having 3 values (x, y, c) you want to design a network that takes three inputs $x_i$, $y_i$, $r$ and output a probability of the color being 0.
 
 Explain what training data you would use, what kind of a network and layers you would build.
+
+...to be continued
