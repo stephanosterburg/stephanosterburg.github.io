@@ -69,7 +69,7 @@ The conclusion the researchers drew from the results presented in that paper sug
 
 And for me reading the paper with the “mugshot” project in mind believe that it is possible - hopefully - to get from a front head shot to a side view. For a more in-depth read, I encourage you to read the paper itself.
 
-Next up is a read up (write up) on U-Net.
+Next up is a read up (write up) on U-Net in [part 3](mugshots_part_3).
 
 --------
 

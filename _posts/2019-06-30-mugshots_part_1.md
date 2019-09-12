@@ -49,3 +49,6 @@ Before we dive into the pix2pix paper a few words about the mugshot database:
 * There are images of 1573 individuals of which 1495 are male and 78 female.
 * The database contains both front and side (profile) views when available. There are 131 cases with two or more front views and 1418 with only one front view.
 * There are 89 cases with two or more profiles and 1268 with only one profile. Cases with both fronts and profiles have 89 cases with two or more of both fronts and profiles, 27 with two or more fronts and one profile, and 1217 with only one front and one profile.
+
+
+You can read more in part 2 [here](mugshots_part_2).
