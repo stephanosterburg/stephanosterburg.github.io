@@ -59,3 +59,7 @@ We will start with a simple neural network using maybe 2 or 3 convolution layers
 We will use backpropagation to train our output layer to predict our expected output, which will return a probability graph of where it is in 3D space. With that, we can filter our result for the highest probability value and get the coordinates, which should give us all colors in the given radius and therefore a way to calculate the probability of the color being 0 of a given point in space.
 
 That said, I might stay corrected.
+
+---
+
+_**Note**: The idea of using a GAN model seems good but converting the input to voxels may not be such a good idea. The data will be huge, and converting all 3D data into a standard size voxels is not as easy as one might think._
