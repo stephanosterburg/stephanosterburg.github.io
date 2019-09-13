@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 'Coding - Part 1'
+title: 'Coding Challenge - Part 1'
 description: "Python & ML Challenge"
 author: Stephan
 categories: [code, neural network]
@@ -75,8 +75,7 @@ findProbability(X, Y, C, xpos, ypos, radius)
 
 ### Neural Network
 
-The given data set here is small but you could imagine an extremely large data set such as locations on a map, or vertices in a 3D scene. Using a brute force approach still might prove expensive. Neural Networks on the other hand give a quick (?) feed forward look up or answer. How you would design a
-neural network to solve this problem? For a specific data set with points having 3 values (x, y, c) you want to design a network that takes three inputs $x_i$, $y_i$, $r$ and output a probability of the color being 0.
+The given data set here is small but you could imagine an extremely large data set such as locations on a map, or vertices in a 3D scene. Using a brute force approach still might prove expensive. Neural Networks on the other hand give a quick (?) feed forward look up or answer. How you would design a neural network to solve this problem? For a specific data set with points having 3 values (x, y, c) you want to design a network that takes three inputs $x_i$, $y_i$, $r$ and output a probability of the color being 0.
 
 Explain what training data you would use, what kind of a network and layers you would build.
 
