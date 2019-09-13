@@ -6,7 +6,7 @@ logo:
 # Author image is used in site sidebar and greetings in the home page hero text
 author:
   image: 'authorimage.jpg'
-  greetings: "A computer graphics, visual effects, and animation expert with a background in architecture and a keen interest in machine learning."
+  greetings: "I am a computer graphics veteran with extensive experience in visual effects, animation, with a background in architecture and a keen interest in machine learning."
 favicon: 'assets/images/favicon.ico'
 baseurl:
 production_url: https://stephanosterburg.github.io/
