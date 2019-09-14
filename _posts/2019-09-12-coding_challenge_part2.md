@@ -56,7 +56,7 @@ We do the same for our output.
 
 We will start with a simple neural network using maybe 2 or 3 convolution layers (i.e. [tf.keras.layers.Conv3D](https://www.tensorflow.org/versions/r2.0/api_docs/python/tf/keras/layers/Conv3D)).
 
-We will use backpropagation to train our output layer to predict our expected output, which will return a probability graph of where it is in 3D space. With that, we can filter our result for the highest probability value and get the coordinates, which should give us all colors in the given radius and therefore a way to calculate the probability of the color being 0 of a given point in space.
+We will use back-propagation to train our output layer to predict our expected output, which will return a probability graph of where it is in 3D space. With that, we can filter our result for the highest probability value and get the coordinates, which should give us all colors in the given radius and therefore a way to calculate the probability of the color being 0 of a given point in space.
 
 That said, I might stay corrected.
 
