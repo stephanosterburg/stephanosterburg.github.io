@@ -118,10 +118,20 @@ pre code {
   padding: 0;
 }
 
+// blockquote {
+//   color: $gray-darkest;
+//   font-family: $font-secondary;
+//   font-size: 2rem;
+//   line-height: 1.25;
+//   margin: 0 0 1.25em;
+//   padding-top: 45px;
+//   position: relative;
+//   text-align: center;
+// }
 blockquote {
-  color: $gray-darkest;
+  color: $gray;
   font-family: $font-secondary;
-  font-size: 2rem;
+  font-size: 1.8rem;
   line-height: 1.25;
   margin: 0 0 1.25em;
   padding-top: 45px;
