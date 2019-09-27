@@ -229,7 +229,7 @@ Before I forget, here is the siggraph paper[^1] from 2008 I co-wrote with Nathan
 {% include image-caption.html imageurl="/assets/images/posts/2019/dataset-cover.jpeg" title="Forest Cover Types" %}
 </div>
 
-<p><a href="https://stephanosterburg.github.io/assets/data/posts/2019/ForestCoverType_Presentation.pdf" target="_blank">Forest Cover Types</a> (link opens in new tab)</p>
+<p><a href="https://stephanosterburg.github.io/assets/data/posts/2019/ForestCoverType_Presentation.pdf" target="_blank">Forest Cover Types Presentation</a> (link opens in new tab)</p>
 
 
 <h5 id="ML">Art Images</h5>
@@ -238,7 +238,7 @@ Before I forget, here is the siggraph paper[^1] from 2008 I co-wrote with Nathan
 {% include image-caption.html imageurl="/assets/images/posts/2019/GoogleArt.png" title="Art Images" %}
 </div>
 
-<p><a href="https://stephanosterburg.github.io/assets/data/posts/2019/ArtImages_Presentation.pdf" target="_blank">Art Images</a> (link opens in new tab)</p>
+<p><a href="https://stephanosterburg.github.io/assets/data/posts/2019/ArtImages_Presentation.pdf" target="_blank">Art Images Presentation</a> (link opens in new tab)</p>
 
 
 <h5 id="ML">News Content</h5>
@@ -247,7 +247,7 @@ Before I forget, here is the siggraph paper[^1] from 2008 I co-wrote with Nathan
 {% include image-caption.html imageurl="/assets/images/posts/2019/newsstand.jpg" title="News Content" %}
 </div>
 
-<p><a href="https://stephanosterburg.github.io/assets/data/posts/2019/FakeNews_Presentation.pdf" target="_blank">Fake News</a> (link opens in new tab)</p>
+<p><a href="https://stephanosterburg.github.io/assets/data/posts/2019/FakeNews_Presentation.pdf" target="_blank">Fake News Presentation</a> (link opens in new tab)</p>
 
 
 <h5 id="ML">Mug Shots</h5>
@@ -256,7 +256,7 @@ Before I forget, here is the siggraph paper[^1] from 2008 I co-wrote with Nathan
 {% include image-caption.html imageurl="/assets/images/posts/2019/mugshots_small.png" title="Mug Shots" %}
 </div>
 
-<p><a href="https://stephanosterburg.github.io/mugshots_part_1" target="_self">Mug Shots</a></p>
+<p><a href="https://stephanosterburg.github.io/mugshots_part_1" target="_self">Here is the link to the Mug Shots blog</a></p>
 
 
 
