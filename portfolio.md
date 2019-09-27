@@ -115,6 +115,8 @@ Before I forget, here is the siggraph paper[^1] from 2008 I co-wrote with Nathan
 <br><br>
 
 
+<div class="hr"></div><br>
+
 <h4 id="DWA">Dreamworks Animation</h4>
 
 <iframe src="https://player.vimeo.com/video/178415077" width="640" height="360" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
