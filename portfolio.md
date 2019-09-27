@@ -256,7 +256,7 @@ Before I forget, here is the siggraph paper[^1] from 2008 I co-wrote with Nathan
 {% include image-caption.html imageurl="/assets/images/posts/2019/mugshots_small.png" title="Mug Shots" %}
 </div>
 
-<p><a href="https://stephanosterburg.github.io/mugshots_part_1" target="_blank">Mug Shots</a> (link opens in new tab)</p>
+<p><a href="https://stephanosterburg.github.io/mugshots_part_1" target="_self">Mug Shots</a></p>
 
 
 
