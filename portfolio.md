@@ -4,8 +4,9 @@ title: Portfolio
 featured_image: /assets/images/pages/movies.png
 ---
 
+The banner above starts with **TRON**, which was the main inspiration for me to enter the field of computer graphics. Followed by all the movies, I worked on over the years - see also [IMDb](https://www.imdb.com/name/nm0652339/).
 
-The above banner shows all the movies I worked on over the years - see also [IMDb](https://www.imdb.com/name/nm0652339/). Below you will find work samples from films I worked on while at [Framestore, London](https://www.framestore.com/) in the Creature FX department. As well as my demo reel with work from animation films I worked on while I was at [Dreamworks Animation](http://www.dreamworksanimation.com).
+Below you will find work samples from films I worked on while at [Framestore, London](https://www.framestore.com/) in the Creature FX department as well as my demo reel with work from animation films I worked on while I was at [Dreamworks Animation](http://www.dreamworksanimation.com).
 
 ### Table of contents
 
