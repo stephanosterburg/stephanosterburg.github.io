@@ -19,6 +19,12 @@ The above banner shows all the movies I worked on over the years - see also [IMD
         <li><a href="#Unity">Unity</a></li>
       </ul>
     <li><a href="#ML">Machine Learning</a></li>
+      <ul>
+        <li><a href="#FCT">Forest Cover Types</a></li>
+        <li><a href="#AI">Art Images</a></li>
+        <li><a href="#NC">News Content</a></li>
+        <li><a href="#MS">Mug Shots</a></li>
+      </ul>
   </ul>
 </div>
 
@@ -223,7 +229,7 @@ Before I forget, here is the siggraph paper[^1] from 2008 I co-wrote with Nathan
 
 <h3 id="ML">Machine Learning</h3>
 
-<h5 id="ML">Forest Cover Types</h5>
+<h5 id="FCT">Forest Cover Types</h5>
 
 <div style="text-align:center">
 {% include image-caption.html imageurl="/assets/images/posts/2019/dataset-cover.jpeg" title="Forest Cover Types" %}
@@ -233,7 +239,7 @@ Before I forget, here is the siggraph paper[^1] from 2008 I co-wrote with Nathan
 
 <a href="https://github.com/osterburg/forest-cover-type" target="_blank">Link to github</a> (link opens in new tab)</p>
 
-<h5 id="ML">Art Images</h5>
+<h5 id="AI">Art Images</h5>
 
 <div style="text-align:center">
 {% include image-caption.html imageurl="/assets/images/posts/2019/GoogleArt.png" title="Art Images" %}
@@ -243,7 +249,7 @@ Before I forget, here is the siggraph paper[^1] from 2008 I co-wrote with Nathan
 
 <a href="https://github.com/osterburg/art-images" target="_blank">Link to github</a> (link opens in new tab)</p>
 
-<h5 id="ML">News Content</h5>
+<h5 id="NC">News Content</h5>
 
 <div style="text-align:center">
 {% include image-caption.html imageurl="/assets/images/posts/2019/newsstand.jpg" title="News Content" %}
@@ -254,7 +260,7 @@ Before I forget, here is the siggraph paper[^1] from 2008 I co-wrote with Nathan
 <a href="https://github.com/osterburg/news-content-capstone-project" target="_blank">Link to github</a> (link opens in new tab)</p>
 
 
-<h5 id="ML">Mug Shots</h5>
+<h5 id="MS">Mug Shots</h5>
 
 <div style="text-align:center">
 {% include image-caption.html imageurl="/assets/images/posts/2019/mugshots_small.png" title="Mug Shots" %}
