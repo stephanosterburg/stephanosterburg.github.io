@@ -7,14 +7,31 @@ featured_image: /assets/images/pages/movies.png
 
 The above banner shows all the movies I worked on over the years - see also [IMDb](https://www.imdb.com/name/nm0652339/). Below you will find work samples from films I worked on while at [Framestore, London](https://www.framestore.com/) in the Creature FX department. As well as my demo reel with work from animation films I worked on while I was at [Dreamworks Animation](http://www.dreamworksanimation.com).
 
-### Siggraph Paper
+### Table of contents
+
+<div class="toc">
+  <ul>
+    <li><a href="#Siggraph Paper">Siggraph Paper</a></li>
+    <li><a href="#Work Samples">Work Samples</a></li>
+      <ul>
+        <li><a href="#Framestore">Framestore</a></li>
+        <li><a href="#DWA">Dreamworks Animation</a></li>
+        <li><a href="#Unity">Unity</a></li>
+      </ul>
+    <li><a href="#ML">Machine Learning</a></li>
+  </ul>
+</div>
+
+
+
+<h3 id="Siggraph Paper">Siggraph Paper</h3>
 
 Before I forget, here is the siggraph paper[^1] from 2008 I co-wrote with Nathaniel Dirksen and Rob Vogt:
 <p><a href="https://stephanosterburg.github.io/assets/data/posts/2019/1839-abstract.pdf" target="_blank">Art-Directable Dynamic-Hair Shells in "Madagascar: Escape 2 Africa"</a> (link opens in new tab)</p>
 
 [^1]:[ACM Digital Library](https://dl.acm.org/citation.cfm?id=1401094)
 
-### Work Samples
+<h3 id="Work Samples">Work Samples</h3>
 
 <html>
 <head>
@@ -63,6 +80,9 @@ Before I forget, here is the siggraph paper[^1] from 2008 I co-wrote with Nathan
 </head>
 <body>
 
+
+<h4 id="Framestore">Framestore</h4>
+
 <iframe src="https://player.vimeo.com/video/353638267" width="640" height="360" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
 
 
@@ -93,6 +113,9 @@ Before I forget, here is the siggraph paper[^1] from 2008 I co-wrote with Nathan
     </ul></p>
 </div>
 <br><br>
+
+
+<h4 id="DWA">Dreamworks Animation</h4>
 
 <iframe src="https://player.vimeo.com/video/178415077" width="640" height="360" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
 
@@ -162,6 +185,9 @@ Before I forget, here is the siggraph paper[^1] from 2008 I co-wrote with Nathan
 
 <div class="hr"></div><br>
 
+
+<h4 id="Unity">Unity Training</h4>
+
 <iframe src="https://player.vimeo.com/video/353644319" width="640" height="360" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
 
 <button class="collapsible">Show/Hide Content - Unity Training from 2017</button>
@@ -190,3 +216,53 @@ Before I forget, here is the siggraph paper[^1] from 2008 I co-wrote with Nathan
       });
     }
 </script>
+
+<div class="hr"></div><br>
+
+<h3 id="ML">Machine Learning</h3>
+
+<h5 id="ML">Forest Cover Types</h5>
+
+<div style="text-align:center">
+{% include image-caption.html imageurl="/assets/images/posts/2019/dataset-cover.jpeg" title="Forest Cover Types" %}
+</div>
+
+<p><a href="https://stephanosterburg.github.io/assets/data/posts/2019/ForestCoverType_Presentation.pdf" target="_blank">Forest Cover Types</a> (link opens in new tab)</p>
+
+
+<h5 id="ML">Art Images</h5>
+
+<div style="text-align:center">
+{% include image-caption.html imageurl="/assets/images/posts/2019/GoogleArt.png" title="Art Images" %}
+</div>
+
+<p><a href="https://stephanosterburg.github.io/assets/data/posts/2019/ArtImages_Presentation.pdf" target="_blank">Art Images</a> (link opens in new tab)</p>
+
+
+<h5 id="ML">News Content</h5>
+
+<div style="text-align:center">
+{% include image-caption.html imageurl="/assets/images/posts/2019/newsstand.jpg" title="News Content" %}
+</div>
+
+<p><a href="https://stephanosterburg.github.io/assets/data/posts/2019/FakeNews_Presentation.pdf" target="_blank">Fake News</a> (link opens in new tab)</p>
+
+
+<h5 id="ML">Mug Shots</h5>
+
+<div style="text-align:center">
+{% include image-caption.html imageurl="/assets/images/posts/2019/mugshots_small.png" title="Mug Shots" %}
+</div>
+
+<p><a href="https://stephanosterburg.github.io/mugshots_part_1" target="_blank">Mug Shots</a> (link opens in new tab)</p>
+
+
+
+<!-- https://github.com/osterburg/art-images
+https://github.com/osterburg/forest-cover-type
+https://github.com/osterburg/news-content-capstone-project
+https://github.com/osterburg/mugshots -->
+
+
+
+<div class="hr"></div><br>
