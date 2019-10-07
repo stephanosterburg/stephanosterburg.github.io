@@ -12,8 +12,12 @@ hidden: false
 ---
 
 Recursion can be tricky to grasp. To demonstrate its power we are using the famous "Tower of Hanoi" problem. The "Tower of Hanoi" is a mathematical puzzle which consists of three towers (pegs) and more than one rings is as depicted in the image below:
-  
-![Tower of Hanoi]({{ site.baseurl }}/assets/images/posts/2019/tower_of_hanoi.jpg)  
+
+<br>
+<div style="text-align:center">
+{% include image-caption.html imageurl="/assets/images/posts/2019/tower_of_hanoi.jpg" title="Tower of Hanoi" %}
+</div>
+<br>
 
 These rings are of different sizes and stacked upon in an ascending order, i.e. the smaller one sits over the larger one. There are other variations of the puzzle where the number of disks increase, but the tower count remains the same.
 
