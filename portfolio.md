@@ -238,7 +238,7 @@ Before I forget, here is the siggraph paper[^1] from 2008 I co-wrote with Nathan
 
 <p><a href="https://stephanosterburg.github.io/assets/data/posts/2019/ForestCoverType_Presentation.pdf" target="_blank">Forest Cover Types Presentation</a> (link opens in new tab)<br>
 
-<a href="https://github.com/osterburg/forest-cover-type" target="_blank">Link to github</a> (link opens in new tab)</p>
+<a href="https://github.com/stephanosterburg/forest-cover-type" target="_blank">Link to github</a> (link opens in new tab)</p>
 
 <h5 id="AI">Art Images</h5>
 
@@ -248,7 +248,7 @@ Before I forget, here is the siggraph paper[^1] from 2008 I co-wrote with Nathan
 
 <p><a href="https://stephanosterburg.github.io/assets/data/posts/2019/ArtImages_Presentation.pdf" target="_blank">Art Images Presentation</a> (link opens in new tab)<br>
 
-<a href="https://github.com/osterburg/art-images" target="_blank">Link to github</a> (link opens in new tab)</p>
+<a href="https://github.com/stephanosterburg/art-images" target="_blank">Link to github</a> (link opens in new tab)</p>
 
 <h5 id="NC">News Content</h5>
 
@@ -258,7 +258,8 @@ Before I forget, here is the siggraph paper[^1] from 2008 I co-wrote with Nathan
 
 <p><a href="https://stephanosterburg.github.io/assets/data/posts/2019/FakeNews_Presentation.pdf" target="_blank">Fake News Presentation</a> (link opens in new tab)<br>
 
-<a href="https://github.com/osterburg/news-content-capstone-project" target="_blank">Link to github</a> (link opens in new tab)</p>
+<a href="https://github.com/stephanosterburg/news-content-capstone-project" target="_blank">Link to github</a> (link
+ opens in new tab)</p>
 
 
 <h5 id="MS">Mug Shots</h5>
@@ -269,7 +270,7 @@ Before I forget, here is the siggraph paper[^1] from 2008 I co-wrote with Nathan
 
 <p><a href="https://stephanosterburg.github.io/mugshots_part_1" target="_self">Here is the link to the Mug Shots blog</a><br>
 
-<a href="https://github.com/osterburg/mugshots" target="_blank">Link to github</a> (link opens in new tab)</p>
+<a href="https://github.com/stephanosterburg/mugshots" target="_blank">Link to github</a> (link opens in new tab)</p>
 
 
 <!-- https://github.com/osterburg/art-images
