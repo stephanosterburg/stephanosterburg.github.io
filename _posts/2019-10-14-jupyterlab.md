@@ -43,4 +43,7 @@ def background(color, cell):
 
 ...and to use it, we add the following line in the top of the coding cell: `%%background honeydew`
 
+<div style="text-align:center"><img src="assets/images/posts/2019/jupyterlab_example.png" /></div>
+<br>
+
 This is test in jupyterlab version 1.1.4 on a MacBook Pro running macOS Catalina.
