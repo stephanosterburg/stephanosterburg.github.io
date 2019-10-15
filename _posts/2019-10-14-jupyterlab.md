@@ -13,7 +13,7 @@ hidden: false
 
 How to change the background color of a single cell in a jupyterlab (jupyter notebook)?
 
-The following is a bit of a hack, but it works to set the color of a coding cell. We will define our main function and place it in the top of our notebook.
+The following is a bit of a hack, but it works to set the color of a coding cell. We will define our primary function and place it at the top of our notebook.
 
 ```python
 from IPython.display import HTML, display
@@ -41,7 +41,7 @@ def background(color, cell):
     set_background(color)
 ```
 
-...and to use it, we add the following line in the top of the coding cell: `%%background honeydew`
+... and to use it, we add the following line in the top of the coding cell: `%%background honeydew`
 
 
 <div style="text-align:center">
