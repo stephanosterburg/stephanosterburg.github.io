@@ -3,8 +3,8 @@ layout: post
 title: 'jupyterlab - cell color'
 description: "jupyterlab - cell color"
 author: Stephan
-categories: [math, code, python]
-tags: [math, code, python]
+categories: [jupyterlab, code, python]
+tags: [jupyterlab, code, python]
 featured_image_thumbnail: assets/images/posts/2019/jupyterlab.png
 featured_image: assets/images/posts/2019/jupyterlab.png
 featured: false
@@ -52,5 +52,7 @@ def background(color, cell):
 
 This test is done in jupyterlab version 1.1.4 on a MacBook Pro running macOS Catalina.
 
+---
+#### Footnotes:
 
 [^1]: [stackoverflow](https://stackoverflow.com/a/50824920/5983691)
