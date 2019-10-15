@@ -11,7 +11,7 @@ featured: false
 hidden: false
 ---
 
-How to change the background color of a single cell in a jupyterlab (jupyter notebook)?
+How to change the background color of a single cell in a jupyterlab (jupyter notebook)?[^1]
 
 The following is a bit of a hack, but it works to set the color of a coding cell. We will define our primary function and place it at the top of our notebook.
 
@@ -51,3 +51,6 @@ def background(color, cell):
 <br>
 
 This test is done in jupyterlab version 1.1.4 on a MacBook Pro running macOS Catalina.
+
+
+[^1]: [stackoverflow](https://stackoverflow.com/a/50824920/5983691)
