@@ -45,7 +45,7 @@ def background(color, cell):
 
 
 <div style="text-align:center">
-{% include image-caption.html imageurl="/ssets/images/posts/2019/jupyterlab_example.png" title="jupyterlb" %}
+{% include image-caption.html imageurl="/assets/images/posts/2019/jupyterlab_example.png" title="jupyterlb" %}
 </div>
 
 <br>
