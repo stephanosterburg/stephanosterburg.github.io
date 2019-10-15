@@ -50,4 +50,4 @@ def background(color, cell):
 
 <br>
 
-This is test in jupyterlab version 1.1.4 on a MacBook Pro running macOS Catalina.
+This test is done in jupyterlab version 1.1.4 on a MacBook Pro running macOS Catalina.
