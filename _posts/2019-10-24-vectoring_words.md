@@ -45,3 +45,19 @@ If we imagine the word "cat" comes in. To do well, the probability distribution 
 If we run it on a large enough data set and give it enough compute actually to perform really well, it ends up giving us for each word a vector that's of however many units we have given it. For which the similarity of those vectors expresses something meaningful about how similar the contexts are that those words appear in. And we assume that words that appear in similar contexts are similar.
 
 In the process of doing that, it creates this mapping from the latent space to images. By doing basic arithmetic like just adding and subtracting vectors on the latent space would produce meaningful changes in the image. So what we end up with is that same principle, but for words. So if we take, for example, the vector and it's required by law that all explanations that word embeddings use the same example to start with. If you take the vector for "King," subtractive the vector for "man" and add the vector for "woman," we get another vector out, and if you find the nearest point in your word embeddings to that vector, it's the word "Queen."
+
+Here is a very simple example using google's own [GoogleNews-vectors-negative300](https://drive.google.com/file/d/0B7XkCwpI5KDYNlNUTTlSS21pQmM/edit) model:
+
+```python
+import gensim
+
+from google.colab import drive
+drive.mount('/content/drive')
+
+!gunzip -f "/content/drive/My Drive/models/GoogleNews-vectors-negative300.bin.gz"
+
+model = gensim.models.KeyedVectors.load_word2vec_format("/content/drive/My Drive/models/GoogleNews-vectors-negative300.bin.gz")
+
+print(model.most_similar_cosmul(positive=['boy', 'woman'], negative=['man']))
+# [('girl', 1.01875), ('mother', 0.91107,, ('teenage_girl', .....))]
+```
