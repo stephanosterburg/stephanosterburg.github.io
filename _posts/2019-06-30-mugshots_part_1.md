@@ -7,8 +7,8 @@ categories: [code, images]
 tags: [machine learning, GAN, pix2pix]
 featured_image_thumbnail: assets/images/posts/2019/350px-Bertillon_selfportrait_mugshot.jpg
 featured_image: assets/images/posts/2019/mugshots.png
-featured: false
-hidden: false
+featured: true
+hidden: true
 ---
 
 ## The Idea (a brief introduction)
