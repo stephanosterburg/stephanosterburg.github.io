@@ -33,6 +33,8 @@ navigation:
     url: /
   - text: ABOUT
     url: /about
+  - text: SANDBOX
+    url: /sandbox
   - text: PORTFOLIO
     url: /portfolio
   - text: SCRAPBOOK
