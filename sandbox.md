@@ -8,7 +8,7 @@ featured_image: /assets/images/posts/2019/timeline_doddle.png
 
 ### Houdini
 
-To stay up-to-date, I decided to work through a course offered by [The VFX School](https://thevfxschool.com/) using Houdini 17.5 - Apprentice.
+To stay up-to-date, I decided to work through a course offered by [The VFX School](https://thevfxschool.com/) using [Houdini 17.5 (Apprentice)](https://www.sidefx.com/products/houdini-apprentice/).
 
 Other websites I used:
 - [Applied Houdini](http://www.appliedhoudini.com/)
