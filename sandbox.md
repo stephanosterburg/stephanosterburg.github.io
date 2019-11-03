@@ -4,7 +4,6 @@ title: Sandbox
 featured_image: /assets/images/posts/2019/timeline_doddle.png
 ---
 
----
 
 ### Houdini
 
@@ -18,13 +17,13 @@ Other websites I used:
 *Images below are sorted from newest to oldest.*
 
 {:refdef: style="text-align: center;"}
-![Cubes]({{ site.baseurl }}/assets/images/posts/2019/WaterDroplets) created Nov 02, 2019
+![Cubes]({{ site.baseurl }}/assets/images/posts/2019/WaterDroplets.png) created Nov 02, 2019
 {:refdef}
 
 {:refdef: style="text-align: center;"}
-![CocaCola]({{ site.baseurl }}/assets/images/posts/2019/CocaCola) created Oct 27, 2019
+![CocaCola]({{ site.baseurl }}/assets/images/posts/2019/CocaCola.png) created Oct 27, 2019
 {:refdef}
 
 {:refdef: style="text-align: center;"}
-![Cubes]({{ site.baseurl }}/assets/images/posts/2019/Cubes) created Oct 27, 2019
+![Cubes]({{ site.baseurl }}/assets/images/posts/2019/Cubes.png) created Oct 27, 2019
 {:refdef}
