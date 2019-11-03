@@ -18,9 +18,13 @@ Other websites I used:
 *Images below are sorted from newest to oldest.*
 
 {:refdef: style="text-align: center;"}
-![CocaCola]({{ site.baseurl }}/assets/images/posts/2019/CocaCola.jpg) created Oct 27, 2019
+![Cubes]({{ site.baseurl }}/assets/images/posts/2019/WaterDroplets) created Nov 02, 2019
 {:refdef}
 
 {:refdef: style="text-align: center;"}
-![Cubes]({{ site.baseurl }}/assets/images/posts/2019/cubes.jpg) created Oct 27, 2019
+![CocaCola]({{ site.baseurl }}/assets/images/posts/2019/CocaCola) created Oct 27, 2019
+{:refdef}
+
+{:refdef: style="text-align: center;"}
+![Cubes]({{ site.baseurl }}/assets/images/posts/2019/Cubes) created Oct 27, 2019
 {:refdef}
