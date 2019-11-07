@@ -11,17 +11,17 @@ featured: false
 hidden: false
 ---
 
-A __normal__ to a pair of vectors is a vector that is at the right angle to both of them, so that a __normal to a plane__ is a vector that is at the right angle to all the vectors that are in that plane.
+A __normal__ to a pair of vectors is a vector that is at the right angle to both of them so that a __normal to a plane__ is a vector that is at the right angle to all the vectors that are in that plane.
 
 Finding normals will enable us to communicate numerically about many real phenomena, including rectangular constructions and the reflections of rays of light from surfaces. The key to all these possibilities is the technique based on the vector multiplication, termed the __vector product__ of vectors (since the result is itself a vector) or the __cross product__ of vectors (named after the cross notation used).
 
-The Cross Product has a nice graphic interpretation and is quite similar to that of the determinant, as covered in a previous post.
+The Cross Product has an excellent graphic interpretation and is quite similar to that of the determinant, as covered in a previous post.
 
-Just like we find the determinant after a transformation, we also find the cross product after a transformation. This means orientation could be flipped, just like turning a paper over is the equivalent of flipped orientation.
+Just like we find the determinant after a transformation, we also see the cross product after a transformation. This means orientation could be flipped, just like turning a paper over is the equivalent of flipped orientation.
 
 If we remember from linear algebra, a vector has a tail and a head. Anytime we have two vectors $\vec{v}$ and $\vec{w}$, taking the cross product $\vec{v} \times \vec{w}$ results in pacing a copy of $\vec{v}$'s tail on $\vec{w}$'s head and a copy of $\vec{w}$'s tail on $\vec{v}$'s.
 
-So every time we are taking the cross product, we can imagine, at least in 2D, that we have this geometric interpretation — and have a visual sense of what we are actually computing. If it wasn't obvious to you by now, the cross product computation is much like the determinant, as we are finding the area of this area.
+So every time we are taking the cross product, we can imagine, at least in 2D, that we have this geometric interpretation — and have a visual sense of what we are computing. If it wasn't apparent to you by now, the cross product computation is much like the determinant, as we are finding the area of this area.
 
 And the computation? Just as easy as the determinant:
 
