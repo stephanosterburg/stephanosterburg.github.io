@@ -77,6 +77,12 @@ kramdown:
   toc_levels: 1..6
   enable_coderay: false
 
+# markdown: CommonMarkGhPages
+#
+# commonmark:
+#   options: ["SMART", "FOOTNOTES"]
+#   extensions: ["strikethrough", "autolink", "table", "tagfilter"]
+#
 # Set the Sass partials directory, as we're using @imports
 sass:
   sass_dir: _sass
