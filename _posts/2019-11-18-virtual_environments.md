@@ -537,6 +537,10 @@ Publishing to `PyPi` using `poetry` is so easy, I explained it in one line (abov
 
 <!-- </details> -->
 
+## Links
+
+* [python environment](https://realpython.com/effective-python-environment/)
+* [pipenv](https://realpython.com/pipenv-guide/)
 
 ---
 
