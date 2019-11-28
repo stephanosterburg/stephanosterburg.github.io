@@ -6,7 +6,7 @@ logo:
 # Author image is used in site sidebar and greetings in the home page hero text
 author:
   image: 'authorimage.jpg'
-  greetings: "I am a computer graphics expert with over 20 years of experience, with a keen interest in machine learning."
+  greetings: "I am a computer graphics expert with over 20 years of experience, with a keen interest in machine learning. In the words of Steve Jobs, ‘stay hungry and stay foolish’."
 favicon: 'assets/images/favicon.ico'
 baseurl:
 production_url: https://stephanosterburg.github.io/
