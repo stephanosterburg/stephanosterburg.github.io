@@ -11,7 +11,7 @@ featured: false
 hidden: false
 ---
 
-There is an official specification on how you should format your docstrings, called [PEP 0257](https://www.python.org/dev/peps/pep-0257/). Many people don’t strictly follow this format and use a format that is supported by documentation generation tools like Doxygen, Epydoc, and Sphinx. Formats include (taken from [StackOverflow](http://stackoverflow.com/questions/3898572/what-is-the-standard-python-docstring-format)):
+There is an official specification on how you should format your docstrings, called [PEP 0257](https://www.python.org/dev/peps/pep-0257/). Many people don’t strictly follow this format and use a format that is supported by documentation generation tools like `Doxygen`, `Epydoc`, and `Sphinx`. Formats include (taken from [StackOverflow](http://stackoverflow.com/questions/3898572/what-is-the-standard-python-docstring-format)):
 
 ### Formats
 
