@@ -13,8 +13,8 @@ I am a computer graphics expert with over 20 years of experience, covering every
 
 ## Resume
 
-<object data="assets/data/posts/2019/StephanOsterburg_Resume2020.pdf" type="application/pdf" width="700px" height="960px">
-    <embed src="assets/data/posts/2019/StephanOsterburg_Resume2020.pdf">
-        <p>This browser does not support PDFs. Please download the PDF to view it: <a href="assets/data/posts/2019/StephanOsterburg_Resume2020.pdf">Download PDF</a>.</p>
+<object data="assets/data/posts/2019/StephanOsterburg_Resume.pdf" type="application/pdf" width="700px" height="960px">
+    <embed src="assets/data/posts/2019/StephanOsterburg_Resume.pdf">
+        <p>This browser does not support PDFs. Please download the PDF to view it: <a href="assets/data/posts/2019/StephanOsterburg_Resume.pdf">Download PDF</a>.</p>
     </embed>
 </object>
