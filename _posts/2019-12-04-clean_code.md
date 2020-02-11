@@ -7,8 +7,8 @@ categories: [code, python]
 tags: [code, python]
 featured_image_thumbnail: assets/images/posts/2019/clean-python-code.jpg
 featured_image: assets/images/posts/2019/clean-python-code.jpg
-featured: false
-hidden: false
+featured: true
+hidden: true
 ---
 
 Writing clean, readable code is something we should all strive for. If you’re just learning to program, you may not be paying attention to how clean your code is, but after a while when you start working with other people with a shared code base you may begin to recognize the importance of writing clean code. Code is read a lot more than it is written and sloppy code just depresses and frustrates people. Being sloppy up front when you are under pressure actually slows you down in the long term. You will end up creating more bugs which leads to more maintenance.
