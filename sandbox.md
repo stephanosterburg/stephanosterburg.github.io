@@ -7,14 +7,24 @@ featured_image: /assets/images/posts/2019/timeline_doddle.png
 
 ### Houdini
 
-To stay up-to-date, I decided to work through a course offered by [The VFX School](https://thevfxschool.com/) using [Houdini 17.5 (Apprentice)](https://www.sidefx.com/products/houdini-apprentice/).
+Spending my morning coffee instead of with a newspaper, either doing coding challenges or doing a "quick" five minutes thing in [Houdini 18 (Apprentice)](https://www.sidefx.com/products/houdini-apprentice/).
 
-Other websites I used:
+Resources I used:
 - [Applied Houdini](http://www.appliedhoudini.com/)
 - [HoudiniTricks](https://houdinitricks.com/)
 - [Entagma](http://www.entagma.com/)
 
-*Images below are sorted from newest to oldest.*
+
+---
+
+#### Five Minutes
+
+{:refdef: style="text-align: center;"}
+![Cubes]({{ site.baseurl }}/assets/images/posts/2020/FiveMinutes.0001.png) created Feb 11, 2020
+{:refdef}
+___
+
+#### ETC.
 
 {:refdef: style="text-align: center;"}
 ![Cubes]({{ site.baseurl }}/assets/images/posts/2019/WaterDroplets.png) created Nov 02, 2019
