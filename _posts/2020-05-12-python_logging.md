@@ -19,6 +19,33 @@ The `logging` module is part of the standard Python library and provides trackin
 
 The `logging` module allows for both diagnostic logging that records events related to an application’s operation, as well as audit logging, which records the events of a user’s transactions for analysis. It is primarily used to record events to a file.
 
+### Table of Logging Levels
+
+As a developer, you can ascribe a level of importance to the event that is captured in the logger by adding a severity level. The severity levels are shown in the table below.
+
+Logging levels are technically integers (a constant), and they are all in increments of 10, starting with `NOTSET` which initializes the logger at the numeric value of 0.
+
+You can also define your own levels relative to the predefined levels. If you define a level with the same numeric value, you will overwrite the name associated with that value.
+
+The table below shows the various level names, their numeric value, what function you can use to call the level, and what that level is used for.
+
+|   Level    | Numeric Value |      Function        |                               Used to                               |
+|:----------:|:-------------:|:--------------------:|:-------------------------------------------------------------------:|
+| `CRITICAL` |       50      | `logging.critical()` | Show a serious error, the program may be unable to continue running |
+|   `ERROR`  |       40      |   `logging.error()`  |                     Show a more serious problem                     |
+|  `WARNING` |       30      |  `logging.warning()` |       Indicate something unexpected happened, or could happen       |
+|   `INFO`   |       20      |  `logging.info()`    |             Confirm that things are working as expected             |
+|   `DEBUG`  |       10      |   `logging.debug()`  |             Diagnose problems, show detailed information            |
+
+The `logging` module sets the default level at `WARNING`, so `WARNING`, `ERROR`, and `CRITICAL` will all be logged by default. In the example above, we modified the configuration to include the `DEBUG` level with the following code:
+
+```python
+logging.basicConfig(level=logging.DEBUG)
+```
+
+You can read more about the commands and working with the debugger from the official logging documentation.
+
+
 ### Why Use the `logging` Module
 
 The `logging` module keeps a record of the events that occur within a program, making it possible to see output related to any of the events that occur throughout the runtime of a piece of software.
