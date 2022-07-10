@@ -5,9 +5,9 @@ featured_image:
 ---
 
 ## TL;DR
-I am Stephan Osterburg, located in the San Francisco Bay Area, CA.
+I am Stephan Osterburg, located in the Greater London Area, United Kingdom.
 
-I am a computer graphics expert with over 20 years of experience, covering everything from games, post-production, animation, visual effects to virtual reality, and a keen interest in machine learning. Expertise in project planning and management; a strong background in training, mentoring, and team building while cultivating an open, collaborative environment. A proven track record of producing high-quality work under tight deadlines. A keen eye for details. — A lifelong thirst for discovering and learning new skills.
+I am a computer graphics veteran with over 30 years of experience, covering everything from games, post-production, animation, visual effects to virtual reality, and a keen interest in machine learning. Expertise in project planning and management; a strong background in training, mentoring, and team building while cultivating an open, collaborative environment. A proven track record of producing high-quality work under tight deadlines. A keen eye for details. — A lifelong thirst for discovering and learning new skills.
 
 ---
 
