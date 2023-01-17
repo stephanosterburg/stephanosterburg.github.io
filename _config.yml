@@ -1,12 +1,12 @@
 # Site setings
 name: 'Stephan Osterburg'
-description: 'Supervisor/Technical Lead - Machine Learning Engineer'
+description: 'Head of Rigging/Technical Supervisor - Machine Learning Engineer'
 meta_description:
 logo:
 # Author image is used in site sidebar and greetings in the home page hero text
 author:
   image: 'authorimage.jpg'
-  greetings: "I am a computer graphics expert with over 20 years of experience, with a keen interest in machine learning. In the words of Steve Jobs, ‘stay hungry and stay foolish’."
+  greetings: "I am a computer graphics expert with over 30 years of experience, with a keen interest in machine learning. In the words of Steve Jobs, ‘stay hungry and stay foolish’."
 favicon: 'assets/images/favicon.ico'
 baseurl:
 production_url: https://stephanosterburg.github.io/
@@ -15,12 +15,12 @@ production_url: https://stephanosterburg.github.io/
 ga_analytics:
 
 # Contact form setings
-email: stephanosterburg@gmail.com
+email: stephan.osterburg@icloud.com
 # contact_page_description: "Horace theme comes with a contact form built-in. You can use this form with Formspree service and get up to 50 submissions for free. Also, you can easily switch to another service if you want."
 thankyou_page_description: "Your message has been successfully sent. We will contact you very soon!"
 
 # Social links
-twitter: 'sosterburg'
+# twitter: 'sosterburg'
 # medium: '@sosterburg'
 linkedin: 'stephanosterburg'
 github: 'stephanosterburg'
@@ -38,7 +38,7 @@ navigation:
   - text: PORTFOLIO
     url: /portfolio
   - text: SCRAPBOOK
-    url: https://app.gitbook.com/@stephanosterburg/s/scrapbook/
+    url: https://stephanosterburg.gitbook.io/scrapbook/
   - text: CONTACT ME
     url: /contact
 
